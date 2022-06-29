@@ -1,12 +1,8 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
-
-
 const { restoreUser } = require('../../utils/auth.js');
-
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-const { restoreUser } = require("../../utils/auth.js");
 // d39de63d686d5e91934b668378bccb0d1d14bc1f
 const { setTokenCookie } = require('../../utils/auth.js');
 const { requireAuth } = require('../../utils/auth.js');

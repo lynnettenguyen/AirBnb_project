@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 // isProduction will be true if the environment is in production (checks environment key in backend/config/index.js)
+const routes = require('./routes');
+const { ValidationError } = require('sequelize');
 
 const app = express()
 
@@ -49,7 +51,6 @@ app.use(
     })
 );
 
-const routes = require('./routes');
 app.use(routes); // Connect all the routes
 
 // Catch unhandled requests and forward to error handler.
@@ -61,7 +62,6 @@ app.use((_req, _res, next) => {
     next(err);
 });
 
-const { ValidationError } = require('sequelize');
 
 // Process sequelize errors
 app.use((err, _req, _res, next) => {

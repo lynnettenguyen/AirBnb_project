@@ -1,4 +1,4 @@
-# AirBnB_Clone
+# AirBnB_project
 
 ## Database Schema Design
 

@@ -17,9 +17,9 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.post('/test', function (req, res) {
-    res.json({ requestBody: req.body });
-});
+// router.post('/test', function (req, res) {
+//     res.json({ requestBody: req.body });
+// });
 
 // GET /api/restore-user
 // will test the restoreUser middleware and check whether or not the req.user key has been populated by the middleware properly
@@ -42,21 +42,14 @@ router.get('/set-token-cookie', async (_req, res) => {
     });
     setTokenCookie(res, user);
     return res.json({ user });
-
 });
 
 
 // GET /api/require-auth
-router.get(
-    '/require-auth',
-    requireAuth,
+router.get('/require-auth', requireAuth,
     (req, res) => {
         return res.json(req.user);
     }
 );
-
-router.post('/test', function (req, res) {
-    res.json({ requestBody: req.body });
-});
 
 module.exports = router;

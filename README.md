@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![Database Schema](airbnb_db_schema_2.png)
+![Database Schema](airbnb_db_schema_3.png)
 
 ## API Documentation
 
@@ -76,7 +76,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /login
+  * URL: /api/session
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -141,7 +141,7 @@ Creates a new user, logs them in as the current user, and returns the current us
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /signup
+  * URL: /api/users
   * Headers:
     * Content-Type: application/json
   * Body:

@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Review.belongsTo(models.User, {
-        foreignKey: 'userId'
+        foreignKey: 'userId', onDelete: 'CASCADE', hooks: true
       })
       Review.belongsTo(models.Room, {
-        foreignKey: 'roomId'
+        foreignKey: 'roomId', onDelete: 'CASCADE', hooks: true
       })
       Review.hasMany(models.Image, {
         foreignKey: 'reviewId'
@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Users',
         key: 'id'
-      }
+      },
+      onDelete: 'CASCADE',
     },
     roomId: {
       type: DataTypes.INTEGER,
@@ -38,7 +39,8 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Rooms',
         key: 'id'
-      }
+      },
+      onDelete: 'CASCADE',
     },
     star: {
       type: DataTypes.INTEGER,

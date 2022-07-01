@@ -14,7 +14,8 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       address: {
         type: Sequelize.STRING,
@@ -33,11 +34,11 @@ module.exports = {
         allowNull: false,
       },
       latitude: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(8, 6),
         allowNull: false,
       },
       longitude: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(9, 6),
         allowNull: false,
       },
       name: {
@@ -45,18 +46,18 @@ module.exports = {
         allowNull: false,
       },
       description: {
-        type: Sequelize.TEXT,
+        type: Sequelize.TEXT('long'),
         allowNull: false,
       },
       price: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       numReviews: {
         type: Sequelize.INTEGER
       },
       avgStarRating: {
-        type: Sequelize.DECIMAL(2, 1)
+        type: Sequelize.DECIMAL(3, 2)
       },
       createdAt: {
         type: Sequelize.DATE,

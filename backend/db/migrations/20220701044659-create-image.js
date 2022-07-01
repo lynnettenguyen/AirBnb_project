@@ -14,7 +14,8 @@ module.exports = {
         references: {
           model: 'Reviews',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
       },
       roomId: {
         type: Sequelize.INTEGER,
@@ -22,7 +23,8 @@ module.exports = {
         references: {
           model: 'Reviews',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
       },
       type: {
         type: Sequelize.STRING

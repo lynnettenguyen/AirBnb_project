@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: users/:userId
+  * URL: users/current, profile/
   * Body: none
 
 * Successful Response
@@ -251,7 +251,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: users/:userId/rooms
+  * URL: profile/rooms
   * Body: none
 
 * Successful Response
@@ -347,7 +347,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: users/:userId/rooms
+  * URL: profile/rooms
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -422,7 +422,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: users/:userId/rooms/:roomId
+  * URL: profile/rooms/:roomId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -510,7 +510,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: users/:userId/rooms/:roomId
+  * URL: profile/rooms/:roomId
   * Body: none
 
 * Successful Response
@@ -546,7 +546,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: users/:userId/reviews
+  * URL: profile/reviews
   * Body: none
 
 * Successful Response
@@ -732,7 +732,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: users/:userId/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
+  * URL: profile/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -800,7 +800,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: users/:userId/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
+  * URL: profile/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
   * Body: none
 
 * Successful Response
@@ -836,7 +836,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: users/:userId/reservations
+  * URL: profile/reservations
   * Body: none
 
 * Successful Response
@@ -1009,7 +1009,7 @@ Update and return an existing booking.
 * Require proper authorization: Booking must belong to the current user
 * Request
   * Method: PUT
-  * URL: users/:userId/reservations/:reservationId
+  * URL: profile/reservations/:reservationId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1091,7 +1091,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: user/:userId/reservations/:reservationId
+  * URL: profile/reservations/:reservationId
   * Body: none
 
 * Successful Response
@@ -1141,7 +1141,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: users/:userId/rooms/:roomId
+  * URL: profile/rooms/:roomId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1188,7 +1188,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: users/:userId/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
+  * URL: profile/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1250,7 +1250,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: DELETE
-  * URL: users/:userId/reviews/:reviewId, rooms/:roomId
+  * URL: profile/reviews/:reviewId, rooms/:roomId
   * Body: none
 
 * Successful Response

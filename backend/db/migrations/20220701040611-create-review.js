@@ -14,7 +14,8 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       roomId: {
         type: Sequelize.INTEGER,
@@ -22,7 +23,8 @@ module.exports = {
         references: {
           model: 'Rooms',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       star: {
         type: Sequelize.INTEGER,

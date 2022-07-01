@@ -57,8 +57,8 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Reviews, {
         foreignKey: 'userId'
       })
-      User.belongsToMany(models.Room, {
-        through: models.Reservation
+      User.hasMany(models.Reservation, {
+        foreignKey: 'userId'
       })
     }
   };
@@ -76,6 +76,14 @@ module.exports = (sequelize, DataTypes) => {
             }
           }
         }
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        // allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        // allowNull: false,
       },
       email: {
         type: DataTypes.STRING,

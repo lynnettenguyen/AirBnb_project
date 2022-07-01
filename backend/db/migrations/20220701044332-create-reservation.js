@@ -11,26 +11,34 @@ module.exports = {
       roomId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Room', key: 'id' }
+        references: {
+          model: 'Room',
+          key: 'id'
+        }
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'User', key: 'id' }
+        references: {
+          model: 'User',
+          key: 'id'
+        }
       },
       startDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       endDate: {
         type: Sequelize.DATE
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },

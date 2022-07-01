@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
   Image.init({
     reviewId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
         model: 'Reviews',
         key: 'id'
@@ -30,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     roomId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
         model: 'Rooms',
         key: 'id'

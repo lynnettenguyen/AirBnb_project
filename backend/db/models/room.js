@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
       Room.hasMany(models.Review, {
         foreignKey: 'roomId'
       })
+      Room.hasMany(models.Image, {
+        foreignKey: 'roomId'
+      })
+      Room.belongsToMany(models.User, {
+        through: models.Reservation
+      })
     }
   }
   Room.init({

@@ -57,6 +57,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Reviews, {
         foreignKey: 'userId'
       })
+      User.belongsToMany(models.Room, {
+        through: models.Reservation
+      })
     }
   };
 

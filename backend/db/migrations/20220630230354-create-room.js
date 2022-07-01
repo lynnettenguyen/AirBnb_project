@@ -1,7 +1,4 @@
 'use strict';
-
-const { sequelize } = require("../models");
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Rooms', {
@@ -66,5 +63,3 @@ module.exports = {
     await queryInterface.dropTable('Rooms');
   }
 };
-
-// npx sequelize model:generate --name review --attributes userId:integer,roomId:integer,star:integer,review:text

@@ -50,7 +50,9 @@ module.exports = (sequelize, DataTypes) => {
         email,
         hashedPassword,
       });
-      return await User.scope('currentUser').findByPk(user.id);
+      return await User.scope('currentUser').findByPk(user.id, {
+        attributes: ['id', 'firstName', 'lastName', 'email']
+      });
     };
 
     static associate(models) {

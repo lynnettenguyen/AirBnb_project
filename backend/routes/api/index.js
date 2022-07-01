@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { restoreUser } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-// d39de63d686d5e91934b668378bccb0d1d14bc1f
+const profileRouter = require('./profile.js')
 const { setTokenCookie } = require('../../utils/auth.js');
 const { requireAuth } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
@@ -16,6 +16,8 @@ router.use(restoreUser);
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+
+router.use('/profile', profileRouter)
 
 // router.post('/test', function (req, res) {
 //     res.json({ requestBody: req.body });

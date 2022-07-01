@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Rooms', [
       {
         ownerId: 1,
@@ -48,7 +48,10 @@ module.exports = {
     ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-     await queryInterface.bulkDelete('Rooms', null, {});
+  async down(queryInterface, Sequelize) {
+    const Op = Sequelize.Op;
+    await queryInterface.bulkDelete('Rooms', {
+      address: { [Op.in]: ['3376 Lake Tahoe Blvd', '1 Boulevard de la Menara', '37 Lower Simcoe Street'] }
+    }, {});
   }
 };

@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Room.belongsTo(models.User, {
         foreignKey: 'ownerId'
       })
+      Room.hasMany(models.Review, {
+        foreignKey: 'roomId'
+      })
     }
   }
   Room.init({
@@ -56,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
     avgStarRating: {
-      type: DataTypes.DECIMAL(2,1)
+      type: DataTypes.DECIMAL(2, 1)
     },
   }, {
     sequelize,

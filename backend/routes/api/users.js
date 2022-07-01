@@ -33,15 +33,21 @@ router.post(
     validateSignup,
     async (req, res) => {
         const { email, password, username, firstName, lastName } = req.body;
-        const user = await User.signup({ email, username, password, firstName, lastName });
+        let user = await User.signup({ email, username, password, firstName, lastName });
         // call the signup static method on the User model
         // if the user is successfully created, then call setTokenCookie and return a JSON response with the user information
         // if unsuccessful, then sequelize validation error will be passed onto error-handling middleware
         await setTokenCookie(res, user);
+        const token = req.headers['xsrf-token'];
 
-        return res.json({
-            user
-        });
+        const result = {}
+        result.token = token
+        user = user.toJSON()
+        res.json(Object.assign(user, result))
+        
+        // return res.json({
+        //     user
+        // });
     }
 );
 

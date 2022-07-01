@@ -6,38 +6,38 @@ module.exports = {
       {
         roomId: 1,
         userId: 2,
-        startDate: '2022-05-28',
-        endDate: '2022-05-31'
+        startDate: '2022-08-28',
+        endDate: '2022-08-31'
       },
       {
         roomId: 1,
         userId: 3,
-        startDate: '2022-06-01',
-        endDate: '2022-06-03'
+        startDate: '2022-08-01',
+        endDate: '2022-08-03'
       },
       {
         roomId: 2,
         userId: 1,
-        startDate: '2022-06-02',
-        endDate: '2022-06-05'
+        startDate: '2022-08-02',
+        endDate: '2022-08-05'
       },
       {
         roomId: 2,
         userId: 3,
-        startDate: '2022-06-06',
-        endDate: '2022-06-12'
+        startDate: '2022-08-06',
+        endDate: '2022-08-12'
       },
       {
         roomId: 3,
         userId: 1,
-        startDate: '2022-06-18',
-        endDate: '2022-06-22'
+        startDate: '2022-08-18',
+        endDate: '2022-08-22'
       },
       {
         roomId: 3,
         userId: 2,
-        startDate: '2022-06-23',
-        endDate: '2022-06-27'
+        startDate: '2022-09-04',
+        endDate: '2022-09-07'
       }
     ], {});
   },

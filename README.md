@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: users/current, profile/
+  * URL: profile/
   * Body: none
 
 * Successful Response
@@ -76,7 +76,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/session
+  * URL: api/session
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -141,7 +141,7 @@ Creates a new user, logs them in as the current user, and returns the current us
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/users
+  * URL: api/users
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -212,7 +212,7 @@ Returns all the spots.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /rooms
+  * URL: rooms/
   * Body: none
 
 * Successful Response
@@ -290,7 +290,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /rooms/:roomId
+  * URL: rooms/:roomId
   * Body: none
 
 * Successful Response

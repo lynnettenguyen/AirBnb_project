@@ -13,4 +13,9 @@ router.get('/rooms', requireAuth, async (req, res) => {
     res.json(myRooms)
 })
 
+router.get('/', requireAuth, async (req, res) => {
+    const currentUser = await User.findByPk(req.user.id)
+    res.json(currentUser)
+})
+
 module.exports = router;

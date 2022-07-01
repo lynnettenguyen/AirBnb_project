@@ -12,9 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Room.belongsTo(models.User, {
-        foreignKey: 'ownerId'
+        foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true
       })
       Room.hasMany(models.Review, {
+        foreignKey: 'roomId'
+      })
+      Room.hasMany(models.Image, {
+        foreignKey: 'roomId'
+      })
+      Room.hasMany(models.Reservation, {
         foreignKey: 'roomId'
       })
     }
@@ -41,25 +47,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     latitude: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(8, 6),
     },
     longitude: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(9, 6),
     },
     name: {
       type: DataTypes.STRING,
     },
     description: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT('long'),
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
     },
     numReviews: {
       type: DataTypes.INTEGER,
     },
     avgStarRating: {
-      type: DataTypes.DECIMAL(2, 1)
+      type: DataTypes.DECIMAL(3, 2)
     },
   }, {
     sequelize,

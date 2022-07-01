@@ -39,10 +39,12 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     // creates a user with the username, email, and hashedPassword
-    static async signup({ username, email, password }) {
+    static async signup({ username, email, password, firstName, lastName }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
+        firstName,
+        lastName,
         email,
         hashedPassword
       });
@@ -51,10 +53,10 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
-      User.hasMany(models.Rooms, {
+      User.hasMany(models.Room, {
         foreignKey: 'ownerId'
       })
-      User.hasMany(models.Reviews, {
+      User.hasMany(models.Review, {
         foreignKey: 'userId'
       })
       User.hasMany(models.Reservation, {
@@ -79,11 +81,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       email: {
         type: DataTypes.STRING,

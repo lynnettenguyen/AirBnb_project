@@ -20,14 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       // uses the currentUser scope to return a User with that id
     };
 
-    static async login({ credential, password }) {
+    // static async login({ credential, password }) {
+    static async login({ email, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
         // searches for one User with the specified credential (either a username or an email
         where: {
           [Op.or]: {
-            username: credential,
-            email: credential
+            // username: credential,
+            // email: credential
+            email: email
           }
         }
       });

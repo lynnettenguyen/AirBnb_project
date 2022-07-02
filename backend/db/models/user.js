@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
       // if user is found, validate the password using .validatePassword method
       if (user && user.validatePassword(password)) {
         // if password is valid, method will return user by using currentUser scope
-        return await User.scope('currentUser').findByPk(user.id);
+        return await User.scope('currentUser').findByPk(user.id,
+          { attributes: ['id', 'firstName', 'lastName', 'email'] });
       }
     };
 

@@ -30,11 +30,11 @@ router.post(
         const { email, password } = req.body;
 
         // const user = await User.login({ credential, password });
-        const user = await User.login({ email, password });
+        let user = await User.login({ email, password });
         // calls the login static method from the User model
 
         if (!user) {
-            const err = new Error('Login failed');
+            const err = new Error('Invalid credentials');
             err.status = 401;
             err.title = 'Login failed';
             err.errors = ['The provided credentials were invalid.'];
@@ -42,10 +42,13 @@ router.post(
         }
 
         await setTokenCookie(res, user);
-
-        return res.json({
-            user
-        });
+        const result = {}
+        result.token =  req.headers['xsrf-token'];
+        user = user.toJSON()
+        res.json(Object.assign(user, result))
+        // return res.json({
+        //     user
+        // });
     }
 );
 

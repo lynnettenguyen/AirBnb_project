@@ -14,8 +14,6 @@ module.exports = {
         name: '7 Sierra Shores Cozy Lakefront Home',
         description: 'Enjoy the accommodations of Sierra Shores, a major resort like paradise, private and comfy. Our large, high-end, 3 bedroom, 3 bath townhouse is right on the lake! This property is among the highest end lakefront properties in the entire Lake Tahoe area.',
         price: 1494,
-        numReviews: 30,
-        avgStarRating: 4.60
       },
       {
         ownerId: 2,
@@ -28,8 +26,6 @@ module.exports = {
         name: 'Luxury Room in the Heart of the Medina',
         description: 'A unique Riad in the medina, perfectly located a few minutes from the Ben Youssef Medrassa, souks and Jemaa el fna square. This property is a real image of modernity and tradition with excellent service.',
         price: 58,
-        numReviews: 3,
-        avgStarRating: 4.30
       },
       {
         ownerId: 3,
@@ -42,8 +38,6 @@ module.exports = {
         name: 'Brand New Downtown Condo with Large Balcony',
         description: 'Brand new modern and stylish condo in the heart of downtown Toronto. Large balcony with view of the lake. 3 minutes walking distance to Rogers Centre, Scotiabank Arena, CN Tower, Aquarium and Waterfront harbors.',
         price: 282,
-        numReviews: 102,
-        avgStarRating: 4.84
       },
     ], {});
   },

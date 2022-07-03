@@ -6,8 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
       // method will return an object with only the User instance information that is safe to save to a JWT, like id, username, and email
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      // const { id, username, email } = this; // context will be the User instance
+      const { id, email } = this; // context will be the User instance
+      // return { id, username, email };
+      return { id, email };
     };
 
     validatePassword(password) {
@@ -42,10 +44,11 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     // creates a user with the username, email, and hashedPassword
-    static async signup({ username, email, password, firstName, lastName }) {
+    // static async signup({ username, email, password, firstName, lastName }) {
+    static async signup({email, password, firstName, lastName }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
-        username,
+        // username,
         firstName,
         lastName,
         email,
@@ -72,29 +75,30 @@ module.exports = (sequelize, DataTypes) => {
 
   User.init(
     {
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [4, 30],
-          isNotEmail(value) {
-            if (Validator.isEmail(value)) {
-              throw new Error("Cannot be an email.");
-            }
-          }
-        }
-      },
+      // username: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      //   validate: {
+      //     len: [4, 30],
+      //     isNotEmail(value) {
+      //       if (Validator.isEmail(value)) {
+      //         throw new Error("Cannot be an email.");
+      //       }
+      //     }
+      //   }
+      // },
       firstName: {
         type: DataTypes.STRING,
-        // allowNull: false,
+        allowNull: false,
       },
       lastName: {
         type: DataTypes.STRING,
-        // allowNull: false,
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [3, 256]
         }
@@ -111,7 +115,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: "User",
     defaultScope: {
       attributes: {
-        exclude: ['hashedPassword', 'username', 'createdAt', 'updatedAt']
+        exclude: ['hashedPassword', 'createdAt', 'updatedAt']
       }
     },
     scopes: {

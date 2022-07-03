@@ -15,13 +15,7 @@ router.get('/rooms', requireAuth, async (req, res) => {
 
 router.get('/', requireAuth, async (req, res) => {
     let currentUser = await User.findByPk(req.user.id)
-
-    const token = req.headers['xsrf-token'];
-
-    const result = {}
-    result.token = token
-    currentUser = currentUser.toJSON()
-    res.json(Object.assign(currentUser, result))
+    res.json(currentUser)
 })
 
 module.exports = router;

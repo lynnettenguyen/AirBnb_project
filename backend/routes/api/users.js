@@ -12,14 +12,14 @@ const validateSignup = [
         .exists({ checkFalsy: true })
         .isEmail()
         .withMessage('Please provide a valid email.'),
-    check('username')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 4 })
-        .withMessage('Please provide a username with at least 4 characters.'),
-    check('username')
-        .not()
-        .isEmail()
-        .withMessage('Username cannot be an email.'),
+    // check('username')
+    //     .exists({ checkFalsy: true })
+    //     .isLength({ min: 4 })
+    //     .withMessage('Please provide a username with at least 4 characters.'),
+    // check('username')
+    //     .not()
+    //     .isEmail()
+    //     .withMessage('Username cannot be an email.'),
     check('password')
         .exists({ checkFalsy: true })
         .isLength({ min: 6 })
@@ -31,23 +31,46 @@ const validateSignup = [
 router.post(
     '/',
     validateSignup,
-    async (req, res) => {
-        const { email, password, username, firstName, lastName } = req.body;
-        let user = await User.signup({ email, username, password, firstName, lastName });
+    async (req, res, next) => {
+        // const { email, password, username, firstName, lastName } = req.body;
+        const { email, password, firstName, lastName } = req.body;
+
+        const findEmail = User.findOne({
+            where: { email }
+        })
+        // console.log('EMAIL:', findEmail)
+
+        if (!firstName || !lastName || !email) {
+            const err = new Error('Validation error');
+            err.status = 400;
+            err.title = 'Signup failed';
+
+            if (!firstName) err.errors = { firstName: 'First Name is required' };
+            if (!lastName) err.errors = { lastName: 'Last Name is required' };
+            if (!email) err.errors = { email: 'Invalid email' };
+
+            return next(err);
+    
+        }
+
+        if (findEmail) {
+            const err = new Error('User already exists');
+            err.status = 403;
+            err.title = 'Signup failed';
+            err.errors = { email: 'User with that email already exists' };
+            return next(err);
+        }
+        // let user = await User.signup({ email, username, password, firstName, lastName });
+        let user = await User.signup({ email, password, firstName, lastName });
         // call the signup static method on the User model
         // if the user is successfully created, then call setTokenCookie and return a JSON response with the user information
         // if unsuccessful, then sequelize validation error will be passed onto error-handling middleware
         await setTokenCookie(res, user);
-        const token = req.headers['xsrf-token'];
-
         const result = {}
-        result.token = token
+        result.token = req.headers['xsrf-token']
         user = user.toJSON()
         res.json(Object.assign(user, result))
-        
-        // return res.json({
-        //     user
-        // });
+        // return res.json({ user });
     }
 );
 

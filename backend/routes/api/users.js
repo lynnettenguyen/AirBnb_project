@@ -35,11 +35,6 @@ router.post(
         // const { email, password, username, firstName, lastName } = req.body;
         const { email, password, firstName, lastName } = req.body;
 
-        const findEmail = User.findOne({
-            where: { email }
-        })
-        // console.log('EMAIL:', findEmail)
-
         if (!firstName || !lastName || !email) {
             const err = new Error('Validation error');
             err.status = 400;
@@ -48,10 +43,12 @@ router.post(
             if (!firstName) err.errors = { firstName: 'First Name is required' };
             if (!lastName) err.errors = { lastName: 'Last Name is required' };
             if (!email) err.errors = { email: 'Invalid email' };
-
             return next(err);
-    
         }
+
+        const findEmail = User.findOne({
+            where: { email }
+        })
 
         if (findEmail) {
             const err = new Error('User already exists');
@@ -60,6 +57,7 @@ router.post(
             err.errors = { email: 'User with that email already exists' };
             return next(err);
         }
+
         // let user = await User.signup({ email, username, password, firstName, lastName });
         let user = await User.signup({ email, password, firstName, lastName });
         // call the signup static method on the User model

@@ -2,7 +2,7 @@
 const { Op } = require('sequelize');
 const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Room, Review, Reservation, Image } = require('../../db/models');
+const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const room = require('../../db/models/room');
 const router = express.Router();
 
@@ -19,23 +19,19 @@ router.get('/:roomId', async (req, res) => {
                 model: User,
                 as: 'Owner',
                 attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+                model: Review,
+                attributes: []
             }
-        ]
+        ],
+        attributes: {
+            include: [
+                [sequelize.fn('AVG', sequelize.col('star')), 'avgStarRating'],
+                [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews']
+            ]
+        }
     })
-
-    totalNumReviews = await Review.count({
-        where: { roomId: req.params.roomId }
-    })
-
-    calculateAvgReviews = 
-
-    const updateNumReviews = await Room.update(
-        {
-            numReviews: totalNumReviews
-        },
-        {
-            where: { numReviews: null }
-        })
 
     res.json(rooms)
 })

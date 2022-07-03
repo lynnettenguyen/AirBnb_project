@@ -4,6 +4,7 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const e = require('express');
 const router = express.Router();
 
 const validateLogin = [
@@ -12,12 +13,14 @@ const validateLogin = [
     check('email')
         .exists({ checkFalsy: true })
         .notEmpty()
-        .withMessage('Please provide a valid email or username.'),
+        // .withMessage('Please provide a valid email or username.'),
+        .withMessage('Email is required'),
     // checks to see whether or not req.body.credential and req.body.password are empty
     // if one is empty, response will return an error
     check('password')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a password.'),
+        // .withMessage('Please provide a password.'),
+        .withMessage('Password is required'),
     handleValidationErrors
 ];
 
@@ -29,26 +32,23 @@ router.post(
         // const { credential, password } = req.body;
         const { email, password } = req.body;
 
+        // call the login static method from the User model
         // const user = await User.login({ credential, password });
         let user = await User.login({ email, password });
-        // calls the login static method from the User model
 
         if (!user) {
             const err = new Error('Invalid credentials');
             err.status = 401;
             err.title = 'Login failed';
-            err.errors = ['The provided credentials were invalid.'];
+            err.errors = ['The provided credentials were invalid'];
             return next(err);
         }
-
         await setTokenCookie(res, user);
         const result = {}
-        result.token =  req.headers['xsrf-token'];
+        result.token = req.headers['xsrf-token'];
         user = user.toJSON()
         res.json(Object.assign(user, result))
-        // return res.json({
-        //     user
-        // });
+        // return res.json({user});
     }
 );
 

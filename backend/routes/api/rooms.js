@@ -7,9 +7,8 @@ const room = require('../../db/models/room');
 const router = express.Router();
 
 
-router.get('/:roomId', async (req, res) => {
-    const rooms = await Room.findAll({
-        where: { id: req.params.roomId },
+router.get('/:roomId', async (req, res, next) => {
+    const rooms = await Room.findByPk(req.user.roomId, {
         include: [
             {
                 model: Image,
@@ -32,6 +31,12 @@ router.get('/:roomId', async (req, res) => {
             ]
         }
     })
+
+    if (!rooms) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    }
 
     res.json(rooms)
 })

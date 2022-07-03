@@ -4,19 +4,18 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image } = require('../../db/models');
 const router = express.Router();
 
+router.post('/rooms', requireAuth, async (req, res, next) => {
+    const { address, city, state, country, latitude, longitude, name, description, price } = req.body
+})
+
 router.get('/rooms', requireAuth, async (req, res) => {
-    // const myRooms = await Room.findAll({
-    //     where: { ownerId: req.user.id }
-    // })
-    // // console.log('USER:', req.user)
-    // // console.log('USER ID:', req.user.id)
     const currentUser = await User.findAll({
         where: { id: req.user.id },
         attributes: [],
         include: {
             model: Room,
             as: 'Spots',
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'latitude', 'longitude', 'name', 'description', 'price', 'createdAt', 'updatedAt']
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt']
         }
     })
     res.json(currentUser)

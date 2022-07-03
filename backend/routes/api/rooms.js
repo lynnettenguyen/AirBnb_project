@@ -43,7 +43,7 @@ router.get('/:roomId', async (req, res, next) => {
 
 router.get('/', async (req, res) => {
     const allRooms = await Room.findAll({
-        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'latitude', 'longitude', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
+        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
         include: [
             {
                 model: Image,

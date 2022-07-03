@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'roomId'
       })
       Room.hasMany(models.Image, {
-        foreignKey: 'roomId'
+        foreignKey: 'roomId', as: 'previewImage'
       })
       Room.hasMany(models.Reservation, {
         foreignKey: 'roomId'

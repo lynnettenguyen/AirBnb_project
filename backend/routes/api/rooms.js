@@ -9,7 +9,12 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     const allRooms = await Room.findAll({
-        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'latitude', 'longitude', 'name', 'description', 'price', 'createdAt', 'updatedAt']
+        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'latitude', 'longitude', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
+        include: [{
+            model: Image,
+            as: 'previewImage',
+            attributes: ['url']
+        }]
     })
 
     res.json(allRooms)

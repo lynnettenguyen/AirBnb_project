@@ -4,6 +4,27 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image } = require('../../db/models');
 const router = express.Router();
 
+router.delete('/rooms/:roomId', requireAuth, async (req, res, next) => {
+
+    const room = await Room.findByPk(req.params.roomId)
+
+    if (room) {
+        if (room.ownerId === req.user.id) {
+
+            await room.destroy();
+            res.status = 200;
+            res.json({
+                message: "Successfully deleted",
+                statusCode: res.status
+            })
+        }
+    } else {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        next(err)
+    }
+})
+
 router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -89,9 +110,9 @@ router.post('/rooms', requireAuth, async (req, res, next) => {
         err.status = 400;
         err.errors = errorResult.errors
         next(err)
-    } else {
-        res.json(newRoom)
     }
+
+    res.json(newRoom)
 })
 
 router.get('/rooms', requireAuth, async (req, res) => {

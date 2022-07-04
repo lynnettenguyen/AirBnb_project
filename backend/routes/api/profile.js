@@ -7,22 +7,49 @@ const router = express.Router();
 router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+    let errorResult = { errors: {} }
+
     const room = await Room.findByPk(req.params.roomId)
 
-    if (room) {
-        if (address) room.address = address;
-        if (city) room.city = city;
-        if (state) room.state = state;
-        if (country) room.country = country;
-        if (lat) room.lat = lat;
-        if (lng) room.lng = lng;
-        if (name) room.name = name;
-        if (description) room.description = description;
-        if (price) room.price = price;
-
-        await room.save();
-        res.json(room)
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        next(err)
     }
+
+    if (!address) errorResult.errors.address = 'Street address is required';
+    if (!city) errorResult.errors.city = 'City is required';
+    if (!state) errorResult.errors.state = 'State is required';
+    if (!country) errorResult.errors.country = 'Country is required';
+
+    if (lat > 90 || lat < -90 || typeof lat !== 'number') errorResult.errors.lat = 'Latitude is not valid';
+
+    if (lng > 180 || lng < -180 || typeof lng !== 'number') errorResult.errors.lng = 'Longitude is not valid';
+
+    if (name.length > 50) errorResult.errors.name = 'Name must be less than 50 characters';
+
+    if (!description) errorResult.errors.description = 'Description is required';
+    if (!price) errorResult.errors.price = 'Price per day is required';
+
+    if (errorResult.errors) {
+        const err = new Error('Validation Error');
+        err.status = 400;
+        err.errors = errorResult.errors
+        next(err)
+    }
+
+    room.address = address;
+    room.city = city;
+    room.state = state;
+    room.country = country;
+    room.lat = lat;
+    room.lng = lng;
+    room.name = name;
+    room.description = description;
+    room.price = price;
+
+    await room.save();
+    res.json(room)
 })
 
 router.post('/rooms', requireAuth, async (req, res, next) => {

@@ -12,15 +12,15 @@ const validateLogin = [
     // check('credential')
     check('email')
         .exists({ checkFalsy: true })
-        .notEmpty()
+        .notEmpty(),
         // .withMessage('Please provide a valid email or username.'),
-        .withMessage('Email is required'),
+        // .withMessage('Email is required'),
     // checks to see whether or not req.body.credential and req.body.password are empty
     // if one is empty, response will return an error
     check('password')
-        .exists({ checkFalsy: true })
+        .exists({ checkFalsy: true }),
         // .withMessage('Please provide a password.'),
-        .withMessage('Password is required'),
+        // .withMessage('Password is required'),
     handleValidationErrors
 ];
 

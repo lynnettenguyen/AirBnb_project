@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 router.get('/:roomId', async (req, res, next) => {
-    const rooms = await Room.findByPk(req.params.roomId,
+    const rooms = await Room.unscoped().findByPk(req.params.roomId,
         {
             include: [
                 {
@@ -44,7 +44,6 @@ router.get('/:roomId', async (req, res, next) => {
 
 router.get('/', async (req, res) => {
     const allRooms = await Room.findAll({
-        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
         include: [
             {
                 model: Image,

@@ -34,12 +34,6 @@ router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
 
     const room = await Room.findByPk(req.params.roomId)
 
-    if (!room) {
-        const err = new Error(`Spot couldn't be found`);
-        err.status = 404;
-        next(err)
-    }
-
     if (!address) errorResult.errors.address = 'Street address is required';
     if (!city) errorResult.errors.city = 'City is required';
     if (!state) errorResult.errors.state = 'State is required';
@@ -54,6 +48,12 @@ router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
     if (!description) errorResult.errors.description = 'Description is required';
     if (!price) errorResult.errors.price = 'Price per day is required';
 
+
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        next(err)
+    }
     if (errorResult.errors) {
         const err = new Error('Validation Error');
         err.status = 400;
@@ -73,6 +73,7 @@ router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
 
     await room.save();
     res.json(room)
+
 })
 
 router.post('/rooms', requireAuth, async (req, res, next) => {

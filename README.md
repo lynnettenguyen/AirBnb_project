@@ -212,7 +212,7 @@ Returns all the spots.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: rooms/
+  * URL: api/rooms
   * Body: none
 
 * Successful Response
@@ -251,7 +251,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: profile/rooms
+  * URL: api/profile/rooms
   * Body: none
 
 * Successful Response
@@ -290,7 +290,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: rooms/:roomId
+  * URL: api/rooms/:roomId
   * Body: none
 
 * Successful Response
@@ -347,7 +347,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: profile/rooms
+  * URL: api/profile/rooms
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -422,7 +422,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: profile/rooms/:roomId
+  * URL: api/profile/rooms/:roomId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -510,7 +510,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: profile/rooms/:roomId
+  * URL: api/profile/rooms/:roomId
   * Body: none
 
 * Successful Response

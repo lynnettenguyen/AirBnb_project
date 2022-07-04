@@ -6,22 +6,24 @@ const router = express.Router();
 
 router.delete('/rooms/:roomId', requireAuth, async (req, res, next) => {
 
-    const room = await Room.findByPk(req.params.roomId)
-
-    if (room) {
-        if (room.ownerId === req.user.id) {
-
-            await room.destroy();
-            res.status = 200;
-            res.json({
-                message: "Successfully deleted",
-                statusCode: res.status
-            })
+    const room = await Room.findOne({
+        where: {
+            id: req.params.roomId,
+            ownerId: req.user.id
         }
-    } else {
+    })
+
+    if (!room) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         next(err)
+    } else {
+        await room.destroy();
+        res.status = 200;
+        res.json({
+            message: "Successfully deleted",
+            statusCode: res.status
+        })
     }
 })
 

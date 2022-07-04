@@ -7,38 +7,44 @@ const room = require('../../db/models/room');
 const router = express.Router();
 
 
-router.get('/:roomId', async (req, res) => {
-    const rooms = await Room.findAll({
-        where: { id: req.params.roomId },
-        include: [
-            {
-                model: Image,
-                as: 'previewImage',
-                attributes: ['url']
-            }, {
-                model: User,
-                as: 'Owner',
-                attributes: ['id', 'firstName', 'lastName']
-            },
-            {
-                model: Review,
-                attributes: []
-            }
-        ],
-        attributes: {
+router.get('/:roomId', async (req, res, next) => {
+    const rooms = await Room.findByPk(req.params.roomId,
+        {
             include: [
-                [sequelize.fn('AVG', sequelize.col('star')), 'avgStarRating'],
-                [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews']
-            ]
-        }
-    })
+                {
+                    model: Image,
+                    as: 'previewImage',
+                    attributes: ['url']
+                }, {
+                    model: User,
+                    as: 'Owner',
+                    attributes: ['id', 'firstName', 'lastName']
+                },
+                {
+                    model: Review,
+                    attributes: []
+                }
+            ],
+            attributes: {
+                include: [
+                    [sequelize.fn('AVG', sequelize.col('star')), 'avgStarRating'],
+                    [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews']
+                ]
+            }
+        })
+
+    if (!rooms) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    }
 
     res.json(rooms)
 })
 
 router.get('/', async (req, res) => {
     const allRooms = await Room.findAll({
-        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'latitude', 'longitude', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
+        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
         include: [
             {
                 model: Image,

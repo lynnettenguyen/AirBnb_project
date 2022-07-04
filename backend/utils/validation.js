@@ -5,20 +5,26 @@ const { validationResult } = require('express-validator');
 // (to customize, see express-validator's documentation)
 const handleValidationErrors = (req, _res, next) => {
     const validationErrors = validationResult(req);
+    const { email, password } = req.body
+    const errorResult = { errors: {} }
 
     if (!validationErrors.isEmpty()) {
-        const errors = validationErrors
-            .array()
-            .map((error) => `${error.msg}`);
+        // const errors = validationErrors
+        //     .array()
+        //     .map((error) => `${error.msg}`);
 
-        const err = Error('Validation error');
-        err.errors = errors;
-        err.status = 400;
-        err.title = 'Bad request.';
-        next(err);
-    }
-    // if there are no validation error from validationRseult, invoke the next middleware
-    next();
+    if (!email) errorResult.errors.email = 'Email is required';
+    if (!password) errorResult.errors.password = 'Password is required';
+
+    const err = Error('Validation error');
+    // err.errors = errors;
+    err.errors = errorResult.errors;
+    err.status = 400;
+    err.title = 'Bad request.';
+    next(err);
+}
+// if there are no validation error from validationRseult, invoke the next middleware
+next();
 };
 
 module.exports = {

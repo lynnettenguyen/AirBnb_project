@@ -40,9 +40,9 @@ router.post(
             const err = new Error('Invalid credentials');
             err.status = 401;
             err.title = 'Login failed';
-            err.errors = ['The provided credentials were invalid'];
             return next(err);
         }
+
         await setTokenCookie(res, user);
         const result = {}
         result.token = req.headers['xsrf-token'];

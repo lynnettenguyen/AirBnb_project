@@ -35,40 +35,40 @@ router.post(
         // const { email, password, username, firstName, lastName } = req.body;
         const { email, password, firstName, lastName } = req.body;
 
-        if (!firstName || !lastName || !email) {
-            const err = new Error('Validation error');
-            err.status = 400;
-            err.title = 'Signup failed';
-
-            if (!firstName) err.errors = { firstName: 'First Name is required' };
-            if (!lastName) err.errors = { lastName: 'Last Name is required' };
-            if (!email) err.errors = { email: 'Invalid email' };
-            return next(err);
-        }
-
-        const findEmail = User.findOne({
+        const findEmail = await User.findOne({
             where: { email }
         })
 
         if (findEmail) {
             const err = new Error('User already exists');
             err.status = 403;
-            err.title = 'Signup failed';
             err.errors = { email: 'User with that email already exists' };
             return next(err);
         }
 
-        // let user = await User.signup({ email, username, password, firstName, lastName });
-        let user = await User.signup({ email, password, firstName, lastName });
-        // call the signup static method on the User model
-        // if the user is successfully created, then call setTokenCookie and return a JSON response with the user information
-        // if unsuccessful, then sequelize validation error will be passed onto error-handling middleware
-        await setTokenCookie(res, user);
-        const result = {}
-        result.token = req.headers['xsrf-token']
-        user = user.toJSON()
-        res.json(Object.assign(user, result))
-        // return res.json({ user });
+        const errorResult = { errors: {} }
+
+        if (!firstName) errorResult.errors.firstName = 'First Name is required';
+        if (!lastName) errorResult.errors.lastName = 'Last Name is required';
+        if (!email) errorResult.errors.email = 'Invalid email';
+
+        if (errorResult.errors) {
+            const err = new Error('Validation Error');
+            err.status = 400;
+            err.errors = errorResult.errors
+            next(err)
+        } else {
+            // let user = await User.signup({ email, username, password, firstName, lastName });
+            let user = await User.signup({ email, password, firstName, lastName });
+            // call the signup static method on the User model
+            // if the user is successfully created, then call setTokenCookie and return a JSON response with the user information
+            // if unsuccessful, then sequelize validation error will be passed onto error-handling middleware
+            await setTokenCookie(res, user);
+            const result = {}
+            result.token = req.headers['xsrf-token']
+            user = user.toJSON()
+            res.json(Object.assign(user, result))
+        }
     }
 );
 

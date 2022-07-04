@@ -50,13 +50,12 @@ router.post(
 
         if (!firstName) errorResult.errors.firstName = 'First Name is required';
         if (!lastName) errorResult.errors.lastName = 'Last Name is required';
-        if (!email) errorResult.errors.email = 'Invalid email';
 
         if (errorResult.errors) {
             const err = new Error('Validation Error');
             err.status = 400;
             err.errors = errorResult.errors
-            next(err)
+            return next(err)
         } else {
             // let user = await User.signup({ email, username, password, firstName, lastName });
             let user = await User.signup({ email, password, firstName, lastName });

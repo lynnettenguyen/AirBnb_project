@@ -32,14 +32,14 @@ router.get('/:roomId', async (req, res, next) => {
                 ]
             }
         })
-
-    if (!rooms) {
+    
+    if (Number(req.params.roomId) !== rooms.id) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err);
+    } else {
+        res.json(rooms)
     }
-
-    res.json(rooms)
 })
 
 router.get('/', async (req, res) => {

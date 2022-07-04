@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     lat: {
       type: DataTypes.DECIMAL(8, 6),
+      allowNull: false,
     },
     lng: {
       type: DataTypes.DECIMAL(9, 6),
@@ -68,6 +69,9 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        min: 0
+      }
     },
     numReviews: {
       type: DataTypes.INTEGER,

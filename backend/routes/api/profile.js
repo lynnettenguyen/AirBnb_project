@@ -5,7 +5,45 @@ const { User, Room, Review, Reservation, Image } = require('../../db/models');
 const router = express.Router();
 
 router.post('/rooms', requireAuth, async (req, res, next) => {
-    const { address, city, state, country, latitude, longitude, name, description, price } = req.body
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    let errorResult = { errors: {} }
+
+    if (!address) errorResult.errors.address = 'Street address is required';
+    if (!city) errorResult.errors.city = 'City is required';
+    if (!state) errorResult.errors.state = 'State is required';
+    if (!country) errorResult.errors.country = 'Country is required';
+
+    if (lat > 90 || lat < -90 || typeof lat !== 'number') errorResult.errors.lat = 'Latitude is not valid';
+
+    if (lng > 180 || lng < -180 || typeof lng !== 'number') errorResult.errors.lng = 'Longitude is not valid';
+
+    if (name.length > 50) errorResult.errors.name = 'Name must be less than 50 characters';
+
+    if (!description) errorResult.errors.description = 'Description is required';
+    if (!price) errorResult.errors.price = 'Price per day is required';
+
+    const newRoom = await Room.create({
+        ownerId: req.user.id,
+        address: address,
+        city: city,
+        state: state,
+        country: country,
+        lat: lat,
+        lng: lng,
+        name: name,
+        description: description,
+        price: price
+    })
+
+    if (errorResult.errors) {
+        const err = new Error('Validation Error');
+        err.status = 400;
+        err.errors = errorResult.errors
+        next(err)
+    } else {
+        res.json(newRoom)
+    }
 })
 
 router.get('/rooms', requireAuth, async (req, res) => {

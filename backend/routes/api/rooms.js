@@ -6,7 +6,6 @@ const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/
 const room = require('../../db/models/room');
 const router = express.Router();
 
-
 router.get('/:roomId', async (req, res, next) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,
         {
@@ -32,7 +31,7 @@ router.get('/:roomId', async (req, res, next) => {
                 ]
             }
         })
-    
+
     if (Number(req.params.roomId) !== rooms.id) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;

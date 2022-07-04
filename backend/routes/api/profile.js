@@ -125,10 +125,28 @@ router.get('/rooms', requireAuth, async (req, res) => {
         include: {
             model: Room,
             as: 'Spots',
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt']
+            attributes: { exclude: ['numReviews', 'avgStarRating'] }
         }
     })
     res.json(currentUser)
+})
+
+router.get('/reviews', requireAuth, async (req, res) => {
+    const userReviews = await Review.findAll({
+        where: { userId: req.user.id },
+        include: [{
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+        }, {
+            model: Room,
+            as: 'Spots',
+            attributes: { exclude: ['createdAt', 'updatedAt'] }
+        }, {
+            model: Image,
+            attributes: ['url']
+        }]
+    })
+    res.json(userReviews)
 })
 
 router.get('/', requireAuth, async (req, res) => {

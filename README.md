@@ -546,7 +546,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: profile/reviews
+  * URL: api/profile/reviews
   * Body: none
 
 * Successful Response

@@ -4,6 +4,27 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image } = require('../../db/models');
 const router = express.Router();
 
+router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    const room = await Room.findByPk(req.params.roomId)
+
+    if (room) {
+        if (address) room.address = address;
+        if (city) room.city = city;
+        if (state) room.state = state;
+        if (country) room.country = country;
+        if (lat) room.lat = lat;
+        if (lng) room.lng = lng;
+        if (name) room.name = name;
+        if (description) room.description = description;
+        if (price) room.price = price;
+
+        await room.save();
+        res.json(room)
+    }
+})
+
 router.post('/rooms', requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 

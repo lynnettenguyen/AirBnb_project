@@ -85,7 +85,7 @@ app.use((err, _req, res, _next) => {
             statusCode: err.status,
             errors: err.errors,
         })
-    } else if (err.status == 401) {
+    } else if (err.status === 401) {
         res.json({
             // title: err.title || 'Server Error',
             message: err.message,

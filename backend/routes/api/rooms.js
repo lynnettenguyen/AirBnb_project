@@ -36,8 +36,10 @@ router.get('/:roomId/reviews', async (req, res, next) => {
         }]
     })
 
-    if (!roomReviews.length) {
-        const err = new Error(`Spot couldn't be found(or spot does not have any reviews)`);
+    const room = await Room.findByPk(req.params.roomId)
+
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err);
     } else {
@@ -50,19 +52,19 @@ router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) =>
 
     const room = await Room.findByPk(req.params.roomId)
 
-    if (room) {
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    } else {
         const newReview = await Review.create({
             userId: req.user.id,
             roomId: req.params.roomId,
             review: review,
             stars: stars
         })
-    // } else {
-    //     const err = new Error(`Spot couldn't be found`);
-    //     err.status = 404;
-    //     return next(err);
+        return res.json(newReview)
     }
-    return res.json(newReview)
 })
 
 router.get('/:roomId', async (req, res, next) => {

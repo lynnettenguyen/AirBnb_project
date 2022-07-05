@@ -25,10 +25,10 @@ router.get('/:roomId', async (req, res, next) => {
             ],
             attributes: {
                 include: [
-                    [sequelize.fn('AVG', sequelize.col('star')), 'avgStarRating'],
+                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
                     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews']
-                ]
-            }
+                ],
+            },
         })
 
     if (Number(req.params.roomId) !== rooms.id) {

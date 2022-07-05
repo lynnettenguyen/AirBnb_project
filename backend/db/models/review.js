@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'CASCADE',
     },
-    star: {
+    stars: {
       type: DataTypes.INTEGER,
     },
     review: {

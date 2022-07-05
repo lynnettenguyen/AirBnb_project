@@ -26,7 +26,7 @@ module.exports = {
         },
         onDelete: 'CASCADE'
       },
-      star: {
+      stars: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

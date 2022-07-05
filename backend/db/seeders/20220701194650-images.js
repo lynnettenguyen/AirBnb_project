@@ -14,9 +14,24 @@ module.exports = {
         url: 'image url for room 2'
       },
       {
+        roomId: 3,
+        type: 'room',
+        url: 'image url for room 3'
+      },
+      {
         reviewId: 1,
         type: 'review',
         url: 'image url for review 1'
+      },
+      {
+        reviewId: 2,
+        type: 'review',
+        url: 'image url for review 2'
+      },
+      {
+        reviewId: 3,
+        type: 'review',
+        url: 'image url for review 3'
       },
     ], {});
 

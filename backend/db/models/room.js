@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'roomId'
       })
       Room.hasMany(models.Image, {
-        foreignKey: 'roomId', as: 'previewImage'
+        foreignKey: 'roomId'
       })
       Room.hasMany(models.Reservation, {
         foreignKey: 'roomId'
@@ -77,11 +77,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
     avgStarRating: {
-      type: DataTypes.DECIMAL(3, 2)
+      type: DataTypes.DECIMAL(3, 2),
     },
   }, {
     sequelize,
     modelName: 'Room',
+    defaultScope: {
+      attributes: {
+        exclude: ['numReviews', 'avgStarRating']
+      }
+    }
   });
   return Room;
 };

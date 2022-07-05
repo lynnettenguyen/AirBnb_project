@@ -33,7 +33,7 @@ router.post(
     validateSignup,
     async (req, res, next) => {
         // const { email, password, username, firstName, lastName } = req.body;
-        const { email, password, firstName, lastName } = req.body;
+        const { firstName, lastName, email, password } = req.body;
 
         const findEmail = await User.findOne({
             where: { email }
@@ -51,11 +51,11 @@ router.post(
         if (!firstName) errorResult.errors.firstName = 'First Name is required';
         if (!lastName) errorResult.errors.lastName = 'Last Name is required';
 
-        if (errorResult.errors) {
+        if (Object.keys(errorResult.errors).length) {
             const err = new Error('Validation Error');
             err.status = 400;
             err.errors = errorResult.errors
-            return next(err)
+            next(err)
         } else {
             // let user = await User.signup({ email, username, password, firstName, lastName });
             let user = await User.signup({ email, password, firstName, lastName });

@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: profile/
+  * URL: api/profile
   * Body: none
 
 * Successful Response
@@ -312,10 +312,10 @@ Returns the details of a spot specified by its id.
       "name": "App Academy",
       "description": "Place where web developers are created",
       "price": 123,
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36" ,
       "numReviews": 5,
       "avgStarRating": 4.5,
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
       "images": [
         "image url"
       ],
@@ -546,7 +546,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: profile/reviews
+  * URL: api/profile/reviews
   * Body: none
 
 * Successful Response
@@ -598,7 +598,7 @@ Returns all the reviews that belong to a spot specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: rooms/:roomId/reviews
+  * URL: api/rooms/:roomId/reviews
   * Body: none
 
 * Successful Response

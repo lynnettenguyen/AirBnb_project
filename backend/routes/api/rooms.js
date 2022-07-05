@@ -101,17 +101,39 @@ router.get('/:roomId', async (req, res, next) => {
                     [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
                     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
                 ],
+                group: 'Review.roomId',
             },
-            groupBy: ['id']
         })
 
     // const reviewData = await Review.findAll({
     //     where: { roomId: req.params.roomId },
-    //     attributes: [
-    //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-    //         [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+    //     attributes: [],
+    //     include: [
+    //         {
+    //             model: Room,
+    //             include: [
+    //                 {
+    //                     model: Image,
+    //                     as: 'images',
+    //                     attributes: ['url']
+    //                 }, {
+    //                     model: User,
+    //                     as: 'Owner',
+    //                     attributes: ['id', 'firstName', 'lastName']
+    //                 }],
+    //             attributes: {
+    //                 include: [
+    //                     [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
+    //                     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+    //                 ]
+    //             }
+    //         }
     //     ],
-    //     raw: true
+        // attributes: [
+        //     [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
+        //     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+        // ],
+    //     group: 'Review.roomId'
     // })
 
     if (Number(req.params.roomId) !== rooms.id) {
@@ -120,6 +142,8 @@ router.get('/:roomId', async (req, res, next) => {
         return next(err);
     } else {
         return res.json(rooms)
+        // // const roomData = rooms.toJSON()
+        // return res.json(...reviewData)
     }
 })
 

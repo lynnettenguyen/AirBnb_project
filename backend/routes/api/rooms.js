@@ -102,7 +102,7 @@ router.get('/:roomId', async (req, res, next) => {
                     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
                 ],
             },
-            group: ['avgStarRating', 'numReviews']
+            groupBy: ['id']
         })
 
     // const reviewData = await Review.findAll({

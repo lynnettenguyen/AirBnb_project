@@ -6,7 +6,7 @@ module.exports = {
       {
         roomId: 1,
         type: 'room',
-        url: 'image url for room 1'
+        url: '../../images/room1'
       },
       {
         roomId: 2,
@@ -21,17 +21,32 @@ module.exports = {
       {
         reviewId: 1,
         type: 'review',
-        url: 'image url for review 1'
+        url: 'image url for review 1 of room 1'
       },
       {
         reviewId: 2,
         type: 'review',
-        url: 'image url for review 2'
+        url: 'image url for review 2 of room 2'
       },
       {
         reviewId: 3,
         type: 'review',
-        url: 'image url for review 3'
+        url: 'image url for review 3 of room 3'
+      },
+      {
+        reviewId: 4,
+        type: 'review',
+        url: 'image url for review 4 of room 1'
+      },
+      {
+        reviewId: 5,
+        type: 'review',
+        url: 'image url for review 5 of room 2'
+      },
+      {
+        reviewId: 6,
+        type: 'review',
+        url: 'image url for review 6 of room 3'
       },
     ], {});
 

@@ -15,7 +15,6 @@ const validateLogin = [
         .notEmpty()
         .withMessage('Email is required'),
     // checks to see whether or not req.body.email and req.body.password are empty
-    // if one is empty, response will return an error
     check('password')
         .exists({ checkFalsy: true })
         .withMessage('Password is required'),
@@ -23,56 +22,45 @@ const validateLogin = [
 ];
 
 // Log in
-router.post(
-    '/',
-    validateLogin,
-    async (req, res, next) => {
-        // const { credential, password } = req.body;
-        const { email, password } = req.body;
+router.post('/', validateLogin, async (req, res, next) => {
+    // const { credential, password } = req.body;
+    const { email, password } = req.body;
 
-        // call the login static method from the User model
-        // const user = await User.login({ credential, password });
-        let user = await User.login({ email, password });
+    // call the login static method from the User model
+    // const user = await User.login({ credential, password });
+    let user = await User.login({ email, password });
 
-        if (!user) {
-            const err = new Error('Invalid credentials');
-            err.status = 401;
-            err.title = 'Login failed';
-            return next(err);
-        }
-
-        await setTokenCookie(res, user);
-        const result = {}
-        result.token = req.headers['xsrf-token'];
+    if (!user) {
+        const err = new Error('Invalid credentials');
+        err.status = 401;
+        err.title = 'Login failed';
+        return next(err);
+    } else {
+        const token = {}
+        token.token = await setTokenCookie(res, user)
         user = user.toJSON()
-        res.json(Object.assign(user, result))
+        return res.json(Object.assign(user, token))
     }
-);
+});
 
 // Log out
-router.delete(
-    '/',
-    (_req, res) => {
-        res.clearCookie('token');
-        return res.json({ message: 'success' });
-    }
-);
+router.delete('/', (_req, res) => {
+    res.clearCookie('token');
+    return res.json({ message: 'success' });
+});
 
 // Restore session user
 // will return the session user as JSON under the key of user
 // if there is no session, it will return a JSON with an empty object
 // connect restoreUser middleware to get the session user
-router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
-        const { user } = req;
-        if (user) {
-            return res.json({
-                user: user.toSafeObject()
-            });
-        } else return res.json({});
-    }
+router.get('/', restoreUser, (req, res) => {
+    const { user } = req;
+    if (user) {
+        return res.json({
+            user: user.toSafeObject()
+        });
+    } else return res.json({});
+}
 );
 
 module.exports = router;

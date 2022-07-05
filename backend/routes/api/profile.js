@@ -53,27 +53,27 @@ router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         next(err)
+    } else {
+        room.address = address;
+        room.city = city;
+        room.state = state;
+        room.country = country;
+        room.lat = lat;
+        room.lng = lng;
+        room.name = name;
+        room.description = description;
+        room.price = price;
     }
-    if (errorResult.errors) {
+    
+    if (Object.keys(errorResult.errors).length) {
         const err = new Error('Validation Error');
         err.status = 400;
         err.errors = errorResult.errors
         next(err)
+    } else {
+        await room.save();
+        res.json(room)
     }
-
-    room.address = address;
-    room.city = city;
-    room.state = state;
-    room.country = country;
-    room.lat = lat;
-    room.lng = lng;
-    room.name = name;
-    room.description = description;
-    room.price = price;
-
-    await room.save();
-    res.json(room)
-
 })
 
 router.post('/rooms', requireAuth, async (req, res, next) => {
@@ -108,14 +108,14 @@ router.post('/rooms', requireAuth, async (req, res, next) => {
         price: price
     })
 
-    if (errorResult.errors) {
+    if (Object.keys(errorResult.errors).length) {
         const err = new Error('Validation Error');
         err.status = 400;
         err.errors = errorResult.errors
         next(err)
+    } else {
+        res.json(newRoom)
     }
-
-    res.json(newRoom)
 })
 
 router.get('/rooms', requireAuth, async (req, res) => {
@@ -146,7 +146,7 @@ router.get('/reviews', requireAuth, async (req, res) => {
             attributes: ['url']
         }]
     })
-    res.json(userReviews)
+    res.json({'Reviews': userReviews})
 })
 
 router.get('/', requireAuth, async (req, res) => {

@@ -87,7 +87,6 @@ router.put('/rooms/:roomId', [requireAuth, checkRoomValidation], async (req, res
         room.description = description;
         room.price = price;
     }
-
     await room.save();
     res.json(room)
 })
@@ -127,7 +126,8 @@ router.get('/reviews', requireAuth, async (req, res) => {
                 attributes: { exclude: ['description', 'createdAt', 'updatedAt', 'numReviews', 'avgStarRating'] }
             }, {
                 model: Image,
-                attributes: ['reviewId']
+                as: 'images',
+                attributes: ['url']
             }
         ]
     })

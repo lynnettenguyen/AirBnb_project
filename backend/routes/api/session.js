@@ -34,35 +34,33 @@ router.post('/', validateLogin, async (req, res, next) => {
         const err = new Error('Invalid credentials');
         err.status = 401;
         err.title = 'Login failed';
-        next(err);
+        return next(err);
     } else {
         const token = {}
         token.token = await setTokenCookie(res, user)
         user = user.toJSON()
-        res.json(Object.assign(user, token))
+        return res.json(Object.assign(user, token))
     }
-}
-);
+});
 
 // Log out
 router.delete('/', (_req, res) => {
     res.clearCookie('token');
     return res.json({ message: 'success' });
-}
-);
+});
 
 // Restore session user
 // will return the session user as JSON under the key of user
 // if there is no session, it will return a JSON with an empty object
 // connect restoreUser middleware to get the session user
 router.get('/', restoreUser, (req, res) => {
-        const { user } = req;
-        if (user) {
-            return res.json({
-                user: user.toSafeObject()
-            });
-        } else return res.json({});
-    }
+    const { user } = req;
+    if (user) {
+        return res.json({
+            user: user.toSafeObject()
+        });
+    } else return res.json({});
+}
 );
 
 module.exports = router;

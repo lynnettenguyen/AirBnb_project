@@ -3,8 +3,25 @@ const { Op } = require('sequelize');
 const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
-const room = require('../../db/models/room');
+const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
+
+const checkReviewValidation = function (req, _res, next) {
+    const { review, stars } = req.body;
+    let errorResult = { errors: {} }
+
+    if (!review) errorResult.errors.review = 'Review text is required'
+    if (stars < 1 || stars > 5) errorResult.errors.star = 'Stars must be an integer from 1 to 5'
+
+    if (Object.keys(errorResult.errors).length) {
+        const err = new Error('Validation Error');
+        err.status = 400;
+        err.errors = errorResult.errors
+        return next(err)
+    } else {
+        return next()
+    }
+}
 
 router.get('/:roomId/reviews', async (req, res, next) => {
     const roomReviews = await Review.findAll({
@@ -19,13 +36,33 @@ router.get('/:roomId/reviews', async (req, res, next) => {
         }]
     })
 
-    if (Number(req.params.roomId) !== roomReviews.roomId) {
-        const err = new Error(`Spot couldn't be found`);
+    if (!roomReviews.length) {
+        const err = new Error(`Spot couldn't be found(or spot does not have any reviews)`);
         err.status = 404;
         return next(err);
     } else {
-        res.json(roomReviews)
+        return res.json(roomReviews)
     }
+})
+
+router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) => {
+    const { review, stars } = req.body;
+
+    const room = await Room.findByPk(req.params.roomId)
+
+    if (room) {
+        const newReview = await Review.create({
+            userId: req.user.id,
+            roomId: req.params.roomId,
+            review: review,
+            stars: stars
+        })
+    // } else {
+    //     const err = new Error(`Spot couldn't be found`);
+    //     err.status = 404;
+    //     return next(err);
+    }
+    return res.json(newReview)
 })
 
 router.get('/:roomId', async (req, res, next) => {
@@ -59,7 +96,7 @@ router.get('/:roomId', async (req, res, next) => {
         err.status = 404;
         return next(err);
     } else {
-        res.json(rooms)
+        return res.json(rooms)
     }
 })
 
@@ -73,7 +110,7 @@ router.get('/', async (req, res) => {
             }
         ]
     })
-    res.json({ "Rooms": allRooms })
+    return res.json({ "Rooms": allRooms })
 })
 
 module.exports = router;

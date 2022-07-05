@@ -47,7 +47,7 @@ router.get('/rooms', requireAuth, async (req, res) => {
             }
         }]
     })
-    res.json(currentUser)
+    return res.json(currentUser)
 })
 
 router.post('/rooms', [requireAuth, checkRoomValidation], async (req, res) => {
@@ -75,7 +75,7 @@ router.put('/rooms/:roomId', [requireAuth, checkRoomValidation], async (req, res
     if (!room) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
-        next(err)
+        return next(err)
     } else {
         room.address = address;
         room.city = city;
@@ -88,7 +88,7 @@ router.put('/rooms/:roomId', [requireAuth, checkRoomValidation], async (req, res
         room.price = price;
     }
     await room.save();
-    res.json(room)
+    return res.json(room)
 })
 
 router.delete('/rooms/:roomId', requireAuth, async (req, res, next) => {
@@ -103,7 +103,7 @@ router.delete('/rooms/:roomId', requireAuth, async (req, res, next) => {
     if (!room) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
-        next(err)
+        return next(err)
     } else {
         await room.destroy();
         res.status = 200;
@@ -131,12 +131,12 @@ router.get('/reviews', requireAuth, async (req, res) => {
             }
         ]
     })
-    res.json({ 'Reviews': userReviews })
+    return res.json({ 'Reviews': userReviews })
 })
 
 router.get('/', requireAuth, async (req, res) => {
-    let currentUser = await User.findByPk(req.user.id)
-    res.json(currentUser)
+    const currentUser = await User.findByPk(req.user.id)
+    return res.json(currentUser)
 })
 
 

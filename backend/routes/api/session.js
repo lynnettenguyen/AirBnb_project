@@ -36,11 +36,12 @@ router.post('/', validateLogin, async (req, res, next) => {
         err.title = 'Login failed';
         next(err);
     } else {
-        await setTokenCookie(res, user);
-        const result = {}
-        result.token = req.headers['xsrf-token'];
-        user = user.toJSON()
-        res.json(Object.assign(user, result))
+        const token = await setTokenCookie(res, user);
+        // const result = {}
+        // result.token = req.headers['xsrf-token'];
+        // user = user.toJSON()
+        // res.json(Object.assign(user, result))
+        res.json({user, token})
     }
 }
 );

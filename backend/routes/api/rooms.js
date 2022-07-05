@@ -52,9 +52,20 @@ router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) =>
 
     const room = await Room.findByPk(req.params.roomId)
 
+    const userReviews = await Review.findAll({
+        where: {
+            userId: req.user.id,
+            roomId: req.params.roomId
+        },
+    })
+
     if (!room) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
+        return next(err);
+    } else if (userReviews) {
+        const err = new Error(`User already has a review for this spot`);
+        err.status = 403;
         return next(err);
     } else {
         const newReview = await Review.create({

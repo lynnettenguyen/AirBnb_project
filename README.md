@@ -651,7 +651,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: rooms/:roomId/reviews
+  * URL: api/rooms/:roomId/reviews
   * Headers:
     * Content-Type: application/json
   * Body:

@@ -8,18 +8,16 @@ const e = require('express');
 const router = express.Router();
 
 const validateLogin = [
-    // route will expect the body of the request to have a key of credential with either the username or email of a user and a key of password with the password of the user
+    // route will expect the body of the request to have a key/value of email/password
     // check('credential')
     check('email')
         .exists({ checkFalsy: true })
         .notEmpty()
-        // .withMessage('Please provide a valid email or username.'),
         .withMessage('Email is required'),
-    // checks to see whether or not req.body.credential and req.body.password are empty
+    // checks to see whether or not req.body.email and req.body.password are empty
     // if one is empty, response will return an error
     check('password')
         .exists({ checkFalsy: true })
-        // .withMessage('Please provide a password.'),
         .withMessage('Password is required'),
     handleValidationErrors
 ];
@@ -48,7 +46,6 @@ router.post(
         result.token = req.headers['xsrf-token'];
         user = user.toJSON()
         res.json(Object.assign(user, result))
-        // return res.json({user});
     }
 );
 
@@ -77,6 +74,5 @@ router.get(
         } else return res.json({});
     }
 );
-
 
 module.exports = router;

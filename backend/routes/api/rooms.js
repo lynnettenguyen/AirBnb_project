@@ -97,45 +97,8 @@ router.get('/:roomId', async (req, res, next) => {
                     attributes: []
                 }
             ],
-            // attributes: {
-            //     include: [
-            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-            //         [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-            //     ],
-            //     group: 'Review.roomId',
-            // },
         })
 
-    // const reviewData = await Review.findAll({
-    //     where: { roomId: req.params.roomId },
-    //     attributes: [],
-    //     include: [
-    //         {
-    //             model: Room,
-    //             include: [
-    //                 {
-    //                     model: Image,
-    //                     as: 'images',
-    //                     attributes: ['url']
-    //                 }, {
-    //                     model: User,
-    //                     as: 'Owner',
-    //                     attributes: ['id', 'firstName', 'lastName']
-    //                 }],
-    //             attributes: {
-    //                 include: [
-    //                     [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-    //                     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-    //                 ]
-    //             }
-    //         }
-    //     ],
-    // attributes: [
-    // [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-    // [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-    // ],
-    //     group: 'Review.roomId'
-    // })
 
     const reviewAggregate = await Room.findByPk(req.params.roomId, {
         include: {
@@ -154,12 +117,10 @@ router.get('/:roomId', async (req, res, next) => {
         err.status = 404;
         return next(err);
     } else {
-        // return res.json(rooms)
         const roomData = rooms.toJSON()
         roomData.avgStarRating = reviewAggregate.avgStarRating
         roomData.numReviews = reviewAggregate.numReviews
         return res.json(roomData)
-        // return res.json(...reviewData)
     }
 })
 

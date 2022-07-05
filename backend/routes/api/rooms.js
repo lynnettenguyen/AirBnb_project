@@ -101,9 +101,18 @@ router.get('/:roomId', async (req, res, next) => {
                     [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
                     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
                 ],
-                attributes: [],
             },
+            group: ['avgStarRating', 'numReviews']
         })
+
+    // const reviewData = await Review.findAll({
+    //     where: { roomId: req.params.roomId },
+    //     attributes: [
+    //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
+    //         [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+    //     ],
+    //     raw: true
+    // })
 
     if (Number(req.params.roomId) !== rooms.id) {
         const err = new Error(`Spot couldn't be found`);

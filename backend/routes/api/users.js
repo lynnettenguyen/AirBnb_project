@@ -56,12 +56,10 @@ router.post( '/', validateSignup, async (req, res, next) => {
             // call the signup static method on the User model
             // if the user is successfully created, then call setTokenCookie and return a JSON response with the user information
             // if unsuccessful, then sequelize validation error will be passed onto error-handling middleware
-            const token = await setTokenCookie(res, user);
-            // const result = {}
-            // result.token = req.headers['xsrf-token']
-            // user = user.toJSON()
-            // res.json(Object.assign(user, result))
-            res.json({user, token})
+            const token = {}
+            token.token = await setTokenCookie(res, user)
+            user = user.toJSON()
+            res.json(Object.assign(user, token))
         }
     }
 );

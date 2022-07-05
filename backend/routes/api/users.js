@@ -11,7 +11,7 @@ const validateSignup = [
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
-        .withMessage('Please provide a valid email.'),
+        .withMessage('Invalid email'),
     // check('username')
     //     .exists({ checkFalsy: true })
     //     .isLength({ min: 4 })
@@ -28,12 +28,13 @@ const validateSignup = [
 ];
 
 // Sign up
-router.post(
-    '/',
-    validateSignup,
-    async (req, res, next) => {
+router.post( '/', validateSignup, async (req, res, next) => {
         // const { email, password, username, firstName, lastName } = req.body;
         const { firstName, lastName, email, password } = req.body;
+
+        const errorResult = { errors: {} }
+        if (!firstName) errorResult.errors.firstName = 'First Name is required';
+        if (!lastName) errorResult.errors.lastName = 'Last Name is required';
 
         const findEmail = await User.findOne({
             where: { email }
@@ -44,14 +45,7 @@ router.post(
             err.status = 403;
             err.errors = { email: 'User with that email already exists' };
             return next(err);
-        }
-
-        const errorResult = { errors: {} }
-
-        if (!firstName) errorResult.errors.firstName = 'First Name is required';
-        if (!lastName) errorResult.errors.lastName = 'Last Name is required';
-
-        if (Object.keys(errorResult.errors).length) {
+        } else if (Object.keys(errorResult.errors).length) {
             const err = new Error('Validation Error');
             err.status = 400;
             err.errors = errorResult.errors
@@ -62,11 +56,12 @@ router.post(
             // call the signup static method on the User model
             // if the user is successfully created, then call setTokenCookie and return a JSON response with the user information
             // if unsuccessful, then sequelize validation error will be passed onto error-handling middleware
-            await setTokenCookie(res, user);
+            const token = await setTokenCookie(res, user);
             const result = {}
             result.token = req.headers['xsrf-token']
             user = user.toJSON()
             res.json(Object.assign(user, result))
+            // res.json({user, token})
         }
     }
 );

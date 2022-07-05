@@ -13,9 +13,9 @@ const handleValidationErrors = (req, _res, next) => {
             .array()
             .map((error) => `${error.msg}`);
 
-        // if (!email) errorResult.errors.email = 'Email is required';
-        // else if (!email.split("").includes('@')) errorResult.errors.email = 'Invalid email';
-        // if (!password) errorResult.errors.password = 'Password is required';
+        if (!email) errorResult.errors.email = 'Email is required';
+        else if (!email.split("").includes('@')) errorResult.errors.email = 'Invalid email';
+        if (!password) errorResult.errors.password = 'Password is required';
 
         const err = Error('Validation error');
         err.errors = errors;

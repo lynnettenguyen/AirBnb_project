@@ -6,7 +6,7 @@ module.exports = {
       {
         roomId: 1,
         type: 'room',
-        url: 'image url for room 1'
+        url: '../../images/room1'
       },
       {
         roomId: 2,

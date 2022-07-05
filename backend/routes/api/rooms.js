@@ -50,7 +50,7 @@ router.get('/', async (req, res) => {
             }
         ]
     })
-    res.json({ "Spots": allRooms })
+    res.json({ "Rooms": allRooms })
 })
 
 module.exports = router;

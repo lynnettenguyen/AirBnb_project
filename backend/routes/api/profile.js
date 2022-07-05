@@ -29,10 +29,9 @@ router.delete('/rooms/:roomId', requireAuth, async (req, res, next) => {
 
 router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const room = await Room.findByPk(req.params.roomId)
 
     let errorResult = { errors: {} }
-
-    const room = await Room.findByPk(req.params.roomId)
 
     if (!address) errorResult.errors.address = 'Street address is required';
     if (!city) errorResult.errors.city = 'City is required';
@@ -40,7 +39,6 @@ router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
     if (!country) errorResult.errors.country = 'Country is required';
 
     if (lat > 90 || lat < -90 || typeof lat !== 'number') errorResult.errors.lat = 'Latitude is not valid';
-
     if (lng > 180 || lng < -180 || typeof lng !== 'number') errorResult.errors.lng = 'Longitude is not valid';
 
     if (name.length > 50) errorResult.errors.name = 'Name must be less than 50 characters';
@@ -64,7 +62,7 @@ router.put('/rooms/:roomId', requireAuth, async (req, res, next) => {
         room.description = description;
         room.price = price;
     }
-    
+
     if (Object.keys(errorResult.errors).length) {
         const err = new Error('Validation Error');
         err.status = 400;
@@ -87,7 +85,6 @@ router.post('/rooms', requireAuth, async (req, res, next) => {
     if (!country) errorResult.errors.country = 'Country is required';
 
     if (lat > 90 || lat < -90 || typeof lat !== 'number') errorResult.errors.lat = 'Latitude is not valid';
-
     if (lng > 180 || lng < -180 || typeof lng !== 'number') errorResult.errors.lng = 'Longitude is not valid';
 
     if (name.length > 50) errorResult.errors.name = 'Name must be less than 50 characters';

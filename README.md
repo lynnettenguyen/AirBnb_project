@@ -312,10 +312,10 @@ Returns the details of a spot specified by its id.
       "name": "App Academy",
       "description": "Place where web developers are created",
       "price": 123,
-      "numReviews": 5,
-      "avgStarRating": 4.5,
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36" ,
+      "numReviews": 5,
+      "avgStarRating": 4.5,
       "images": [
         "image url"
       ],

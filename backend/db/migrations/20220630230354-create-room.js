@@ -53,12 +53,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      numReviews: {
-        type: Sequelize.INTEGER
-      },
-      avgStarRating: {
-        type: Sequelize.DECIMAL(3, 2)
-      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -68,7 +62,13 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
+      },
+      numReviews: {
+        type: Sequelize.INTEGER
+      },
+      avgStarRating: {
+        type: Sequelize.DECIMAL(3, 2)
+      },
     });
   },
   async down(queryInterface, Sequelize) {

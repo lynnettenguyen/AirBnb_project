@@ -12,6 +12,7 @@ router.get('/:roomId', async (req, res, next) => {
             include: [
                 {
                     model: Image,
+                    as: 'images',
                     attributes: ['url']
                 }, {
                     model: User,
@@ -50,7 +51,9 @@ router.get('/', async (req, res) => {
             }
         ]
     })
+
     res.json({ "Rooms": allRooms })
+
 })
 
 module.exports = router;

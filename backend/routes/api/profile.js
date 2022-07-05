@@ -27,7 +27,9 @@ const checkRoomValidation = function (req, _res, next) {
         const err = new Error('Validation Error');
         err.status = 400;
         err.errors = errorResult.errors
-        next(err)
+        return next(err)
+    } else {
+        return next()
     }
 }
 
@@ -35,15 +37,20 @@ router.get('/rooms', requireAuth, async (req, res) => {
     const currentUser = await User.findAll({
         where: { id: req.user.id },
         attributes: [],
-        include: {
+        include: [{
             model: Room,
-            attributes: { exclude: ['numReviews', 'avgStarRating'] }
-        }
+            attributes: { exclude: ['numReviews', 'avgStarRating'] },
+            include: {
+                model: Image,
+                as: 'previewImage',
+                attributes: ['url']
+            }
+        }]
     })
     res.json(currentUser)
 })
 
-router.post('/rooms', requireAuth, checkRoomValidation, async (req, res, next) => {
+router.post('/rooms', [requireAuth, checkRoomValidation], async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     const newRoom = await Room.create({
@@ -58,10 +65,10 @@ router.post('/rooms', requireAuth, checkRoomValidation, async (req, res, next) =
         description: description,
         price: price
     })
-    res.json(newRoom)
+    return res.json(newRoom)
 })
 
-router.put('/rooms/:roomId', requireAuth, checkRoomValidation, async (req, res, next) => {
+router.put('/rooms/:roomId', [requireAuth, checkRoomValidation], async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const room = await Room.findByPk(req.params.roomId)
 

@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'roomId', onDelete: 'CASCADE', hooks: true
       })
       Room.hasMany(models.Image, {
-        foreignKey: 'roomId', onDelete: 'CASCADE', hooks: true
+        foreignKey: 'roomId', as: 'previewImage', as: 'images', onDelete: 'CASCADE', hooks: true
       })
       Room.hasMany(models.Reservation, {
         foreignKey: 'roomId', onDelete: 'CASCADE', hooks: true

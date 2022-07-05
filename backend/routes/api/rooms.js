@@ -96,13 +96,13 @@ router.get('/:roomId', async (req, res, next) => {
                     attributes: []
                 }
             ],
-            attributes: {
-                include: [
-                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-                    [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-                ],
-                group: 'Review.roomId',
-            },
+            // attributes: {
+            //     include: [
+            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
+            //         [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+            //     ],
+            //     group: 'Review.roomId',
+            // },
         })
 
     // const reviewData = await Review.findAll({

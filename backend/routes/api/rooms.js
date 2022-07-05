@@ -4,6 +4,7 @@ const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
+const review = require('../../db/models/review');
 const router = express.Router();
 
 const checkReviewValidation = function (req, _res, next) {
@@ -129,20 +130,35 @@ router.get('/:roomId', async (req, res, next) => {
     //             }
     //         }
     //     ],
-        // attributes: [
-        //     [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-        //     [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-        // ],
+    // attributes: [
+    // [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
+    // [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+    // ],
     //     group: 'Review.roomId'
     // })
+
+    const reviewAggregate = await Room.findByPk(req.params.roomId, {
+        include: {
+            model: Review,
+            attributes: []
+        },
+        attributes: [
+            [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
+            [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+        ],
+        raw: true
+    })
 
     if (Number(req.params.roomId) !== rooms.id) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err);
     } else {
-        return res.json(rooms)
-        // // const roomData = rooms.toJSON()
+        // return res.json(rooms)
+        const roomData = rooms.toJSON()
+        roomData.avgStarRating = reviewAggregate.avgStarRating
+        roomData.numReviews = reviewAggregate.numReviews
+        return res.json(roomData)
         // return res.json(...reviewData)
     }
 })

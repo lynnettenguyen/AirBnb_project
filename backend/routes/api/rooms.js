@@ -23,6 +23,8 @@ const checkReviewValidation = function (req, _res, next) {
     }
 }
 
+
+
 router.get('/:roomId/reviews', async (req, res, next) => {
     const roomReviews = await Review.findAll({
         where: { roomId: req.params.roomId },

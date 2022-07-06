@@ -4,6 +4,7 @@ const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
 const router = express.Router();
 
 const checkReviewValidation = function (req, _res, next) {
@@ -191,28 +192,88 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkReserva
 
 })
 
-router.put('/:roomId/reservations/:reservationId', [requireAuth, checkReservationValidation], async (req, res, next) => {
+router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
+    let errorResult = { errors: {} }
+
+    const allReservations = await Reservation.findAll({
+        where: { roomId: req.params.roomId },
+        attributes: ['userId', 'startDate', 'endDate'],
+        raw: true
+    })
+
+    console.log('....................... ALL RESERVATIONS', allReservations)
+
+    let currStartDates = []
+    let currEndDates = []
+    let reservationUser = [];
+
+    for (let i = 0; i < Object.keys(allReservations).length; i++) {
+        currStartDates.push(allReservations[i].startDate)
+        currEndDates.push(allReservations[i].endDate)
+        reservationUser.push(allReservations[i].userId)
+    }
+
+    console.log('----------------------------- START', currStartDates)
+    console.log('----------------------------- END', currEndDates)
+    console.log('----------------------------- User', reservationUser)
+
     const currentReservation = await Reservation.findOne({
-        where: { roomId: req.params.roomId, id: req.params.reservationId }
+        where: {
+            roomId: req.params.roomId,
+            id: req.params.reservationId,
+            userId: req.user.id
+        }
     })
 
     if (!currentReservation) {
         const err = new Error(`Booking couldn't be found`);
         err.status = 404;
         return next(err);
-    } else if (new Date(startDate) < new Date() || new Date (endDate) < new Date()) {
+    } else if (new Date(startDate) < new Date() || new Date(endDate) < new Date()) {
         const err = new Error(`Past bookings can't be modified`);
+        err.status = 400;
+        return next(err);
+    } else if (new Date(startDate) > new Date(endDate)) {
+        const err = new Error(`End date must be after start date`);
         err.status = 400;
         return next(err);
     } else {
         currentReservation.startDate = startDate;
         currentReservation.endDate = endDate;
+    }
+
+    for (let i = 0; i < currStartDates.length; i++) {
+        let userReserved = reservationUser[i]
+        let startReserved = new Date(currStartDates[i]);
+        let endReserved = new Date(currEndDates[i]);
+
+        let startReq = new Date(currentReservation.startDate)
+        let endReq = new Date(currentReservation.endDate)
+
+        if (userReserved !== req.user.id) {
+            if (startReserved <= startReq && endReserved >= endReserved) {
+                errorResult.errors.date = 'Dates conflicts with an existing booking'
+            } else if (startReserved === startReq) {
+                errorResult.errors.startDate = 'Start date conflicts with an existing booking'
+            } else if (endReserved === endReserved) {
+                errorResult.errors.endDate = 'End date conflicts with an existing booking'
+            }
+        }
+    }
+
+    if (Object.keys(errorResult.errors).length) {
+        const err = new Error(`Sorry, this spot is already booked for the specified dates`);
+        err.status = 403;
+        err.errors = errorResult.errors
+        return next(err)
+    } else {
         currentReservation.save()
         return res.json(currentReservation)
     }
 })
+
 
 router.get('/:roomId', async (req, res, next) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,

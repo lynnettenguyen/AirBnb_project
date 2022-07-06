@@ -23,9 +23,19 @@ const checkReviewValidation = function (req, _res, next) {
     }
 }
 
+const checkRoomValidation = async function (req, _res, next) {
+    const room = await Room.findByPk(req.params.roomId)
 
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    } else {
+        return next()
+    }
+}
 
-router.get('/:roomId/reviews', async (req, res, next) => {
+router.get('/:roomId/reviews', checkRoomValidation, async (req, res, next) => {
     const roomReviews = await Review.findAll({
         where: { roomId: req.params.roomId },
         include: [{
@@ -37,22 +47,11 @@ router.get('/:roomId/reviews', async (req, res, next) => {
             attributes: ['url']
         }]
     })
-
-    const room = await Room.findByPk(req.params.roomId)
-
-    if (!Object.keys(room).length) {
-        const err = new Error(`Spot couldn't be found`);
-        err.status = 404;
-        return next(err);
-    } else {
-        return res.json({ 'Review': roomReviews })
-    }
+    return res.json({ 'Review': roomReviews })
 })
 
-router.post('/:roomId/reviews', [requireAuth, checkReviewValidation], async (req, res, next) => {
+router.post('/:roomId/reviews', [requireAuth, checkRoomValidation, checkReviewValidation], async (req, res, next) => {
     const { review, stars } = req.body;
-
-    const room = await Room.findByPk(req.params.roomId)
 
     const userReviews = await Review.findAll({
         where: {
@@ -62,11 +61,7 @@ router.post('/:roomId/reviews', [requireAuth, checkReviewValidation], async (req
         raw: true
     })
 
-    if (!room) {
-        const err = new Error(`Spot couldn't be found`);
-        err.status = 404;
-        return next(err);
-    } else if (Object.keys(userReviews).length) {
+    if (Object.keys(userReviews).length) {
         const err = new Error(`User already has a review for this spot`);
         err.status = 403;
         return next(err);
@@ -125,8 +120,7 @@ router.delete('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation]
     }
 })
 
-router.get('/:roomId/reservations', requireAuth, async (req, res, next) => {
-    const room = await Room.findByPk(req.params.roomId)
+router.get('/:roomId/reservations', [requireAuth, checkRoomValidation], async (req, res, next) => {
 
     const allReservations = await Reservation.findAll({
         where: { roomId: req.params.roomId },
@@ -144,19 +138,14 @@ router.get('/:roomId/reservations', requireAuth, async (req, res, next) => {
         ]
     })
 
-    if (!room) {
-        const err = new Error(`Spot couldn't be found`);
-        err.status = 404;
-        return next(err);
-    } else if (userReservations) {
+    if (userReservations) {
         return res.json({ "Bookings": userReservations })
     } else {
         return res.json({ "Bookings": allReservations })
     }
 })
 
-router.post('/:roomId/reservations', requireAuth, async (req, res, next) => {
-    const room = await Room.findByPk(req.params.roomId)
+router.post('/:roomId/reservations', [requireAuth, checkRoomValidation], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
     const checkStartDate = await Reservation.findOne({
@@ -169,11 +158,6 @@ router.post('/:roomId/reservations', requireAuth, async (req, res, next) => {
 
     let errorResult = { errors: {} }
 
-    if (!room) {
-        const err = new Error(`Spot couldn't be found`);
-        err.status = 404;
-        return next(err);
-    }
 
     if (checkStartDate) errorResult.errors.startDate = 'Start date conflicts with an existing booking'
     if (checkEndDate) errorResult.errors.endDate = 'End date conflicts with an existing booking'

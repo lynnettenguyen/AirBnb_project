@@ -44,11 +44,11 @@ router.get('/:roomId/reviews', async (req, res, next) => {
         err.status = 404;
         return next(err);
     } else {
-        return res.json(roomReviews)
+        return res.json({ 'Review': roomReviews })
     }
 })
 
-router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) => {
+router.post('/:roomId/reviews', [requireAuth, checkReviewValidation], async (req, res, next) => {
     const { review, stars } = req.body;
 
     const room = await Room.findByPk(req.params.roomId)
@@ -58,13 +58,14 @@ router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) =>
             userId: req.user.id,
             roomId: req.params.roomId
         },
+        raw: true
     })
 
     if (!room) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err);
-    } else if (userReviews) {
+    } else if (Object.keys(userReviews).length) {
         const err = new Error(`User already has a review for this spot`);
         err.status = 403;
         return next(err);
@@ -76,6 +77,28 @@ router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) =>
             stars: stars
         })
         return res.json(newReview)
+    }
+})
+
+router.put('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation], async (req, res, next) => {
+    const { review, stars } = req.body;
+
+    const updateReview = await Review.findOne({
+        where: {
+            id: req.params.reviewId,
+            roomId: req.params.roomId
+        }
+    })
+
+    if (!updateReview) {
+        const err = new Error(`Review couldn't be found`)
+        err.status = 404;
+        return next(err)
+    } else {
+        updateReview.review = review;
+        updateReview.stars = stars;
+        await updateReview.save();
+        return res.json(updateReview)
     }
 })
 
@@ -98,7 +121,6 @@ router.get('/:roomId', async (req, res, next) => {
                 }
             ],
         })
-
 
     const reviewAggregate = await Room.findByPk(req.params.roomId, {
         include: {

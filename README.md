@@ -659,7 +659,7 @@ Create and return a new review for a spot specified by id.
     ```json
     {
       "review": "This was an awesome spot!",
-      "stars": 5,
+      "stars": 5
     }
     ```
 
@@ -732,7 +732,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: profile/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
+  * URL: api/rooms/:roomId/reviews/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:

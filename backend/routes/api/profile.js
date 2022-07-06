@@ -1,4 +1,5 @@
 // backend/routes/api/profile.js
+const { Op } = require('sequelize');
 const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image } = require('../../db/models');
@@ -132,6 +133,26 @@ router.get('/reviews', requireAuth, async (req, res) => {
         ]
     })
     return res.json({ 'Reviews': userReviews })
+})
+
+router.get('/reservations', requireAuth, async (req, res) => {
+    const reservations = await Reservation.findAll({
+        where: { userId: req.user.id },
+        include: [
+            {
+                model: Room,
+                attributes: { exclude: ['numReviews', 'avgStarRating', 'createdAt', 'updatedAt'] },
+                include: [
+                    {
+                        model: Image,
+                        as: 'previewImage',
+                        attributes: ['url']
+                    }
+                ]
+            }
+        ]
+    })
+    return res.json({ 'Bookings': reservations })
 })
 
 router.get('/', requireAuth, async (req, res) => {

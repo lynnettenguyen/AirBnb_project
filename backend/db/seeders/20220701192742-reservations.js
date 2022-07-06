@@ -38,6 +38,24 @@ module.exports = {
         userId: 2,
         startDate: '2022-09-04',
         endDate: '2022-09-07'
+      },
+      {
+        roomId: 1,
+        userId: 1,
+        startDate: '2022-10-04',
+        endDate: '2022-10-07'
+      },
+      {
+        roomId: 2,
+        userId: 2,
+        startDate: '2022-10-04',
+        endDate: '2022-10-07'
+      },
+      {
+        roomId: 3,
+        userId: 3,
+        startDate: '2022-10-04',
+        endDate: '2022-10-07'
       }
     ], {});
   },

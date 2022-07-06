@@ -41,19 +41,19 @@ module.exports = {
       },
       {
         roomId: 1,
-        userId: 1,
+        userId: 4,
         startDate: '2022-10-04',
         endDate: '2022-10-07'
       },
       {
         roomId: 2,
-        userId: 2,
+        userId: 5,
         startDate: '2022-10-04',
         endDate: '2022-10-07'
       },
       {
         roomId: 3,
-        userId: 3,
+        userId: 6,
         startDate: '2022-10-04',
         endDate: '2022-10-07'
       }

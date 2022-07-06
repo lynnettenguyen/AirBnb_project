@@ -40,8 +40,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
-        isBefore: this.endDate,
-        isDate: true,
         checkDate(date) {
           if (new Date(date) < new Date()) {
             throw new Error('selected date must be in the future')
@@ -53,8 +51,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
-        isAfter: this.startDate,
-        isDate: true,
         checkDate(date) {
           if (new Date(date) < new Date()) {
             throw new Error('selected date must be in the future')

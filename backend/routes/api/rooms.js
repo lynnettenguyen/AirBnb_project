@@ -40,28 +40,45 @@ const checkReservationValidation = async function (req, _res, next) {
     const { startDate, endDate } = req.body;
     let errorResult = { errors: {} }
 
-    const checkStartDate = await Reservation.findOne({
-        where: {
-            roomId: req.params.roomId,
-            startDate: startDate
-        }
+    const allReservations = await Reservation.findAll({
+        where: { roomId: req.params.roomId },
+        attributes: ['userId', 'startDate', 'endDate'],
+        raw: true
     })
 
-    const checkEndDate = await Reservation.findOne({
-        where: {
-            roomId: req.params.roomId,
-            endDate: endDate
-        }
-    })
+    let currStartDates = []
+    let currEndDates = []
+    let reservationUser = [];
 
-    if (checkStartDate) errorResult.errors.startDate = 'Start date conflicts with an existing booking'
-    if (checkEndDate) errorResult.errors.endDate = 'End date conflicts with an existing booking'
+    for (let i = 0; i < Object.keys(allReservations).length; i++) {
+        currStartDates.push(allReservations[i].startDate)
+        currEndDates.push(allReservations[i].endDate)
+        reservationUser.push(allReservations[i].userId)
+    }
+
+    for (let i = 0; i < currStartDates.length; i++) {
+        let startReserved = new Date(currStartDates[i]);
+        let endReserved = new Date(currEndDates[i]);
+
+        let startReq = new Date(startDate)
+        let endReq = new Date(endDate)
+
+        if ((startReserved <= startReq && endReserved >= endReq) ||
+            (startReserved <= startReq && endReserved >= startReq) ||
+            (startReserved <= endReq && endReserved >= endReq)) {
+            errorResult.errors.date = 'Dates conflicts with an existing booking'
+        } else if (startReserved === startReq) {
+            errorResult.errors.startDate = 'Start date conflicts with an existing booking'
+        } else if (endReserved === endReq) {
+            errorResult.errors.endDate = 'End date conflicts with an existing booking'
+        }
+    }
 
     if (Object.keys(errorResult.errors).length) {
         const err = new Error(`Sorry, this spot is already booked for the specified dates`);
         err.status = 403;
         err.errors = errorResult.errors
-        return next(err);
+        return next(err)
     } else {
         return next()
     }
@@ -182,6 +199,12 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
 router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkReservationValidation], async (req, res) => {
     const { startDate, endDate } = req.body;
 
+    if (new Date(startDate) > new Date(endDate)) {
+        const err = new Error(`End date must be after start date`);
+        err.status = 400;
+        return next(err);
+    }
+
     const newReservation = await Reservation.create({
         userId: req.user.id,
         roomId: req.params.roomId,
@@ -203,7 +226,6 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, re
         raw: true
     })
 
-    console.log('....................... ALL RESERVATIONS', allReservations)
 
     let currStartDates = []
     let currEndDates = []
@@ -214,10 +236,6 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, re
         currEndDates.push(allReservations[i].endDate)
         reservationUser.push(allReservations[i].userId)
     }
-
-    console.log('----------------------------- START', currStartDates)
-    console.log('----------------------------- END', currEndDates)
-    console.log('----------------------------- User', reservationUser)
 
     const currentReservation = await Reservation.findOne({
         where: {
@@ -253,16 +271,10 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, re
         let endReq = new Date(currentReservation.endDate)
 
         if (userReserved !== req.user.id) {
-            console.log('----------------------------- userReserved', userReserved)
-            console.log('----------------------------- req.user.id', req.user.id)
             if ((startReserved <= startReq && endReserved >= endReq) ||
                 (startReserved <= startReq && endReserved >= startReq) ||
                 (startReserved <= endReq && endReserved >= endReq)) {
                 errorResult.errors.date = 'Dates conflicts with an existing booking'
-                console.log(startReserved)
-                console.log(startReq)
-                console.log(endReserved)
-                console.log(endReq)
             } else if (startReserved === startReq) {
                 errorResult.errors.startDate = 'Start date conflicts with an existing booking'
             } else if (endReserved === endReq) {

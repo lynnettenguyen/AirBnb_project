@@ -107,7 +107,7 @@ router.delete('/rooms/:roomId', requireAuth, async (req, res, next) => {
     } else {
         await room.destroy();
         res.status = 200;
-        res.json({
+        return res.json({
             message: "Successfully deleted",
             statusCode: res.status
         })

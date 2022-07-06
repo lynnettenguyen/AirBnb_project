@@ -102,6 +102,28 @@ router.put('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation], a
     }
 })
 
+router.delete('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation], async (req, res, next) => {
+    const deleteReview = await Review.findOne({
+        where: {
+            id: req.params.reviewId,
+            roomId: req.params.roomId
+        }
+    })
+
+    if (!deleteReview) {
+        const err = new Error(`Review couldn't be found`);
+        err.status = 404;
+        return next(err)
+    } else {
+        deleteReview.destroy();
+        res.status = 200;
+        return res.json({
+            message: "Successfully deleted",
+            statusCode: res.status
+        })
+    }
+})
+
 router.get('/:roomId', async (req, res, next) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,
         {

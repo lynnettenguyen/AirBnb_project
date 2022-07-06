@@ -800,7 +800,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: profile/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
+  * URL: api/rooms/:roomId/reviews/:reviewId
   * Body: none
 
 * Successful Response

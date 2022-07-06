@@ -184,11 +184,9 @@ router.delete('/reservations/:reservationId', requireAuth, async (req, res, next
     }
 })
 
-
 router.get('/', requireAuth, async (req, res) => {
     const currentUser = await User.findByPk(req.user.id)
     return res.json(currentUser)
 })
-
 
 module.exports = router;

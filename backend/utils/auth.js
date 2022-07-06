@@ -16,7 +16,6 @@ const setTokenCookie = (res, user) => {
     );
 
     const isProduction = process.env.NODE_ENV === "production";
-
     // set the token cookie (HTTP-only cookie)
     res.cookie('token', token, {
         maxAge: expiresIn * 1000, // maxAge in milliseconds
@@ -24,7 +23,6 @@ const setTokenCookie = (res, user) => {
         secure: isProduction,
         sameSite: isProduction && "Lax"
     });
-
     return token;
 };
 

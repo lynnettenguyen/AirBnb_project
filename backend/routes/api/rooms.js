@@ -218,7 +218,6 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkIfOwner
         endDate: endDate,
     })
     return res.json(newReservation)
-
 })
 
 router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, res, next) => {
@@ -231,7 +230,6 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, re
         attributes: ['userId', 'startDate', 'endDate'],
         raw: true
     })
-
 
     let currStartDates = []
     let currEndDates = []
@@ -299,7 +297,6 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, re
         return res.json(currentReservation)
     }
 })
-
 
 router.get('/:roomId', async (req, res, next) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,

@@ -162,6 +162,29 @@ router.get('/reservations', requireAuth, async (req, res) => {
     return res.json({ 'Bookings': reservations })
 })
 
+router.delete('/reservations/:reservationId', requireAuth, async (req, res, next) => {
+    const deleteReservation = await Reservation.findOne({
+        where: {
+            id: req.params.reservationId,
+            userId: req.user.id
+        }
+    })
+
+    if (!deleteReservation) {
+        const err = new Error(`Reservation couldn't be found`);
+        err.status = 404;
+        return next(err)
+    } else {
+        await deleteReservation.destroy();
+        res.status = 200;
+        return res.json({
+            message: "Successfully deleted",
+            statusCode: res.status
+        })
+    }
+})
+
+
 router.get('/', requireAuth, async (req, res) => {
     const currentUser = await User.findByPk(req.user.id)
     return res.json(currentUser)

@@ -4,6 +4,7 @@ const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
+const review = require('../../db/models/review');
 const router = express.Router();
 
 const checkReviewValidation = function (req, _res, next) {
@@ -43,11 +44,11 @@ router.get('/:roomId/reviews', async (req, res, next) => {
         err.status = 404;
         return next(err);
     } else {
-        return res.json(roomReviews)
+        return res.json({ 'Review': roomReviews })
     }
 })
 
-router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) => {
+router.post('/:roomId/reviews', [requireAuth, checkReviewValidation], async (req, res, next) => {
     const { review, stars } = req.body;
 
     const room = await Room.findByPk(req.params.roomId)
@@ -57,13 +58,14 @@ router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) =>
             userId: req.user.id,
             roomId: req.params.roomId
         },
+        raw: true
     })
 
     if (!room) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err);
-    } else if (userReviews) {
+    } else if (Object.keys(userReviews).length) {
         const err = new Error(`User already has a review for this spot`);
         err.status = 403;
         return next(err);
@@ -75,6 +77,50 @@ router.post('/:roomId/reviews', checkReviewValidation, async (req, res, next) =>
             stars: stars
         })
         return res.json(newReview)
+    }
+})
+
+router.put('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation], async (req, res, next) => {
+    const { review, stars } = req.body;
+
+    const updateReview = await Review.findOne({
+        where: {
+            id: req.params.reviewId,
+            roomId: req.params.roomId
+        }
+    })
+
+    if (!updateReview) {
+        const err = new Error(`Review couldn't be found`)
+        err.status = 404;
+        return next(err)
+    } else {
+        updateReview.review = review;
+        updateReview.stars = stars;
+        await updateReview.save();
+        return res.json(updateReview)
+    }
+})
+
+router.delete('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation], async (req, res, next) => {
+    const deleteReview = await Review.findOne({
+        where: {
+            id: req.params.reviewId,
+            roomId: req.params.roomId
+        }
+    })
+
+    if (!deleteReview) {
+        const err = new Error(`Review couldn't be found`);
+        err.status = 404;
+        return next(err)
+    } else {
+        deleteReview.destroy();
+        res.status = 200;
+        return res.json({
+            message: "Successfully deleted",
+            statusCode: res.status
+        })
     }
 })
 
@@ -96,30 +142,29 @@ router.get('/:roomId', async (req, res, next) => {
                     attributes: []
                 }
             ],
-            attributes: {
-                include: [
-                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-                    [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-                ],
-            },
-            group: ['avgStarRating', 'numReviews']
         })
 
-    // const reviewData = await Review.findAll({
-    //     where: { roomId: req.params.roomId },
-    //     attributes: [
-    //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
-    //         [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-    //     ],
-    //     raw: true
-    // })
+    const reviewAggregate = await Room.findByPk(req.params.roomId, {
+        include: {
+            model: Review,
+            attributes: []
+        },
+        attributes: [
+            [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating'],
+            [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+        ],
+        raw: true
+    })
 
     if (Number(req.params.roomId) !== rooms.id) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err);
     } else {
-        return res.json(rooms)
+        const roomData = rooms.toJSON()
+        roomData.avgStarRating = reviewAggregate.avgStarRating
+        roomData.numReviews = reviewAggregate.numReviews
+        return res.json(roomData)
     }
 })
 

@@ -253,11 +253,19 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth], async (req, re
         let endReq = new Date(currentReservation.endDate)
 
         if (userReserved !== req.user.id) {
-            if (startReserved <= startReq && endReserved >= endReserved) {
+            console.log('----------------------------- userReserved', userReserved)
+            console.log('----------------------------- req.user.id', req.user.id)
+            if ((startReserved <= startReq && endReserved >= endReq) ||
+                (startReserved <= startReq && endReserved >= startReq) ||
+                (startReserved <= endReq && endReserved >= endReq)) {
                 errorResult.errors.date = 'Dates conflicts with an existing booking'
+                console.log(startReserved)
+                console.log(startReq)
+                console.log(endReserved)
+                console.log(endReq)
             } else if (startReserved === startReq) {
                 errorResult.errors.startDate = 'Start date conflicts with an existing booking'
-            } else if (endReserved === endReserved) {
+            } else if (endReserved === endReq) {
                 errorResult.errors.endDate = 'End date conflicts with an existing booking'
             }
         }

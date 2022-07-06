@@ -34,6 +34,18 @@ const checkRoomValidation = function (req, _res, next) {
     }
 }
 
+const checkRoomExists = async function (req, _res, next) {
+    const room = await Room.findByPk(req.params.roomId)
+
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    } else {
+        return next()
+    }
+}
+
 router.get('/rooms', requireAuth, async (req, res) => {
     const currentUser = await User.findAll({
         where: { id: req.user.id },
@@ -69,44 +81,39 @@ router.post('/rooms', [requireAuth, checkRoomValidation], async (req, res) => {
     return res.json(newRoom)
 })
 
-router.put('/rooms/:roomId', [requireAuth, checkRoomValidation], async (req, res, next) => {
+router.put('/rooms/:roomId', [requireAuth, checkRoomExists, checkRoomValidation], async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const room = await Room.findByPk(req.params.roomId)
 
-    if (!room) {
-        const err = new Error(`Spot couldn't be found`);
-        err.status = 404;
-        return next(err)
-    } else {
-        room.address = address;
-        room.city = city;
-        room.state = state;
-        room.country = country;
-        room.lat = lat;
-        room.lng = lng;
-        room.name = name;
-        room.description = description;
-        room.price = price;
-    }
+    room.address = address;
+    room.city = city;
+    room.state = state;
+    room.country = country;
+    room.lat = lat;
+    room.lng = lng;
+    room.name = name;
+    room.description = description;
+    room.price = price;
+
     await room.save();
     return res.json(room)
 })
 
 router.delete('/rooms/:roomId', requireAuth, async (req, res, next) => {
 
-    const room = await Room.findOne({
+    const deleteRoom = await Room.findOne({
         where: {
             id: req.params.roomId,
             ownerId: req.user.id
         }
     })
 
-    if (!room) {
+    if (!deleteRoom) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err)
     } else {
-        await room.destroy();
+        await deleteRoom.destroy();
         res.status = 200;
         return res.json({
             message: "Successfully deleted",

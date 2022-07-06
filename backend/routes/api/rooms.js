@@ -23,7 +23,7 @@ const checkReviewValidation = function (req, _res, next) {
     }
 }
 
-const checkRoomValidation = async function (req, _res, next) {
+const checkRoomExists = async function (req, _res, next) {
     const room = await Room.findByPk(req.params.roomId)
 
     if (!room) {
@@ -35,7 +35,7 @@ const checkRoomValidation = async function (req, _res, next) {
     }
 }
 
-router.get('/:roomId/reviews', checkRoomValidation, async (req, res, next) => {
+router.get('/:roomId/reviews', checkRoomExists, async (req, res, next) => {
     const roomReviews = await Review.findAll({
         where: { roomId: req.params.roomId },
         include: [{
@@ -50,7 +50,7 @@ router.get('/:roomId/reviews', checkRoomValidation, async (req, res, next) => {
     return res.json({ 'Review': roomReviews })
 })
 
-router.post('/:roomId/reviews', [requireAuth, checkRoomValidation, checkReviewValidation], async (req, res, next) => {
+router.post('/:roomId/reviews', [requireAuth, checkRoomExists, checkReviewValidation], async (req, res, next) => {
     const { review, stars } = req.body;
 
     const userReviews = await Review.findAll({
@@ -120,32 +120,34 @@ router.delete('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation]
     }
 })
 
-router.get('/:roomId/reservations', [requireAuth, checkRoomValidation], async (req, res, next) => {
+router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res, next) => {
 
     const allReservations = await Reservation.findAll({
         where: { roomId: req.params.roomId },
         attributes: ['roomId', 'startDate', 'endDate']
     })
 
-    const userReservations = await Reservation.findAll({
+    const ownerReservations = await Reservation.findAll({
         where: { roomId: req.params.roomId },
-        include: [
-            {
-                model: User,
-                where: { id: req.user.id },
-                attributes: ['id', 'firstName', 'lastName']
-            },
-        ]
+        include: {
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+        }
     })
 
-    if (userReservations) {
-        return res.json({ "Bookings": userReservations })
+    const currentRoom = await Room.findByPk(req.params.roomId, {
+        where: {ownerId: req.user.id},
+        attributes: ['ownerId'],
+    })
+
+    if (currentRoom.ownerId === req.user.id) {
+        return res.json({'Bookings': ownerReservations})
     } else {
-        return res.json({ "Bookings": allReservations })
+        return res.json({'Bookings': allReservations})
     }
 })
 
-router.post('/:roomId/reservations', [requireAuth, checkRoomValidation], async (req, res, next) => {
+router.post('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
     const checkStartDate = await Reservation.findOne({

@@ -1,7 +1,7 @@
 // backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Room } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -66,4 +66,22 @@ const requireAuth = function (req, _res, next) {
     return next(err);
 }
 
-module.exports = { setTokenCookie, restoreUser, requireAuth};
+const checkIfOwner = async function (req, _res, next) {
+    const room = await Room.findAll({
+        where: {
+            id: req.params.roomId,
+            ownerId: req.user.id
+        }
+    })
+    console.log(room)
+    if (Object.keys(room).length) {
+        const err = new Error('You are not permitted to book rooms you own');
+        err.errors = ['Unauthorized'];
+        err.status = 403;
+        return next(err);
+    } else {
+        return next()
+    }
+}
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, checkIfOwner };

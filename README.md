@@ -1009,7 +1009,7 @@ Update and return an existing booking.
 * Require proper authorization: Booking must belong to the current user
 * Request
   * Method: PUT
-  * URL: profile/reservations/:reservationId
+  * URL: api/rooms/:roomId/reservations/:reservationId
   * Headers:
     * Content-Type: application/json
   * Body:

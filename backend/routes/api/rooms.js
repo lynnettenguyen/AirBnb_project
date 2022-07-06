@@ -136,37 +136,37 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
     })
 
     const currentRoom = await Room.findByPk(req.params.roomId, {
-        where: {ownerId: req.user.id},
+        where: { ownerId: req.user.id },
         attributes: ['ownerId'],
     })
 
     if (currentRoom.ownerId === req.user.id) {
-        return res.json({'Bookings': ownerReservations})
+        return res.json({ 'Bookings': ownerReservations })
     } else {
-        return res.json({'Bookings': allReservations})
+        return res.json({ 'Bookings': allReservations })
     }
 })
 
 router.post('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
-    console.log('START DATE', startDate)
-    console.log('END DATE', endDate)
-
     const checkStartDate = await Reservation.findOne({
-        where: { startDate: startDate }
+        where: {
+            roomId: req.params.roomId,
+            startDate: startDate
+        }
     })
 
     const checkEndDate = await Reservation.findOne({
-        where: { endDate: endDate }
+        where: {
+            roomId: req.params.roomId,
+            endDate: endDate
+        }
     })
 
     let errorResult = { errors: {} }
-
-
     if (checkStartDate) errorResult.errors.startDate = 'Start date conflicts with an existing booking'
     if (checkEndDate) errorResult.errors.endDate = 'End date conflicts with an existing booking'
-
 
     if (Object.keys(errorResult.errors).length) {
         const err = new Error(`Sorry, this spot is already booked for the specified dates`);
@@ -181,6 +181,48 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists], async (req,
             endDate: endDate,
         })
         return res.json(newReservation)
+    }
+})
+
+router.put('/:roomId/reservations/:reservationId', requireAuth, async (req, res, next) => {
+    const { startDate, endDate } = req.body;
+
+    const currentReservation = await Reservation.findOne({
+            where: { id: req.params.reservationId, roomId: req.params.roomId }
+        })
+
+    const checkStartDate = await Reservation.findOne({
+        where: {
+            roomId: req.params.roomId,
+            startDate: startDate
+        }
+    })
+
+    const checkEndDate = await Reservation.findOne({
+        where: {
+            roomId: req.params.roomId,
+            endDate: endDate
+        }
+    })
+
+    let errorResult = { errors: {} }
+    if (checkStartDate) errorResult.errors.startDate = 'Start date conflicts with an existing booking'
+    if (checkEndDate) errorResult.errors.endDate = 'End date conflicts with an existing booking'
+
+    if (!currentReservation) {
+        const err = new Error(`Booking couldn't be found`);
+        err.status = 404;
+        return next(err);
+    } else if (Object.keys(errorResult.errors).length) {
+        const err = new Error(`Sorry, this spot is already booked for the specified dates`);
+        err.status = 403;
+        err.errors = errorResult.errors
+        return next(err);
+    } else {
+        currentReservation.startDate = startDate;
+        currentReservation.endDate = endDate;
+        currentReservation.save()
+        return res.json(currentReservation)
     }
 })
 

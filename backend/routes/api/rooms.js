@@ -150,6 +150,9 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
 router.post('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
+    console.log('START DATE', startDate)
+    console.log('END DATE', endDate)
+
     const checkStartDate = await Reservation.findOne({
         where: { startDate: startDate }
     })
@@ -168,6 +171,7 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists], async (req,
     if (Object.keys(errorResult.errors).length) {
         const err = new Error(`Sorry, this spot is already booked for the specified dates`);
         err.status = 403;
+        err.errors = errorResult.errors
         return next(err);
     } else {
         const newReservation = await Reservation.create({

@@ -153,6 +153,45 @@ router.get('/:roomId/reservations', requireAuth, async (req, res, next) => {
     }
 })
 
+router.post('/:roomId/reservations', requireAuth, async (req, res, next) => {
+    const room = await Room.findByPk(req.params.roomId)
+    const { startDate, endDate } = req.body;
+
+    const checkStartDate = await Reservation.findOne({
+        where: { startDate: startDate }
+    })
+
+    const checkEndDate = await Reservation.findOne({
+        where: { endDate: endDate }
+    })
+
+    let errorResult = { errors: {} }
+
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    }
+
+    if (checkStartDate) errorResult.errors.startDate = 'Start date conflicts with an existing booking'
+    if (checkEndDate) errorResult.errors.endDate = 'End date conflicts with an existing booking'
+
+
+    if (Object.keys(errorResult.errors).length) {
+        const err = new Error(`Sorry, this spot is already booked for the specified dates`);
+        err.status = 403;
+        return next(err);
+    } else {
+        const newReservation = await Reservation.create({
+            userId: req.user.id,
+            roomId: req.params.roomId,
+            startDate: startDate,
+            endDate: endDate,
+        })
+        return res.json(newReservation)
+    }
+})
+
 
 router.get('/:roomId', async (req, res, next) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,

@@ -1,10 +1,10 @@
 // backend/routes/api/profile.js
+const { Op } = require('sequelize');
 const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const user = require('../../db/models/user');
 const router = express.Router();
 
 const checkRoomValidation = function (req, _res, next) {
@@ -138,10 +138,19 @@ router.get('/reviews', requireAuth, async (req, res) => {
 router.get('/reservations', requireAuth, async (req, res) => {
     const reservations = await Reservation.findAll({
         where: { userId: req.user.id },
-        include: [{
-            model: Room,
-            attributes: { exclude: ['numReviews', 'avgStarRating', 'createdAt', 'updatedAt'] }
-        }]
+        include: [
+            {
+                model: Room,
+                attributes: { exclude: ['numReviews', 'avgStarRating', 'createdAt', 'updatedAt'] },
+                include: [
+                    {
+                        model: Image,
+                        as: 'previewImage',
+                        attributes: ['url']
+                    }
+                ]
+            }
+        ]
     })
     return res.json({ 'Bookings': reservations })
 })

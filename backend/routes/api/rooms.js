@@ -4,7 +4,6 @@ const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
-const review = require('../../db/models/review');
 const router = express.Router();
 
 const checkReviewValidation = function (req, _res, next) {
@@ -123,6 +122,37 @@ router.delete('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation]
         })
     }
 })
+
+router.get('/:roomId/reservations', requireAuth, async (req, res, next) => {
+    const room = await Room.findByPk(req.params.roomId)
+
+    const allReservations = await Reservation.findAll({
+        where: { roomId: req.params.roomId },
+        attributes: ['roomId', 'startDate', 'endDate']
+    })
+
+    const userReservations = await Reservation.findAll({
+        where: { roomId: req.params.roomId },
+        include: [
+            {
+                model: User,
+                where: { id: req.user.id },
+                attributes: ['id', 'firstName', 'lastName']
+            },
+        ]
+    })
+
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    } else if (userReservations) {
+        return res.json({ "Bookings": userReservations })
+    } else {
+        return res.json({ "Bookings": allReservations })
+    }
+})
+
 
 router.get('/:roomId', async (req, res, next) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,

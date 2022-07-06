@@ -129,7 +129,7 @@ router.put('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation], a
     }
 })
 
-router.delete('/:roomId/reviews/:reviewId', [requireAuth, checkReviewValidation], async (req, res, next) => {
+router.delete('/:roomId/reviews/:reviewId', requireAuth, async (req, res, next) => {
     const deleteReview = await Review.findOne({
         where: {
             id: req.params.reviewId,

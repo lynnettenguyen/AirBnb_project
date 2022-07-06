@@ -38,7 +38,7 @@ router.get('/:roomId/reviews', async (req, res, next) => {
 
     const room = await Room.findByPk(req.params.roomId)
 
-    if (!room) {
+    if (!Object.keys(room).length) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
         return next(err);

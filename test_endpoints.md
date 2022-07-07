@@ -44,7 +44,7 @@ fetch('/api/session', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -57,6 +57,16 @@ https://lynnette-airbnb.herokuapp.com/api/profile/rooms/
 
 ## Get details of a Spot from an id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1
+```js
+// check 404 is returned for spots that do not exist
+fetch('/api/rooms/10', {
+  method: 'GET',
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+  }
+}).then(res => res.json()).then(data => console.log(data));
+```
 
 ## Create a Spot
 ```js
@@ -118,10 +128,20 @@ https://lynnette-airbnb.herokuapp.com/api/profile/reviews
 
 ## Get all Reviews by a Spot's id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1/reviews
+```js
+// check 404 is returned for spots that do not exist
+fetch('/api/rooms/12/reviews', {
+  method: 'GET',
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+  }
+}).then(res => res.json()).then(data => console.log(data));
+```
 
 ## Create a Review for a Spot based on the Spot's id
 ```js
-fetch('/api/rooms/1/reviews', {
+fetch('/api/rooms/2/reviews', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
@@ -135,7 +155,7 @@ fetch('/api/rooms/1/reviews', {
 ```
 ## Edit a Review
 ```js
-fetch('/api/rooms/1/reviews/7', {
+fetch('/api/reviews/7', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
@@ -149,7 +169,7 @@ fetch('/api/rooms/1/reviews/7', {
 ```
 ## Delete a Review
 ```js
-fetch('/api/rooms/1/reviews/7', {
+fetch('/api/reviews/3, {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
@@ -158,14 +178,14 @@ fetch('/api/rooms/1/reviews/7', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 ## Get all of the Current User's Bookings
-https://lynnette-airbnb.herokuapp.com/api/profile/reservations
+https://lynnette-airbnb.herokuapp.com/api/reservations
 
 ## Get all Bookings for a Spot based on the Spot's id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1/reservations
 
 ## Create a Booking from a Spot based on the Spot's id
 ```js
-fetch('/api/rooms/1/reservations', {
+fetch('/api/rooms/2/reservations', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
@@ -180,7 +200,7 @@ fetch('/api/rooms/1/reservations', {
 
 ## Edit a Booking
 ```js
-fetch('/api/rooms/1/reservations/11', {
+fetch('/api/rooms/2/reservations/10', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
@@ -194,7 +214,7 @@ fetch('/api/rooms/1/reservations/11', {
 ```
 ## Delete a Booking
 ```js
-fetch('/api/profile/reservations/11', {
+fetch('/api/reservations/10', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",

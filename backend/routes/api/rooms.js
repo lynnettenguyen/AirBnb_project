@@ -31,6 +31,20 @@ const validateDate = [
     handleValidationErrors
 ]
 
+router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res, _next) => {
+    const { url } = req.body
+
+    const newImage = await Image.create({
+        userId: req.user.id,
+        roomId: req.params.roomId,
+        reviewId: req.params.reviewId,
+        type: 'review',
+        url: url
+    })
+
+    return res.json(newImage)
+})
+
 router.get('/:roomId/reviews', checkRoomExists, async (req, res, _next) => {
     const roomReviews = await Review.findAll({
         where: { roomId: req.params.roomId },
@@ -231,20 +245,6 @@ router.get('/:roomId', checkRoomExists, async (req, res, next) => {
     roomData.avgStarRating = reviewAggregate.avgStarRating
     roomData.numReviews = reviewAggregate.numReviews
     return res.json(roomData)
-})
-
-router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res, _next) => {
-    const { url } = req.body
-
-    const newImage = await Image.create({
-        userId: req.user.id,
-        roomId: req.params.roomId,
-        reviewId: req.params.reviewId,
-        type: 'review',
-        url: url
-    })
-
-    return res.json(newImage)
 })
 
 

@@ -31,7 +31,7 @@ const validateDate = [
     handleValidationErrors
 ]
 
-router.get('/:roomId/reviews', checkRoomExists, async (req, res, next) => {
+router.get('/:roomId/reviews', checkRoomExists, async (req, res, _next) => {
     const roomReviews = await Review.findAll({
         where: { roomId: req.params.roomId },
         include: [{
@@ -72,7 +72,7 @@ router.post('/:roomId/reviews', [requireAuth, checkRoomExists, checkNotOwner, ch
     }
 })
 
-router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res, next) => {
+router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res, _next) => {
 
     const allReservations = await Reservation.findAll({
         where: { roomId: req.params.roomId },
@@ -239,7 +239,7 @@ router.get('/:roomId', async (req, res, next) => {
     }
 })
 
-router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res) => {
+router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res, _next) => {
     const { url } = req.body
 
     const newImage = await Image.create({
@@ -250,11 +250,11 @@ router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, 
         url: url
     })
 
-    res.json(newImage)
+    return res.json(newImage)
 })
 
 
-router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms], async (req, res) => {
+router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms], async (req, res, _next) => {
     const { url } = req.body
 
     const newImage = await Image.create({
@@ -264,7 +264,7 @@ router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms
         url: url
     })
 
-    res.json(newImage)
+    return res.json(newImage)
 })
 
 router.get('/', async (req, res, next) => {
@@ -278,9 +278,6 @@ router.get('/', async (req, res, next) => {
 
     page = req.query.page === undefined ? 0 : parseInt(req.query.page)
     size = req.query.size === undefined ? 20 : parseInt(req.query.size)
-
-    console.log('PAGE', page)
-    console.log('Size', size)
 
     if (!Number.isNaN(page) && !Number.isNaN(size)) {
         if (page < 0) {

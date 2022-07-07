@@ -1,10 +1,7 @@
 // backend/routes/api/profile.js
-const { Op } = require('sequelize');
 const express = require('express')
 const { requireAuth, checkOwnerRoom, checkRoomValidation } = require('../../utils/auth');
-const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { User, Room, Review, Image, sequelize } = require('../../db/models');
 const router = express.Router();
 
 
@@ -22,7 +19,7 @@ router.get('/rooms', requireAuth, async (req, res) => {
             }
         }]
     })
-    return res.json(currentUser)
+    return res.json(currentUser);
 })
 
 router.post('/rooms', [requireAuth, checkRoomValidation], async (req, res) => {
@@ -40,12 +37,12 @@ router.post('/rooms', [requireAuth, checkRoomValidation], async (req, res) => {
         description: description,
         price: price
     })
-    return res.json(newRoom)
+    return res.json(newRoom);
 })
 
 router.put('/rooms/:roomId', [requireAuth, checkOwnerRoom, checkRoomValidation], async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
-    const room = await Room.findByPk(req.params.roomId)
+    const room = await Room.findByPk(req.params.roomId);
 
     room.address = address;
     room.city = city;
@@ -58,7 +55,7 @@ router.put('/rooms/:roomId', [requireAuth, checkOwnerRoom, checkRoomValidation],
     room.price = price;
 
     await room.save();
-    return res.json(room)
+    return res.json(room);
 })
 
 router.delete('/rooms/:roomId', [requireAuth, checkOwnerRoom], async (req, res, next) => {
@@ -96,13 +93,13 @@ router.get('/reviews', requireAuth, async (req, res) => {
             }
         ]
     })
-    return res.json({ 'Reviews': userReviews })
+    return res.json({ 'Reviews': userReviews });
 })
 
 
 router.get('/', requireAuth, async (req, res) => {
-    const currentUser = await User.findByPk(req.user.id)
-    return res.json(currentUser)
+    const currentUser = await User.findByPk(req.user.id);
+    return res.json(currentUser);
 })
 
 module.exports = router;

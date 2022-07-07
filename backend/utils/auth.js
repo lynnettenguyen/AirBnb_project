@@ -1,7 +1,7 @@
 // backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Room, Review, Reservation, Image } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -16,7 +16,6 @@ const setTokenCookie = (res, user) => {
     );
 
     const isProduction = process.env.NODE_ENV === "production";
-
     // set the token cookie (HTTP-only cookie)
     res.cookie('token', token, {
         maxAge: expiresIn * 1000, // maxAge in milliseconds
@@ -24,7 +23,6 @@ const setTokenCookie = (res, user) => {
         secure: isProduction,
         sameSite: isProduction && "Lax"
     });
-
     return token;
 };
 
@@ -66,4 +64,214 @@ const requireAuth = function (req, _res, next) {
     return next(err);
 }
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+const checkRoomExists = async function (req, _res, next) {
+    const room = await Room.findByPk(req.params.roomId)
+
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err);
+    } else {
+        return next()
+    }
+}
+
+const checkNotOwner = async function (req, _res, next) {
+    const room = await Room.findAll({
+        where: {
+            id: req.params.roomId,
+            ownerId: req.user.id
+        }
+    })
+
+    if (Object.keys(room).length) {
+        const err = new Error('Unable to book or review spots owned by the current user');
+        err.status = 403;
+        return next(err);
+    } else {
+        return next()
+    }
+}
+
+const checkOwnerRoom = async function (req, _res, next) {
+    const room = await Room.findOne({
+        where: {
+            id: req.params.roomId,
+        },
+        attributes: ['ownerId'],
+        raw: true
+    })
+
+    if (!room) {
+        const err = new Error(`Spot couldn't be found`);
+        err.status = 404;
+        return next(err)
+    } else if (room.ownerId !== req.user.id) {
+        const err = new Error(`Spot must belong to the current user`);
+        err.status = 403;
+        return next(err);
+    } else {
+        return next()
+    }
+}
+
+const checkRoomValidation = function (req, _res, next) {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    let errorResult = { errors: {} }
+
+    if (!address) errorResult.errors.address = 'Street address is required';
+    if (!city) errorResult.errors.city = 'City is required';
+    if (!state) errorResult.errors.state = 'State is required';
+    if (!country) errorResult.errors.country = 'Country is required';
+
+    if (lat > 90 || lat < -90 || typeof lat !== 'number') errorResult.errors.lat = 'Latitude is not valid';
+    if (lng > 180 || lng < -180 || typeof lng !== 'number') errorResult.errors.lng = 'Longitude is not valid';
+
+    if (name.length > 50) errorResult.errors.name = 'Name must be less than 50 characters';
+
+    if (!description) errorResult.errors.description = 'Description is required';
+    if (!price) errorResult.errors.price = 'Price per day is required';
+
+    if (Object.keys(errorResult.errors).length) {
+        const err = new Error('Validation Error');
+        err.status = 400;
+        err.errors = errorResult.errors
+        return next(err)
+    } else {
+        return next()
+    }
+}
+
+const checkUserReview = async function (req, _res, next) {
+    const review = await Review.findOne({
+        where: {
+            id: req.params.reviewId,
+        },
+        attributes: ['userId'],
+        raw: true
+    })
+
+    if (!review) {
+        const err = new Error(`Review couldn't be found`);
+        err.status = 404;
+        return next(err)
+    } else if (review.userId !== req.user.id) {
+        const err = new Error(`Review must belong to the current user`);
+        err.status = 403;
+        return next(err)
+    } else {
+        return next()
+    }
+}
+
+const checkReviewValidation = function (req, _res, next) {
+    const { review, stars } = req.body;
+    let errorResult = { errors: {} }
+
+    if (!review) errorResult.errors.review = 'Review text is required'
+    if (stars < 1 || stars > 5) errorResult.errors.star = 'Stars must be an integer from 1 to 5'
+
+    if (Object.keys(errorResult.errors).length) {
+        const err = new Error('Validation Error');
+        err.status = 400;
+        err.errors = errorResult.errors
+        return next(err)
+    } else {
+        return next()
+    }
+}
+
+const checkReservationValidation = async function (req, _res, next) {
+    const { startDate, endDate } = req.body;
+    let errorResult = { errors: {} }
+
+    const allReservations = await Reservation.findAll({
+        where: { roomId: req.params.roomId },
+        attributes: ['userId', 'startDate', 'endDate'],
+        raw: true
+    })
+
+    let currStartDates = []
+    let currEndDates = []
+    let reservationUser = [];
+
+    for (let i = 0; i < Object.keys(allReservations).length; i++) {
+        currStartDates.push(allReservations[i].startDate)
+        currEndDates.push(allReservations[i].endDate)
+        reservationUser.push(allReservations[i].userId)
+    }
+
+    for (let i = 0; i < currStartDates.length; i++) {
+        let startReserved = new Date(currStartDates[i]);
+        let endReserved = new Date(currEndDates[i]);
+
+        let startReq = new Date(startDate)
+        let endReq = new Date(endDate)
+
+        if ((startReserved <= startReq && endReserved >= endReq) ||
+            (startReserved <= startReq && endReserved >= startReq) ||
+            (startReserved <= endReq && endReserved >= endReq)) {
+            errorResult.errors.date = `Dates conflicts with an existing booking`
+        } else if (startReserved === startReq) {
+            errorResult.errors.startDate = 'Start date conflicts with an existing booking'
+        } else if (endReserved === endReq) {
+            errorResult.errors.endDate = 'End date conflicts with an existing booking'
+        }
+    }
+
+    if (Object.keys(errorResult.errors).length) {
+        const err = new Error(`Sorry, this spot is already booked for the specified dates`);
+        err.status = 403;
+        err.errors = errorResult.errors
+        return next(err)
+    } else {
+        return next()
+    }
+}
+
+const checkMaxImagesReviews = async function (req, _res, next) {
+    const totalImagesReviews = await Image.findAll({
+        where: { reviewId: req.params.reviewId },
+        raw: true
+    })
+
+    if (Object.keys(totalImagesReviews).length >= 10) {
+        const err = new Error(`Maximum number of images for this resource was reached`);
+        err.status = 400;
+        return next(err)
+    } else {
+        return next()
+    }
+}
+
+
+const checkMaxImagesRooms = async function (req, _res, next) {
+
+    const totalImagesRooms = await Image.findAll({
+        where: { roomId: req.params.roomId },
+        raw: true
+    })
+
+    if (Object.keys(totalImagesRooms).length >= 10) {
+        const err = new Error(`Maximum number of images for this resource was reached`);
+        err.status = 400;
+        return next(err)
+    } else {
+        return next()
+    }
+}
+
+module.exports = {
+    setTokenCookie,
+    restoreUser,
+    requireAuth,
+    checkRoomExists,
+    checkRoomValidation,
+    checkNotOwner,
+    checkOwnerRoom,
+    checkUserReview,
+    checkReviewValidation,
+    checkReservationValidation,
+    checkMaxImagesReviews,
+    checkMaxImagesRooms
+};

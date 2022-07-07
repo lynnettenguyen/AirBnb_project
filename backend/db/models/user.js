@@ -70,6 +70,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Reservation, {
         foreignKey: 'userId', onDelete: 'CASCADE', hooks: true
       })
+      User.hasMany(models.Image, {
+        foreignKey: 'userId', onDelete: 'CASCADE', hooks: true
+      })
     }
   };
 

@@ -17,9 +17,19 @@ module.exports = (sequelize, DataTypes) => {
       Image.belongsTo(models.Review, {
         foreignKey: 'reviewId'
       })
+      Image.belongsTo(models.User, {
+        foreignKey: 'userId'
+      })
     }
   }
   Image.init({
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
+    },
     reviewId: {
       type: DataTypes.INTEGER,
       references: {
@@ -38,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     url: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
   }, {
     sequelize,

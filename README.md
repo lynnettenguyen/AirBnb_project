@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![Database Schema](airbnb_db_schema_4.png)
+![Database Schema](airbnb_db_schema_5.png)
 
 ## API Documentation
 
@@ -732,7 +732,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: api/rooms/:roomId/reviews/:reviewId
+  * URL: api/reviews/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -800,7 +800,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: api/rooms/:roomId/reviews/:reviewId
+  * URL: api/reviews/:reviewId
   * Body: none
 
 * Successful Response
@@ -836,7 +836,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: api/profile/reservations
+  * URL: api/reservations
   * Body: none
 
 * Successful Response
@@ -1091,7 +1091,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: api/profile/reservations/:reservationId
+  * URL: api/reservations/:reservationId
   * Body: none
 
 * Successful Response
@@ -1141,7 +1141,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: profile/rooms/:roomId
+  * URL: api/rooms/:roomId/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1188,7 +1188,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: profile/reviews/:reviewId, rooms/:roomId/reviews/:reviewId
+  * URL: api/reviews/:reviewId/images,
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1250,7 +1250,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: DELETE
-  * URL: profile/reviews/:reviewId, rooms/:roomId
+  * URL: api/images/:imageId
   * Body: none
 
 * Successful Response

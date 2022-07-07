@@ -39,6 +39,18 @@ module.exports = {
         description: 'Brand new modern and stylish condo in the heart of downtown Toronto. Large balcony with view of the lake. 3 minutes walking distance to Rogers Centre, Scotiabank Arena, CN Tower, Aquarium and Waterfront harbors.',
         price: 282,
       },
+      {
+        ownerId: 7,
+        address: '204 Big Sky Way',
+        city: 'Joshua Tree',
+        state: 'California',
+        country: 'United States of America',
+        lat: 38.050152,
+        lng: -121.339526,
+        name: 'The Kellogg Doolittle House',
+        description: 'Created over 25 meticulous years, Kellogg Doolittle in Joshua Tree National Park is a marvel of the organic architecture movement. It is one of the most exclusive homes in the world, and available for the first time as an Airbnb Luxe exclusive.',
+        price: 12500,
+      },
     ], {});
   },
 

@@ -1,0 +1,51 @@
+// backend/routes/api/reviews.js
+const { Op } = require('sequelize');
+const express = require('express')
+const { requireAuth, checkUserReview, checkReviewValidation, checkMaxImagesReviews } = require('../../utils/auth');
+const { Room, Reservation, Image, Review, sequelize } = require('../../db/models');
+const router = express.Router();
+
+router.post('/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res) => {
+    const { url } = req.body
+
+    const newImage = await Image.create({
+        reviewId: req.params.reviewId,
+        type: 'review',
+        url: url
+    })
+
+    res.json(newImage)
+})
+
+router.put('/:reviewId', [requireAuth, checkUserReview, checkReviewValidation], async (req, res, next) => {
+    const { review, stars } = req.body;
+
+    const updateReview = await Review.findOne({
+        where: {
+            id: req.params.reviewId,
+        }
+    })
+
+    updateReview.review = review;
+    updateReview.stars = stars;
+    await updateReview.save();
+    return res.json(updateReview)
+})
+
+
+router.delete('/:reviewId', [requireAuth, checkUserReview], async (req, res, next) => {
+    const deleteReview = await Review.findOne({
+        where: {
+            id: req.params.reviewId,
+        }
+    })
+
+    deleteReview.destroy();
+    res.status = 200;
+    return res.json({
+        message: "Successfully deleted",
+        statusCode: res.status
+    })
+})
+
+module.exports = router;

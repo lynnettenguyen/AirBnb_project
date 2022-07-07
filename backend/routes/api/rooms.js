@@ -1,7 +1,7 @@
 // backend/routes/api/rooms.js
 const { Op } = require('sequelize');
 const express = require('express')
-const { requireAuth, checkRoomExists, checkRoomValidation, checkNotOwner, checkOwnerRoom, checkUserReview, checkReviewValidation, checkReservationValidation, checkMaxImagesRooms } = require('../../utils/auth');
+const { requireAuth, checkRoomExists, checkRoomValidation, checkNotOwner, checkOwnerRoom, checkUserReview, checkReviewValidation, checkReservationValidation, checkMaxImagesRooms, checkMaxImagesReviews } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
@@ -215,10 +215,26 @@ router.get('/:roomId', async (req, res, next) => {
     }
 })
 
+router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res) => {
+    const { url } = req.body
+
+    const newImage = await Image.create({
+        userId: req.user.id,
+        roomId: req.params.roomId,
+        reviewId: req.params.reviewId,
+        type: 'review',
+        url: url
+    })
+
+    res.json(newImage)
+})
+
+
 router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms], async (req, res) => {
     const { url } = req.body
 
     const newImage = await Image.create({
+        userId: req.user.id,
         roomId: req.params.roomId,
         type: 'room',
         url: url

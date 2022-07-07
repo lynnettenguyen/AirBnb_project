@@ -1,21 +1,9 @@
 // backend/routes/api/reviews.js
 const { Op } = require('sequelize');
 const express = require('express')
-const { requireAuth, checkUserReview, checkReviewValidation, checkMaxImagesReviews } = require('../../utils/auth');
+const { requireAuth, checkUserReview, checkReviewValidation } = require('../../utils/auth');
 const { Room, Reservation, Image, Review, sequelize } = require('../../db/models');
 const router = express.Router();
-
-router.post('/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res) => {
-    const { url } = req.body
-
-    const newImage = await Image.create({
-        reviewId: req.params.reviewId,
-        type: 'review',
-        url: url
-    })
-
-    res.json(newImage)
-})
 
 router.put('/:reviewId', [requireAuth, checkUserReview, checkReviewValidation], async (req, res, next) => {
     const { review, stars } = req.body;

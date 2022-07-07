@@ -9,7 +9,6 @@ https://lynnette-airbnb.herokuapp.com/api/profile
 
 
 # /api/users (sign up)
-
 ```js
 fetch('/api/users', {
   method: 'POST',

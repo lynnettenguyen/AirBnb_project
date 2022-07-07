@@ -195,7 +195,7 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists
     }
 })
 
-router.get('/:roomId', async (req, res, next) => {
+router.get('/:roomId', checkRoomExists, async (req, res, next) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,
         {
             include: [
@@ -227,16 +227,10 @@ router.get('/:roomId', async (req, res, next) => {
         raw: true
     })
 
-    if (Number(req.params.roomId) !== rooms.id) {
-        const err = new Error(`Spot couldn't be found`);
-        err.status = 404;
-        return next(err);
-    } else {
-        const roomData = rooms.toJSON()
-        roomData.avgStarRating = reviewAggregate.avgStarRating
-        roomData.numReviews = reviewAggregate.numReviews
-        return res.json(roomData)
-    }
+    const roomData = rooms.toJSON()
+    roomData.avgStarRating = reviewAggregate.avgStarRating
+    roomData.numReviews = reviewAggregate.numReviews
+    return res.json(roomData)
 })
 
 router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res, _next) => {

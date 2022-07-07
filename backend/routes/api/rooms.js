@@ -13,6 +13,8 @@ const { requireAuth,
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
+const { query } = require('express');
+const e = require('express');
 const router = express.Router();
 
 const validateDate = [
@@ -126,8 +128,8 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists
         raw: true
     })
 
-    let currStartDates = []
-    let currEndDates = []
+    let currStartDates = [];
+    let currEndDates = [];
     let reservationUser = [];
 
     for (let i = 0; i < Object.keys(allReservations).length; i++) {
@@ -265,17 +267,95 @@ router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms
     res.json(newImage)
 })
 
-router.get('/', async (req, res) => {
-    const allRooms = await Room.findAll({
+router.get('/', async (req, res, next) => {
+    const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+    const pagination = {}
+    const results = {}
+    const roomQuery = {};
+
+    const errorResult = { errors: {} }
+
+    page = req.query.page === undefined ? 0 : parseInt(req.query.page)
+    size = req.query.size === undefined ? 20 : parseInt(req.query.size)
+
+    console.log('PAGE', page)
+    console.log('Size', size)
+
+    if (!Number.isNaN(page) && !Number.isNaN(size)) {
+        if (page < 0) {
+            errorResult.errors.page = 'Page must be greater than or equal to 0'
+        } else if (size < 0) {
+            errorResult.errors.size = 'Size must be greater than or equal to 0'
+        } else if (page <= 10 && size <= 20) {
+            pagination.limit = size;
+            pagination.offset = size * (page - 1)
+        } else if (size > 20) {
+            pagination.limit = 20;
+            pagination.offset = 20 * (page - 1)
+        } else if (page > 10) {
+            pagination.limit = size;
+            pagination.offset = size * (9)
+        }
+    }
+
+    if (pagination.offset < 0) pagination.offset = 0;
+
+    console.log(minLat - Math.floor(minLat))
+    if (minLat) {
+        if ((minLat - Math.floor(minLat)) !== 0) roomQuery.lat = { [Op.gte]: minLat }
+        else errorResult.errors.minLat = 'Minimum latitude is invalid'
+    }
+
+    if (maxLat) {
+        if ((maxLat - Math.floor(maxLat)) !== 0) roomQuery.lat = { [Op.lte]: maxLat }
+        else errorResult.errors.maxLat = 'Maximum latitude is invalid'
+    }
+
+    if (minLng) {
+        if ((minLng - Math.floor(minLng)) !== 0) roomQuery.lng = { [Op.gte]: minLng }
+        else errorResult.errors.minLng = 'Minimum longitude is invalid'
+    }
+
+    if (maxLng) {
+        if ((maxLng - Math.floor(maxLng)) !== 0) roomQuery.lng = { [Op.lte]: maxLng }
+        else errorResult.errors.maxLng = 'Maximum longitude is invalid'
+    }
+
+    if (minPrice) {
+        if (minPrice > 0) roomQuery.price = { [Op.gte]: minPrice }
+        else errorResult.errors.minPrice = 'Maximum price must be greater than 0'
+    }
+
+    if (maxPrice) {
+        if (maxPrice > 0) roomQuery.price = { [Op.lte]: maxPrice }
+        else errorResult.errors.maxPrice = 'Minimum price must be greater than 0'
+    }
+
+    results.Spots = await Room.findAll({
+        where: roomQuery,
         include: [
             {
                 model: Image,
                 as: 'previewImage',
-                attributes: ['url']
+                attributes: ['url'],
+                limit: 1
             }
-        ]
+        ],
+        ...pagination,
     })
-    return res.json({ "Rooms": allRooms })
+
+    results.page = page || 0;
+    results.size = size || 20
+
+    if (Object.keys(errorResult.errors).length) {
+        const err = new Error('Validation Error');
+        err.status = 400;
+        err.errors = errorResult.errors
+        return next(err)
+    } else {
+        return res.json(results)
+    }
 })
 
 module.exports = router;

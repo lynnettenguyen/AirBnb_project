@@ -239,7 +239,7 @@ fetch('/api/rooms/1/images', {
 
 ## Add an Image to a Review based on the Review's id
 ```js
-fetch('/api/rooms/2/reviews/3/images', {
+fetch('/api/rooms/3/reviews/5/images', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
@@ -253,7 +253,7 @@ fetch('/api/rooms/2/reviews/3/images', {
 
 ## Delete an Image
 ```js
-fetch('/api/images/14', {
+fetch('/api/images/13', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
@@ -261,3 +261,6 @@ fetch('/api/images/14', {
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
+
+## Add Query Filters to Get All Spots
+https://lynnette-airbnb.herokuapp.com/api/rooms?page=1&size=1&minLat=38.6&maxLat=45.6&minLng=69.8&maxLng=112.3&minPrice=1.00&maxPrice=400.00

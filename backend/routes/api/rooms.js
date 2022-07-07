@@ -1,7 +1,15 @@
 // backend/routes/api/rooms.js
 const { Op } = require('sequelize');
 const express = require('express')
-const { requireAuth, checkRoomExists, checkRoomValidation, checkNotOwner, checkOwnerRoom, checkUserReview, checkReviewValidation, checkReservationValidation, checkMaxImagesRooms, checkMaxImagesReviews } = require('../../utils/auth');
+const { requireAuth,
+    checkRoomExists,
+    checkNotOwner,
+    checkOwnerRoom,
+    checkUserReview,
+    checkReviewValidation,
+    checkReservationValidation,
+    checkMaxImagesRooms,
+    checkMaxImagesReviews } = require('../../utils/auth');
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');

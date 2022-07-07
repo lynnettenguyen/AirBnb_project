@@ -1,8 +1,8 @@
 // backend/routes/api/profile.js
 const { Op } = require('sequelize');
 const express = require('express')
-const { requireAuth, checkOwnerRoom, checkRoomValidation, checkUserReview } = require('../../utils/auth');
-const { User, Room, Review, Reservation, Image } = require('../../db/models');
+const { requireAuth, checkOwnerRoom, checkRoomValidation } = require('../../utils/auth');
+const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();

@@ -2,7 +2,7 @@
 const { Op } = require('sequelize');
 const express = require('express')
 const { requireAuth, checkUserReview, checkReviewValidation } = require('../../utils/auth');
-const { Room, Reservation, Image, Review, sequelize } = require('../../db/models');
+const { Review, sequelize } = require('../../db/models');
 const router = express.Router();
 
 router.put('/:reviewId', [requireAuth, checkUserReview, checkReviewValidation], async (req, res, next) => {

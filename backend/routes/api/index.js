@@ -1,6 +1,7 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
 const { restoreUser } = require('../../utils/auth.js');
+
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const profileRouter = require('./profile.js')
@@ -8,6 +9,7 @@ const roomsRouter = require('./rooms.js')
 const reservationRouter = require('./reservations.js')
 const reviewRouter = require('./reviews.js')
 const imageRouter = require('./images.js')
+
 const { setTokenCookie } = require('../../utils/auth.js');
 const { requireAuth } = require('../../utils/auth.js');
 const { User } = require('../../db/models');

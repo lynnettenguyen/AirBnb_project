@@ -40,7 +40,7 @@ module.exports = {
         price: 282,
       },
       {
-        ownerId: 2,
+        ownerId: 7,
         address: '204 Big Sky Way',
         city: 'Joshua Tree',
         state: 'California',

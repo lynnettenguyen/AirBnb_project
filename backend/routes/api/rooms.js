@@ -13,8 +13,6 @@ const { requireAuth,
 const { User, Room, Review, Reservation, Image, sequelize } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
-const { query } = require('express');
-const e = require('express');
 const router = express.Router();
 
 const validateDate = [
@@ -31,7 +29,7 @@ const validateDate = [
     handleValidationErrors
 ]
 
-router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res, _next) => {
+router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res) => {
     const { url } = req.body
 
     const newImage = await Image.create({
@@ -45,7 +43,7 @@ router.post('/:roomId/reviews/:reviewId/images', [requireAuth, checkUserReview, 
     return res.json(newImage)
 })
 
-router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms], async (req, res, _next) => {
+router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms], async (req, res) => {
     const { url } = req.body
 
     const newImage = await Image.create({
@@ -58,7 +56,7 @@ router.post('/:roomId/images', [requireAuth, checkOwnerRoom, checkMaxImagesRooms
     return res.json(newImage)
 })
 
-router.get('/:roomId/reviews', checkRoomExists, async (req, res, _next) => {
+router.get('/:roomId/reviews', checkRoomExists, async (req, res) => {
     const roomReviews = await Review.findAll({
         where: { roomId: req.params.roomId },
         include: [{
@@ -99,7 +97,7 @@ router.post('/:roomId/reviews', [requireAuth, checkRoomExists, checkNotOwner, ch
     }
 })
 
-router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res, _next) => {
+router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, res) => {
 
     const allReservations = await Reservation.findAll({
         where: { roomId: req.params.roomId },
@@ -222,7 +220,7 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists
     }
 })
 
-router.get('/:roomId', checkRoomExists, async (req, res, next) => {
+router.get('/:roomId', checkRoomExists, async (req, res) => {
     const rooms = await Room.unscoped().findByPk(req.params.roomId,
         {
             include: [

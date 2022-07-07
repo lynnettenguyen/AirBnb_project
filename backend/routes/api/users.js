@@ -12,14 +12,6 @@ const validateSignup = [
         .exists({ checkFalsy: true })
         .isEmail()
         .withMessage('Invalid email'),
-    // check('username')
-    //     .exists({ checkFalsy: true })
-    //     .isLength({ min: 4 })
-    //     .withMessage('Please provide a username with at least 4 characters.'),
-    // check('username')
-    //     .not()
-    //     .isEmail()
-    //     .withMessage('Username cannot be an email.'),
     check('password')
         .exists({ checkFalsy: true })
         .isLength({ min: 6 })
@@ -29,7 +21,6 @@ const validateSignup = [
 
 // Sign up
 router.post( '/', validateSignup, async (req, res, next) => {
-        // const { email, password, username, firstName, lastName } = req.body;
         const { firstName, lastName, email, password } = req.body;
 
         const errorResult = { errors: {} }
@@ -49,9 +40,8 @@ router.post( '/', validateSignup, async (req, res, next) => {
             const err = new Error('Validation Error');
             err.status = 400;
             err.errors = errorResult.errors
-            next(err)
+            return next(err)
         } else {
-            // let user = await User.signup({ email, username, password, firstName, lastName });
             let user = await User.signup({ email, password, firstName, lastName });
             // call the signup static method on the User model
             // if the user is successfully created, then call setTokenCookie and return a JSON response with the user information
@@ -59,7 +49,7 @@ router.post( '/', validateSignup, async (req, res, next) => {
             const token = {}
             token.token = setTokenCookie(res, user)
             user = user.toJSON()
-            res.json(Object.assign(user, token))
+            return res.json(Object.assign(user, token))
         }
     }
 );

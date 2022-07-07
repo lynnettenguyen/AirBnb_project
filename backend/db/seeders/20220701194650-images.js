@@ -43,6 +43,16 @@ module.exports = {
         type: 'review',
         url: 'https://a0.muscache.com/im/pictures/miso/Hosting-33489758/original/254384e4-fe72-45f2-b261-0a26a6520199.jpeg?im_w=1200'
       },
+      {
+        roomId: 4,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/monet/Luxury-53719772/original/f5663fe3-d1f3-469a-a7dc-4c9a6ff2b302?im_w=1200'
+      },
+      {
+        roomId: 4,
+        type: 'review',
+        url: 'https://a0.muscache.com/im/pictures/monet/Luxury-53719772/original/c3420f8b-5adc-418e-9ca0-f351c6c8fcde?im_w=720'
+      },
     ], {});
 
   },

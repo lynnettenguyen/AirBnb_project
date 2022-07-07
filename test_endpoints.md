@@ -1,5 +1,9 @@
 Navigate to: [ https://lynnette-airbnb.herokuapp.com/api/ ]
 
+git push heroku dev:main
+heroku run npm run sequelize db:migrate
+heroku run npm run sequelize db:seed:all
+
 ## Get the Current User
 https://lynnette-airbnb.herokuapp.com/api/profile
 

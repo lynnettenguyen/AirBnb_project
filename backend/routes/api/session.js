@@ -14,6 +14,9 @@ const validateLogin = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('Email is required'),
+    check('email')
+        .isEmail()
+        .withMessage('Invalid email'),
     // checks to see whether or not req.body.email and req.body.password are empty
     check('password')
         .exists({ checkFalsy: true })

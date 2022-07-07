@@ -3,9 +3,11 @@ const { Op } = require('sequelize');
 const express = require('express')
 const { requireAuth, checkUserReview, checkReviewValidation } = require('../../utils/auth');
 const { Review, sequelize } = require('../../db/models');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
-router.put('/:reviewId', [requireAuth, checkUserReview, checkReviewValidation], async (req, res, next) => {
+router.put('/:reviewId', [requireAuth, checkReviewValidation, checkUserReview], async (req, res, next) => {
     const { review, stars } = req.body;
 
     const updateReview = await Review.findOne({

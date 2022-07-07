@@ -8,7 +8,7 @@ const { secret, expiresIn } = jwtConfig;
 // sets the JWT Cookie after user is logged in or signed up
 // generates JWT using imported secret
 const setTokenCookie = (res, user) => {
-    // create the token.
+    // create the token
     const token = jwt.sign(
         { data: user.toSafeObject() },
         secret,
@@ -244,9 +244,7 @@ const checkMaxImagesReviews = async function (req, _res, next) {
     }
 }
 
-
 const checkMaxImagesRooms = async function (req, _res, next) {
-
     const totalImagesRooms = await Image.findAll({
         where: { roomId: req.params.roomId },
         raw: true

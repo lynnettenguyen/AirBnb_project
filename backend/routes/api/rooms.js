@@ -15,6 +15,20 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
 const router = express.Router();
 
+const validateDate = [
+    check('startDate')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .isDate()
+        .withMessage('Valid start date is required'),
+    check('endDate')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .isDate()
+        .withMessage('Valid end date is required'),
+    handleValidationErrors
+]
+
 router.get('/:roomId/reviews', checkRoomExists, async (req, res, next) => {
     const roomReviews = await Review.findAll({
         where: { roomId: req.params.roomId },
@@ -83,7 +97,7 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
     }
 })
 
-router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwner, checkReservationValidation], async (req, res) => {
+router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwner, validateDate, checkReservationValidation], async (req, res) => {
     const { startDate, endDate } = req.body;
 
     if (new Date(startDate) > new Date(endDate)) {
@@ -101,7 +115,7 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwne
     return res.json(newReservation)
 })
 
-router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists, checkNotOwner], async (req, res, next) => {
+router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists, checkNotOwner, validateDate], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
     let errorResult = { errors: {} }

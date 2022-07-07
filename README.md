@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![Database Schema](airbnb_db_schema_4.png)
+![Database Schema](airbnb_db_schema_5.png)
 
 ## API Documentation
 

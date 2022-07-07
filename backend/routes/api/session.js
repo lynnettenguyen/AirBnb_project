@@ -9,7 +9,6 @@ const router = express.Router();
 
 const validateLogin = [
     // route will expect the body of the request to have a key/value of email/password
-    // check('credential')
     check('email')
         .exists({ checkFalsy: true })
         .notEmpty()
@@ -17,7 +16,6 @@ const validateLogin = [
     check('email')
         .isEmail()
         .withMessage('Invalid email'),
-    // checks to see whether or not req.body.email and req.body.password are empty
     check('password')
         .exists({ checkFalsy: true })
         .withMessage('Password is required'),
@@ -26,11 +24,9 @@ const validateLogin = [
 
 // Log in
 router.post('/', validateLogin, async (req, res, next) => {
-    // const { credential, password } = req.body;
     const { email, password } = req.body;
 
     // call the login static method from the User model
-    // const user = await User.login({ credential, password });
     let user = await User.login({ email, password });
 
     if (!user) {

@@ -15,7 +15,7 @@ fetch('/api/users', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
     email: 'name@email.com',
@@ -32,7 +32,7 @@ fetch('/api/session', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({ email: 'demo@user.io', password: 'password' })
 }).then(res => res.json()).then(data => console.log(data));
@@ -44,7 +44,7 @@ fetch('/api/session', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -57,6 +57,16 @@ https://lynnette-airbnb.herokuapp.com/api/profile/rooms/
 
 ## Get details of a Spot from an id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1
+```js
+// check 404 is returned for spots that do not exist
+fetch('/api/rooms/10', {
+  method: 'GET',
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+  }
+}).then(res => res.json()).then(data => console.log(data));
+```
 
 ## Create a Spot
 ```js
@@ -64,7 +74,7 @@ fetch('/api/profile/rooms', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "address": "123 Disney Lane",
@@ -86,7 +96,7 @@ fetch('/api/profile/rooms/5', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "address": "123 Disney Lane",
@@ -108,7 +118,7 @@ fetch('/api/profile/rooms/5', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -118,14 +128,24 @@ https://lynnette-airbnb.herokuapp.com/api/profile/reviews
 
 ## Get all Reviews by a Spot's id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1/reviews
+```js
+// check 404 is returned for spots that do not exist
+fetch('/api/rooms/12/reviews', {
+  method: 'GET',
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+  }
+}).then(res => res.json()).then(data => console.log(data));
+```
 
 ## Create a Review for a Spot based on the Spot's id
 ```js
-fetch('/api/rooms/1/reviews', {
+fetch('/api/rooms/2/reviews', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "review": "This was an awesome spot!",
@@ -135,11 +155,11 @@ fetch('/api/rooms/1/reviews', {
 ```
 ## Edit a Review
 ```js
-fetch('/api/rooms/1/reviews/7', {
+fetch('/api/reviews/7', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "review": "This was an awesome spot!",
@@ -149,27 +169,27 @@ fetch('/api/rooms/1/reviews/7', {
 ```
 ## Delete a Review
 ```js
-fetch('/api/rooms/1/reviews/7', {
+fetch('/api/reviews/3, {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
 ## Get all of the Current User's Bookings
-https://lynnette-airbnb.herokuapp.com/api/profile/reservations
+https://lynnette-airbnb.herokuapp.com/api/reservations
 
 ## Get all Bookings for a Spot based on the Spot's id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1/reservations
 
 ## Create a Booking from a Spot based on the Spot's id
 ```js
-fetch('/api/rooms/1/reservations', {
+fetch('/api/rooms/2/reservations', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "startDate": "2022-11-19",
@@ -180,11 +200,11 @@ fetch('/api/rooms/1/reservations', {
 
 ## Edit a Booking
 ```js
-fetch('/api/rooms/1/reservations/11', {
+fetch('/api/rooms/2/reservations/10', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "startDate": "2022-11-18",
@@ -194,11 +214,11 @@ fetch('/api/rooms/1/reservations/11', {
 ```
 ## Delete a Booking
 ```js
-fetch('/api/profile/reservations/11', {
+fetch('/api/reservations/10', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -209,7 +229,7 @@ fetch('/api/rooms/1/images', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "url": "test.url",
@@ -219,11 +239,11 @@ fetch('/api/rooms/1/images', {
 
 ## Add an Image to a Review based on the Review's id
 ```js
-fetch('/api/rooms/2/reviews/3/images', {
+fetch('/api/rooms/3/reviews/5/images', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `jV32pLtp-Qt1hOhD9ka3c8Vwoyan6IolppZc`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   },
   body: JSON.stringify({
       "url": "test.url",
@@ -233,11 +253,14 @@ fetch('/api/rooms/2/reviews/3/images', {
 
 ## Delete an Image
 ```js
-fetch('/api/images/14', {
+fetch('/api/images/13', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
+
+## Add Query Filters to Get All Spots
+https://lynnette-airbnb.herokuapp.com/api/rooms?page=1&size=1&minLat=38.6&maxLat=45.6&minLng=69.8&maxLng=112.3&minPrice=1.00&maxPrice=400.00

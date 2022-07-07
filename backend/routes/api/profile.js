@@ -4,7 +4,6 @@ const { requireAuth, checkOwnerRoom, checkRoomValidation } = require('../../util
 const { User, Room, Review, Image, sequelize } = require('../../db/models');
 const router = express.Router();
 
-
 router.get('/rooms', requireAuth, async (req, res) => {
     const currentUser = await User.findAll({
         where: { id: req.user.id },
@@ -40,7 +39,7 @@ router.post('/rooms', [requireAuth, checkRoomValidation], async (req, res) => {
     return res.json(newRoom);
 })
 
-router.put('/rooms/:roomId', [requireAuth, checkOwnerRoom, checkRoomValidation], async (req, res, next) => {
+router.put('/rooms/:roomId', [requireAuth, checkOwnerRoom, checkRoomValidation], async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const room = await Room.findByPk(req.params.roomId);
 
@@ -58,8 +57,7 @@ router.put('/rooms/:roomId', [requireAuth, checkOwnerRoom, checkRoomValidation],
     return res.json(room);
 })
 
-router.delete('/rooms/:roomId', [requireAuth, checkOwnerRoom], async (req, res, next) => {
-
+router.delete('/rooms/:roomId', [requireAuth, checkOwnerRoom], async (req, res) => {
     const deleteRoom = await Room.findOne({
         where: {
             id: req.params.roomId,
@@ -73,7 +71,6 @@ router.delete('/rooms/:roomId', [requireAuth, checkOwnerRoom], async (req, res, 
         message: "Successfully deleted",
         statusCode: res.status
     })
-
 })
 
 router.get('/reviews', requireAuth, async (req, res) => {

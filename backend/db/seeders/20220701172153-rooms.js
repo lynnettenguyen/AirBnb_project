@@ -13,7 +13,7 @@ module.exports = {
         lng: 120.129129,
         name: '7 Sierra Shores Cozy Lakefront Home',
         description: 'Enjoy the accommodations of Sierra Shores, a major resort like paradise, private and comfy. Our large, high-end, 3 bedroom, 3 bath townhouse is right on the lake! This property is among the highest end lakefront properties in the entire Lake Tahoe area.',
-        price: 1494,
+        price: 1494.00,
       },
       {
         ownerId: 2,
@@ -25,7 +25,7 @@ module.exports = {
         lng: 8.015056,
         name: 'Luxury Room in the Heart of the Medina',
         description: 'A unique Riad in the medina, perfectly located a few minutes from the Ben Youssef Medrassa, souks and Jemaa el fna square. This property is a real image of modernity and tradition with excellent service.',
-        price: 58,
+        price: 58.00,
       },
       {
         ownerId: 3,
@@ -37,7 +37,7 @@ module.exports = {
         lng: 79.383903,
         name: 'Brand New Downtown Condo with Large Balcony',
         description: 'Brand new modern and stylish condo in the heart of downtown Toronto. Large balcony with view of the lake. 3 minutes walking distance to Rogers Centre, Scotiabank Arena, CN Tower, Aquarium and Waterfront harbors.',
-        price: 282,
+        price: 282.00,
       },
       {
         ownerId: 7,
@@ -49,7 +49,7 @@ module.exports = {
         lng: -121.339526,
         name: 'The Kellogg Doolittle House',
         description: 'Created over 25 meticulous years, Kellogg Doolittle in Joshua Tree National Park is a marvel of the organic architecture movement. It is one of the most exclusive homes in the world, and available for the first time as an Airbnb Luxe exclusive.',
-        price: 12500,
+        price: 12500.00,
       },
     ], {});
   },

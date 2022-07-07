@@ -15,7 +15,7 @@ fetch('/api/users', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({
     email: 'name@email.com',
@@ -32,7 +32,7 @@ fetch('/api/session', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({ email: 'demo@user.io', password: 'password' })
 }).then(res => res.json()).then(data => console.log(data));
@@ -64,7 +64,7 @@ fetch('/api/profile/rooms', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({
       "address": "123 Disney Lane",
@@ -86,7 +86,7 @@ fetch('/api/profile/rooms/5', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({
       "address": "123 Disney Lane",
@@ -108,7 +108,7 @@ fetch('/api/profile/rooms/5', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -125,7 +125,7 @@ fetch('/api/rooms/1/reviews', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({
       "review": "This was an awesome spot!",
@@ -139,7 +139,7 @@ fetch('/api/rooms/1/reviews/7', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({
       "review": "This was an awesome spot!",
@@ -153,7 +153,7 @@ fetch('/api/rooms/1/reviews/7', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -169,7 +169,7 @@ fetch('/api/rooms/1/reservations', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({
       "startDate": "2022-11-19",
@@ -184,7 +184,7 @@ fetch('/api/rooms/1/reservations/11', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   },
   body: JSON.stringify({
       "startDate": "2022-11-18",
@@ -198,7 +198,46 @@ fetch('/api/profile/reservations/11', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `	auyxRHUQ-xhb88hY4yzeyc0FeVZfv_iHp85E`
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+  }
+}).then(res => res.json()).then(data => console.log(data));
+```
+
+## Add an Image to a Spot based on the Spot's id
+```js
+fetch('/api/rooms/1/images', {
+  method: 'POST',
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+  },
+  body: JSON.stringify({
+      "url": "test.url",
+      })
+}).then(res => res.json()).then(data => console.log(data));
+```
+
+## Add an Image to a Review based on the Review's id
+```js
+fetch('/api/rooms/2/reviews/3/images', {
+  method: 'POST',
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `jV32pLtp-Qt1hOhD9ka3c8Vwoyan6IolppZc`
+  },
+  body: JSON.stringify({
+      "url": "test.url",
+      })
+}).then(res => res.json()).then(data => console.log(data));
+```
+
+## Delete an Image
+```js
+fetch('/api/images/14', {
+  method: 'DELETE',
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```

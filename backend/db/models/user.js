@@ -5,28 +5,25 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
-      // method will return an object with only the User instance information that is safe to save to a JWT, like id, username, and email
-      // const { id, username, email } = this; // context will be the User instance
+      // method will return an object with only the User instance information that is safe to save to a JWT(id, username, and email)
       const { id, email } = this; // context will be the User instance
-      // return { id, username, email };
       return { id, email };
     };
 
     validatePassword(password) {
-      return bcrypt.compareSync(password, this.hashedPassword.toString())
       // returns true if there is a match with the User instance's hashedPassword
+      return bcrypt.compareSync(password, this.hashedPassword.toString())
     };
 
     static getCurrentUserById(id) {
-      return User.scope("currentUser").findByPk(id);
       // uses the currentUser scope to return a User with that id
+      return User.scope("currentUser").findByPk(id);
     };
 
-    // static async login({ credential, password }) {
     static async login({ email, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
-        // searches for one User with the specified credential (either a username or an email
+        // searches for one User with the specified credential
         where: {
           [Op.or]: {
             // username: credential,
@@ -44,11 +41,9 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     // creates a user with the username, email, and hashedPassword
-    // static async signup({ username, email, password, firstName, lastName }) {
     static async signup({ firstName, lastName, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
-        // username,
         firstName,
         lastName,
         email,
@@ -60,36 +55,15 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     static associate(models) {
-      // define association here
-      User.hasMany(models.Room, {
-        foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true
-      })
-      User.hasMany(models.Review, {
-        foreignKey: 'userId', onDelete: 'CASCADE', hooks: true
-      })
-      User.hasMany(models.Reservation, {
-        foreignKey: 'userId', onDelete: 'CASCADE', hooks: true
-      })
-      User.hasMany(models.Image, {
-        foreignKey: 'userId', onDelete: 'CASCADE', hooks: true
-      })
+      User.hasMany(models.Room, { foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true })
+      User.hasMany(models.Review, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true })
+      User.hasMany(models.Reservation, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true })
+      User.hasMany(models.Image, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true })
     }
   };
 
   User.init(
     {
-      // username: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     len: [4, 30],
-      //     isNotEmail(value) {
-      //       if (Validator.isEmail(value)) {
-      //         throw new Error("Cannot be an email.");
-      //       }
-      //     }
-      //   }
-      // },
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -102,10 +76,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        // validate: {
-        //   len: [3, 256],
-        //   isEmail: true
-        // }
       },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,

@@ -219,11 +219,11 @@ fetch('/api/rooms/1/images', {
 
 ## Add an Image to a Review based on the Review's id
 ```js
-fetch('/api/reviews/3/images', {
+fetch('/api/rooms/2/reviews/3/images', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `UH3yZMdZ-MxuCy8RCO1Bi8j1_4ArV2t7yshY`
+    "XSRF-TOKEN": `jV32pLtp-Qt1hOhD9ka3c8Vwoyan6IolppZc`
   },
   body: JSON.stringify({
       "url": "test.url",
@@ -233,7 +233,7 @@ fetch('/api/reviews/3/images', {
 
 ## Delete an Image
 ```js
-fetch('/api/images/13', {
+fetch('/api/images/14', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",

@@ -1,13 +1,13 @@
 Navigate to: [ https://lynnette-airbnb.herokuapp.com/api/ ]
 
-git push heroku dev:main
-heroku run npm run sequelize db:migrate
-heroku run npm run sequelize db:seed:all
+- git push heroku dev:main
+- heroku run npm run sequelize db:migrate
+- heroku run npm run sequelize db:seed:all
 
-# Get the Current User
+### Get the Current User
 https://lynnette-airbnb.herokuapp.com/api/profile
 
-# Sign Up a User
+### Sign Up a User
 ```js
 fetch('/api/users', {
   method: 'POST',
@@ -24,7 +24,7 @@ fetch('/api/users', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Log In a User
+### Log In a User
 ```js
 fetch('/api/session', {
   method: 'POST',
@@ -36,7 +36,7 @@ fetch('/api/session', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Log Out a User
+### Log Out a User
 ```js
 fetch('/api/session', {
   method: 'DELETE',
@@ -47,13 +47,13 @@ fetch('/api/session', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Get all Spots
+### Get all Spots
 https://lynnette-airbnb.herokuapp.com/api/rooms/
 
-# Get all Spots owned by the Current User
+### Get all Spots owned by the Current User
 https://lynnette-airbnb.herokuapp.com/api/profile/rooms/
 
-# Get details of a Spot from an id
+### Get details of a Spot from an id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1
 ```js
 // check 404 is returned for spots that do not exist
@@ -66,7 +66,7 @@ fetch('/api/rooms/10', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Create a Spot
+### Create a Spot
 ```js
 fetch('/api/rooms', {
   method: 'POST',
@@ -88,7 +88,7 @@ fetch('/api/rooms', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Edit a Spot
+### Edit a Spot
 ```js
 fetch('/api/rooms/5', {
   method: 'PUT',
@@ -110,7 +110,7 @@ fetch('/api/rooms/5', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Delete a Spot
+### Delete a Spot
 ```js
 fetch('/api/rooms/5', {
   method: 'DELETE',
@@ -121,10 +121,10 @@ fetch('/api/rooms/5', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Get all Reviews of the Current User
+### Get all Reviews of the Current User
 https://lynnette-airbnb.herokuapp.com/api/profile/reviews
 
-# Get all Reviews by a Spot's id
+### Get all Reviews by a Spot's id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1/reviews
 ```js
 // check 404 is returned for spots that do not exist
@@ -137,7 +137,7 @@ fetch('/api/rooms/12/reviews', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Create a Review for a Spot based on the Spot's id
+### Create a Review for a Spot based on the Spot's id
 ```js
 fetch('/api/rooms/2/reviews', {
   method: 'POST',
@@ -151,7 +151,7 @@ fetch('/api/rooms/2/reviews', {
       })
 }).then(res => res.json()).then(data => console.log(data));
 ```
-# Edit a Review
+### Edit a Review
 ```js
 fetch('/api/reviews/7', {
   method: 'PUT',
@@ -165,7 +165,7 @@ fetch('/api/reviews/7', {
       })
 }).then(res => res.json()).then(data => console.log(data));
 ```
-# Delete a Review
+### Delete a Review
 ```js
 fetch('/api/reviews/3, {
   method: 'DELETE',
@@ -175,13 +175,13 @@ fetch('/api/reviews/3, {
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
-# Get all of the Current User's Bookings
+### Get all of the Current User's Bookings
 https://lynnette-airbnb.herokuapp.com/api/reservations
 
-# Get all Bookings for a Spot based on the Spot's id
+### Get all Bookings for a Spot based on the Spot's id
 https://lynnette-airbnb.herokuapp.com/api/rooms/1/reservations
 
-# Create a Booking from a Spot based on the Spot's id
+### Create a Booking from a Spot based on the Spot's id
 ```js
 fetch('/api/rooms/2/reservations', {
   method: 'POST',
@@ -196,7 +196,7 @@ fetch('/api/rooms/2/reservations', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Edit a Booking
+### Edit a Booking
 ```js
 fetch('/api/rooms/2/reservations/10', {
   method: 'PUT',
@@ -210,7 +210,7 @@ fetch('/api/rooms/2/reservations/10', {
       })
 }).then(res => res.json()).then(data => console.log(data));
 ```
-# Delete a Booking
+### Delete a Booking
 ```js
 fetch('/api/reservations/10', {
   method: 'DELETE',
@@ -221,7 +221,7 @@ fetch('/api/reservations/10', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Add an Image to a Spot based on the Spot's id
+### Add an Image to a Spot based on the Spot's id
 ```js
 fetch('/api/rooms/1/images', {
   method: 'POST',
@@ -235,7 +235,7 @@ fetch('/api/rooms/1/images', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Add an Image to a Review based on the Review's id
+### Add an Image to a Review based on the Review's id
 ```js
 fetch('/api/rooms/3/reviews/5/images', {
   method: 'POST',
@@ -249,7 +249,7 @@ fetch('/api/rooms/3/reviews/5/images', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Delete an Image
+### Delete an Image
 ```js
 fetch('/api/images/13', {
   method: 'DELETE',
@@ -260,5 +260,5 @@ fetch('/api/images/13', {
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
-# Add Query Filters to Get All Spots
+### Add Query Filters to Get All Spots
 https://lynnette-airbnb.herokuapp.com/api/rooms?page=1&size=1&minLat=38.6&maxLat=45.6&minLng=69.8&maxLng=112.3&minPrice=1.00&maxPrice=400.00

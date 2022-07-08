@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![Database Schema](airbnb_db_schema_6.png)
+![Database Schema](airbnb_db_schema_6 .png)
 
 ## API Documentation
 
@@ -347,7 +347,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: api/profile/rooms
+  * URL: api/rooms
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -422,7 +422,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: api/profile/rooms/:roomId
+  * URL: api/rooms/:roomId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -510,7 +510,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: api/profile/rooms/:roomId
+  * URL: api/rooms/:roomId
   * Body: none
 
 * Successful Response

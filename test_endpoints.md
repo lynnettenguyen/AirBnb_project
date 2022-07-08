@@ -14,7 +14,7 @@ fetch('/api/users', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
     email: 'name@email.com',
@@ -31,9 +31,9 @@ fetch('/api/session', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
-  body: JSON.stringify({ email: 'demo@user.io', password: 'password' })
+  body: JSON.stringify({ email: 'john.smith@gmail.com', password: 'secret password' })
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
@@ -43,7 +43,7 @@ fetch('/api/session', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -62,18 +62,18 @@ fetch('/api/rooms/10', {
   method: 'GET',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
 
 ## Create a Spot
 ```js
-fetch('/api/profile/rooms', {
+fetch('/api/rooms', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "address": "123 Disney Lane",
@@ -91,11 +91,11 @@ fetch('/api/profile/rooms', {
 
 ## Edit a Spot
 ```js
-fetch('/api/profile/rooms/5', {
+fetch('/api/rooms/5', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "address": "123 Disney Lane",
@@ -113,11 +113,11 @@ fetch('/api/profile/rooms/5', {
 
 ## Delete a Spot
 ```js
-fetch('/api/profile/rooms/5', {
+fetch('/api/rooms/5', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -133,7 +133,7 @@ fetch('/api/rooms/12/reviews', {
   method: 'GET',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -144,7 +144,7 @@ fetch('/api/rooms/2/reviews', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "review": "This was an awesome spot!",
@@ -158,7 +158,7 @@ fetch('/api/reviews/7', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "review": "This was an awesome spot!",
@@ -172,7 +172,7 @@ fetch('/api/reviews/3, {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -188,7 +188,7 @@ fetch('/api/rooms/2/reservations', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "startDate": "2022-11-19",
@@ -203,7 +203,7 @@ fetch('/api/rooms/2/reservations/10', {
   method: 'PUT',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "startDate": "2022-11-18",
@@ -217,7 +217,7 @@ fetch('/api/reservations/10', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```
@@ -228,7 +228,7 @@ fetch('/api/rooms/1/images', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "url": "test.url",
@@ -242,7 +242,7 @@ fetch('/api/rooms/3/reviews/5/images', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   },
   body: JSON.stringify({
       "url": "test.url",
@@ -256,7 +256,7 @@ fetch('/api/images/13', {
   method: 'DELETE',
   headers: {
     "Content-Type": "application/json",
-    "XSRF-TOKEN": `h4djYucn-JUl0xYnja-yfVd9rYxtVNAB5YIs`
+    "XSRF-TOKEN": `9PjAKs6o-iGo7bnsWEP5EWO5sAY5luZhZxTI`
   }
 }).then(res => res.json()).then(data => console.log(data));
 ```

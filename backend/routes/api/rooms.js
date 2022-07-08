@@ -6,6 +6,7 @@ const { requireAuth,
     checkNotOwner,
     checkOwnerRoom,
     checkUserReview,
+    checkRoomValidation,
     checkReviewValidation,
     checkReservationValidation,
     checkMaxImagesRooms,
@@ -258,6 +259,58 @@ router.get('/:roomId', checkRoomExists, async (req, res) => {
     return res.json(roomData)
 })
 
+router.post('/', [requireAuth, checkRoomValidation], async (req, res) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    const newRoom = await Room.create({
+        ownerId: req.user.id,
+        address: address,
+        city: city,
+        state: state,
+        country: country,
+        lat: lat,
+        lng: lng,
+        name: name,
+        description: description,
+        price: price
+    })
+    return res.json(newRoom);
+})
+
+router.put('/:roomId', [requireAuth, checkOwnerRoom, checkRoomValidation], async (req, res) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const room = await Room.findByPk(req.params.roomId);
+
+    room.address = address;
+    room.city = city;
+    room.state = state;
+    room.country = country;
+    room.lat = lat;
+    room.lng = lng;
+    room.name = name;
+    room.description = description;
+    room.price = price;
+
+    await room.save();
+    return res.json(room);
+})
+
+router.delete('/:roomId', [requireAuth, checkOwnerRoom], async (req, res) => {
+    const deleteRoom = await Room.findOne({
+        where: {
+            id: req.params.roomId,
+            ownerId: req.user.id
+        }
+    })
+
+    await deleteRoom.destroy();
+    res.status = 200;
+    return res.json({
+        message: "Successfully deleted",
+        statusCode: res.status
+    })
+})
+
 router.get('/', async (req, res, next) => {
     const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
@@ -326,7 +379,7 @@ router.get('/', async (req, res, next) => {
         else errorResult.errors.minPrice = 'Maximum price must be a decimal'
     }
 
-    results.Spots = await Room.findAll({
+    results.Rooms = await Room.findAll({
         where: roomQuery,
         include: [
             {

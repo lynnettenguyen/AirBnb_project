@@ -6,7 +6,6 @@ const { requireAuth,
     checkNotOwner,
     checkOwnerRoom,
     checkUserReview,
-    checkRoomValidation,
     checkReviewValidation,
     checkReservationValidation,
     checkMaxImagesRooms,
@@ -27,6 +26,61 @@ const validateDate = [
         .notEmpty()
         .isDate()
         .withMessage('Valid end date is required'),
+    handleValidationErrors
+]
+
+const validateRoom = [
+    check('address')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('Street address is required'),
+    check('city')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('City is required'),
+    check('state')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('State is required'),
+    check('country')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('Country is required'),
+    check('lat')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .custom(async function checkLat(lat) {
+            if (lat > 90 || lat < -90 || typeof lat !== 'number') {
+                throw Error
+            }
+        })
+        .withMessage('Latitude is not valid'),
+    check('lng')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .custom(async function checkLat(lng) {
+            if (lng > 180 || lng < -180 || typeof lng !== 'number') {
+                throw Error
+            }
+        })
+        .withMessage('Longitude is not valid'),
+    check('name')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .custom(async function checkName(name) {
+            if (name.length > 50) {
+                throw Error
+            }
+        })
+        .withMessage('Name must be less than 50 characters'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('Description is required'),
+    check('price')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('Price per day is required'),
     handleValidationErrors
 ]
 
@@ -259,7 +313,7 @@ router.get('/:roomId', checkRoomExists, async (req, res) => {
     return res.json(roomData)
 })
 
-router.post('/', [requireAuth, checkRoomValidation], async (req, res) => {
+router.post('/', [requireAuth, validateRoom], async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     const newRoom = await Room.create({
@@ -277,7 +331,7 @@ router.post('/', [requireAuth, checkRoomValidation], async (req, res) => {
     return res.json(newRoom);
 })
 
-router.put('/:roomId', [requireAuth, checkOwnerRoom, checkRoomValidation], async (req, res) => {
+router.put('/:roomId', [requireAuth, checkOwnerRoom, validateRoom], async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const room = await Room.findByPk(req.params.roomId);
 

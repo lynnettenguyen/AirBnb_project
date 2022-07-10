@@ -1,6 +1,6 @@
 // backend/routes/api/profile.js
 const express = require('express')
-const { requireAuth, checkOwnerRoom, checkRoomValidation } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { User, Room, Review, Image, sequelize } = require('../../db/models');
 const router = express.Router();
 

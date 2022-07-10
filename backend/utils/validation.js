@@ -6,9 +6,9 @@ const handleValidationErrors = (req, _res, next) => {
     const validationErrors = validationResult(req);
 
     if (!validationErrors.isEmpty()) {
-        const errors = validationErrors
+        const errors = Object.assign({}, ...validationErrors
             .array()
-            .map((error) => `${error.msg}`);
+            .map((error) => ({ [error.param]: error.msg })));
 
         const err = Error('Validation error');
         err.errors = errors;

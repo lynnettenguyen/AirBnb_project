@@ -30,11 +30,18 @@ router.delete('/:reservationId', requireAuth, async (req, res, next) => {
         where: {
             id: req.params.reservationId,
             userId: req.user.id
-        }
+        },
+        attributes: ['startDate', 'endDate'],
+        raw: true
     })
+
 
     if (!deleteReservation) {
         const err = new Error(`Reservation couldn't be found`);
+        err.status = 404;
+        return next(err)
+    } else if (new Date(deleteReservation.startDate) < new Date()) {
+        const err = new Error(`Reservations that have been started can't be deleted`);
         err.status = 404;
         return next(err)
     } else {

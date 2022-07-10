@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         checkDate(date) {
           if (new Date(date) < new Date()) {
-            throw new Error('selected date must be in the future')
+            throw new Error('Selected date must be in the future')
           }
         }
       }
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         checkDate(date) {
           if (new Date(date) < new Date()) {
-            throw new Error('selected date must be in the future')
+            throw new Error('Selected date must be in the future')
           }
         },
       },

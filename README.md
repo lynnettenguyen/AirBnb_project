@@ -1358,3 +1358,8 @@ Return spots filtered by query parameters.
       }
     }
     ```
+### Personal Notes    
+What was the most challenging part of this project for you? Organizing the endpoints in way that made the most sense.
+What part of your work on the project are you most proud of? Creating the reservations endpoint and making sure reservations do not overlap.
+What are some parts you would like to go back and improve and/or minor bugs you would like to clean up? Some of the error handlers are repetitive and could be dried up.
+

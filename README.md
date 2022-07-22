@@ -1,6 +1,6 @@
 # AirBnB_project
 
-## Database Schema Design
+## [Database Schema Design](https://dbdiagram.io/d/62bd1f2769be0b672c6e532f)
 
 ![Database Schema](airbnb_db_schema_6.png)
 

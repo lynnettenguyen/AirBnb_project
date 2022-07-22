@@ -12,7 +12,6 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -46,7 +45,10 @@ function LoginForm() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button
+        type="submit"
+        className='login-button'
+      >Log In</button>
     </form>
   );
 }

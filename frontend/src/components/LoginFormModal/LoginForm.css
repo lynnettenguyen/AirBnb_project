@@ -1,0 +1,18 @@
+* {
+  font-family: Circular,
+    -apple-system,
+    "system-ui",
+    Roboto,
+    "Helvetica Neue",
+    sans-serif;;
+}
+
+.login-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border-radius: 10px;
+  border-color: #D70466;
+  color: white;
+  font-size: 16px;
+  font-weight: 600px;
+  padding: 15px 140px;
+}

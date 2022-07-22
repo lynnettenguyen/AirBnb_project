@@ -23,23 +23,25 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        Email
+        {/* Email */}
         <input
           type="text"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
       <label>
-        Password
+        {/* Password */}
         <input
           type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -47,7 +49,7 @@ function LoginForm() {
       </label>
       <button
         type="submit"
-        className='login-button'
+        className="login-button"
       >Log In</button>
     </form>
   );

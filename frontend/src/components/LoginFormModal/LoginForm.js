@@ -27,11 +27,13 @@ function LoginForm() {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
+      <h1 className="login-header">Welcome to Airbnb</h1>
       <label>
         {/* Email */}
         <input
           type="text"
           placeholder="Email"
+          className="login-input email-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -42,6 +44,7 @@ function LoginForm() {
         <input
           type="password"
           placeholder="Password"
+          className="login-input password-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

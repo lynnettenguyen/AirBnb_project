@@ -5,7 +5,7 @@ const { requireAuth, checkUserReview, checkReviewValidation } = require('../../u
 const { Review, sequelize } = require('../../db/models');
 const router = express.Router();
 
-router.put('/:reviewId', [requireAuth, checkReviewValidation, checkUserReview], async (req, res, next) => {
+router.put('/:reviewId', [requireAuth, checkReviewValidation, checkUserReview], async (req, res) => {
     const { review, stars } = req.body;
 
     const updateReview = await Review.findOne({
@@ -21,7 +21,7 @@ router.put('/:reviewId', [requireAuth, checkReviewValidation, checkUserReview], 
 })
 
 
-router.delete('/:reviewId', [requireAuth, checkUserReview], async (req, res, next) => {
+router.delete('/:reviewId', [requireAuth, checkUserReview], async (req, res) => {
     const deleteReview = await Review.findOne({
         where: {
             id: req.params.reviewId,

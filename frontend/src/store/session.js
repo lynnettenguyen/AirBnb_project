@@ -28,8 +28,7 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log("data", data)
-  // dispatch(setUser(data.user));
+  // console.log("data", data.user) returns null
   dispatch(setUser(data));
   return response;
 };
@@ -42,16 +41,18 @@ export const restoreUser = () => async dispatch => {
 };
 
 export const signup = (user) => async (dispatch) => {
-  const { email, password } = user;
+  const { firstName, lastName, email, password } = user;
   const response = await csrfFetch("/api/users", {
     method: "POST",
     body: JSON.stringify({
+      firstName,
+      lastName,
       email,
       password,
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data.user));
+  dispatch(setUser(data));
   return response;
 };
 

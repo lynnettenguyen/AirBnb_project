@@ -19,8 +19,11 @@ function Navigation({ isLoaded }) {
   else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <div>
+          {/* <ProfileButton user={sessionUser} /> */}
+          <LoginFormModal />
+          <NavLink to="/signup">Sign Up</NavLink>
+        </div>
       </>
     );
   }
@@ -28,8 +31,8 @@ function Navigation({ isLoaded }) {
   return (
     <>
       <div className='navigation-bar-div'>
-      <NavLink exact to="/">Home</NavLink>
-      {isLoaded && sessionLinks}
+        <NavLink exact to="/">Home</NavLink>
+        {isLoaded && sessionLinks}
       </div>
     </>
   );

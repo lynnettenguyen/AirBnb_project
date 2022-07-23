@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './LoginForm.css';
 
 function LoginForm() {
+  console.log('TEST')
   const dispatch = useDispatch();
   // const [credential, setCredential] = useState('');
   const [email, setEmail] = useState('');

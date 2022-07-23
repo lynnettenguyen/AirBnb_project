@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './ProfileButton.css'
+import LoginFormModal from '../LoginFormModal';
+import { NavLink } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -33,24 +35,30 @@ function ProfileButton({ user }) {
   return (
     <>
       <div>
-      <div className="profile-button-div">
-        <button onClick={openMenu} className="profile-button">
-          <div className="profile-icons">
-            <i className="fa-solid fa-bars" />
-            <i className="fas fa-user-circle" />
-          </div>
-        </button>
-      </div>
-      {showMenu && (
-        <div className="show-menu-div">
-          <ul className="profile-dropdown">
-            <div className="user-email-display">
-            {user.email}
+        <div className="profile-button-div">
+          <button onClick={openMenu} className="profile-button">
+            <div className="profile-icons">
+              <i className="fa-solid fa-bars" />
+              <i className="fas fa-user-circle" />
             </div>
-            <button className="logout-button" onClick={logout}>Log Out</button>
-          </ul>
+          </button>
         </div>
-      )}
+        {showMenu && user && (
+          <div className="show-menu-div">
+            <ul className="profile-dropdown">
+              <div className="user-email-display">
+                {user.email}
+              </div>
+              <button className="logout-button" onClick={logout}>Log Out</button>
+            </ul>
+          </div>
+        )}
+        {/* {showMenu && !user && (
+          <div>
+            <LoginFormModal />
+            <NavLink to="/signup">Sign Up</NavLink>
+          </div>
+        )} */}
       </div>
     </>
   );

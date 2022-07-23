@@ -13,9 +13,29 @@
 }
 
 .login {
-  margin: 10px 8px;
+  margin-right: 8px;
 }
 
 .signup {
-  margin: 10px;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.home-link {
+  align-items: center;
+  color: #ff385c;
+  display: flex;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.airbnb-name {
+  font-size: 24px;
+  line-height: 20px;
+  padding-left: 8px;
 }

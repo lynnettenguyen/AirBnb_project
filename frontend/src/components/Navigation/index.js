@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
             <LoginFormModal />
           </span>
           <span className="signup">
-            <NavLink to="/signup">Sign Up</NavLink>
+            <NavLink to="/signup" className="nav-link" activeStyle={{ color: "black" }}>Sign Up</NavLink>
           </span>
         </div>
       </>
@@ -35,7 +35,10 @@ function Navigation({ isLoaded }) {
   return (
     <>
       <div className='navigation-bar-div'>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/" className="nav-link home-link">
+          <span class="iconify" data-icon="fa-brands:airbnb" data-width="36"></span>
+          <span className='airbnb-name'>airbnb</span>
+        </NavLink>
         {isLoaded && sessionLinks}
       </div>
     </>

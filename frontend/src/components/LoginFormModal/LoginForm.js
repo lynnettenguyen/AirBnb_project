@@ -50,7 +50,7 @@ function LoginForm() {
       </label>
       <button
         type="submit"
-        className="login-button"
+        className="login-form-button"
       >Log In</button>
     </form>
   );

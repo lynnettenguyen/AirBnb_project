@@ -32,6 +32,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
+      <div>
       <div className="profile-button-div">
         <button onClick={openMenu} className="profile-button">
           <div className="profile-icons">
@@ -50,6 +51,7 @@ function ProfileButton({ user }) {
           </ul>
         </div>
       )}
+      </div>
     </>
   );
 }

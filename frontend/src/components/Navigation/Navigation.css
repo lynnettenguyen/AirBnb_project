@@ -6,3 +6,8 @@
     "Helvetica Neue",
     sans-serif;
 }
+
+.navigation-bar-div {
+  display: flex;
+  justify-content: space-between;
+}

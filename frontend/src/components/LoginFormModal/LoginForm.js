@@ -28,7 +28,7 @@ function LoginForm() {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <h1 className="login-header">Welcome to Airbnb</h1>
-      <label>
+      <label className="login-label">
         <input
           type="text"
           placeholder="Email"
@@ -36,7 +36,7 @@ function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-        />
+          />
       </label>
       <label>
         <input
@@ -46,7 +46,7 @@ function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        />
+          />
       </label>
       <button
         type="submit"

@@ -1,5 +1,5 @@
 // frontend/src/components/LoginForm/index.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import './LoginForm.css';
@@ -7,6 +7,7 @@ import './LoginForm.css';
 function LoginForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  console.log(sessionUser)
   // const [credential, setCredential] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,11 +28,13 @@ function LoginForm() {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
+      <h1 className="login-header">Welcome to Airbnb</h1>
       <label>
         {/* Email */}
         <input
           type="text"
           placeholder="Email"
+          className="login-input email-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -42,6 +45,7 @@ function LoginForm() {
         <input
           type="password"
           placeholder="Password"
+          className="login-input password-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

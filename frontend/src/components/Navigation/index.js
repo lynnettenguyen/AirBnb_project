@@ -21,8 +21,12 @@ function Navigation({ isLoaded }) {
       <>
         <div>
           {/* <ProfileButton user={sessionUser} /> */}
-          <LoginFormModal />
-          <NavLink to="/signup">Sign Up</NavLink>
+          <span className="login">
+            <LoginFormModal />
+          </span>
+          <span className="signup">
+            <NavLink to="/signup">Sign Up</NavLink>
+          </span>
         </div>
       </>
     );

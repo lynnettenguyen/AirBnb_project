@@ -11,3 +11,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.login {
+  margin: 10px 8px;
+}
+
+.signup {
+  margin: 10px;
+}

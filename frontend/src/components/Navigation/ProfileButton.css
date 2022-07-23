@@ -1,0 +1,58 @@
+* {
+  font-family: Circular,
+    -apple-system,
+    "system-ui",
+    Roboto,
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.profile-button-div, .show-menu-div {
+  display: flex;
+  justify-content: right;
+  margin-right: 10px;
+}
+
+.profile-button {
+  background-color: white;
+  border: 1px #71717150 solid;
+  border-radius: 21px;
+  align-items: center;
+}
+
+.fa-user-circle {
+  font-size: 34px;
+  color: #717171;
+  margin: 6px 0px;
+  padding-left: 8px;
+}
+
+.fa-bars {
+  font-size: 19px;
+  color: #717171;
+  margin: 0px 10px;
+}
+
+.profile-icons {
+  display: flex;
+  align-items: center;
+}
+
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-email-display {
+  margin: 5px;
+}
+
+.logout-button {
+  background-color: white;
+  border: none;
+  padding: 10px 5px;
+}
+
+.logout-button:hover {
+  background-color: #7171710e;
+}

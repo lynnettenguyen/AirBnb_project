@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './LoginForm.css';
 
 function LoginForm() {
+  console.log('TEST')
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
-  console.log(sessionUser)
   // const [credential, setCredential] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +29,6 @@ function LoginForm() {
       </ul>
       <h1 className="login-header">Welcome to Airbnb</h1>
       <label>
-        {/* Email */}
         <input
           type="text"
           placeholder="Email"
@@ -41,7 +39,6 @@ function LoginForm() {
         />
       </label>
       <label>
-        {/* Password */}
         <input
           type="password"
           placeholder="Password"

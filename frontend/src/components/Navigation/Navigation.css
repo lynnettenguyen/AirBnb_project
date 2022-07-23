@@ -8,8 +8,10 @@
 }
 
 .navigation-bar-div {
+  border-bottom: 1px #71717150 solid;
   display: flex;
   justify-content: space-between;
+  padding: 20px;
 }
 
 .login {

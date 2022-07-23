@@ -14,10 +14,11 @@
 }
 
 .profile-button {
+  align-items: center;
   background-color: white;
   border: 1px #71717150 solid;
   border-radius: 21px;
-  align-items: center;
+  margin-top: 8px;
 }
 
 .fa-user-circle {

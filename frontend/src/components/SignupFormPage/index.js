@@ -31,22 +31,11 @@ function SignupFormPage() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
-  // console.log(errors)
   return (
     <form onSubmit={handleSubmit}>
       <ul>
-        {/* if I add errors.length > 0 && in front, it gives me a validation error */}
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
       <label>
         <input
           type="text"
@@ -62,6 +51,15 @@ function SignupFormPage() {
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>

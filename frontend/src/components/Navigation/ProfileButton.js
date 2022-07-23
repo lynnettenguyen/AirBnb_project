@@ -35,24 +35,26 @@ function ProfileButton({ user }) {
   return (
     <>
       <div>
-        <div className="profile-button-div">
-          <button onClick={openMenu} className="profile-button">
-            <div className="profile-icons">
-              <i className="fa-solid fa-bars" />
-              <i className="fas fa-user-circle" />
-            </div>
-          </button>
-        </div>
-        {showMenu && user && (
-          <div className="show-menu-div">
-            <ul className="profile-dropdown">
-              <div className="user-email-display">
-                {user.email}
+        <div>
+          <div className="profile-button-div">
+            <button onClick={openMenu} className="profile-button">
+              <div className="profile-icons">
+                <i className="fa-solid fa-bars" />
+                <i className="fas fa-user-circle" />
               </div>
-              <button className="logout-button" onClick={logout}>Log Out</button>
-            </ul>
+            </button>
           </div>
+          {showMenu && user && (
+            <div className="show-menu-div">
+              <div className="profile-dropdown">
+                <div className="account-div">
+                  {user.email}
+                </div>
+                <div className="logout-div" onClick={logout}>Log Out</div>
+              </div>
+            </div>
         )}
+        </div>
         {/* {showMenu && !user && (
           <div>
             <LoginFormModal />

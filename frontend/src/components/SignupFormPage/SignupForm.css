@@ -25,3 +25,9 @@ form {
   margin-top: 20px;
   width: 410px;
 }
+
+.signUp-header {
+  margin-top: 0px;
+  font-size: 22px;
+  font-weight: normal;
+}

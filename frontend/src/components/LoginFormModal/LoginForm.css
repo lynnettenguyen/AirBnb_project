@@ -7,7 +7,7 @@
     sans-serif;
 }
 
-.login-button {
+.login-form-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
   border-color: #D70466;
   border-radius: 10px;
@@ -28,16 +28,14 @@
 }
 
 .login-input {
-  border: grey 1px solid;
   font-size: 16px;
-  height: 50px;
-  padding: 5px;
   padding-left: 10px;
   width: 400px;
 }
 
 .email-input {
-  border-bottom: none;
+  /* border-bottom: none; */
+  margin-bottom: 0px;
 }
 
 .login-header {
@@ -46,3 +44,14 @@
   font-size: 22px;
   font-weight: normal;
 }
+
+.login-button {
+  background-color: white;
+  border: none;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* .login-button:hover {
+  color: rgba(128, 128, 128, 0.297);
+} */

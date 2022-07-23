@@ -7,17 +7,20 @@
     sans-serif;
 }
 
-.profile-button-div, .show-menu-div {
+.profile-button-div,
+.show-menu-div {
   display: flex;
-  justify-content: right;
+  justify-content: left;
   margin-right: 10px;
 }
 
 .profile-button {
+  align-items: center;
   background-color: white;
   border: 1px #71717150 solid;
   border-radius: 21px;
-  align-items: center;
+  margin-top: 8px;
+  margin-right: 12px;
 }
 
 .fa-user-circle {
@@ -41,18 +44,34 @@
 .profile-dropdown {
   display: flex;
   flex-direction: column;
+  margin-right: 5px;
+  position: absolute;
+  top: 95px;
+  right: 48px;
+  width: 180px;
+  box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
+  border-radius: 20px;
+  background: white;
 }
 
-.user-email-display {
-  margin: 5px;
+.logout-div,
+.account-div {
+  font-size: 16px;
+  padding: 10px 70px 15px 20px;
 }
 
-.logout-button {
-  background-color: white;
-  border: none;
-  padding: 10px 5px;
+.logout-div {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-.logout-button:hover {
+.account-div {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+
+.logout-div:hover,
+.account-div:hover {
   background-color: #7171710e;
 }

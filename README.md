@@ -1,4 +1,4 @@
-# Description of AirBnb
+<!-- # Description of AirBnb -->
 
 # Welcome to my clone of [AirBnb](https://lynnette-airbnb.herokuapp.com/)!
 

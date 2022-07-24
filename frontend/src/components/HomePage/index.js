@@ -11,19 +11,20 @@ const HomePage = () => {
   // for (let room of allRooms) console.log(room.previewImage[0].url)
   // console.log(allRooms[0].previewImage[0])
 
+  console.log(allRooms)
+
   useEffect(() => {
     dispatch(listAllRooms())
   }, [dispatch])
 
   return (
     <>
-      <h1>HomePage</h1>
-      {allRooms?.map((rooms) => {
+      {allRooms?.map((room) => {
         return (
           <div>
-            <div>{rooms.name}</div>
-            <div>{rooms.price}</div>
-            <img src={`${rooms.previewImage[0]?.url}`}></img>
+            <div>{`${room.city}, ${room.state}`}</div>
+            <div>{`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
+            <img src={`${room.previewImage[0]?.url}`}></img>
           </div>
         )
       })

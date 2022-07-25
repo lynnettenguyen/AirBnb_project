@@ -8,7 +8,7 @@ const REMOVE_USER = 'session/removeUser';
 const setUser = (user) => {
   return {
     type: SET_USER,
-    payload: user,
+    user,
   };
 };
 
@@ -28,7 +28,7 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  // console.log("data", data.user) returns null
+  console.log(data)
   dispatch(setUser(data));
   return response;
 };
@@ -72,7 +72,7 @@ const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       newState = Object.assign({}, state);
-      newState.user = action.payload;
+      newState.user = action.user;
       return newState;
     case REMOVE_USER:
       newState = Object.assign({}, state);

@@ -11,7 +11,7 @@ const RoomDetails = () => {
   const dispatch = useDispatch()
 
   const room = useSelector((state) => state.rooms[roomId])
-console.log(room)
+  console.log("room", room)
 
   useEffect(() => {
     // dispatch(listAllRooms())
@@ -22,22 +22,29 @@ console.log(room)
 
   return (
     <>
-      <h1>{room?.name}</h1>
-      <div>
-        <span>{room?.avgStarRating}</span>
-        <span>{` · ${room?.numReviews} reviews`}</span>
-        <span>{` · ${room?.city}, ${room?.state}, ${room?.country}`}</span>
+      <div className="entire-room-page">
+        <h1>{room?.name}</h1>
+        <div>
+          <span>{room?.avgStarRating}</span>
+          <span>{` · ${room?.numReviews} reviews`}</span>
+          <span>{` · ${room?.city}, ${room?.state}, ${room?.country}`}</span>
+        </div>
+        <div>
+          {room?.images &&
+            <img src={room?.images[0]?.url} alt="exterior"></img>}
+        </div>
+        <div>
+          {room?.images?.map((image, i) => {
+            if (i > 0)
+              return (
+                <div key={image.url}>
+                  <img src={`${image?.url}`} alt="interior"></img>
+                </div>
+              )
+          })}
+        </div>
+        <div>{room?.description}</div>
       </div>
-      <div>
-        {room?.images?.map(image => {
-          return (
-            <div key={image.url}>
-              <img src={`${image?.url}`} alt="room"></img>
-            </div>
-          )
-        })}
-      </div>
-      <div>{room?.description}</div>
     </>
   )
 }

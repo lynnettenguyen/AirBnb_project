@@ -10,7 +10,7 @@ const listRooms = (rooms) => ({
 
 const findRoom = (room) => ({
   type: FIND_ROOM,
-   room
+  room
 })
 
 export const listAllRooms = () => async (dispatch) => {
@@ -34,16 +34,15 @@ export const findRoomById = (roomId) => async (dispatch) => {
 
 const initialState = {}
 const roomReducer = (state = initialState, action) => {
+  const newState = Object.assign({}, state)
   switch (action.type) {
     case LIST_ROOMS: {
-      const newState = { ...state };
       for (let room of action.rooms) newState[room.id] = room
-      return { ...state, ...newState };
+      return newState
     }
     case FIND_ROOM: {
-      const newState = { ...state };
       newState[action.room.id] = action.room;
-      return {...state, ...newState}
+      return newState;
     }
     default:
       return state;

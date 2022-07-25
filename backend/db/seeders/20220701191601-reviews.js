@@ -7,37 +7,67 @@ module.exports = {
         userId: 2,
         roomId: 1,
         stars: 4,
-        review: 'test review 1 for room 1; The place was perfect for our family and friends visit to Lake Tahoe'
+        review: 'What an incredible cabin! Our family of 11 had a great time - the grand-kids loved the game room and theater, the grownups had fun lounging in the living room or sitting out on the deck. Communication with the property manager was easy and fast. Highly recommend!'
       },
       {
         userId: 3,
         roomId: 1,
         stars: 5,
-        review: 'test review 2 for room 1; Beautiful house. Perfect with plenty of beds and easy lake access'
+        review: 'Beautiful property nestled in a very prime location! Panoramic views!'
       },
       {
-        userId: 1,
-        roomId: 2,
-        stars: 3,
-        review: 'test review 2 for room 2; We had a great time in their beautiful Ryad.'
+        userId: 2,
+        roomId: 6,
+        stars: 5,
+        review: 'Where do I begin… this cabin in the woods is magical. It is easy to feel one with the surrounding gorgeous nature because of the unique mirrored walls. The hosts were super easy to communicate with and left us a bottle of Prosecco, as well as binoculars for watching wildlife (we saw some birds). Shampoo and conditioner were top notch, and the view from the jacuzzi is pretty unbeatable. It is a unique romantic place well worth the money.'
+      },
+      {
+        userId: 3,
+        roomId: 6,
+        stars: 5,
+        review: 'This place is AMAZING! Wood fired hot tub with a killer view. Looks even better than the pictures. The hosts are very hospitable as well!'
+      },
+      {
+        userId: 7,
+        roomId: 1,
+        stars: 4,
+        review: 'We had a great time! It was crazy snowing while we stayed and the house was really amazing, warm and cozy! Big enough for 12 people ( 6 adults and 6 kids). Everything was super clean and towels were folded like in a hotel room.Everything is well organized in the house and the communication with the host was quick and helpful! '
       },
       {
         userId: 3,
         roomId: 2,
         stars: 5,
-        review: 'test review 2 for room 2; Magical little escape outside the city, beautifully furnished, very calm with an amazingly visible sky'
+        review: 'Magical little escape outside the city, beautifully furnished, very calm with an amazingly visible sky.'
+      },
+      {
+        userId: 1,
+        roomId: 2,
+        stars: 5,
+        review: 'Great place, friendly hospitality and nice service for a getaway trip. Highly recommended!'
       },
       {
         userId: 1,
         roomId: 3,
         stars: 3,
-        review: 'test review 1 for room 3; This apartment is in an ideal location - close to waterfront, public transportation, tourist attractions'
+        review: 'Location location location! Great value for the location! This was probably one of the best value places I stayed here in Vietnam. It was so close to the beach. Had a great view.'
       },
       {
         userId: 2,
         roomId: 3,
+        stars: 5,
+        review: 'The apartment is in a high-rise building with a direct view of the beach. The interiors are classy and beautiful. The balcony is super too. The host met us in person during both checkin and checkout and was very friendly. All the amenities were good too. Would definitely recommend this place to anybody visiting Da Nang.'
+      },
+      {
+        userId: 2,
+        roomId: 5,
         stars: 4,
-        review: 'test review 2 for room 3; Besides the amazing views of the city you can see the entrance to the arena from the balcony! '
+        review: 'Beautifully renovated cabin with a great deck and wonderful location! We could walk right down to a nearby beach and the marina was less than a 5 minute drive.'
+      },
+      {
+        userId: 3,
+        roomId: 5,
+        stars: 5,
+        review: 'Beautifully renovated cabin with a great deck and wonderful location! We could walk right down to a nearby beach and the marina was less than a 5 minute drive. All super accessible. The cabin is well appointed and tastefully decorated - nice modern/woodsy vibe.'
       },
     ], {});
   },

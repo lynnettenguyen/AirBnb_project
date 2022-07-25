@@ -1,11 +1,19 @@
 const LIST_ROOMS = 'rooms/LIST_ROOMS'
+const FIND_ROOM = 'rooms/FIND_ROOM'
 
 export const getAllRooms = (state) => Object.values(state.rooms)
 
 const listRooms = (rooms) => ({
   type: LIST_ROOMS,
-  payload: rooms
+  rooms
 })
+
+const findRoom = (room) => ({
+  type: FIND_ROOM,
+   room
+})
+
+
 
 export const listAllRooms = () => async (dispatch) => {
   const response = await fetch(`/api/rooms`);
@@ -16,13 +24,26 @@ export const listAllRooms = () => async (dispatch) => {
   }
 }
 
+export const findRoomById = (roomId) => async (dispatch) => {
+  const response = await fetch(`/api/rooms/${roomId}`)
+  if (response.ok) {
+    const room = await response.json()
+    dispatch(findRoom(room))
+  }
+}
+
+
 const initialState = {}
 const roomReducer = (state = initialState, action) => {
-  const newState = {...state};
+  const newState = { ...state };
   switch (action.type) {
     case LIST_ROOMS: {
-      for (let room of action.payload) newState[room.id] = room
-      return {...state, ...newState};
+      for (let room of action.rooms) newState[room.id] = room
+      return { ...state, ...newState };
+    }
+    case FIND_ROOM: {
+      newState[action.room.id] = action.room;
+      return {...state, ...newState}
     }
     default:
       return state;

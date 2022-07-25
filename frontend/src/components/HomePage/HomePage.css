@@ -11,10 +11,11 @@
   margin: 40px 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+
 }
 
 .room-div {
-  padding: 5px
+  padding: 5px;
 }
 
 .img-div {
@@ -62,8 +63,8 @@
   }
 
   .room-div {
-    height: 550px;
-    width: 540px;
+    height: 590px;
+    width: 560px;
   }
 }
 

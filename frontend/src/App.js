@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
+import RoomDetails from "./components/RoomDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route path="/rooms/:roomId">
+            <RoomDetails />
           </Route>
         </Switch>
       )}

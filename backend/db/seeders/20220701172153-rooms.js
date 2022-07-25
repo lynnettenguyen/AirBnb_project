@@ -99,6 +99,18 @@ module.exports = {
         description: 'Loungers wait on the white-sand beach beyond the warm sandstone walls of this contemporary home on the Sea of Cortez. Floor-to-ceiling windows open the living areas to water on two sides: the sea on one, and a courtyard reflecting pool on the other. Surrounded by Ritz Carlton resort grounds, it is close to golf and dining, plus art gallery walks in downtown San José del Cabo.',
         price: 5300.00,
       },
+      {
+        ownerId: 1,
+        address: 'Via Valassina, 31, 22021 Bellagio CO',
+        city: 'Varenna',
+        state: 'Lecco',
+        country: 'Italy',
+        lat: 45.983995, 
+        lng: 9.262183,
+        name: 'Small Wood Furnished Home on the Lake',
+        description: 'A small house,furnished entirely in natural wood, with a double bed and a bunk bed, fireplace and wood-burning oven. There is also a garden equipped with barbecues, sun loungers and sofas, with private access to the lake.',
+        price: 255.00,
+      },
     ], {});
   },
 

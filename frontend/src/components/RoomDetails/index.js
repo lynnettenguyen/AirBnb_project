@@ -14,6 +14,8 @@ const RoomDetails = () => {
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
 
+  console.log(typeof room.avgStarRating)
+
   useEffect(() => {
     dispatch(findRoomById(roomId))
   }, [dispatch])
@@ -23,7 +25,7 @@ const RoomDetails = () => {
       <div className="entire-room-page">
         <div className="room-name">{room?.name}</div>
         <div className="room-information-top">
-          <span><i class="fa-solid fa-star"></i>{room?.avgStarRating?.toFixed(2)}</span>
+          <span><i class="fa-solid fa-star"></i>{room?.avgStarRating}</span>
           <span className="span-separator">·</span>
           <span>{`${room?.numReviews} reviews`}</span>
           <span className="span-separator">·</span>
@@ -50,7 +52,7 @@ const RoomDetails = () => {
           <div className="reservation-div">
             <div className="reserve-details">
               <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div><span>night</span>
-              <span className="reserve-rating"><i class="fa-solid fa-star"></i>{room?.avgStarRating?.toFixed(2)}</span>
+              <span className="reserve-rating"><i class="fa-solid fa-star"></i>{room?.avgStarRating}</span>
               <span className="reserve-review">· {room?.numReviews} reviews</span>
             </div>
             <div>

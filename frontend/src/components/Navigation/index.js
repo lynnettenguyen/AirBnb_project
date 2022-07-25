@@ -1,6 +1,6 @@
 // frontend/src/components/Navigation/index.js
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import { getAllRooms, listAllRooms } from "../../store/rooms";
@@ -8,7 +8,7 @@ import "./Navigation.css"
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-  const allRooms = useSelector(getAllRooms)
+  const dispatch = useDispatch()
 
   let sessionLinks;
   if (sessionUser) {
@@ -35,7 +35,6 @@ function Navigation({ isLoaded }) {
       </>
     );
   }
-  console.log(allRooms)
   return (
     <>
       <nav>

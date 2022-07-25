@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import "./HomePage.css"
 import { getAllRooms, listAllRooms } from "../../store/rooms";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch()
@@ -22,15 +23,17 @@ const HomePage = () => {
       <div className="all-rooms-div">
         {allRooms?.map((room, i) => {
           return (
-            <div className={`room-div${i}`}>
-              <div className="img-div">
-                <img className="room-img" src={`${room.previewImage[0]?.url}`}></img>
+            <Link to={`/rooms/${room.id}`} className="room-link">
+              <div className={`room-div room-div${i}`}>
+                <div className="img-div">
+                  <img className="room-img" src={`${room.previewImage[0]?.url}`}></img>
+                </div>
+                <div className="room-info">
+                  <p className="room-city-state">{`${room.city}, ${room.state}`}</p>
+                  <p className="room-price">{`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</p>
+                </div>
               </div>
-              <div className="room-info">
-                <p className="room-city-state">{`${room.city}, ${room.state}`}</p>
-                <p className="room-price">{`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</p>
-              </div>
-            </div>
+            </Link>
           )
         })
         }

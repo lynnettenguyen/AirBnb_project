@@ -13,6 +13,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.room-div {
+  padding: 10px
+}
+
 .img-div {
   height: 330px;
   width: 390px;
@@ -28,7 +32,7 @@
 }
 
 .room-info {
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .room-city-state {
@@ -39,4 +43,30 @@
 
 .room-price {
   margin-top: 0%;
+}
+
+.room-link {
+  text-decoration: none;
+  color: black;
+}
+
+@media screen and (max-width: 949px) {
+  .all-rooms-div {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 950px) and (max-width: 1300px) {
+  .all-rooms-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1800px) {
+  .all-rooms-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

@@ -11,39 +11,80 @@ const RoomDetails = () => {
   const dispatch = useDispatch()
 
   const room = useSelector((state) => state.rooms[roomId])
-  console.log("room", room)
+  const [setCheckIn, checkIn] = useState()
+  const [setCheckOut, checkOut] = useState()
+
 
   useEffect(() => {
-    // dispatch(listAllRooms())
-    // navigating back to homepage works but room query does not have all the room details
     dispatch(findRoomById(roomId))
-    // navigating back to homepage require a refresh
   }, [dispatch])
 
   return (
     <>
       <div className="entire-room-page">
-        <h1>{room?.name}</h1>
-        <div>
-          <span>{room?.avgStarRating}</span>
-          <span>{` · ${room?.numReviews} reviews`}</span>
-          <span>{` · ${room?.city}, ${room?.state}, ${room?.country}`}</span>
+        <div className="room-name">{room?.name}</div>
+        <div className="room-information-top">
+          <span><i class="fa-solid fa-star"></i>{room?.avgStarRating?.toFixed(2)}</span>
+          <span className="span-separator">·</span>
+          <span>{`${room?.numReviews} reviews`}</span>
+          <span className="span-separator">·</span>
+          <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
         </div>
-        <div>
+        <div className="room-images">
+        <div className="left-image-div">
           {room?.images &&
-            <img src={room?.images[0]?.url} alt="exterior"></img>}
+            <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
         </div>
-        <div>
+        <div className="right-image-div">
           {room?.images?.map((image, i) => {
             if (i > 0)
               return (
-                <div key={image.url}>
-                  <img src={`${image?.url}`} alt="interior"></img>
+                <div className="side-image-div" key={image.url}>
+                  <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
                 </div>
               )
           })}
         </div>
-        <div>{room?.description}</div>
+        </div>
+        <div className="room-information-bottom">
+          <div className="room-description">{room?.description}</div>
+          <div className="reservation-div">
+            <div>{room?.price}</div><span>night</span>
+            <div>{room?.avgStarRating}</div>
+            <div>{room?.numReviews}</div>
+            <div>
+              <form>
+                <div className="reservation-dates">
+                <div className="check-in">
+                <label>CHECK-IN</label>
+                    <input
+                      type="date"
+                      className="select-date"
+                      value={checkIn}
+                      onChange={(e)=>setCheckIn(e.target.value)}
+                    />
+                </div>
+                <div className="check-out">
+                <label>CHECK-OUT</label>
+                    <input
+                      type="date"
+                      className="select-date"
+                      value={checkOut}
+                      onChange={(e) => setCheckOut(e.target.value)}
+                    />
+                </div>
+                </div>
+                <button>Reserve</button>
+              </form>
+            </div>
+            <div>
+              <div>{room?.price} x # nights</div>
+              <div>Cleaning Fee</div>
+              <div>Service Fee</div>
+              <div>Total before taxes</div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

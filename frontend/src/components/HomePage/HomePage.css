@@ -8,7 +8,7 @@
 }
 
 .all-rooms-div {
-  margin: 40px 0;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   place-items: center;
@@ -105,6 +105,6 @@
 
 @media screen and (min-width: 1701px) {
   .all-rooms-div {
-    margin: 40px 80px;
+    margin: 40px 150px;
   }
 }

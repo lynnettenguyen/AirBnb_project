@@ -25,7 +25,7 @@ const HomePage = () => {
             <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
               <div className={`room-div room-div${i}`}>
                 <div className="img-div">
-                  <img className="room-img" src={`${room?.previewImage[0]?.url}`} alt="preview of room"></img>
+                  <img className="room-img" src={`${room?.images[0]?.url}`} alt="preview of room"></img>
                 </div>
                 <div className="room-info">
                   <p className="room-city-state">{`${room?.city}, ${room?.state}`}</p>

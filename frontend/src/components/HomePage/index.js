@@ -14,21 +14,21 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(listAllRooms())
-  }, [dispatch])
+  }, [])
 
   return (
     <>
       <div className="all-rooms-div">
         {allRooms?.map((room, i) => {
           return (
-            <Link to={`/rooms/${room.id}`} className="room-link">
+            <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
               <div className={`room-div room-div${i}`}>
                 <div className="img-div">
-                  <img className="room-img" src={`${room.previewImage[0]?.url}`} alt="preview of room"></img>
+                  <img className="room-img" src={`${room?.previewImage[0]?.url}`} alt="preview of room"></img>
                 </div>
                 <div className="room-info">
-                  <p className="room-city-state">{`${room.city}, ${room.state}`}</p>
-                  <p className="room-price">{`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</p>
+                  <p className="room-city-state">{`${room?.city}, ${room?.state}`}</p>
+                  <p className="room-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</p>
                 </div>
               </div>
             </Link>

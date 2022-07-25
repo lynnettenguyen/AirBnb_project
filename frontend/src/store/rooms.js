@@ -13,8 +13,6 @@ const findRoom = (room) => ({
    room
 })
 
-
-
 export const listAllRooms = () => async (dispatch) => {
   const response = await fetch(`/api/rooms`);
   if (response.ok) {
@@ -22,6 +20,7 @@ export const listAllRooms = () => async (dispatch) => {
     // console.log(typeof roomsObj.Rooms)
     dispatch(listRooms(roomsObj.Rooms))
   }
+  return response;
 }
 
 export const findRoomById = (roomId) => async (dispatch) => {
@@ -30,6 +29,7 @@ export const findRoomById = (roomId) => async (dispatch) => {
     const room = await response.json()
     dispatch(findRoom(room))
   }
+  return response;
 }
 
 

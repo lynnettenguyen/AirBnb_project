@@ -23,11 +23,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
           <Route path="/rooms/:roomId">
             <RoomDetails />
+          </Route>
+          <Route exact path="/">
+            <HomePage />
           </Route>
         </Switch>
       )}

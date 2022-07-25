@@ -11,10 +11,9 @@ const RoomDetails = () => {
   const dispatch = useDispatch()
 
   const room = useSelector((state) => state.rooms[roomId])
-  console.log(room.numReviews)
-
   useEffect(() => {
     dispatch(findRoomById(roomId))
+
   }, [dispatch, roomId])
 
   return (
@@ -28,8 +27,8 @@ const RoomDetails = () => {
       <div>
         {room?.images?.map(image => {
           return (
-            <div>
-              <img src={`${image?.url}`}></img>
+            <div key={image}>
+              <img src={`${image?.url}`} alt="room"></img>
             </div>
           )
         })}

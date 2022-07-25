@@ -48,7 +48,7 @@ module.exports = {
         lat: 38.050152,
         lng: -121.339526,
         name: 'The Kellogg Doolittle House',
-        description: 'Created over 25 meticulous years, Kellogg Doolittle in Joshua Tree National Park is a marvel of the organic architecture movement. It is one of the most exclusive homes in the world, and available for the first time as an Airbnb Luxe exclusive.',
+        description: 'Created over 25 meticulous years, Kellogg Doolittle in Joshua Tree National Park is a marvel of the organic architecture movement. It is one of the most exclusive homes in the world, and available for the first time as an WhereBnb Luxe exclusive.',
         price: 12500.00,
       },
       {

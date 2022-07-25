@@ -41,7 +41,7 @@ function Navigation({ isLoaded }) {
         <div className='navigation-bar-div'>
           <NavLink exact to="/" className="nav-link home-link">
             <span className="iconify" data-icon="fa-brands:airbnb" data-width="36"></span>
-            <span className='airbnb-name'>airbnb</span>
+            <span className='airbnb-name'>wherebnb</span>
           </NavLink>
           {isLoaded && sessionLinks}
         </div>

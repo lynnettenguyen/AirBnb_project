@@ -49,13 +49,13 @@ module.exports = {
         userId: 1,
         roomId: 3,
         stars: 3,
-        review: 'Location location location! Great value for the location! This was probably one of the best value places I stayed here in Vietnam. It was so close to the beach. Had a great view.'
+        review: 'Excellent villa in Ubud. Our stay was very smooth from checkin to checkout. The area is really beautiful.'
       },
       {
         userId: 2,
         roomId: 3,
         stars: 5,
-        review: 'The apartment is in a high-rise building with a direct view of the beach. The interiors are classy and beautiful. The balcony is super too. The host met us in person during both checkin and checkout and was very friendly. All the amenities were good too. Would definitely recommend this place to anybody visiting Da Nang.'
+        review: 'Wonderful stay. We fell in love with Ubud as this is such a beautiful area. The villa is really great, brand-new, confortable with a large swimming pool. Highly recommended.'
       },
       {
         userId: 2,
@@ -68,6 +68,18 @@ module.exports = {
         roomId: 5,
         stars: 5,
         review: 'Beautifully renovated cabin with a great deck and wonderful location! We could walk right down to a nearby beach and the marina was less than a 5 minute drive. All super accessible. The cabin is well appointed and tastefully decorated - nice modern/woodsy vibe.'
+      },
+      {
+        userId: 2,
+        roomId: 9,
+        stars: 5,
+        review: 'Hands down one of the most magical places I have ever stayed in. The lake and mountain view are beautiful and the house adds to all the charm with its fireplace, sauna, and beautiful rustic wood interior. The host was very attentive of us and provided us with a fridge full of water, yogurt, and juice. We felt very well looked after. You will not regret staying here!'
+      },
+      {
+        userId: 3,
+        roomId: 9,
+        stars: 5,
+        review: 'If you are looking for everything you could want from a relaxing stay in the lake como area, this is it. At the same time you will have a comfortable residence as well as direct lakeside access without having to go to public beaches. Amazing stay with plenty of amenities!'
       },
     ], {});
   },

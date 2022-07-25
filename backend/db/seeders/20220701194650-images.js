@@ -183,6 +183,66 @@ module.exports = {
         type: 'room',
         url: 'https://a0.muscache.com/im/pictures/monet/Select-34444025/original/0e50530d-6bfe-4228-a8fc-85da226dd71d?im_w=720'
       },
+      {
+        userId: 2,
+        roomId: 7,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/41f4b37a-bc40-4233-90b0-97d5b9cb1f18.jpg?im_w=720'
+      },
+      {
+        userId: 2,
+        roomId: 7,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/7d6c926f-a4f1-4fc3-8e88-0974f19354f9.jpg?im_w=720'
+      },
+      {
+        userId: 2,
+        roomId: 7,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/076733e1-3771-4f40-96bd-12f9febb6bea.jpg?im_w=720'
+      },
+      {
+        userId: 2,
+        roomId: 7,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/7521c38c-713c-465f-8d86-bb644bb1a7b6.jpg?im_w=720'
+      },
+      {
+        userId: 2,
+        roomId: 7,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/f58374ce-c219-4399-ad38-962b7b8cb3c0.jpg?im_w=720'
+      },
+      {
+        userId: 7,
+        roomId: 8,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/8386964c-21da-4947-9812-60a15e407acc.jpg?im_w=720'
+      },
+      {
+        userId: 7,
+        roomId: 8,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/a8118f53-95dc-4775-88b9-3300bf71e7dd.jpg?im_w=720'
+      },
+      {
+        userId: 7,
+        roomId: 8,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/b2a2bcb7-fc48-4d85-9c7a-1711aab6cac3.jpg?im_w=720'
+      },
+      {
+        userId: 7,
+        roomId: 8,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/6c0dd054-0ac5-4f52-8e60-09b09aa710ed.jpg?im_w=720'
+      },
+      {
+        userId: 7,
+        roomId: 8,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/fd69d6ba-a65c-4f69-b21b-9b6acc8b3f77.jpg?im_w=720'
+      },
     ], {});
 
   },

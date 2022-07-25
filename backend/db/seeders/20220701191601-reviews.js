@@ -49,13 +49,13 @@ module.exports = {
         userId: 1,
         roomId: 3,
         stars: 3,
-        review: 'Location location location! Great value for the location! This was probably one of the best value places I stayed here in Vietnam. It was so close to the beach. Had a great view.'
+        review: 'Excellent villa in Ubud. Our stay was very smooth from checkin to checkout. The area is really beautiful.'
       },
       {
         userId: 2,
         roomId: 3,
         stars: 5,
-        review: 'The apartment is in a high-rise building with a direct view of the beach. The interiors are classy and beautiful. The balcony is super too. The host met us in person during both checkin and checkout and was very friendly. All the amenities were good too. Would definitely recommend this place to anybody visiting Da Nang.'
+        review: 'Wonderful stay. We fell in love with Ubud as this is such a beautiful area. The villa is really great, brand-new, confortable with a large swimming pool. Highly recommended.'
       },
       {
         userId: 2,

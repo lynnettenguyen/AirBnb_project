@@ -48,9 +48,11 @@ const RoomDetails = () => {
         <div className="room-information-bottom">
           <div className="room-description">{room?.description}</div>
           <div className="reservation-div">
-            <div>{room?.price}</div><span>night</span>
-            <div>{room?.avgStarRating}</div>
-            <div>{room?.numReviews}</div>
+            <div className="reserve-details">
+              <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div><span>night</span>
+              <span className="reserve-rating"><i class="fa-solid fa-star"></i>{room?.avgStarRating?.toFixed(2)}</span>
+              <span className="reserve-review">· {room?.numReviews} reviews</span>
+            </div>
             <div>
               <form>
                 <div className="reservation-dates">
@@ -73,14 +75,25 @@ const RoomDetails = () => {
                     />
                   </div>
                 </div>
-                <button>Reserve</button>
+                <div className="guests">
+                  <label>Guests</label>
+                  <input
+                    type="number"
+                    className="select-guests"
+                    min="1" />
+                </div>
+                <button className="reserve-button">Reserve</button>
               </form>
             </div>
-            <div>
+            <div className="total-fees">
               <div>{room?.price} x # nights</div>
+              <div>$$$$</div>
               <div>Cleaning Fee</div>
+              <div>$$$$</div>
               <div>Service Fee</div>
+              <div>$$$$</div>
               <div>Total before taxes</div>
+              <div>$$$$</div>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRooms, findRoomById } from "../../store/rooms";
+import { getAllRooms, findRoomById, listAllRooms } from "../../store/rooms";
 import "./RoomDetails.css"
 
 const RoomDetails = () => {
@@ -11,10 +11,14 @@ const RoomDetails = () => {
   const dispatch = useDispatch()
 
   const room = useSelector((state) => state.rooms[roomId])
-  useEffect(() => {
-    dispatch(findRoomById(roomId))
+console.log(room)
 
-  }, [dispatch, roomId])
+  useEffect(() => {
+    dispatch(listAllRooms())
+    // dispatch(findRoomById(roomId))
+    // using a dispatch for the specific room will change the state of the store so trying to navigate back to the room page will force a refresh
+
+  }, [dispatch])
 
   return (
     <>
@@ -27,7 +31,7 @@ const RoomDetails = () => {
       <div>
         {room?.images?.map(image => {
           return (
-            <div key={image}>
+            <div key={image.url}>
               <img src={`${image?.url}`} alt="room"></img>
             </div>
           )

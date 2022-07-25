@@ -14,10 +14,10 @@ const RoomDetails = () => {
 console.log(room)
 
   useEffect(() => {
-    dispatch(listAllRooms())
-    // dispatch(findRoomById(roomId))
-    // using a dispatch for the specific room will change the state of the store so trying to navigate back to the room page will force a refresh
-
+    // dispatch(listAllRooms())
+    // navigating back to homepage works but room query does not have all the room details
+    dispatch(findRoomById(roomId))
+    // navigating back to homepage require a refresh
   }, [dispatch])
 
   return (

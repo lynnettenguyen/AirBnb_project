@@ -32,16 +32,16 @@ export const findRoomById = (roomId) => async (dispatch) => {
   return response;
 }
 
-
 const initialState = {}
 const roomReducer = (state = initialState, action) => {
-  const newState = { ...state };
   switch (action.type) {
     case LIST_ROOMS: {
+      const newState = { ...state };
       for (let room of action.rooms) newState[room.id] = room
       return { ...state, ...newState };
     }
     case FIND_ROOM: {
+      const newState = { ...state };
       newState[action.room.id] = action.room;
       return {...state, ...newState}
     }

@@ -11,16 +11,17 @@
   margin: 40px 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-
+  place-items: center;
 }
 
 .room-div {
-  padding: 5px;
+  height: 490px;
+  width: 400px;
 }
 
 .img-div {
-  height: 350px;
-  width: 400px;
+  height: 398px;
+  width: 390px;
   display: flex;
   margin: auto;
 }
@@ -63,8 +64,8 @@
   }
 
   .room-div {
-    height: 590px;
-    width: 560px;
+    height: 560px;
+    width: 530px;
   }
 }
 
@@ -75,12 +76,12 @@
   }
 
   .img-div {
-    height: 400px;
-    width: 460px;
+    height: 470px;
+    width: 480px;
   }
 
   .room-div {
-    height: 490px;
+    height: 570px;
     width: 430px;
   }
 }
@@ -92,12 +93,12 @@
   }
 
   .img-div {
-    height: 370px;
+    height: 420px;
     width: 430px;
   }
 
   .room-div {
-    height: 490px;
+    height: 520px;
     width: 410px;
   }
 }

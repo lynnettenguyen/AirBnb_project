@@ -10,8 +10,7 @@ const HomePage = () => {
 
   // for (let room of allRooms) console.log(room.previewImage[0].url)
   // console.log(allRooms[0].previewImage[0])
-
-  console.log(allRooms)
+  // console.log(allRooms)
 
   useEffect(() => {
     dispatch(listAllRooms())

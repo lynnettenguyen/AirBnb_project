@@ -11,9 +11,8 @@ const RoomDetails = () => {
   const dispatch = useDispatch()
 
   const room = useSelector((state) => state.rooms[roomId])
-  const [setCheckIn, checkIn] = useState()
-  const [setCheckOut, checkOut] = useState()
-
+  const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
+  const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
 
   useEffect(() => {
     dispatch(findRoomById(roomId))
@@ -31,20 +30,20 @@ const RoomDetails = () => {
           <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
         </div>
         <div className="room-images">
-        <div className="left-image-div">
-          {room?.images &&
-            <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
-        </div>
-        <div className="right-image-div">
-          {room?.images?.map((image, i) => {
-            if (i > 0)
-              return (
-                <div className="side-image-div" key={image.url}>
-                  <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
-                </div>
-              )
-          })}
-        </div>
+          <div className="left-image-div">
+            {room?.images &&
+              <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
+          </div>
+          <div className="right-image-div">
+            {room?.images?.map((image, i) => {
+              if (i > 0)
+                return (
+                  <div className="side-image-div" key={image.url}>
+                    <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
+                  </div>
+                )
+            })}
+          </div>
         </div>
         <div className="room-information-bottom">
           <div className="room-description">{room?.description}</div>
@@ -55,24 +54,24 @@ const RoomDetails = () => {
             <div>
               <form>
                 <div className="reservation-dates">
-                <div className="check-in">
-                <label>CHECK-IN</label>
+                  <div className="check-in">
+                    <label>CHECK-IN</label>
                     <input
                       type="date"
                       className="select-date"
-                      value={checkIn}
-                      onChange={(e)=>setCheckIn(e.target.value)}
+                      value={new Date(checkIn).toISOString().slice(0, 10)}
+                      onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
                     />
-                </div>
-                <div className="check-out">
-                <label>CHECK-OUT</label>
+                  </div>
+                  <div className="check-out">
+                    <label>CHECK-OUT</label>
                     <input
                       type="date"
                       className="select-date"
-                      value={checkOut}
-                      onChange={(e) => setCheckOut(e.target.value)}
+                      value={new Date(checkOut).toISOString().slice(0, 10)}
+                      onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
                     />
-                </div>
+                  </div>
                 </div>
                 <button>Reserve</button>
               </form>

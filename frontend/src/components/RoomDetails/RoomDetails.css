@@ -81,4 +81,9 @@
 
 .select-date {
   width: 12rem;
+  border: none;
+}
+
+.check-in, .check-out {
+  border: 1px grey solid;
 }

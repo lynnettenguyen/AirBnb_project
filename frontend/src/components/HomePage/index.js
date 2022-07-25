@@ -23,9 +23,9 @@ const HomePage = () => {
       {allRooms?.map((room, i) => {
         return (
           <div className={`room-div${i}`}>
-            <span>
+            <div className="img-div">
               <img className="room-img" src={`${room.previewImage[0]?.url}`}></img>
-            </span>
+            </div>
             <h4>{`${room.city}, ${room.state}`}</h4>
             <p>{`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</p>
           </div>

@@ -1,0 +1,30 @@
+.all-rooms-div {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.room-div0 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.room-div1 {
+  grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.room-div2 {
+  grid-column-start: 3
+}
+
+.room-div3 {
+  grid-column-start: 4
+}
+
+.room-img {
+  width: 350px;
+  height: 100%;
+  object-fit: none;
+  object-position: center;
+}

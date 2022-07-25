@@ -19,16 +19,20 @@ const HomePage = () => {
 
   return (
     <>
-      {allRooms?.map((room) => {
+      <div className="all-rooms-div">
+      {allRooms?.map((room, i) => {
         return (
-          <div>
-            <div>{`${room.city}, ${room.state}`}</div>
-            <div>{`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
-            <img src={`${room.previewImage[0]?.url}`}></img>
+          <div className={`room-div${i}`}>
+            <span>
+              <img className="room-img" src={`${room.previewImage[0]?.url}`}></img>
+            </span>
+            <h4>{`${room.city}, ${room.state}`}</h4>
+            <p>{`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</p>
           </div>
         )
       })
       }
+    </div>
     </>
   )
 }

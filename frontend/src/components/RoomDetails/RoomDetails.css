@@ -1,0 +1,141 @@
+.entire-room-page {
+  margin: 2rem 11rem;
+}
+
+.room-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-content: center;
+}
+
+.left-image-div {
+  padding: 7px
+}
+
+.main-image {
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.right-image-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  place-content: center;
+  box-sizing: border-box;
+}
+
+.side-images {
+  height: 96%;
+  width: 97%;
+  object-fit: cover;
+}
+
+.side-image-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-name {
+  font-size: 2.3rem;
+  font-weight: 450;
+}
+
+.room-information-top {
+  margin: 15px 0;
+  font-size: 20px;
+}
+
+.fa-star {
+  margin-right: 7px;
+}
+
+.span-separator {
+  margin: 0 15px;
+  font-size: 22px;
+}
+
+.room-information-bottom {
+  display: flex;
+  margin: 0.8rem;
+}
+
+.room-description {
+  font-size: 22px;
+  font-weight: 200;
+  padding: 0.5rem 0.9rem 0 0;
+}
+
+.reservation-div {
+  border: 1px grey solid;
+  padding: 1.4rem;
+  margin-top: 0.6rem;
+  border-radius: 20px;
+}
+
+.reservation-dates {
+  display: flex;
+}
+
+.select-date {
+  width: 8rem;
+  border: none;
+}
+
+.check-in,
+.check-out {
+  border: 1px grey solid;
+}
+
+.select-guests {
+  border: none;
+}
+
+.guests {
+  border: 1px grey solid;
+  border-top: none;
+}
+
+.reserve-details {
+  display: flex;
+  font-size: 22px;
+  font-weight: 200;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.reserve-price {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.reserve-rating {
+  margin-left: 9rem;
+  margin-right: 0.5rem;
+  font-size: 18px;
+}
+
+.reserve-review {
+  font-size: 18px;
+}
+
+.reserve-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border-color: #D70466;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  height: 55px;
+  margin-top: 15px;
+  width: 410px;
+}
+
+.total-fees {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}

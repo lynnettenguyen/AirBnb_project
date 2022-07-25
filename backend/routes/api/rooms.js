@@ -438,7 +438,7 @@ router.get('/', async (req, res, next) => {
         include: [
             {
                 model: Image,
-                as: 'previewImage',
+                as: 'images',
                 attributes: ['url'],
                 limit: 1
             }

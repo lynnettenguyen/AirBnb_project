@@ -1,14 +1,12 @@
 // frontend/src/components/Navigation/index.js
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-import { getAllRooms, listAllRooms } from "../../store/rooms";
 import "./Navigation.css"
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-  const dispatch = useDispatch()
 
   let sessionLinks;
   if (sessionUser) {
@@ -40,8 +38,8 @@ function Navigation({ isLoaded }) {
       <nav>
         <div className='navigation-bar-div'>
           <NavLink exact to="/" className="nav-link home-link">
-            <span className="iconify" data-icon="fa-brands:airbnb" data-width="36"></span>
-            <span className='airbnb-name'>airbnb</span>
+            <span className="iconify" data-icon="fa-brands:airbnb" data-width="48"></span>
+            <span className='airbnb-name'>wherebnb</span>
           </NavLink>
           {isLoaded && sessionLinks}
         </div>

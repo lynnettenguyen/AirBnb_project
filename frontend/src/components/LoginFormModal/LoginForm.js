@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import './LoginForm.css';
 
 function LoginForm() {
-  console.log('TEST')
   const dispatch = useDispatch();
   // const [credential, setCredential] = useState('');
   const [email, setEmail] = useState('');
@@ -27,7 +26,7 @@ function LoginForm() {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <h1 className="login-header">Welcome to Airbnb</h1>
+      <h1 className="login-header">Welcome to WhereBnb</h1>
       <label className="login-label">
         <input
           type="text"

@@ -11,33 +11,93 @@ const RoomDetails = () => {
   const dispatch = useDispatch()
 
   const room = useSelector((state) => state.rooms[roomId])
-console.log(room)
+  const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
+  const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
 
   useEffect(() => {
-    dispatch(listAllRooms())
-    // dispatch(findRoomById(roomId))
-    // using a dispatch for the specific room will change the state of the store so trying to navigate back to the room page will force a refresh
-
+    dispatch(findRoomById(roomId))
   }, [dispatch])
 
   return (
     <>
-      <h1>{room?.name}</h1>
-      <div>
-        <span>{room?.avgStarRating}</span>
-        <span>{` · ${room?.numReviews} reviews`}</span>
-        <span>{` · ${room?.city}, ${room?.state}, ${room?.country}`}</span>
-      </div>
-      <div>
-        {room?.images?.map(image => {
-          return (
-            <div key={image.url}>
-              <img src={`${image?.url}`} alt="room"></img>
+      <div className="entire-room-page">
+        <div className="room-name">{room?.name}</div>
+        <div className="room-information-top">
+          <span><i class="fa-solid fa-star"></i>{room?.avgStarRating?.toFixed(2)}</span>
+          <span className="span-separator">·</span>
+          <span>{`${room?.numReviews} reviews`}</span>
+          <span className="span-separator">·</span>
+          <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+        </div>
+        <div className="room-images">
+          <div className="left-image-div">
+            {room?.images &&
+              <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
+          </div>
+          <div className="right-image-div">
+            {room?.images?.map((image, i) => {
+              if (i > 0)
+                return (
+                  <div className="side-image-div" key={image.url}>
+                    <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
+                  </div>
+                )
+            })}
+          </div>
+        </div>
+        <div className="room-information-bottom">
+          <div className="room-description">{room?.description}</div>
+          <div className="reservation-div">
+            <div className="reserve-details">
+              <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div><span>night</span>
+              <span className="reserve-rating"><i class="fa-solid fa-star"></i>{room?.avgStarRating?.toFixed(2)}</span>
+              <span className="reserve-review">· {room?.numReviews} reviews</span>
             </div>
-          )
-        })}
+            <div>
+              <form>
+                <div className="reservation-dates">
+                  <div className="check-in">
+                    <label>CHECK-IN</label>
+                    <input
+                      type="date"
+                      className="select-date"
+                      value={new Date(checkIn).toISOString().slice(0, 10)}
+                      onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
+                    />
+                  </div>
+                  <div className="check-out">
+                    <label>CHECK-OUT</label>
+                    <input
+                      type="date"
+                      className="select-date"
+                      value={new Date(checkOut).toISOString().slice(0, 10)}
+                      onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
+                    />
+                  </div>
+                </div>
+                <div className="guests">
+                  <label>Guests</label>
+                  <input
+                    type="number"
+                    className="select-guests"
+                    min="1" />
+                </div>
+                <button className="reserve-button">Reserve</button>
+              </form>
+            </div>
+            <div className="total-fees">
+              <div>{room?.price} x # nights</div>
+              <div>$$$$</div>
+              <div>Cleaning Fee</div>
+              <div>$$$$</div>
+              <div>Service Fee</div>
+              <div>$$$$</div>
+              <div>Total before taxes</div>
+              <div>$$$$</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>{room?.description}</div>
     </>
   )
 }

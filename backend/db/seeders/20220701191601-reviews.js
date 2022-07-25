@@ -81,6 +81,42 @@ module.exports = {
         stars: 5,
         review: 'If you are looking for everything you could want from a relaxing stay in the lake como area, this is it. At the same time you will have a comfortable residence as well as direct lakeside access without having to go to public beaches. Amazing stay with plenty of amenities!'
       },
+      {
+        userId: 3,
+        roomId: 4,
+        stars: 5,
+        review: 'The first time I experienced the house, I was blown away by all of the uncompromising details. This is far from living in a museum, though. It is a living, breathing home that continuously unlocks awe.'
+      },
+      {
+        userId: 3,
+        roomId: 7,
+        stars: 5,
+        review: 'Villa Samira was an amazing stay! Our very large group of ladies enjoyed ourselves immensely. The staff was very accommodating and treated us like royalty. The villa was very clean, all of the bedrooms were superior! Thank you Elite Havens for a very enjoyable vacation.'
+      },
+      {
+        userId: 4,
+        roomId: 7,
+        stars: 5,
+        review: 'Villa Samira is really suitable for relaxing, nice view, good weather and cool breeze, We can lay down near the pool for all night long with the whole family. This is the happy time and time fly.'
+      },
+      {
+        userId: 1,
+        roomId: 7,
+        stars: 4,
+        review: 'To the team at Villa Samira, We enjoy our great stay here. Your warm welcome and hospitality is really touching. Thanks a million for your sweet, kind & professional service. Keep up the good work & spirit.'
+      },
+      {
+        userId: 1,
+        roomId: 8,
+        stars: 4,
+        review: 'We absolutely LOVED the house, location and staff at Enclave 7. It was perfect for an adults getaway and we had a fantastic time celebrating my birthday there.I would highly recommend staying at the home as the beach is beautiful and the home is beautiful.'
+      },
+      {
+        userId: 2,
+        roomId: 8,
+        stars: 4,
+        review: 'We had the best time. Amazing house for a big group of people, awesome location(right on the beach and close to the airport), and excellent recommendations for food, etc. Thank you!'
+      },
     ], {});
   },
 

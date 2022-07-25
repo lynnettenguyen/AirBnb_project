@@ -5,7 +5,7 @@ import sessionReducer from "./session";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  rooms: roomReducer
+  rooms: roomReducer,
 });
 
 let enhancer;

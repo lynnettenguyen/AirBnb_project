@@ -1,5 +1,6 @@
 const LIST_ROOMS = 'rooms/LIST_ROOMS'
 const FIND_ROOM = 'rooms/FIND_ROOM'
+const FIND_OWN_ROOMS = 'rooms/FIND_OWN_ROOMS'
 const EDIT_ROOM = 'rooms/EDIT_ROOM'
 const CREATE_ROOM = 'rooms/CREATE_ROOM'
 const DELETE_ROOM = 'rooms/DELETE_ROOM'
@@ -14,6 +15,11 @@ const listRooms = (rooms) => ({
 const findRoom = (room) => ({
   type: FIND_ROOM,
   room
+})
+
+const findOwnRooms = (rooms) => ({
+  type: FIND_OWN_ROOMS,
+  rooms
 })
 
 const editRoom = (updatedRoom) => ({
@@ -48,6 +54,16 @@ export const findRoomById = (roomId) => async (dispatch) => {
   return response;
 }
 
+// export const findRoomsOwned = () => async (dispatch) => {
+//   const response = await fetch(`/api/profile/rooms`)
+//   if (response.ok) {
+//     const rooms = await response.json()
+//     dispatch(listRooms(rooms))
+//     // console.log(rooms, "rooms")
+//   }
+//   return response;
+// }
+
 export const updateRoom = (roomData) => async (dispatch) => {
   const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData
   const response = await fetch(`/api/rooms/${roomId}`, {
@@ -74,8 +90,12 @@ const roomReducer = (state = initialState, action) => {
     }
     case FIND_ROOM: {
       newState[action.room.id] = action.room;
-      return newState;
+      return { ...state, ...newState };
     }
+    // case FIND_OWN_ROOMS: {
+    //   action.rooms.map(room => newState[room.id] = room);
+    //   return { ...state, ...newState };
+    // }
     case EDIT_ROOM: {
       newState[action.updatedRoom.id] = action.updatedRoom;
       return newState;

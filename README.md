@@ -1,8 +1,6 @@
-<!-- # Description of AirBnb -->
+# Welcome to [WhereBnb](https://lynnette-airbnb.herokuapp.com/), a clone of AirBnb
 
-# Welcome to my clone of [AirBnb](https://lynnette-airbnb.herokuapp.com/)!
-
-Airbnb provides lodging and vacation rentals around the world.
+WhereBnb provides lodging and vacation rentals around the world, wherever you want to go!
 
 ## Technologies
 - Backend: Node.js, Express

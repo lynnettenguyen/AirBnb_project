@@ -17,6 +17,9 @@ const RoomDetails = () => {
   let avgStarRating = room?.avgStarRating;
   avgStarRating = Math.round(avgStarRating * 100) / 100
 
+  const wholeNumbers = [1,2,3,4,5]
+  if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
+
   useEffect(() => {
     dispatch(findRoomById(roomId))
   }, [dispatch])

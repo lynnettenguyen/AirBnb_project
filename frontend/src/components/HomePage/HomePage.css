@@ -1,3 +1,8 @@
+.user-rooms-whole-page {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+}
+
 .all-rooms-div {
   padding: 10px;
   display: grid;

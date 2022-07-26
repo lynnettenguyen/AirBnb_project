@@ -9,8 +9,10 @@ const RoomDetails = () => {
   roomId = Number(roomId)
 
   const dispatch = useDispatch()
-
   const room = useSelector((state) => state.rooms[roomId])
+  const sessionUser = useSelector(state => state.session.user);
+
+  const [page, setPage] = useState(1)
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
 
@@ -20,22 +22,43 @@ const RoomDetails = () => {
   const wholeNumbers = [1, 2, 3, 4, 5]
   if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
 
+  const listingPage = () => {
+    setPage(1)
+  }
+
   useEffect(() => {
     dispatch(findRoomById(roomId))
   }, [dispatch])
+
+  let updateRoomLinks
+  if (sessionUser.id === room.ownerId) {
+    updateRoomLinks = (
+      <>
+        <Link to="/edit-listing" key={room?.id}>Edit Listing</Link>
+        <button>Delete Listing</button>
+      </>
+    )
+  }
 
   return (
     <>
       <div className="whole-page">
         <div className="left-space"></div>
         <div className="room-content">
-          <div className="room-name">{room?.name}</div>
-          <div className="room-information-top">
-            <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
-            <span className="span-separator">·</span>
-            <span>{`${room?.numReviews} reviews`}</span>
-            <span className="span-separator">·</span>
-            <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+          <div className="room-top-content">
+            <div>
+              <div className="room-name">{room?.name}</div>
+              <div className="room-information-top">
+                <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
+                <span className="span-separator">·</span>
+                <span>{`${room?.numReviews} reviews`}</span>
+                <span className="span-separator">·</span>
+                <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+              </div>
+            </div>
+            <div>
+              {updateRoomLinks}
+            </div>
           </div>
           <div className="room-images">
             <div className="left-image-div">

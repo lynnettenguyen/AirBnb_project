@@ -1,5 +1,10 @@
+.whole-page {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
 .entire-room-page {
-  margin: 2rem 11rem;
+  margin: 2rem 13rem;
 }
 
 .room-images {
@@ -10,10 +15,11 @@
 }
 
 .left-image-div {
-  height: 50rem;
-  width: 70rem;
+  height: 44rem;
+  width: 50rem;
   display: flex;
   justify-content: center;
+  margin: 0.5rem;
 }
 
 .main-image {
@@ -27,19 +33,20 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  height: 50rem;
+  height: 45rem;
   place-content: center;
-  width: 70rem;
+  width: 50rem;
 }
 
 .side-image-div {
-  margin: 6px;
+  margin: 0.5rem;
 }
 
 .side-images {
-  height: 99%;
-  width: 99%;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
+  max-height: 23rem;
 }
 
 .side-image-div {
@@ -148,4 +155,33 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 1700px) {
+  .left-image-div {
+    height: 35rem;
+    width: 38rem;
+    margin: 0.5rem;
+  }
+
+  .right-image-div {
+    height: 36rem;
+    width: 38rem;
+  }
+
+  .side-images {
+    max-height: 20rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+  .room-images {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .side-images {
+    max-height: 17rem;
+  }
 }

@@ -6,10 +6,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-content: center;
+  align-items: center;
 }
 
 .left-image-div {
-  padding: 7px
+  height: 50rem;
+  width: 70rem;
+  display: flex;
+  justify-content: center;
 }
 
 .main-image {
@@ -19,23 +23,29 @@
 }
 
 .right-image-div {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  height: 50rem;
   place-content: center;
-  box-sizing: border-box;
+  width: 70rem;
+}
+
+.side-image-div {
+  margin: 6px;
 }
 
 .side-images {
-  height: 96%;
-  width: 97%;
+  height: 99%;
+  width: 99%;
   object-fit: cover;
 }
 
 .side-image-div {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .room-name {
@@ -44,8 +54,8 @@
 }
 
 .room-information-top {
-  margin: 15px 0;
   font-size: 20px;
+  margin: 15px 0;
 }
 
 .fa-star {
@@ -53,8 +63,8 @@
 }
 
 .span-separator {
-  margin: 0 15px;
   font-size: 22px;
+  margin: 0 15px;
 }
 
 .room-information-bottom {
@@ -70,9 +80,9 @@
 
 .reservation-div {
   border: 1px grey solid;
-  padding: 1.4rem;
-  margin-top: 0.6rem;
   border-radius: 20px;
+  margin-top: 0.6rem;
+  padding: 1.4rem;
 }
 
 .reservation-dates {
@@ -80,8 +90,8 @@
 }
 
 .select-date {
-  width: 8rem;
   border: none;
+  width: 8rem;
 }
 
 .check-in,
@@ -99,12 +109,12 @@
 }
 
 .reserve-details {
+  align-items: center;
   display: flex;
   font-size: 22px;
   font-weight: 200;
-  margin-bottom: 1rem;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .reserve-price {
@@ -113,9 +123,9 @@
 }
 
 .reserve-rating {
+  font-size: 18px;
   margin-left: 9rem;
   margin-right: 0.5rem;
-  font-size: 18px;
 }
 
 .reserve-review {

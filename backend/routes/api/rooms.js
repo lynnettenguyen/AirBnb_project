@@ -420,17 +420,17 @@ router.get('/', async (req, res, next) => {
     if (minPrice) {
         if (minPrice > 0) roomQuery.price = { [Op.gte]: minPrice }
         else errorResult.errors.minPrice = 'Minimum price must be greater than 0'
-        if (minPrice.includes('.0')) roomQuery.price = { [Op.gte]: minPrice }
-        else if ((minPrice - Math.floor(minPrice)) !== 0) roomQuery.price = { [Op.gte]: minPrice }
-        else errorResult.errors.minPrice = 'Minimum price must be a decimal'
+        // if (minPrice.includes('.0')) roomQuery.price = { [Op.gte]: minPrice }
+        // else if ((minPrice - Math.floor(minPrice)) !== 0) roomQuery.price = { [Op.gte]: minPrice }
+        // else errorResult.errors.minPrice = 'Minimum price must be a decimal'
     }
 
     if (maxPrice) {
         if (maxPrice > 0) roomQuery.price = { [Op.lte]: maxPrice }
         else errorResult.errors.maxPrice = 'Maximum price must be greater than 0'
-        if (maxPrice.includes('.0')) roomQuery.price = { [Op.lte]: maxPrice }
-        else if ((maxPrice - Math.floor(maxPrice)) !== 0) roomQuery.price = { [Op.lte]: maxPrice }
-        else errorResult.errors.minPrice = 'Maximum price must be a decimal'
+        // if (maxPrice.includes('.0')) roomQuery.price = { [Op.lte]: maxPrice }
+        // else if ((maxPrice - Math.floor(maxPrice)) !== 0) roomQuery.price = { [Op.lte]: maxPrice }
+        // else errorResult.errors.minPrice = 'Maximum price must be a decimal'
     }
 
     results.Rooms = await Room.unscoped().findAll({

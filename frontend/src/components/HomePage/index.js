@@ -22,9 +22,9 @@ const HomePage = () => {
         {allRooms?.map((room, i) => {
 
           let sum = 0;
-          const reviews = allRooms[i].Reviews
+          const reviews = room?.Reviews
           for (let review of reviews) sum += review.stars
-          let avgStars = sum / Object.values(reviews).length
+          let avgStars = sum / Object.values(reviews).length || 2
           avgStars = Math.round(avgStars * 100) / 100
 
           const wholeNumbers = [1, 2, 3, 4, 5]

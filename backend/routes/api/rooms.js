@@ -290,7 +290,7 @@ router.get('/:roomId', checkRoomExists, async (req, res) => {
                 },
                 {
                     model: Review,
-                    attributes: []
+                    attributes: ['stars']
                 }
             ],
         })
@@ -433,7 +433,7 @@ router.get('/', async (req, res, next) => {
         else errorResult.errors.minPrice = 'Maximum price must be a decimal'
     }
 
-    results.Rooms = await Room.findAll({
+    results.Rooms = await Room.unscoped().findAll({
         where: roomQuery,
         include: [
             {

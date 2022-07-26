@@ -31,7 +31,7 @@ const RoomDetails = () => {
         <div className="room-content">
           <div className="room-name">{room?.name}</div>
           <div className="room-information-top">
-            <span><i class="fa-solid fa-star"></i>{avgStarRating}</span>
+            <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
             <span className="span-separator">·</span>
             <span>{`${room?.numReviews} reviews`}</span>
             <span className="span-separator">·</span>
@@ -57,8 +57,11 @@ const RoomDetails = () => {
             <div className="room-description">{room?.description}</div>
             <div className="reservation-div">
               <div className="reserve-details">
-                <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div><span>night</span>
-                <span className="reserve-rating"><i class="fa-solid fa-star"></i>{avgStarRating}</span>
+                <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
+                <span>night</span>
+                <span className="reserve-rating">
+                  <i className="fa-solid fa-star"></i>
+                  {avgStarRating}</span>
                 <span className="reserve-review">· {room?.numReviews} reviews</span>
               </div>
               <div>

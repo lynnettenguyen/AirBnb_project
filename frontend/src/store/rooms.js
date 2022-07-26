@@ -114,6 +114,9 @@ const roomReducer = (state = initialState, action) => {
       currentState[action.room.id.description] = action.room.description;
       currentState[action.room.id.price] = action.room.price;
       return currentState;
+
+      // newState[action.room.id] = { ...action.room, name: action.room.name }
+      // return newState;
     }
     default:
       return state;

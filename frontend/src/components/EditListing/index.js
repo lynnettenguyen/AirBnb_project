@@ -4,11 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllRooms, listAllRooms, findRoomsOwned } from "../../store/rooms";
 import "./EditListing.css"
 
-const EditListing = ({ roomid }) => {
+const EditListing = ({listingId, returnToListing}) => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
-  const allRooms = useSelector(getAllRooms)
-  console.log(roomId)
+  const room = useSelector((state) => state.rooms[listingId])
 
   const [roomId, setRoomId] = useState()
   const [ownerId, setOwnerId] = useState()

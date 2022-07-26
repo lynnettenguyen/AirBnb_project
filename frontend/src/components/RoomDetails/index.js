@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllRooms, findRoomById, listAllRooms } from "../../store/rooms";
 import "./RoomDetails.css"
+import EditListing from "../EditListing";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -22,27 +23,26 @@ const RoomDetails = () => {
   const wholeNumbers = [1, 2, 3, 4, 5]
   if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
 
-  const listingPage = () => {
+  const returnToListing = () => {
     setPage(1)
+  }
+
+  const handleEdit = (e) => {
+    e.preventDefault()
+    setPage(2)
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault()
   }
 
   useEffect(() => {
     dispatch(findRoomById(roomId))
   }, [dispatch])
 
-  let updateRoomLinks
-  if (sessionUser.id === room.ownerId) {
-    updateRoomLinks = (
-      <>
-        <Link to="/edit-listing" key={room?.id}>Edit Listing</Link>
-        <button>Delete Listing</button>
-      </>
-    )
-  }
-
   return (
     <>
-      <div className="whole-page">
+      {page === 1 && <div className="whole-page">
         <div className="left-space"></div>
         <div className="room-content">
           <div className="room-top-content">
@@ -57,7 +57,14 @@ const RoomDetails = () => {
               </div>
             </div>
             <div>
-              {updateRoomLinks}
+              {sessionUser ?
+                <>
+                  {sessionUser.id === room.ownerId &&
+                    <div>
+                      <button onClick={handleEdit}>Edit Listing</button>
+                      <button onClick={handleDelete}>Delete Listing</button>
+                    </div>}
+                </> : <></>}
             </div>
           </div>
           <div className="room-images">
@@ -134,6 +141,8 @@ const RoomDetails = () => {
         </div>
         <div className="right-space"></div>
       </div>
+      }
+      {page === 2 && <EditListing listingId={roomId} returnToListing={returnToListing} />}
     </>
   )
 }

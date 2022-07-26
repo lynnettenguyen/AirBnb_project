@@ -8,7 +8,6 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import RoomDetails from "./components/RoomDetails";
 import ManageListings from "./components/ManageListings";
-import EditListing from "./components/EditListing";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +23,6 @@ function App() {
         <Switch>
           <Route path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route path="/edit-listing">
-            <EditListing />
           </Route>
           <Route path="/manage-listings">
             <ManageListings />

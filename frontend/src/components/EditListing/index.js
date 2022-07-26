@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRooms, listAllRooms, findRoomsOwned } from "../../store/rooms";
+import { updateRoom } from "../../store/rooms";
 import "./EditListing.css"
 
-const EditListing = ({listingId, returnToListing}) => {
+const EditListing = ({ listingId, returnToListing }) => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const room = useSelector((state) => state.rooms[listingId])
 
-  const [roomId, setRoomId] = useState()
-  const [ownerId, setOwnerId] = useState()
-  const [address, setAddress] = useState()
-  const [city, setCity] = useState()
-  const [state, setState] = useState()
-  const [country, setCountry] = useState()
-  const [lat, setLat] = useState()
-  const [lng, setLng] = useState()
-  const [name, setName] = useState()
-  const [description, setDescription] = useState()
-  const [price, setPrice] = useState()
+  const [roomId, setRoomId] = useState(listingId)
+  const [ownerId, setOwnerId] = useState(room.ownerId)
+  const [address, setAddress] = useState(room.address)
+  const [city, setCity] = useState(room.city)
+  const [state, setState] = useState(room.state)
+  const [country, setCountry] = useState(room.country)
+  const [lat, setLat] = useState(room.lat)
+  const [lng, setLng] = useState(room.lng)
+  const [name, setName] = useState(room.name)
+  const [description, setDescription] = useState(room.description)
+  const [price, setPrice] = useState(room.price)
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const roomData = {
@@ -39,52 +38,79 @@ const EditListing = ({listingId, returnToListing}) => {
       price
     }
 
-    // const response = await dispatch(updateRoom(roomData))
+    const response = await dispatch(updateRoom(roomData))
+    console.log(roomData)
+
+    if (response) {
+      return returnToListing()
+    }
   }
 
   return (
     <>
+      <button onClick={returnToListing}>Return to Listing</button>
       <h1>Edit your Listing</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-          <label>Title</label>
+          <label>Name</label>
           <input
             type="text"
-          ></input>
-        </div>
-        <div>
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
           <label>address</label>
           <input
             type="text"
-          ></input>
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+          />
           <label>city</label>
           <input
             type="text"
-          ></input>
+            value={city}
+            onChange={e => setCity(e.target.value)}
+          />
           <label>state</label>
           <input
             type="text"
-          ></input>
+            value={state}
+            onChange={e => setState(e.target.value)}
+          />
           <label>country</label>
           <input
             type="text"
-          ></input>
+            value={country}
+            onChange={e => setCountry(e.target.value)}
+          />
           <label>latitude</label>
           <input
             type="text"
-          ></input>
+            value={lat}
+            onChange={e => setLat(e.target.value)}
+          />
           <label>longitude</label>
           <input
             type="text"
-          ></input>
+            value={lng}
+            onChange={e => setLng(e.target.value)}
+          />
         </div>
         <div>
           <label>Description</label>
-          <textarea></textarea>
+          <textarea
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          ></textarea>
         </div>
         <div>
           <label>Price</label>
+          <input
+            type="number"
+            value={price}
+            onChange={e => setPrice(e.target.value)}
+          />
         </div>
+        <button type="submit">Update Listing</button>
       </form>
     </>
   )

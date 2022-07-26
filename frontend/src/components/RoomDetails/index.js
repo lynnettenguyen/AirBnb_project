@@ -59,7 +59,7 @@ const RoomDetails = () => {
             <div>
               {sessionUser ?
                 <>
-                  {sessionUser.id === room.ownerId &&
+                  {sessionUser?.id === room?.ownerId &&
                     <div>
                       <button onClick={handleEdit}>Edit Listing</button>
                       <button onClick={handleDelete}>Delete Listing</button>

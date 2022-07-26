@@ -2,7 +2,6 @@
 .show-menu-div {
   display: flex;
   justify-content: left;
-  margin-right: 10px;
 }
 
 .profile-button {
@@ -11,7 +10,6 @@
   border: 1px #71717150 solid;
   border-radius: 21px;
   margin-top: 8px;
-  margin-right: 12px;
 }
 
 .fa-user-circle {
@@ -38,7 +36,7 @@
   margin-right: 5px;
   position: absolute;
   top: 95px;
-  right: 48px;
+  right: 154px;
   width: 240px;
   box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
   border-radius: 20px;

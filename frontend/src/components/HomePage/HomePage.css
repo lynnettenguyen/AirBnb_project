@@ -25,18 +25,40 @@
   border-radius: 20px;
 }
 
+.room-detail {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 15px 10px;
+  font-size: 1.3rem;
+}
+
 .room-info {
-  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-rating {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
 .room-city-state {
-  font-size: 20px;
   font-weight: 500;
   margin-bottom: 0%;
 }
 
-.room-price {
-  margin-top: 0%;
+.room-price-night {
+  display: flex;
+}
+
+.room-night {
+  margin-left: 0.4rem;
+  font-weight: 250;
+}
+
+.star-icon{
+  font-size: 1.1rem;
 }
 
 .room-link {

@@ -441,6 +441,10 @@ router.get('/', async (req, res, next) => {
                 as: 'images',
                 attributes: ['url'],
                 limit: 1
+            },
+            {
+                model: Review,
+                attributes: ['stars']
             }
         ],
         ...pagination,

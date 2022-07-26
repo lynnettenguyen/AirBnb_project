@@ -74,7 +74,7 @@ const RoomDetails = () => {
                       />
                     </div>
                     <div className="check-out">
-                      <label>CHECK-OUT</label>
+                      <label>CHECKOUT</label>
                       <input
                         type="date"
                         className="select-date"
@@ -83,25 +83,25 @@ const RoomDetails = () => {
                       />
                     </div>
                   </div>
-                  <div className="guests">
+                  {/* <div className="guests">
                     <label>Guests</label>
                     <input
                       type="number"
                       className="select-guests"
                       min="1" />
-                  </div>
+                  </div> */}
                   <button className="reserve-button">Reserve</button>
                 </form>
               </div>
               <div className="total-fees">
                 <div>{room?.price} x # nights</div>
-                <div>$$$$</div>
+                <div className="price">$$$$</div>
                 <div>Cleaning Fee</div>
-                <div>$$$$</div>
+                <div className="price">$$$$</div>
                 <div>Service Fee</div>
-                <div>$$$$</div>
+                <div className="price">$$$$</div>
                 <div>Total before taxes</div>
-                <div>$$$$</div>
+                <div className="price">$$$$</div>
               </div>
             </div>
           </div>

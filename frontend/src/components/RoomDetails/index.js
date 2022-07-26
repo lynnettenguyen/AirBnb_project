@@ -49,7 +49,7 @@ const RoomDetails = () => {
         <div className="left-space"></div>
         <div className="room-content">
           <div className="room-top-content">
-            <div>
+            <div className="room-header">
               <div className="room-name">{room?.name}</div>
               <div className="room-information-top">
                 <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
@@ -59,13 +59,13 @@ const RoomDetails = () => {
                 <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
               </div>
             </div>
-            <div>
+            <div className="session-user-buttons">
               {sessionUser ?
                 <>
                   {sessionUser?.id === room?.ownerId &&
                     <div>
-                      <button onClick={handleEdit}>Edit Listing</button>
-                      <button onClick={handleDelete}>Delete Listing</button>
+                      <button onClick={handleEdit} className="edit-listing-button">Edit</button>
+                      <button onClick={handleDelete} className="delete-listing-button">Delete</button>
                     </div>}
                 </> : <></>}
             </div>

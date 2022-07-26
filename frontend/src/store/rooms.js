@@ -29,8 +29,9 @@ const createRoom = (newRoom) => ({
   newRoom
 })
 
-const deleteRoom = () => ({
-  type: DELETE_ROOM
+const deleteRoom = (roomId) => ({
+  type: DELETE_ROOM,
+  roomId
 })
 
 export const listAllRooms = () => async (dispatch) => {
@@ -86,6 +87,18 @@ export const updateRoom = (roomData) => async (dispatch) => {
   }
 }
 
+export const removeRoom = (roomId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/rooms/${roomId}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      roomId
+    })
+  })
+  const deletedRoom = await response.json();
+  dispatch(deleteRoom(roomId));
+  return deletedRoom;
+}
+
 const initialState = {}
 const roomReducer = (state = initialState, action) => {
   const newState = { ...state }
@@ -103,20 +116,24 @@ const roomReducer = (state = initialState, action) => {
       return newState;
     }
     case EDIT_ROOM: {
-      const currentState = JSON.parse(JSON.stringify({...state}))
-      currentState[action.room.id.address] = action.room.address;
-      currentState[action.room.id.city] = action.room.city;
-      currentState[action.room.id.state] = action.room.state;
-      currentState[action.room.id.country] = action.room.country;
-      currentState[action.room.id.lat] = action.room.lat;
-      currentState[action.room.id.lng] = action.room.lng;
-      currentState[action.room.id.name] = action.room.name;
-      currentState[action.room.id.description] = action.room.description;
-      currentState[action.room.id.price] = action.room.price;
-      return currentState;
+      // const currentState = JSON.parse(JSON.stringify({...state}))
+      // currentState[action.room.id.address] = action.room.address;
+      // currentState[action.room.id.city] = action.room.city;
+      // currentState[action.room.id.state] = action.room.state;
+      // currentState[action.room.id.country] = action.room.country;
+      // currentState[action.room.id.lat] = action.room.lat;
+      // currentState[action.room.id.lng] = action.room.lng;
+      // currentState[action.room.id.name] = action.room.name;
+      // currentState[action.room.id.description] = action.room.description;
+      // currentState[action.room.id.price] = action.room.price;
+      // return currentState;
 
-      // newState[action.room.id] = { ...action.room, name: action.room.name }
-      // return newState;
+      newState[action.room.id] = action.room;
+      return newState;
+    }
+    case DELETE_ROOM: {
+      delete newState[action.roomId]
+      return newState;
     }
     default:
       return state;

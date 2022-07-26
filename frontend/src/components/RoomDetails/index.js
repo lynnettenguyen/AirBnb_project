@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRooms, findRoomById, listAllRooms } from "../../store/rooms";
+import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
 import EditListing from "../EditListing";
 
@@ -10,6 +10,7 @@ const RoomDetails = () => {
   roomId = Number(roomId)
 
   const dispatch = useDispatch()
+  const history = useHistory()
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
 
@@ -34,6 +35,8 @@ const RoomDetails = () => {
 
   const handleDelete = (e) => {
     e.preventDefault()
+    dispatch(removeRoom(roomId))
+    history.push('/')
   }
 
   useEffect(() => {

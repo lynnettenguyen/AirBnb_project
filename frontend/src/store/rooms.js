@@ -54,16 +54,6 @@ export const findRoomById = (roomId) => async (dispatch) => {
   return response;
 }
 
-// export const findRoomsOwned = () => async (dispatch) => {
-//   const response = await fetch(`/api/profile/rooms`)
-//   if (response.ok) {
-//     const rooms = await response.json()
-//     dispatch(listRooms(rooms))
-//     // console.log(rooms, "rooms")
-//   }
-//   return response;
-// }
-
 export const updateRoom = (roomData) => async (dispatch) => {
   const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData
   const response = await fetch(`/api/rooms/${roomId}`, {
@@ -92,10 +82,6 @@ const roomReducer = (state = initialState, action) => {
       newState[action.room.id] = action.room;
       return { ...state, ...newState };
     }
-    // case FIND_OWN_ROOMS: {
-    //   action.rooms.map(room => newState[room.id] = room);
-    //   return { ...state, ...newState };
-    // }
     case EDIT_ROOM: {
       newState[action.updatedRoom.id] = action.updatedRoom;
       return newState;

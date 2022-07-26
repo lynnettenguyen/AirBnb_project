@@ -35,11 +35,11 @@ const EditListing = ({ listingId, returnToListing }) => {
       lng,
       name,
       description,
-      price
+      price,
     }
+    console.log('ROOMDATA', roomData)
 
     const response = await dispatch(updateRoom(roomData))
-    console.log(roomData)
 
     if (response) {
       return returnToListing()

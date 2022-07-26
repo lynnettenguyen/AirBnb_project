@@ -117,6 +117,24 @@ module.exports = {
         stars: 4,
         review: 'We had the best time. Amazing house for a big group of people, awesome location(right on the beach and close to the airport), and excellent recommendations for food, etc. Thank you!'
       },
+      {
+        userId: 2,
+        roomId: 10,
+        stars: 5,
+        review: 'Incredible experience! If you happen to be in this area, this is a must. It is super unique and very new inside and out. Check in and check out process was seamless and host is very helpful. Definitely recommend!'
+      },
+      {
+        userId: 1,
+        roomId: 10,
+        stars: 4,
+        review: 'This place is awesome and cute and the hosts are Super friendly! The room was spotless. It rained when we were there so it was really cozy inside. The cafe also serves really nice food and coffee. Definitely recommend staying here!'
+      },
+      {
+        userId: 7,
+        roomId: 10,
+        stars: 5,
+        review: 'This would be the best place we have stayed and we have traveled the world and stayed at some amazing places. The hosts created a very special place that is so unique and peaceful. The food at the restaurant was amazing which we would rate close a Michelin Star. We would very much highly recommend booking and stay here. Final words WOW what a amazing place!'
+      },
     ], {});
   },
 

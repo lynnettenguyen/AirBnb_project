@@ -110,4 +110,8 @@
   .all-rooms-div {
     margin: 40px 150px;
   }
+
+  .room-div {
+    margin: 10px;
+  }
 }

@@ -273,6 +273,36 @@ module.exports = {
         type: 'room',
         url: 'https://a0.muscache.com/im/pictures/fc73dd78-e097-4431-9937-5e706cd2e1f1.jpg?im_w=720'
       },
+      {
+        userId: 5,
+        roomId: 10,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/26229a9b-9c2c-4e36-bb6c-bf2ee22b1514.jpg?im_w=720'
+      },
+      {
+        userId: 5,
+        roomId: 10,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/77c3c61e-930a-4e7c-ab4d-59413c1f0b87.jpg?im_w=720'
+      },
+      {
+        userId: 5,
+        roomId: 10,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-53163431/original/9b4d7ede-b292-4604-8d2e-5f476fe4dd2d.jpeg?im_w=720'
+      },
+      {
+        userId: 5,
+        roomId: 10,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-53163431/original/e425157e-a94b-4e65-b606-be486d1434ac.jpeg?im_w=1200'
+      },
+      {
+        userId: 5,
+        roomId: 10,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/b1cb771a-54d4-47a4-8b10-c4428d7163e4.jpg?im_w=720'
+      },
     ], {});
 
   },

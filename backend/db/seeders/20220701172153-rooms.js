@@ -111,6 +111,18 @@ module.exports = {
         description: 'A small house,furnished entirely in natural wood, with a double bed and a bunk bed, fireplace and wood-burning oven. There is also a garden equipped with barbecues, sun loungers and sofas, with private access to the lake.',
         price: 255.00,
       },
+      {
+        ownerId: 5,
+        address: '181 Hua Hin 112 Rd Hua-Na21 Thap Tai, Hua Hin District',
+        city: 'Tambon Nong Kae',
+        state: 'Chang Wat Prachuap Khiri Khan',
+        country: 'Thailand',
+        lat: 12.499935,
+        lng: 99.932481,
+        name: 'Turtle Bay HuaHin Eco LuxeTurt Villa in Lotus Bay',
+        description: 'A unique Turtle Shape villa located in natural lotus pond surrounding by nature Khao Tao Valley and Sai Noi beach. Private one bed room studio villa comprising spacious bathroom and outdoor waterside living deck.',
+        price: 97.00,
+      },
     ], {});
   },
 

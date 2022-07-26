@@ -17,6 +17,7 @@
 .room-div {
   height: 490px;
   width: 400px;
+  margin: 10px;
 }
 
 .img-div {
@@ -83,6 +84,7 @@
   .room-div {
     height: 570px;
     width: 430px;
+    margin: 10px;
   }
 }
 
@@ -100,11 +102,16 @@
   .room-div {
     height: 520px;
     width: 410px;
+    margin: 10px;
   }
 }
 
 @media screen and (min-width: 1701px) {
   .all-rooms-div {
     margin: 40px 150px;
+  }
+
+  .room-div {
+    margin: 10px;
   }
 }

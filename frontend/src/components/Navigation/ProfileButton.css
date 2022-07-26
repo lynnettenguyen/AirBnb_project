@@ -48,16 +48,17 @@
   position: absolute;
   top: 95px;
   right: 48px;
-  width: 180px;
+  width: 240px;
   box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
   border-radius: 20px;
   background: white;
 }
 
 .logout-div,
-.account-div {
+.account-div,
+.link {
   font-size: 16px;
-  padding: 10px 70px 15px 20px;
+  padding: 15px 60px 15px 20px;
 }
 
 .logout-div {
@@ -68,10 +69,29 @@
 .account-div {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border-bottom: 1px rgba(128, 128, 128, 0.274) solid;
 }
 
-
 .logout-div:hover,
-.account-div:hover {
+.account-div:hover,
+.link:hover {
   background-color: #7171710e;
+}
+
+.link {
+  text-decoration: none;
+  color: black
+}
+
+.trips,
+.host-home {
+  border-bottom: 1px rgba(128, 128, 128, 0.274) solid;
+}
+
+.manage-listings, .host-home, .logout-div {
+  font-weight: 220;
+}
+
+.trips {
+  font-weight: 600;
 }

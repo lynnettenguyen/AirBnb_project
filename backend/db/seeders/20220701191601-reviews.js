@@ -106,16 +106,70 @@ module.exports = {
         review: 'To the team at Villa Samira, We enjoy our great stay here. Your warm welcome and hospitality is really touching. Thanks a million for your sweet, kind & professional service. Keep up the good work & spirit.'
       },
       {
-        userId: 1,
+        userId: 2,
         roomId: 8,
         stars: 4,
         review: 'We absolutely LOVED the house, location and staff at Enclave 7. It was perfect for an adults getaway and we had a fantastic time celebrating my birthday there.I would highly recommend staying at the home as the beach is beautiful and the home is beautiful.'
       },
       {
-        userId: 2,
+        userId: 6,
         roomId: 8,
         stars: 4,
         review: 'We had the best time. Amazing house for a big group of people, awesome location(right on the beach and close to the airport), and excellent recommendations for food, etc. Thank you!'
+      },
+      {
+        userId: 3,
+        roomId: 9,
+        stars: 5,
+        review: 'Hands down one of the most magical places I have ever stayed in. The lake and mountain view are beautiful and the house adds to all the charm with its fireplace, sauna, and beautiful rustic wood interior.'
+      },
+      {
+        userId: 5,
+        roomId: 9,
+        stars: 5,
+        review: 'This is the most incredible, spectacular place on the lake. You will not find a better place for a better price — trust me! The home has everything you need — including air conditioning! We arrived, set our bags down, and were swimming in the lake in front of the property within the first five minutes. A very clear & clean spot on the lake, too! From the back yard we watched the sunset over the top of Bellagio. Beautiful!'
+      },
+      {
+        userId: 2,
+        roomId: 10,
+        stars: 5,
+        review: 'Incredible experience! If you happen to be in this area, this is a must. It is super unique and very new inside and out. Check in and check out process was seamless and host is very helpful. Definitely recommend!'
+      },
+      {
+        userId: 1,
+        roomId: 10,
+        stars: 4,
+        review: 'This place is awesome and cute and the hosts are Super friendly! The room was spotless. It rained when we were there so it was really cozy inside. The cafe also serves really nice food and coffee. Definitely recommend staying here!'
+      },
+      {
+        userId: 7,
+        roomId: 10,
+        stars: 5,
+        review: 'This would be the best place we have stayed and we have traveled the world and stayed at some amazing places. The hosts created a very special place that is so unique and peaceful. The food at the restaurant was amazing which we would rate close a Michelin Star. We would very much highly recommend booking and stay here. Final words WOW what a amazing place!'
+      },
+      {
+        userId: 7,
+        roomId: 11,
+        stars: 4,
+        review: 'This is not just a great place to stay, it is a magical place to disconnect from the outside world and reconnect with each other.'
+      },
+      {
+        userId: 6,
+        roomId: 11,
+        stars: 5,
+        review: 'The reviews speak for themselves. It is such a nice escape to unwind and relax. It is remote, but you do have cell service and are close enough that you can explore surrounding areas like Cullman and Birmingham. We loved the privacy, listening to all the animals while drinking coffee outside, and exploring the property. They have thought of almost everything (extra batteries, toiletries, etc., bikes for riding around the property, etc.) We can’t wait to go back in winter to enjoy the pond more!'
+      },
+      {
+        userId: 1,
+        roomId: 12,
+        stars: 5,
+        review: 'STUNNING villa with authentic architecture and beautifully considered design. The villa provides everything you need to have a fantastic holiday with family or friends - pool, indoor and outdoor kitchen, pingpong table, sound system, hammocks and pool toys!'
+      },
+      {
+        userId: 2,
+        roomId: 12,
+        stars: 5,
+        review: 'My family and I had a wonderful stay in this home. The house is beautiful and the pool is sparkling and quite refreshing on the hot June days. We loved having the outdoor kitchen, and the house was equipped with everything we needed to take advantage of the lovely food available in the local markets. The house is very well located for exploring all of the wonderful nearby towns and for taking longer day trips. We are already looking forward to our return!'
       },
     ], {});
   },

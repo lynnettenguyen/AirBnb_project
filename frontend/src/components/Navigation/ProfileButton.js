@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './ProfileButton.css'
 import LoginFormModal from '../LoginFormModal';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -50,6 +50,9 @@ function ProfileButton({ user }) {
                 <div className="account-div">
                   {user.email}
                 </div>
+                <Link to="/trips" className="link trips">Trips</Link>
+                <Link to="/manage-listings" className="link manage-listings">Manage Listings</Link>
+                <Link to="/host-your-home" className="link host-home">Host your Home</Link>
                 <div className="logout-div" onClick={logout}>Log Out</div>
               </div>
             </div>

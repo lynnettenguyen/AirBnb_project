@@ -3,14 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllRooms, findRoomById, listAllRooms } from "../../store/rooms";
 import "./RoomDetails.css"
+import EditListing from "../EditListing";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
   roomId = Number(roomId)
 
   const dispatch = useDispatch()
-
   const room = useSelector((state) => state.rooms[roomId])
+  const sessionUser = useSelector(state => state.session.user);
+
+  const [page, setPage] = useState(1)
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
 
@@ -20,22 +23,49 @@ const RoomDetails = () => {
   const wholeNumbers = [1, 2, 3, 4, 5]
   if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
 
+  const returnToListing = () => {
+    setPage(1)
+  }
+
+  const handleEdit = (e) => {
+    e.preventDefault()
+    setPage(2)
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault()
+  }
+
   useEffect(() => {
     dispatch(findRoomById(roomId))
   }, [dispatch])
 
   return (
     <>
-      <div className="whole-page">
+      {page === 1 && <div className="whole-page">
         <div className="left-space"></div>
         <div className="room-content">
-          <div className="room-name">{room?.name}</div>
-          <div className="room-information-top">
-            <span><i class="fa-solid fa-star"></i>{avgStarRating}</span>
-            <span className="span-separator">·</span>
-            <span>{`${room?.numReviews} reviews`}</span>
-            <span className="span-separator">·</span>
-            <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+          <div className="room-top-content">
+            <div>
+              <div className="room-name">{room?.name}</div>
+              <div className="room-information-top">
+                <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
+                <span className="span-separator">·</span>
+                <span>{`${room?.numReviews} reviews`}</span>
+                <span className="span-separator">·</span>
+                <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+              </div>
+            </div>
+            <div>
+              {sessionUser ?
+                <>
+                  {sessionUser?.id === room?.ownerId &&
+                    <div>
+                      <button onClick={handleEdit}>Edit Listing</button>
+                      <button onClick={handleDelete}>Delete Listing</button>
+                    </div>}
+                </> : <></>}
+            </div>
           </div>
           <div className="room-images">
             <div className="left-image-div">
@@ -57,8 +87,11 @@ const RoomDetails = () => {
             <div className="room-description">{room?.description}</div>
             <div className="reservation-div">
               <div className="reserve-details">
-                <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div><span>night</span>
-                <span className="reserve-rating"><i class="fa-solid fa-star"></i>{avgStarRating}</span>
+                <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
+                <span>night</span>
+                <span className="reserve-rating">
+                  <i className="fa-solid fa-star"></i>
+                  {avgStarRating}</span>
                 <span className="reserve-review">· {room?.numReviews} reviews</span>
               </div>
               <div>
@@ -108,6 +141,8 @@ const RoomDetails = () => {
         </div>
         <div className="right-space"></div>
       </div>
+      }
+      {page === 2 && <EditListing listingId={roomId} returnToListing={returnToListing} />}
     </>
   )
 }

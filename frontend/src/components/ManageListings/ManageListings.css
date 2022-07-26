@@ -1,0 +1,40 @@
+.user-room-info {
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+.user-reservation-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border-color: #D70466;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  height: 2rem;
+  width: 11rem;
+  margin-top: 17rem;
+}
+
+.all-user-rooms-div {
+  display: grid;
+  grid-template-columns: 3fr 3fr;
+}
+
+.user-room-div {
+  display: flex;
+  width: 60rem;
+}
+
+.user-img-div {
+  width: 35rem;
+  height: 25rem;
+  padding: 0.5rem;
+}
+
+.user-room-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}

@@ -40,6 +40,7 @@ export const listAllRooms = () => async (dispatch) => {
   if (response.ok) {
     const roomsObj = await response.json();
     // console.log(typeof roomsObj.Rooms)
+    console.log(roomsObj)
     dispatch(listRooms(roomsObj.Rooms))
   }
   return response;
@@ -55,12 +56,12 @@ export const findRoomById = (roomId) => async (dispatch) => {
 }
 
 export const updateRoom = (roomData) => async (dispatch) => {
-  const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData
+  const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
   const response = await fetch(`/api/rooms/${roomId}`, {
     method: "PUT",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      ownerId, address, city, state, country, lat, lng, name, description, price
+      roomId, ownerId, address, city, state, country, lat, lng, name, description, price
     })
   })
   if (response.ok) {

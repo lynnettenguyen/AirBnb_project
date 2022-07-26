@@ -10,36 +10,41 @@ const ManageListings = () => {
   const allRooms = useSelector(getAllRooms)
   const userRooms = allRooms.filter(room => room.ownerId === sessionUser.id)
 
-  // console.log(myRooms)
-  // console.log(userRooms)
-  // const sessionUser = useSelector(state => state.session.user);
-
   useEffect(() => {
     dispatch(listAllRooms())
   }, [])
 
+  const manageReservations = () => { }
+
   return (
-    <>
-      <div className="all-rooms-div">
+    <div className="user-rooms-whole-page">
+      <div className="user-rooms-left"></div>
+      <div className="all-user-rooms-div">
         {userRooms?.map((room, i) => {
           return (
-            <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
-              <div className={`room-div room-div${i}`}>
-                <div className="img-div">
-                  <img className="room-img" src={`${room?.images[0]?.url}`} alt="preview of room"></img>
+            <>
+              <div className={`user-room-div user-room-div${i}`}>
+                  <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
+                <div className="user-img-div">
+                    <img className="user-room-img" src={`${room?.images[0]?.url}`} alt="preview of room"></img>
                 </div>
-                <div className="room-info">
-                  <p>{room.name}</p>
-                  <p className="room-city-state">{`${room?.city}, ${room?.state}`}</p>
-                  <p className="room-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</p>
+                  </Link>
+                <div className="user-room-info">
+                  <div>{room.name}</div>
+                  <div className="user-room-city-state">{`${room?.city}, ${room?.state}`}</div>
+                  <div className="user-room-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
+                  <div>
+                    <button onClick={manageReservations} className="user-reservation-button">Manage Reservations</button>
+                  </div>
                 </div>
               </div>
-            </Link>
+            </>
           )
         })
         }
       </div>
-    </>
+      <div className="user-rooms-right"></div>
+    </div>
   )
 }
 

@@ -22,7 +22,6 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div>
-          {/* <ProfileButton user={sessionUser} /> */}
           <span className="login">
             <LoginFormModal />
           </span>

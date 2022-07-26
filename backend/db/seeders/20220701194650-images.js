@@ -337,7 +337,7 @@ module.exports = {
         userId: 4,
         roomId: 12,
         type: 'room',
-        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-46365978/original/1b31606b-36f6-46d8-8547-1f84e0933847.jpeg?im_w=720'
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-46365978/original/b8aea442-9f30-4e6a-84ff-2bec8e525f64.jpeg?im_w=1200'
       },
       {
         userId: 4,

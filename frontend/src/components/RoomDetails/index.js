@@ -100,7 +100,7 @@ const RoomDetails = () => {
                 <div className="price">$$$$</div>
                 <div>Service Fee</div>
                 <div className="price">$$$$</div>
-                <div>Total before taxes</div>
+                <div>Total before Taxes</div>
                 <div className="price">$$$$</div>
               </div>
             </div>

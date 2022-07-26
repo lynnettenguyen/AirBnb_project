@@ -25,6 +25,8 @@
   object-fit: cover;
   display: flex;
   justify-content: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .right-image-div {
@@ -46,6 +48,14 @@
   width: 100%;
   object-fit: cover;
   max-height: 23rem;
+}
+
+.side-images2 {
+  border-top-right-radius: 20px;
+}
+
+.side-images4 {
+  border-bottom-right-radius: 20px;
 }
 
 .side-image-div {
@@ -130,6 +140,7 @@
   font-weight: 200;
   justify-content: center;
   margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .reserve-price {
@@ -138,13 +149,13 @@
 }
 
 .reserve-rating {
-  font-size: 16px;
+  font-size: 18px;
   margin-left: 5rem;
   margin-right: 0.5rem;
 }
 
 .reserve-review {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .reserve-button {
@@ -170,7 +181,6 @@
 
 .price {
   display: flex;
-  justify-content: flex-end;
 }
 
 @media screen and (max-width: 1700px) {

@@ -28,7 +28,7 @@ const RoomDetails = () => {
     <>
       <div className="whole-page">
         <div className="left-space"></div>
-        <div className="entire-room-page">
+        <div className="room-content">
           <div className="room-name">{room?.name}</div>
           <div className="room-information-top">
             <span><i class="fa-solid fa-star"></i>{avgStarRating}</span>

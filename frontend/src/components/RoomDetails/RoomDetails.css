@@ -3,22 +3,19 @@
   grid-template-columns: 1fr 5fr 1fr;
 }
 
-.entire-room-page {
-  margin: 2rem 13rem;
+.room-content {
+  margin: 2rem;
 }
 
 .room-images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  place-content: center;
-  align-items: center;
+  place-items: center;
 }
 
 .left-image-div {
   height: 44rem;
   width: 50rem;
-  display: flex;
-  justify-content: center;
   margin: 0.5rem;
 }
 
@@ -26,6 +23,8 @@
   height: 100%;
   max-width: 100%;
   object-fit: cover;
+  display: flex;
+  justify-content: center;
 }
 
 .right-image-div {
@@ -131,7 +130,7 @@
 
 .reserve-rating {
   font-size: 18px;
-  margin-left: 9rem;
+  margin-left: 8rem;
   margin-right: 0.5rem;
 }
 

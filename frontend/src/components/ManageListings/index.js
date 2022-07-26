@@ -17,24 +17,24 @@ const ManageListings = () => {
   const manageReservations = () => { }
 
   return (
-    <div className="user-rooms-whole-page">
-      <div className="user-rooms-left"></div>
-      <div className="all-user-rooms-div">
+    <div className="manage-listing-page">
+      <div className="manage-listings-left"></div>
+      <div className="all-listings-div">
         {userRooms?.map((room, i) => {
           return (
             <>
-              <div className={`user-room-div user-room-div${i}`}>
+              <div className={`listing-div listing-div${i}`}>
                   <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
                 <div className="user-img-div">
-                    <img className="user-room-img" src={`${room?.images[0]?.url}`} alt="preview of room"></img>
+                    <img className="listing-img" src={`${room?.images[0]?.url}`} alt="preview of room"></img>
                 </div>
                   </Link>
-                <div className="user-room-info">
+                <div className="listing-info">
                   <div>{room.name}</div>
-                  <div className="user-room-city-state">{`${room?.city}, ${room?.state}`}</div>
-                  <div className="user-room-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
+                  <div className="listing-city-state">{`${room?.city}, ${room?.state}`}</div>
+                  <div className="listing-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
                   <div>
-                    <button onClick={manageReservations} className="user-reservation-button">Manage Reservations</button>
+                    <button onClick={manageReservations} className="listings-reservation-button">Manage Reservations</button>
                   </div>
                 </div>
               </div>
@@ -43,7 +43,7 @@ const ManageListings = () => {
         })
         }
       </div>
-      <div className="user-rooms-right"></div>
+      <div className="manage-listings-right"></div>
     </div>
   )
 }

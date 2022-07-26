@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateRoom } from "../../store/rooms";
+import { updateRoom, findRoomById } from "../../store/rooms";
 import "./EditListing.css"
 
 const EditListing = ({ listingId, returnToListing }) => {
@@ -37,11 +37,11 @@ const EditListing = ({ listingId, returnToListing }) => {
       description,
       price,
     }
-    console.log('ROOMDATA', roomData)
 
     const response = await dispatch(updateRoom(roomData))
 
     if (response) {
+      dispatch(findRoomById(listingId))
       return returnToListing()
     }
   }

@@ -116,18 +116,6 @@ const roomReducer = (state = initialState, action) => {
       return newState;
     }
     case EDIT_ROOM: {
-      // const currentState = JSON.parse(JSON.stringify({...state}))
-      // currentState[action.room.id.address] = action.room.address;
-      // currentState[action.room.id.city] = action.room.city;
-      // currentState[action.room.id.state] = action.room.state;
-      // currentState[action.room.id.country] = action.room.country;
-      // currentState[action.room.id.lat] = action.room.lat;
-      // currentState[action.room.id.lng] = action.room.lng;
-      // currentState[action.room.id.name] = action.room.name;
-      // currentState[action.room.id.description] = action.room.description;
-      // currentState[action.room.id.price] = action.room.price;
-      // return currentState;
-
       newState[action.room.id] = action.room;
       return newState;
     }

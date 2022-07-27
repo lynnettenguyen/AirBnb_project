@@ -55,12 +55,11 @@ export const findRoomById = (roomId) => async (dispatch) => {
 }
 
 export const hostNewRoom = (roomData) => async (dispatch) => {
-  const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
-  const response = await csrfFetch(`/api/rooms/${roomId}`, {
+  const {ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
+  const response = await csrfFetch(`/api/rooms`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      roomId, ownerId, address, city, state, country, lat, lng, name, description, price
+      ownerId, address, city, state, country, lat, lng, name, description, price
     })
   })
   if (response.ok) {

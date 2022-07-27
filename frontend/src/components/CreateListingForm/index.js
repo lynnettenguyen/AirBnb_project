@@ -195,7 +195,7 @@ const CreateListingForm = () => {
             <div>
               <input
                 type="text"
-                placeholder="$149"
+                placeholder="$"
                 className="create-input"
                 value={price}
                 onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
@@ -203,8 +203,8 @@ const CreateListingForm = () => {
               />
             </div>
             <div className="back-next-buttons smaller-buttons">
-              <button onClick={() => setPage(3)} className="back-button">Back</button>
-              <button onClick={() => { setPage(5); setCheckInput(true) }} className="next-button" disabled={checkInput}>Submit</button>
+              <button onClick={() => setPage(4)} className="back-button">Back</button>
+              <button onClick={() => { setPage(6); setCheckInput(true) }} className="next-button" disabled={checkInput}>Submit</button>
             </div>
           </div>
         </div>

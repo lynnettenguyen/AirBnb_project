@@ -23,6 +23,11 @@ const CreateListingForm = () => {
   const [price, setPrice] = useState("")
   const [page, setPage] = useState(1)
   const [checkInput, setCheckInput] = useState(true)
+  const [image1, setImage1] = useState("")
+  const [image2, setImage2] = useState("")
+  const [image3, setImage3] = useState("")
+  const [image4, setImage4] = useState("")
+  const [image5, setImage5] = useState("")
   const [validationErrors, setValidationErrors] = useState([])
 
   const toggleNext = (e) => {
@@ -82,7 +87,7 @@ const CreateListingForm = () => {
     if (response) {
       setRoomId(response.id)
       dispatch(findRoomById(roomId))
-      history.push(`/rooms/${roomId}`)
+      history.push(`/rooms/${response.id}`)
     }
   }
 
@@ -107,10 +112,15 @@ const CreateListingForm = () => {
         {page >= 2 &&
           <section className={page === 2 ? "block" : "hidden"}>
             <div className="create-content">
-              <div className="create-header">What will you name your place?</div>
+              <div className="create-header">Let's give your place a name?</div>
               <div className="create-content-right">
                 <div>
                   <button onClick={() => { setName("demo title"); setCheckInput(false) }}>demo title</button>
+                </div>
+                <div>
+                  <label>
+                    Create your title
+                  </label>
                 </div>
                 <div>
                   <input
@@ -133,7 +143,7 @@ const CreateListingForm = () => {
         {page >= 3 &&
           <section className={page === 3 ? "block" : "hidden"}>
             <div className="create-content">
-              <div className="create-header">Where is your place located?</div>
+              <div className="create-header">Where's your place located?</div>
               <div className="create-content-address">
                 <div>
                   <button onClick={setDemoAddress}>demo address</button>
@@ -142,7 +152,7 @@ const CreateListingForm = () => {
                   <input
                     type="text"
                     placeholder="address"
-                    className="location-input"
+                    className="multi-input"
                     value={address}
                     onChange={e => { setAddress(e.target.value); }}
                     required
@@ -152,7 +162,7 @@ const CreateListingForm = () => {
                   <input
                     type="text"
                     placeholder="city"
-                    className="location-input"
+                    className="multi-input"
                     value={city}
                     onChange={e => { setCity(e.target.value); }}
                     required
@@ -162,7 +172,7 @@ const CreateListingForm = () => {
                   <input
                     type="text"
                     placeholder="state"
-                    className="location-input"
+                    className="multi-input"
                     value={state}
                     onChange={e => { setState(e.target.value); }}
                     required
@@ -172,7 +182,7 @@ const CreateListingForm = () => {
                   <input
                     type="text"
                     placeholder="country"
-                    className="location-input"
+                    className="multi-input"
                     value={country}
                     onChange={e => { setCountry(e.target.value); }}
                     required
@@ -182,7 +192,7 @@ const CreateListingForm = () => {
                   <input
                     type="text"
                     placeholder="latitude"
-                    className="location-input"
+                    className="multi-input"
                     value={lat}
                     onChange={e => { setLat(e.target.value); }}
                     required
@@ -192,7 +202,7 @@ const CreateListingForm = () => {
                   <input
                     type="text"
                     placeholder="longitude"
-                    className="location-input"
+                    className="multi-input"
                     value={lng}
                     onChange={e => { setLng(e.target.value); }}
                     required
@@ -209,8 +219,13 @@ const CreateListingForm = () => {
         {page >= 4 &&
           (<section className={page === 4 ? "block" : "hidden"}>
             <div className="create-content">
-              <div className="create-header">How will you describe your place?</div>
+              <div className="create-header">Now, let's describe your place</div>
               <div className="create-content-right">
+                <div>
+                  <label>
+                    Create Your Description
+                  </label>
+                </div>
                 <div>
                   <textarea
                     type="text"
@@ -232,7 +247,71 @@ const CreateListingForm = () => {
         {page >= 5 &&
           (<section className={page === 5 ? "block" : "hidden"}>
             <div className="create-content">
-              <div className="create-header">How much will you charge per night?</div>
+              <div className="create-header">Let's add some photos of your place</div>
+
+              <div className="create-content-right">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="image.url"
+                    className="multi-input"
+                    value={image1}
+                    onChange={e => { setImage1(e.target.value); setCheckInput(false) }}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="image.url"
+                    className="multi-input"
+                    value={image2}
+                    onChange={e => { setImage2(e.target.value); setCheckInput(false) }}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="image.url"
+                    className="multi-input"
+                    value={image3}
+                    onChange={e => { setImage3(e.target.value); setCheckInput(false) }}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="image.url"
+                    className="multi-input"
+                    value={image4}
+                    onChange={e => { setImage4(e.target.value); setCheckInput(false) }}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="image.url"
+                    className="multi-input"
+                    value={image5}
+                    onChange={e => { setImage5(e.target.value); setCheckInput(false) }}
+                    required
+                  />
+                </div>
+                <div className="back-next-buttons">
+                  <button onClick={() => setPage(4)} className="back-button">Back</button>
+                  <button onClick={() => setPage(6)} className="next-button" disabled={checkInput}>Next</button>
+                </div>
+              </div>
+            </div>
+          </section>)
+        }
+        {page >= 6 &&
+          (<section className={page === 6 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">Now for the fun part - set your price</div>
               <div className="create-content-right">
                 <div>
                   <input
@@ -245,8 +324,8 @@ const CreateListingForm = () => {
                   />
                 </div>
                 <div className="back-next-buttons">
-                  <button onClick={() => setPage(4)} className="back-button">Back</button>
-                  <button type="submit" onClick={() => { setPage(6) }} className="next-button" disabled={checkInput}>Submit</button>
+                  <button onClick={() => setPage(5)} className="back-button">Back</button>
+                  <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
                 </div>
               </div>
             </div>

@@ -46,8 +46,6 @@ const RoomDetails = () => {
     dispatch(findRoomById(roomId))
   }, [dispatch])
 
-  console.log(room.Reviews.length)
-
   return (
     <>
       {page === 1 && <div className="whole-page">
@@ -60,7 +58,7 @@ const RoomDetails = () => {
                 <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
                 <span className="span-separator">·</span>
                 {/* <span>{`${room?.numReviews ? room.numReviews : 0} reviews`}</span> */}
-                <span>{`${room?.Reviews.length} reviews`}</span>
+                <span>{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
                 <span className="span-separator">·</span>
                 <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
               </div>
@@ -103,7 +101,7 @@ const RoomDetails = () => {
                   {avgStarRating}</span>
                 <span className="span-separator-smaller">·</span>
                 {/* <span className="reserve-review">{`${room?.numReviews ? room.numReviews : 0} reviews`}</span> */}
-                <span className="reserve-review">{`${room?.Reviews.length} reviews`}</span>
+                <span className="reserve-review">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
               </div>
               <div>
                 <form>

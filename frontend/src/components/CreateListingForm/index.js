@@ -185,7 +185,7 @@ const CreateListingForm = () => {
                     Create your title
                   </label>
                   <div className="right-content-demo">
-                    <button onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }}>demo title</button>
+                    <button onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -211,8 +211,11 @@ const CreateListingForm = () => {
               <div className="create-header">Where's your place located?</div>
               <div className="create-content-right">
                 <div className="right-content-label">
-                  <div>
-                    <button onClick={setDemoAddress}>demo address</button>
+                  <label className="create-new-label">
+                    Provide your location
+                  </label>
+                  <div className="right-content-demo">
+                    <button onClick={setDemoAddress} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -292,12 +295,12 @@ const CreateListingForm = () => {
               <div className="create-content-right">
                 <div className="right-content-label">
                   <div>
-                    <label>
+                    <label className="create-new-label">
                       Create Your Description
                     </label>
                   </div>
-                  <div>
-                    <button onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restroom, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }}>demo description</button>
+                  <div className="right-content-demo">
+                    <button onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restroom, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -325,7 +328,12 @@ const CreateListingForm = () => {
               <div className="create-header">Now for the fun part - set your price</div>
               <div className="create-content-right">
                 <div className="right-content-label">
-                  <button type="button" onClick={() => { setPrice(456); setCheckInput(false) }}>demo price</button>
+                  <label className="create-new-label">
+                    Create your price
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setPrice(456); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
                 </div>
                 <div className="right-content-input">
                   <div>
@@ -357,8 +365,11 @@ const CreateListingForm = () => {
               <div className="create-header">Let's add some photos of your place</div>
               <div className="create-content-right">
                 <div className="right-content-label">
-                  <div>
-                    <button type="button" onClick={setDemoImages}>demo images</button>
+                  <label className="create-new-label">
+                    Upload your images
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={setDemoImages} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -413,11 +424,11 @@ const CreateListingForm = () => {
                     />
                   </div>
                 </div>
-              <div className="right-content-button">
-                <div className="back-next-buttons">
-                  <button className="back-button not-visible">Back</button>
-                  <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
-                </div>
+                <div className="right-content-button">
+                  <div className="back-next-buttons">
+                    <button className="back-button not-visible">Back</button>
+                    <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
+                  </div>
                 </div>
               </div>
             </div>

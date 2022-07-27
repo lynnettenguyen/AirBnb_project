@@ -188,6 +188,27 @@ const CreateListingForm = () => {
           </div>
         </div>
       }
+      {page === 5 &&
+        <div className="create-content">
+          <div className="create-header">How much will you charge per night?</div>
+          <div className="create-content-right">
+            <div>
+              <input
+                type="text"
+                placeholder="$149"
+                className="create-input"
+                value={price}
+                onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
+                required
+              />
+            </div>
+            <div className="back-next-buttons smaller-buttons">
+              <button onClick={() => setPage(3)} className="back-button">Back</button>
+              <button onClick={() => { setPage(5); setCheckInput(true) }} className="next-button" disabled={checkInput}>Submit</button>
+            </div>
+          </div>
+        </div>
+      }
       <div></div>
     </div>
   )

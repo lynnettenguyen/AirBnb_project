@@ -1,8 +1,8 @@
 .reservation-div {
   border: 1px grey solid;
   border-radius: 20px;
-  margin: 0.6rem 1rem 0 0;
-  padding: 1.4rem;
+  margin-top: 0.6rem;
+  padding: 1.5rem;
 }
 
 .reservation-dates {

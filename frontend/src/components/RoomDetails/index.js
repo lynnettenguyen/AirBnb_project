@@ -73,20 +73,22 @@ const RoomDetails = () => {
                 </> : <></>}
             </div>
           </div>
-          <div className="room-images">
-            <div className="left-image-div">
-              {room?.images &&
-                <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
-            </div>
-            <div className="right-image-div">
-              {room?.images?.map((image, i) => {
-                if (i > 0)
-                  return (
-                    <div className="side-image-div" key={image.url}>
-                      <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
-                    </div>
-                  )
-              })}
+          <div className="outer-room-images">
+            <div className="room-images">
+              <div className="left-image-div">
+                {room?.images &&
+                  <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
+              </div>
+              <div className="right-image-div">
+                {room?.images?.map((image, i) => {
+                  if (i > 0)
+                    return (
+                      <div className="side-image-div" key={image.url}>
+                        <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
+                      </div>
+                    )
+                })}
+              </div>
             </div>
           </div>
           <div className="room-information-bottom">

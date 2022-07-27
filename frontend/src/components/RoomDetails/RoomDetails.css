@@ -5,18 +5,27 @@
 
 .room-content {
   margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.outer-room-images {
+  display: flex;
+  justify-content: center;
 }
 
 .room-images {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 860px);
   place-items: center;
 }
 
 .left-image-div {
   height: 44rem;
-  width: 50rem;
   padding-right: 0.5rem;
+  width: 55rem;
+  margin-right: 1.6rem;
 }
 
 .main-image {
@@ -30,10 +39,9 @@
 }
 
 .right-image-div {
-  box-sizing: border-box;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(2, 430px);
+  grid-template-rows: repeat(2, 360px);
   height: 45rem;
   place-content: center;
   width: 50rem;
@@ -221,19 +229,18 @@
 }
 
 @media screen and (max-width: 1700px) {
-  .left-image-div {
-    height: 35rem;
-    width: 38rem;
-    margin: 0.2rem;
+  .room-images {
+    grid-template-columns: repeat(2, 680px);
   }
 
   .right-image-div {
-    height: 36rem;
-    width: 38rem;
+    grid-template-columns: repeat(2, 370px);
+    grid-template-rows: repeat(2, 360px);
   }
 
-  .side-images {
-    max-height: 20rem;
+  .left-image-div {
+    width: 40rem;
+    margin-right: 1.6rem;
   }
 }
 

@@ -19,7 +19,7 @@ const HomePage = () => {
   return (
     <div className="all-rooms-page">
       <div></div>
-      <div>
+      <div className="outer-rooms-div">
         <div className="all-rooms-div">
           {allRooms?.map((room, i) => {
 

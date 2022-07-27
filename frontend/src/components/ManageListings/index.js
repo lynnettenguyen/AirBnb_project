@@ -24,15 +24,17 @@ const ManageListings = () => {
           return (
             <>
               <div className={`listing-div listing-div${i}`}>
-                  <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
-                <div className="user-img-div">
+                <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
+                  <div className="user-img-div">
                     <img className="listing-img" src={`${room?.images[0]?.url}`} alt="preview of room"></img>
-                </div>
-                  </Link>
+                  </div>
+                </Link>
                 <div className="listing-info">
-                  <div>{room.name}</div>
-                  <div className="listing-city-state">{`${room?.city}, ${room?.state}`}</div>
-                  <div className="listing-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
+                  <div>
+                    <div className="listing-name">{room.name}</div>
+                    <div className="listing-city-state">{`${room?.city}, ${room?.state}`}</div>
+                    <div className="listing-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
+                  </div>
                   <div>
                     <button onClick={manageReservations} className="listings-reservation-button">Manage Reservations</button>
                   </div>

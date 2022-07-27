@@ -1,8 +1,19 @@
+.manage-listing-page {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
 .listing-info {
   padding: 0.6rem;
   margin-top: 0.5rem;
   font-size: 1.2rem;
   line-height: 1.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.listing-city-state, .listing-price {
+  font-size: 1rem;
 }
 
 .listings-reservation-button {
@@ -13,17 +24,17 @@
   font-weight: 600;
   height: 2rem;
   width: 11rem;
-  margin-top: 17rem;
 }
 
 .listing-div {
   display: flex;
-  width: 60rem;
+  justify-content: center;
+  width: 100rem;
 }
 
 .user-img-div {
-  width: 35rem;
-  height: 25rem;
+  width: 45rem;
+  height: 10rem;
   padding: 0.5rem;
 }
 

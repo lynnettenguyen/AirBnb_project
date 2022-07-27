@@ -160,13 +160,33 @@ const CreateListingForm = () => {
                 required
               />
             </div>
-            <div className="back-next-buttons-smaller">
+            <div className="back-next-buttons smaller-buttons">
               <button onClick={() => setPage(2)} className="back-button">Back</button>
               <button onClick={() => {setPage(4); setCheckInput(true)}} className="next-button" disabled={checkInput}>Next</button>
             </div>
           </div>
         </div>
-
+      }
+      {page === 4 &&
+        <div className="create-content">
+          <div className="create-header">How will you describe your place?</div>
+          <div className="create-content-right">
+            <div>
+              <textarea
+                type="text"
+                placeholder="This is a beautiful beachfront, 3 bedroom cozy family cabin/home with breathtaking views of the lake! Enjoy two outside decks for relaxation and entertainment and the panoramic views of the West shore."
+                className="create-input-textarea"
+                value={description}
+                onChange={e => { setDescription(e.target.value); setCheckInput(false)}}
+                required
+              ></textarea>
+            </div>
+            <div className="back-next-buttons smaller-buttons">
+              <button onClick={() => setPage(3)} className="back-button">Back</button>
+              <button onClick={() => { setPage(5); setCheckInput(true) }} className="next-button" disabled={checkInput}>Next</button>
+            </div>
+          </div>
+        </div>
       }
       <div></div>
     </div>

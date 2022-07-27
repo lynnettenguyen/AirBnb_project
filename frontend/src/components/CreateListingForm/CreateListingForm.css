@@ -49,20 +49,20 @@
 }
 
 .back-next-buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
   height: 25rem;
 }
 
-.back-next-buttons-smaller {
+.back-next-buttons {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.smaller-buttons {
   height: 6.5rem;
 }
 
-.create-input{
+.create-input {
   margin-top: 10rem;
   width: 30rem;
 }
@@ -101,4 +101,15 @@
 
 .location-input {
   width: 30rem;
+}
+
+.create-input-textarea {
+  margin-top: 10rem;
+  width: 30rem;
+  height: 17rem;
+  border-radius: 10px;
+  resize: none;
+  margin-bottom: 4rem;
+  font-size: 1rem;
+  padding: 1rem;
 }

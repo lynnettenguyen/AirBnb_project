@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { hostNewRoom, findRoomById } from "../../store/rooms";
 import "./CreateListingForm.css"
+import { uploadNewImage } from "../../store/images";
 
 const CreateListingForm = () => {
   const dispatch = useDispatch()
@@ -100,12 +101,53 @@ const CreateListingForm = () => {
       price,
     }
 
-    const response = await dispatch(hostNewRoom(roomData))
+    const roomResponse = await dispatch(hostNewRoom(roomData))
 
-    if (response) {
-      setRoomId(response.id)
-      dispatch(findRoomById(roomId))
-      history.push(`/rooms/${response.id}`)
+    if (roomResponse) {
+      setRoomId(roomResponse.id)
+
+      const imageData1 = {
+        userId,
+        roomId,
+        type: "room",
+        url: image1
+      }
+
+      const imageData2 = {
+        userId,
+        roomId,
+        type: "room",
+        url: image2
+      }
+
+      const imageData3 = {
+        userId,
+        roomId,
+        type: "room",
+        url: image3
+      }
+
+      const imageData4 = {
+        userId,
+        roomId,
+        type: "room",
+        url: image4
+      }
+
+      const imageData5 = {
+        userId,
+        roomId,
+        type: "room",
+        url: image5
+      }
+
+      const newImage = await dispatch(uploadNewImage(imageData1))
+
+      if (newImage) {
+        dispatch(findRoomById(roomId))
+        history.push(`/rooms/${roomResponse.id}`)
+      }
+
     }
   }
 

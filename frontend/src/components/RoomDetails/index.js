@@ -93,9 +93,10 @@ const RoomDetails = () => {
                 <div className="reserve-price">{`$${room?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
                 <span>night</span>
                 <span className="reserve-rating">
-                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star smaller"></i>
                   {avgStarRating}</span>
-                <span className="reserve-review">· {room?.numReviews} reviews</span>
+                <span className="span-separator-smaller">·</span>
+                <span className="reserve-review">{`${room?.numReviews} reviews`}</span>
               </div>
               <div>
                 <form>

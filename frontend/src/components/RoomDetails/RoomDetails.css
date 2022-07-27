@@ -88,9 +88,18 @@
   margin-right: 7px;
 }
 
+.fa-star.smaller {
+  font-size: 1rem;
+}
+
 .span-separator {
   font-size: 22px;
   margin: 0 15px;
+}
+
+.span-separator-smaller {
+  font-size: 2rem;
+  padding: 0 0.5rem 0.3rem 0.1rem;
 }
 
 .session-user-buttons {
@@ -177,13 +186,13 @@
 }
 
 .reserve-rating {
-  font-size: 18px;
+  font-size: 1.1rem;
   margin-left: 5rem;
   margin-right: 0.5rem;
 }
 
 .reserve-review {
-  font-size: 18px;
+  font-size: 1.1rem;
 }
 
 .reserve-button {

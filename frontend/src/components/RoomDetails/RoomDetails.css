@@ -16,6 +16,7 @@
 .left-image-div {
   height: 44rem;
   width: 50rem;
+  padding-right: 0.5rem;
 }
 
 .main-image {
@@ -223,7 +224,7 @@
   .left-image-div {
     height: 35rem;
     width: 38rem;
-    margin: 0.5rem;
+    margin: 0.2rem;
   }
 
   .right-image-div {

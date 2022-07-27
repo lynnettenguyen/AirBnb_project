@@ -9,8 +9,24 @@
   align-items: center;
 }
 
+.create-content-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-content-input {
+  height: 30rem;
+}
+
+
+.header-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .create-header {
-  background: linear-gradient(#E61E4D, #CB277E, #C92076, #85209F, #651E9F, #3B07BB);
+  background: linear-gradient(#e1005a, #d70069, #c90079, #b6008b, #9c009c, #7800ac, #3b07bb);
   height: 45rem;
   width: 35rem;
   margin: 5rem 5rem 0 0;
@@ -19,9 +35,10 @@
   align-items: center;
   color: white;
   font-size: 4rem;
+  border-radius: 20px;
 }
 
-.create-new-listing {
+.create-new-label {
   font-size: 1.7rem;
   margin-bottom: 1rem;
 }
@@ -33,8 +50,12 @@
   border-radius: 10px;
   background: none;
   margin-left: 1rem;
-  width: 20rem;
+  width: 22rem;
   border: rgba(128, 128, 128, 0.338) 1px solid;
+}
+
+.white-space {
+  padding: 4rem;
 }
 
 .fa-plus {
@@ -49,7 +70,7 @@
 }
 
 .back-next-buttons {
-  height: 25rem;
+  height: 5rem;
 }
 
 .back-next-buttons {
@@ -58,12 +79,7 @@
   align-items: flex-end;
 }
 
-.smaller-buttons {
-  height: 6.5rem;
-}
-
 .create-input {
-  margin-top: 10rem;
   width: 30rem;
 }
 
@@ -95,16 +111,11 @@
   color: white;
 }
 
-.create-content-address {
-  margin-top: 6rem;
-}
-
-.location-input {
+.multi-input {
   width: 30rem;
 }
 
 .create-input-textarea {
-  margin-top: 10rem;
   width: 30rem;
   height: 17rem;
   border-radius: 10px;
@@ -112,4 +123,8 @@
   margin-bottom: 4rem;
   font-size: 1rem;
   padding: 1rem;
+}
+
+.hidden {
+  display: none;
 }

@@ -1,9 +1,13 @@
 // backend/routes/api/images.js
 const express = require('express')
-const { requireAuth} = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { Image, sequelize } = require('../../db/models');
 const router = express.Router();
 
+router.get('/', [requireAuth], async (req, res) => {
+    const images = await Image.findAll()
+    return res.json({ images })
+})
 
 router.delete('/:imageId', requireAuth, async (req, res, next) => {
     const deleteImage = await Image.findOne({

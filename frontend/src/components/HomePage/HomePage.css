@@ -1,12 +1,12 @@
-.user-rooms-whole-page {
+.all-rooms-page {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 .all-rooms-div {
   padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 420px);
   place-items: center;
 }
 
@@ -71,6 +71,10 @@
   color: black;
 }
 
+.number-rating {
+  font-weight: 250;
+}
+
 @media screen and (max-width: 990px) {
   .all-rooms-div {
     display: grid;
@@ -91,7 +95,7 @@
 @media screen and (min-width: 991px) and (max-width: 1300px) {
   .all-rooms-div {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 510px);
   }
 
   .img-div {
@@ -109,7 +113,7 @@
 @media screen and (min-width: 1301px) and (max-width: 1700px) {
   .all-rooms-div {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 460px);
   }
 
   .img-div {

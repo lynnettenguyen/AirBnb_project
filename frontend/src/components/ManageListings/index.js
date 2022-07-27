@@ -20,6 +20,7 @@ const ManageListings = () => {
     <div className="manage-listing-page">
       <div className="manage-listings-left"></div>
       <div className="all-listings-div">
+        <div className="manage-listings-header">Manage your Listings</div>
         {userRooms?.map((room, i) => {
           return (
             <>
@@ -36,7 +37,7 @@ const ManageListings = () => {
                     <div className="listing-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} night`}</div>
                   </div>
                   <div>
-                    <button onClick={manageReservations} className="listings-reservation-button">Manage Reservations</button>
+                    <button onClick={manageReservations} className="listings-reservation-button">View Reservations</button>
                   </div>
                 </div>
               </div>

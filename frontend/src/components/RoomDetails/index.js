@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
-import EditListing from "../EditListing";
+import EditListingForm from "../EditListingForm";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -146,7 +146,7 @@ const RoomDetails = () => {
         <div className="right-space"></div>
       </div>
       }
-      {page === 2 && <EditListing listingId={roomId} returnToListing={returnToListing} />}
+      {page === 2 && <EditListingForm listingId={roomId} returnToListing={returnToListing} />}
     </>
   )
 }

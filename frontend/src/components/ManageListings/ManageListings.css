@@ -23,7 +23,8 @@
   color: white;
   font-weight: 600;
   height: 2rem;
-  width: 11rem;
+  width: 10rem;
+  margin-left: 4rem;
 }
 
 .listing-div {
@@ -43,4 +44,10 @@
   width: 100%;
   object-fit: cover;
   border-radius: 20px;
+}
+
+.manage-listings-header {
+  font-size: 2rem;
+  padding: 1rem;
+  margin-left: 9rem;
 }

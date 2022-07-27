@@ -39,7 +39,7 @@ export const listAllRooms = () => async (dispatch) => {
   if (response.ok) {
     const roomsObj = await response.json();
     // console.log(typeof roomsObj.Rooms)
-    console.log(roomsObj)
+    // console.log(roomsObj)
     dispatch(listRooms(roomsObj.Rooms))
   }
   return response;

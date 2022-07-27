@@ -9,6 +9,16 @@
   align-items: center;
 }
 
+.create-content-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-content-input {
+  height: 30rem;
+}
+
+
 .header-div {
   display: flex;
   justify-content: center;
@@ -28,7 +38,7 @@
   border-radius: 20px;
 }
 
-.create-new-listing {
+.create-new-label {
   font-size: 1.7rem;
   margin-bottom: 1rem;
 }
@@ -60,7 +70,7 @@
 }
 
 .back-next-buttons {
-  height: 25rem;
+  height: 5rem;
 }
 
 .back-next-buttons {
@@ -69,12 +79,7 @@
   align-items: flex-end;
 }
 
-.smaller-buttons {
-  height: 6.5rem;
-}
-
 .create-input {
-  margin-top: 10rem;
   width: 30rem;
 }
 
@@ -106,16 +111,11 @@
   color: white;
 }
 
-.create-content-address {
-  margin-top: 6rem;
-}
-
 .multi-input {
   width: 30rem;
 }
 
 .create-input-textarea {
-  margin-top: 10rem;
   width: 30rem;
   height: 17rem;
   border-radius: 10px;

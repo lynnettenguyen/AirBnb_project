@@ -33,10 +33,13 @@ const RoomDetails = () => {
     setPage(2)
   }
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault()
-    dispatch(removeRoom(roomId))
-    history.push('/')
+    const deleteResponse = await dispatch(removeRoom(roomId))
+
+    if (deleteResponse) {
+      history.push('/')
+    }
   }
 
   useEffect(() => {

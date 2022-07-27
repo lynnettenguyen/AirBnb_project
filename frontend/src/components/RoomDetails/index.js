@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRooms, findRoomById, listAllRooms } from "../../store/rooms";
+import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
 import EditListing from "../EditListing";
 
@@ -10,6 +10,7 @@ const RoomDetails = () => {
   roomId = Number(roomId)
 
   const dispatch = useDispatch()
+  const history = useHistory()
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
 
@@ -34,6 +35,8 @@ const RoomDetails = () => {
 
   const handleDelete = (e) => {
     e.preventDefault()
+    dispatch(removeRoom(roomId))
+    history.push('/')
   }
 
   useEffect(() => {
@@ -46,7 +49,7 @@ const RoomDetails = () => {
         <div className="left-space"></div>
         <div className="room-content">
           <div className="room-top-content">
-            <div>
+            <div className="room-header">
               <div className="room-name">{room?.name}</div>
               <div className="room-information-top">
                 <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
@@ -56,13 +59,13 @@ const RoomDetails = () => {
                 <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
               </div>
             </div>
-            <div>
+            <div className="session-user-buttons">
               {sessionUser ?
                 <>
                   {sessionUser?.id === room?.ownerId &&
                     <div>
-                      <button onClick={handleEdit}>Edit Listing</button>
-                      <button onClick={handleDelete}>Delete Listing</button>
+                      <button onClick={handleEdit} className="edit-listing-button">Edit</button>
+                      <button onClick={handleDelete} className="delete-listing-button">Delete</button>
                     </div>}
                 </> : <></>}
             </div>
@@ -87,12 +90,13 @@ const RoomDetails = () => {
             <div className="room-description">{room?.description}</div>
             <div className="reservation-div">
               <div className="reserve-details">
-                <div className="reserve-price">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
+                <div className="reserve-price">{`$${room?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
                 <span>night</span>
                 <span className="reserve-rating">
-                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star smaller"></i>
                   {avgStarRating}</span>
-                <span className="reserve-review">· {room?.numReviews} reviews</span>
+                <span className="span-separator-smaller">·</span>
+                <span className="reserve-review">{`${room?.numReviews} reviews`}</span>
               </div>
               <div>
                 <form>

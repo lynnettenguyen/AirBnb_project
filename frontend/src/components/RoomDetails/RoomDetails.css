@@ -64,6 +64,16 @@
   justify-content: center;
 }
 
+.room-top-content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding-bottom: 0.8rem;
+}
+
+.room-header {
+  margin-left: 1rem;
+}
+
 .room-name {
   font-size: 2.3rem;
   font-weight: 450;
@@ -71,16 +81,43 @@
 
 .room-information-top {
   font-size: 20px;
-  margin: 15px 0;
+  margin: 15px 0 0;
 }
 
 .fa-star {
   margin-right: 7px;
 }
 
+.fa-star.smaller {
+  font-size: 1rem;
+}
+
 .span-separator {
   font-size: 22px;
   margin: 0 15px;
+}
+
+.span-separator-smaller {
+  font-size: 2rem;
+  padding: 0 0.5rem 0.3rem 0.1rem;
+}
+
+.session-user-buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.edit-listing-button,
+.delete-listing-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border-color: #D70466;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  height: 2rem;
+  width: 6rem;
+  margin-right: 1rem;
 }
 
 .room-information-bottom {
@@ -149,13 +186,13 @@
 }
 
 .reserve-rating {
-  font-size: 18px;
+  font-size: 1.1rem;
   margin-left: 5rem;
   margin-right: 0.5rem;
 }
 
 .reserve-review {
-  font-size: 18px;
+  font-size: 1.1rem;
 }
 
 .reserve-button {

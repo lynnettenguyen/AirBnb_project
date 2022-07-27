@@ -1,11 +1,22 @@
-.user-room-info {
+.manage-listing-page {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+.listing-info {
   padding: 0.6rem;
   margin-top: 0.5rem;
   font-size: 1.2rem;
   line-height: 1.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 }
 
-.user-reservation-button {
+.listing-city-state, .listing-price {
+  font-size: 1rem;
+}
+
+.listings-reservation-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
   border-color: #D70466;
   border-radius: 10px;
@@ -13,26 +24,21 @@
   font-weight: 600;
   height: 2rem;
   width: 11rem;
-  margin-top: 17rem;
 }
 
-.all-user-rooms-div {
-  display: grid;
-  grid-template-columns: 3fr 3fr;
-}
-
-.user-room-div {
+.listing-div {
   display: flex;
-  width: 60rem;
+  justify-content: center;
+  width: 100rem;
 }
 
 .user-img-div {
-  width: 35rem;
-  height: 25rem;
+  width: 45rem;
+  height: 10rem;
   padding: 0.5rem;
 }
 
-.user-room-img {
+.listing-img {
   height: 100%;
   width: 100%;
   object-fit: cover;

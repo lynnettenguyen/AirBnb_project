@@ -51,6 +51,11 @@ app.use(
     })
 );
 
+// app.use((req, res, next) => {
+//     console.log('!!!!!!!!REQ BODY', req.body)
+//     next()
+// })
+
 app.use(routes); // Connect all the routes
 
 // Catch unhandled requests and forward to error handler.

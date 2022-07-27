@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf"
+
 const LIST_ROOMS = 'rooms/LIST_ROOMS'
 const FIND_ROOM = 'rooms/FIND_ROOM'
 const FIND_OWN_ROOMS = 'rooms/FIND_OWN_ROOMS'
@@ -17,26 +19,23 @@ const findRoom = (room) => ({
   room
 })
 
-const findOwnRooms = (rooms) => ({
-  type: FIND_OWN_ROOMS,
-  rooms
-})
-
-const editRoom = (updatedRoom) => ({
+const editRoom = (room) => ({
   type: EDIT_ROOM,
-  updatedRoom
+  room
 })
 
-const createRoom = () => ({
-  type: CREATE_ROOM
+const createRoom = (newRoom) => ({
+  type: CREATE_ROOM,
+  newRoom
 })
 
-const deleteRoom = () => ({
-  type: DELETE_ROOM
+const deleteRoom = (roomId) => ({
+  type: DELETE_ROOM,
+  roomId
 })
 
 export const listAllRooms = () => async (dispatch) => {
-  const response = await fetch(`/api/rooms`);
+  const response = await csrfFetch(`/api/rooms`);
   if (response.ok) {
     const roomsObj = await response.json();
     // console.log(typeof roomsObj.Rooms)
@@ -47,7 +46,7 @@ export const listAllRooms = () => async (dispatch) => {
 }
 
 export const findRoomById = (roomId) => async (dispatch) => {
-  const response = await fetch(`/api/rooms/${roomId}`)
+  const response = await csrfFetch(`/api/rooms/${roomId}`)
   if (response.ok) {
     const room = await response.json()
     dispatch(findRoom(room))
@@ -55,20 +54,49 @@ export const findRoomById = (roomId) => async (dispatch) => {
   return response;
 }
 
-export const updateRoom = (roomData) => async (dispatch) => {
+export const hostNewRoom = (roomData) => async (dispatch) => {
   const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
-  const response = await fetch(`/api/rooms/${roomId}`, {
-    method: "PUT",
+  const response = await csrfFetch(`/api/rooms/${roomId}`, {
+    method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       roomId, ownerId, address, city, state, country, lat, lng, name, description, price
     })
   })
   if (response.ok) {
-    const updatedRoom = await response.json()
-    dispatch(editRoom(updatedRoom));
-    return updatedRoom;
+    const newRoom = await response.json()
+    dispatch(createRoom(newRoom));
+    return newRoom;
   }
+}
+
+export const updateRoom = (roomData) => async (dispatch) => {
+  const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
+  const response = await csrfFetch(`/api/rooms/${roomId}`, {
+    method: "PUT",
+    // headers: { "Content-Type": "Application/json" },
+    body: JSON.stringify({
+      roomId, ownerId, address, city, state, country, lat, lng, name, description, price
+    })
+  })
+  if (response.ok) {
+    const room = await response.json()
+    dispatch(editRoom(room));
+    console.log('ROOM', room)
+    return room;
+  }
+}
+
+export const removeRoom = (roomId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/rooms/${roomId}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      roomId
+    })
+  })
+  const deletedRoom = await response.json();
+  dispatch(deleteRoom(roomId));
+  return deletedRoom;
 }
 
 const initialState = {}
@@ -83,8 +111,16 @@ const roomReducer = (state = initialState, action) => {
       newState[action.room.id] = action.room;
       return { ...state, ...newState };
     }
+    case CREATE_ROOM: {
+      newState[action.newRoom.id] = action.newRoom;
+      return newState;
+    }
     case EDIT_ROOM: {
-      newState[action.updatedRoom.id] = action.updatedRoom;
+      newState[action.room.id] = action.room;
+      return newState;
+    }
+    case DELETE_ROOM: {
+      delete newState[action.roomId]
       return newState;
     }
     default:

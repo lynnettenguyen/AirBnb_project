@@ -71,6 +71,10 @@
   color: black;
 }
 
+.number-rating {
+  font-weight: 250;
+}
+
 @media screen and (max-width: 990px) {
   .all-rooms-div {
     display: grid;

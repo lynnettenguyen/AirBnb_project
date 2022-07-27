@@ -66,17 +66,22 @@ const CreateListingForm = () => {
       <div></div>
       {page === 1 &&
         <div className="create-content">
-          <div className="create-header">Welcome</div>
+          <div className="header-div">
+            <div className="create-header">Welcome</div>
+          </div>
           <div>
             <div className="create-new-listing">Start a new listing</div>
             <div className="create-new-button-div">
               <button onClick={() => setPage(2)} className="create-new-button"><i class="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button>
+              <span className="white-space"></span>
             </div>
           </div>
         </div>
       }
       {page === 2 &&
+
         <div className="create-content">
+
           <div className="create-header">What will you name your place?</div>
           <div className="create-content-right">
             <div>
@@ -91,7 +96,7 @@ const CreateListingForm = () => {
             </div>
             <div className="back-next-buttons">
               <button onClick={() => setPage(1)} className="back-button">Back</button>
-              <button onClick={() => {setPage(3); setCheckInput(true)}} className="next-button" disabled={checkInput}>Next</button>
+              <button onClick={() => { setPage(3); setCheckInput(true) }} className="next-button" disabled={checkInput}>Next</button>
             </div>
           </div>
         </div>
@@ -162,7 +167,7 @@ const CreateListingForm = () => {
             </div>
             <div className="back-next-buttons smaller-buttons">
               <button onClick={() => setPage(2)} className="back-button">Back</button>
-              <button onClick={() => {setPage(4); setCheckInput(true)}} className="next-button" disabled={checkInput}>Next</button>
+              <button onClick={() => { setPage(4); setCheckInput(true) }} className="next-button" disabled={checkInput}>Next</button>
             </div>
           </div>
         </div>
@@ -177,7 +182,7 @@ const CreateListingForm = () => {
                 placeholder="This is a beautiful beachfront, 3 bedroom cozy family cabin/home with breathtaking views of the lake! Enjoy two outside decks for relaxation and entertainment and the panoramic views of the West shore."
                 className="create-input-textarea"
                 value={description}
-                onChange={e => { setDescription(e.target.value); setCheckInput(false)}}
+                onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
                 required
               ></textarea>
             </div>
@@ -202,7 +207,7 @@ const CreateListingForm = () => {
                 required
               />
             </div>
-            <div className="back-next-buttons smaller-buttons">
+            <div className="back-next-buttons">
               <button onClick={() => setPage(4)} className="back-button">Back</button>
               <button onClick={() => { setPage(6); setCheckInput(true) }} className="next-button" disabled={checkInput}>Submit</button>
             </div>

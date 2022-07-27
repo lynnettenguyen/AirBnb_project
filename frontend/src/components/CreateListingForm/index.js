@@ -105,70 +105,76 @@ const CreateListingForm = () => {
 
     if (roomResponse) {
       setRoomId(roomResponse.id)
+      // dispatch(findRoomById(roomId))
+      // history.push(`/rooms/${roomResponse.id}`)
+    }
+  }
 
-      const imageData1 = {
-        userId,
-        roomId,
-        type: "room",
-        url: image1
-      }
 
-      const imageData2 = {
-        userId,
-        roomId,
-        type: "room",
-        url: image2
-      }
+  const handleImagesSubmit = async (e) => {
+    e.preventDefault()
 
-      const imageData3 = {
-        userId,
-        roomId,
-        type: "room",
-        url: image3
-      }
+    const imageData = {
+      userId,
+      roomId,
+      type: "room"
+    }
 
-      const imageData4 = {
-        userId,
-        roomId,
-        type: "room",
-        url: image4
-      }
+    const imageData1 = {
+      ...imageData,
+      url: image1
+    }
 
-      const imageData5 = {
-        userId,
-        roomId,
-        type: "room",
-        url: image5
-      }
+    const imageData2 = {
+      ...imageData,
+      url: image2
+    }
 
-      const newImage = await dispatch(uploadNewImage(imageData1))
+    const imageData3 = {
+      ...imageData,
+      url: image3
+    }
 
-      if (newImage) {
-        dispatch(findRoomById(roomId))
-        history.push(`/rooms/${roomResponse.id}`)
-      }
+    const imageData4 = {
+      ...imageData,
+      url: image4
+    }
 
+    const imageData5 = {
+      ...imageData,
+      url: image5
+    }
+
+    const newImage1 = await dispatch(uploadNewImage(imageData1))
+    const newImage2 = await dispatch(uploadNewImage(imageData2))
+    const newImage3 = await dispatch(uploadNewImage(imageData3))
+    const newImage4 = await dispatch(uploadNewImage(imageData4))
+    const newImage5 = await dispatch(uploadNewImage(imageData5))
+
+    if (newImage1 && newImage2 && newImage3 && newImage4 && newImage5) {
+      dispatch(findRoomById(roomId))
+      history.push(`/rooms/${roomId}`)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="create-page">
-        <div></div>
-        {page === 1 &&
-          <div className="create-content">
-            <div className="header-div">
-              <div className="create-header">Welcome</div>
-            </div>
-            <div>
-              <div className="create-new-label">Start a new listing</div>
-              <div className="create-new-button-div">
-                <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button>
-                <span className="white-space"></span>
-              </div>
+    <div className="create-page">
+      <div></div>
+      {page === 1 &&
+        <div className="create-content">
+          <div className="header-div">
+            <div className="create-header">Welcome</div>
+          </div>
+          <div>
+            <div className="create-new-label">Start a new listing</div>
+            <div className="create-new-button-div">
+              <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button>
+              <span className="white-space"></span>
             </div>
           </div>
-        }
+        </div>
+      }
+      <form onSubmit={handleSubmit} className={page < 6 ? "block" : "hidden"}>
         {page >= 2 &&
           <section className={page === 2 ? "block" : "hidden"}>
             <div className="create-content">
@@ -179,7 +185,7 @@ const CreateListingForm = () => {
                     Create your title
                   </label>
                   <div className="right-content-demo">
-                    <button onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }}>demo title</button>
+                    <button onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -205,8 +211,11 @@ const CreateListingForm = () => {
               <div className="create-header">Where's your place located?</div>
               <div className="create-content-right">
                 <div className="right-content-label">
-                  <div>
-                    <button onClick={setDemoAddress}>demo address</button>
+                  <label className="create-new-label">
+                    Provide your location
+                  </label>
+                  <div className="right-content-demo">
+                    <button onClick={setDemoAddress} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -286,12 +295,12 @@ const CreateListingForm = () => {
               <div className="create-content-right">
                 <div className="right-content-label">
                   <div>
-                    <label>
+                    <label className="create-new-label">
                       Create Your Description
                     </label>
                   </div>
-                  <div>
-                    <button onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restroom, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }}>demo description</button>
+                  <div className="right-content-demo">
+                    <button onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restroom, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -316,11 +325,51 @@ const CreateListingForm = () => {
         {page >= 5 &&
           (<section className={page === 5 ? "block" : "hidden"}>
             <div className="create-content">
+              <div className="create-header">Now for the fun part - set your price</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Create your price
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setPrice(456); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <div className="right-content-input">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="$"
+                      className="create-input"
+                      value={price}
+                      onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="right-content-button">
+                  <div className="back-next-buttons">
+                    <button onClick={() => setPage(4)} className="back-button">Back</button>
+                    <button type="submit" onClick={() => setPage(6)} className="next-button" disabled={checkInput}>Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>)
+        }
+      </form >
+      <form onSubmit={handleImagesSubmit}>
+        {page >= 6 &&
+          (<section className={page === 6 ? "block" : "hidden"}>
+            <div className="create-content">
               <div className="create-header">Let's add some photos of your place</div>
               <div className="create-content-right">
                 <div className="right-content-label">
-                  <div>
-                    <button onClick={setDemoImages}>demo images</button>
+                  <label className="create-new-label">
+                    Upload your images
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={setDemoImages} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -376,35 +425,8 @@ const CreateListingForm = () => {
                   </div>
                 </div>
                 <div className="right-content-button">
-                  <div className="back-next-buttons">{formButtons}</div>
-                </div>
-              </div>
-            </div>
-          </section>)
-        }
-        {page >= 6 &&
-          (<section className={page === 6 ? "block" : "hidden"}>
-            <div className="create-content">
-              <div className="create-header">Now for the fun part - set your price</div>
-              <div className="create-content-right">
-                <div className="right-content-label">
-                  <button type="button" onClick={() => { setPrice(456); setCheckInput(false) }}>demo price</button>
-                </div>
-                <div className="right-content-input">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="$"
-                      className="create-input"
-                      value={price}
-                      onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="right-content-button">
                   <div className="back-next-buttons">
-                    <button onClick={() => setPage(5)} className="back-button">Back</button>
+                    <button className="back-button not-visible">Back</button>
                     <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
                   </div>
                 </div>
@@ -412,9 +434,10 @@ const CreateListingForm = () => {
             </div>
           </section>)
         }
-        <div></div>
-      </div>
-    </form >
+      </form>
+      <div></div>
+    </div>
+
   )
 }
 

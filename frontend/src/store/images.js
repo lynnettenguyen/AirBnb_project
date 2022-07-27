@@ -26,7 +26,7 @@ export const listAllImages = () => async (dispatch) => {
 
 export const uploadNewImage = (imageData) => async (dispatch) => {
   const { userId, roomId, type, url } = imageData;
-  const response = await csrfFetch(`/api/${roomId}/images`, {
+  const response = await csrfFetch(`/api/rooms/${roomId}/images`, {
     method: "POST",
     body: JSON.stringify({
       userId, roomId, type, url

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
 import EditListingForm from "../EditListingForm";
+import ReserveRoom from "../ReserveRoom";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -15,8 +16,6 @@ const RoomDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   const [page, setPage] = useState(1)
-  const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
-  const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
 
   let avgStarRating = room?.avgStarRating;
   avgStarRating = Math.round(avgStarRating * 100) / 100
@@ -33,10 +32,13 @@ const RoomDetails = () => {
     setPage(2)
   }
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault()
-    dispatch(removeRoom(roomId))
-    history.push('/')
+    const deleteResponse = await dispatch(removeRoom(roomId))
+
+    if (deleteResponse) {
+      history.push('/')
+    }
   }
 
   useEffect(() => {
@@ -54,7 +56,8 @@ const RoomDetails = () => {
               <div className="room-information-top">
                 <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
                 <span className="span-separator">·</span>
-                <span>{`${room?.numReviews} reviews`}</span>
+                {/* <span>{`${room?.numReviews ? room.numReviews : 0} reviews`}</span> */}
+                <span>{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
                 <span className="span-separator">·</span>
                 <span>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
               </div>
@@ -70,77 +73,27 @@ const RoomDetails = () => {
                 </> : <></>}
             </div>
           </div>
-          <div className="room-images">
-            <div className="left-image-div">
-              {room?.images &&
-                <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
-            </div>
-            <div className="right-image-div">
-              {room?.images?.map((image, i) => {
-                if (i > 0)
-                  return (
-                    <div className="side-image-div" key={image.url}>
-                      <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
-                    </div>
-                  )
-              })}
+          <div className="outer-room-images">
+            <div className="room-images">
+              <div className="left-image-div">
+                {room?.images &&
+                  <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
+              </div>
+              <div className="right-image-div">
+                {room?.images?.map((image, i) => {
+                  if (i > 0)
+                    return (
+                      <div className="side-image-div" key={image.url}>
+                        <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
+                      </div>
+                    )
+                })}
+              </div>
             </div>
           </div>
           <div className="room-information-bottom">
             <div className="room-description">{room?.description}</div>
-            <div className="reservation-div">
-              <div className="reserve-details">
-                <div className="reserve-price">{`$${room?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
-                <span>night</span>
-                <span className="reserve-rating">
-                  <i className="fa-solid fa-star smaller"></i>
-                  {avgStarRating}</span>
-                <span className="span-separator-smaller">·</span>
-                <span className="reserve-review">{`${room?.numReviews} reviews`}</span>
-              </div>
-              <div>
-                <form>
-                  <div className="reservation-dates">
-                    <div className="check-in">
-                      <label>CHECK-IN</label>
-                      <input
-                        type="date"
-                        className="select-date"
-                        value={new Date(checkIn).toISOString().slice(0, 10)}
-                        onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
-                      />
-                    </div>
-                    <div className="check-out">
-                      <label>CHECKOUT</label>
-                      <input
-                        type="date"
-                        className="select-date"
-                        value={new Date(checkOut).toISOString().slice(0, 10)}
-                        onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
-                      />
-                    </div>
-                  </div>
-                  {/* <div className="guests">
-                    <label>Guests</label>
-                    <input
-                      type="number"
-                      className="select-guests"
-                      min="1" />
-                  </div> */}
-                  <button className="reserve-button">Reserve</button>
-                </form>
-              </div>
-              <div className="total-fees">
-                <div>{room?.price} x # nights</div>
-                <div className="price">$$$$</div>
-                <div>Cleaning Fee</div>
-                <div className="price">$$$$</div>
-                <div>Service Fee</div>
-                <div className="price">$$$$</div>
-                <div>Total before Taxes</div>
-                <div className="price">$$$$</div>
-              </div>
-            </div>
+            <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
         </div>
         <div className="right-space"></div>

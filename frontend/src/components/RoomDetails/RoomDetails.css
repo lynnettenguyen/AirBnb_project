@@ -5,18 +5,26 @@
 
 .room-content {
   margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.outer-room-images {
+  display: flex;
+  justify-content: center;
 }
 
 .room-images {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 860px);
   place-items: center;
 }
 
 .left-image-div {
   height: 44rem;
-  width: 50rem;
-  padding-right: 0.5rem;
+  width: 52.3rem;
+  padding-left: 2px;
 }
 
 .main-image {
@@ -30,13 +38,9 @@
 }
 
 .right-image-div {
-  box-sizing: border-box;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  height: 45rem;
-  place-content: center;
-  width: 50rem;
+  grid-template-columns: repeat(2, 430px);
+  grid-template-rows: repeat(2, 360px);
 }
 
 .side-image-div {
@@ -122,118 +126,28 @@
 
 .room-information-bottom {
   display: flex;
-  margin: 0.8rem;
+  margin: 1rem;
 }
 
 .room-description {
   font-size: 22px;
   font-weight: 200;
-  padding: 0.5rem 2.5rem 0 0;
-}
-
-.reservation-div {
-  border: 1px grey solid;
-  border-radius: 20px;
-  margin-top: 0.6rem;
-  padding: 1.4rem;
-}
-
-.reservation-dates {
-  display: flex;
-}
-
-.select-date {
-  border: none;
-  margin: 0;
-  padding: 0 0 0.8rem 0;
-  width: 8rem;
-  height: 1.5rem;
-}
-
-.check-in,
-.check-out {
-  border: 1px grey solid;
-  padding: 1rem 0 0 1rem;
-  width: 10rem;
-}
-
-.check-in {
-  border-right: none;
-}
-
-/* .select-guests {
-  border: none;
-} */
-
-/* .guests {
-  border: 1px grey solid;
-  border-top: none;
-} */
-
-.reserve-details {
-  align-items: center;
-  display: flex;
-  font-size: 22px;
-  font-weight: 200;
-  justify-content: center;
-  margin-bottom: 1rem;
-  white-space: nowrap;
-}
-
-.reserve-price {
-  font-weight: 600;
-  margin-right: 0.5rem;
-}
-
-.reserve-rating {
-  font-size: 1.1rem;
-  margin-left: 5rem;
-  margin-right: 0.5rem;
-}
-
-.reserve-review {
-  font-size: 1.1rem;
-}
-
-.reserve-button {
-  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-  border-color: #D70466;
-  border-radius: 10px;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  height: 55px;
-  margin-top: 15px;
-  width: 22rem;
-}
-
-.total-fees {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  padding: 10px 5px;
-  font-size: 20px;
-  font-weight: 200;
-}
-
-.price {
-  display: flex;
+  padding: 1rem 2.2rem;
 }
 
 @media screen and (max-width: 1700px) {
-  .left-image-div {
-    height: 35rem;
-    width: 38rem;
-    margin: 0.2rem;
+  .room-images {
+    grid-template-columns: repeat(2, 680px);
   }
 
   .right-image-div {
-    height: 36rem;
-    width: 38rem;
+    grid-template-columns: repeat(2, 370px);
+    grid-template-rows: repeat(2, 360px);
   }
 
-  .side-images {
-    max-height: 20rem;
+  .left-image-div {
+    width: 40rem;
+    margin-right: 1.6rem;
   }
 }
 
@@ -244,7 +158,43 @@
     flex-direction: column;
   }
 
-  .side-images {
-    max-height: 17rem;
+  .outer-room-images {
+    display: flex;
+    justify-content: center;
+  }
+
+  .left-image-div {
+    width: 48rem;
+    padding: 0;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .main-image {
+    border-radius: 20px;
+  }
+
+  .side-images1 {
+    border-top-left-radius: 20px;
+  }
+
+  .side-images3 {
+    border-bottom-left-radius: 20px;
+  }
+
+  .session-user-buttons {
+    margin-left: 80px;
+  }
+
+  .edit-listing-button {
+    margin-bottom: 0.4rem;
+  }
+
+  .room-information-top {
+    font-size: 19px;
+    margin-top: 0.3rem;
+  }
+
+  .room-name {
+    font-size: 2rem;
   }
 }

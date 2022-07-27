@@ -173,9 +173,9 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
     })
 
     if (currentRoom.ownerId === req.user.id) {
-        return res.json({ 'Bookings': ownerReservations })
+        return res.json({ 'reservations': ownerReservations })
     } else {
-        return res.json({ 'Bookings': allReservations })
+        return res.json({ 'reservations': allReservations })
     }
 })
 

@@ -44,3 +44,9 @@
   object-fit: cover;
   border-radius: 20px;
 }
+
+.manage-listings-header {
+  font-size: 2rem;
+  padding: 1rem;
+  margin-left: 9rem;
+}

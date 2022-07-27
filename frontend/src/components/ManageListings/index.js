@@ -20,6 +20,7 @@ const ManageListings = () => {
     <div className="manage-listing-page">
       <div className="manage-listings-left"></div>
       <div className="all-listings-div">
+        <div className="manage-listings-header">Manage your Listings</div>
         {userRooms?.map((room, i) => {
           return (
             <>

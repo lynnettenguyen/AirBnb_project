@@ -1,0 +1,89 @@
+.create-page {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+.create-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-header {
+  background: linear-gradient(#E61E4D, #CB277E, #C92076, #85209F, #651E9F, #3B07BB);
+  height: 45rem;
+  width: 35rem;
+  margin: 5rem 5rem 0 0;
+  display: flex;
+  padding: 0 4rem 8rem 4rem;
+  align-items: center;
+  color: white;
+  font-size: 4rem;
+}
+
+.create-new-listing {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.create-new-button {
+  font-size: 1.2rem;
+  font-weight: 250;
+  padding: 0.5rem 1.2rem 1rem;
+  border-radius: 10px;
+  background: none;
+  margin-left: 1rem;
+  width: 20rem;
+  border: rgba(128, 128, 128, 0.338) 1px solid;
+}
+
+.fa-plus {
+  margin-right: 1rem;
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.create-new-button:hover {
+  border: 1px solid black;
+  background-color: rgba(178, 178, 178, 0.103);
+}
+
+.back-next-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 25rem;
+}
+
+.create-input {
+  margin-top: 10rem;
+  width: 30rem;
+}
+
+.back-button {
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  background: none;
+}
+
+.back-button:hover {
+  background-color: rgba(178, 178, 178, 0.103);
+  border-radius: 10px;
+}
+
+.next-button:disabled {
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+}
+
+.next-button:enabled {
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+}

@@ -413,8 +413,11 @@ const CreateListingForm = () => {
                     />
                   </div>
                 </div>
-                <div className="right-content-button">
+              <div className="right-content-button">
+                <div className="back-next-buttons">
+                  <button className="back-button not-visible">Back</button>
                   <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
+                </div>
                 </div>
               </div>
             </div>

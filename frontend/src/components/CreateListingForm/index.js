@@ -21,10 +21,14 @@ const CreateListingForm = () => {
   const [page, setPage] = useState(1)
   const [checkInput, setCheckInput] = useState(true)
 
+  const toggleNext = (e) => {
+    if (e.length > 1) setCheckInput(false)
+    else setCheckInput(true)
+  }
+
   const updateName = (e) => {
     setName(e.target.value)
-    if (e.target.value.length > 1) setCheckInput(false)
-    else setCheckInput(true)
+    toggleNext(e.target.value)
   }
 
   const handleSubmit = async (e) => {
@@ -51,7 +55,6 @@ const CreateListingForm = () => {
     }
   }
 
-
   // What kind of place will you host?
   // Which of these best describes your place?
   // What kind of space will guests have?
@@ -74,7 +77,7 @@ const CreateListingForm = () => {
       }
       {page === 2 &&
         <div className="create-content">
-          <div className="create-header">What name would you give your place?</div>
+          <div className="create-header">What will you name your place?</div>
           <div className="create-content-right">
             <div>
               <input
@@ -88,10 +91,82 @@ const CreateListingForm = () => {
             </div>
             <div className="back-next-buttons">
               <button onClick={() => setPage(1)} className="back-button">Back</button>
-              <button onClick={() => setPage(3)} className="next-button" disabled={checkInput}>Next</button>
+              <button onClick={() => {setPage(3); setCheckInput(true)}} className="next-button" disabled={checkInput}>Next</button>
             </div>
           </div>
         </div>
+      }
+      {page === 3 &&
+        <div className="create-content">
+          <div className="create-header">Where is your place located?</div>
+          <div className="create-content-address">
+            <div>
+              <input
+                type="text"
+                placeholder="address"
+                className="location-input"
+                value={address}
+                onChange={e => setAddress(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="city"
+                className="location-input"
+                value={city}
+                onChange={e => setCity(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="state"
+                className="location-input"
+                value={state}
+                onChange={e => setState(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="country"
+                className="location-input"
+                value={country}
+                onChange={e => setCountry(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="latitude"
+                className="location-input"
+                value={lat}
+                onChange={e => setLat(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="longitude"
+                className="location-input"
+                value={lng}
+                onChange={e => { setLng(e.target.value); setCheckInput(false) }}
+                required
+              />
+            </div>
+            <div className="back-next-buttons-smaller">
+              <button onClick={() => setPage(2)} className="back-button">Back</button>
+              <button onClick={() => {setPage(4); setCheckInput(true)}} className="next-button" disabled={checkInput}>Next</button>
+            </div>
+          </div>
+        </div>
+
       }
       <div></div>
     </div>

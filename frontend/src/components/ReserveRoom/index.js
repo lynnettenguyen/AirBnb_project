@@ -13,11 +13,6 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
 
   const currRoomReservations = useSelector(getAllReservations)
 
-  // const allReservations = useSelector(getAllReservations)
-  // const currRoomReservations = allReservations.filter(reservation => roomId === reservation.roomId)
-  // console.log("ALL", allReservations)
-  console.log("CURRENT", currRoomReservations)
-
   const tomorrow = new Date()
   const nextDay = new Date()
   tomorrow.setDate(tomorrow.getDate() + 1)

@@ -10,20 +10,24 @@ const UserReservations = () => {
   const history = useHistory()
 
   const trips = useSelector(getAllReservations)
-    // .filter(reservation => reservation.userId === sessionUser.id)
-  // console.log("........", trips)
+
+  // const [reservationId, setReservationId] = useState()
+
+  // console.log(reservationId)
 
   useEffect(() => {
     dispatch(findUserReservation())
   }, [])
 
-  const handleDelete = async (e) => {
+  const handleDelete = (reservationId) => async (e) => {
     e.preventDefault()
-    const deleteResponse = await dispatch(removeReservation())
+    console.log("RESERVATION", reservationId)
+    console.log(typeof reservationId)
+    const response = await dispatch(removeReservation(reservationId))
 
-    // if (deleteResponse) {
-    //   history.push('/')
-    // }
+    if (response) {
+      dispatch(findUserReservation())
+    }
   }
 
   return (
@@ -34,14 +38,16 @@ const UserReservations = () => {
         {trips?.map((reservation, i) => {
           return (
             <>
-              <div>room: {reservation?.roomId}</div>
-              <div>reservation: {reservation.id}</div>
-              <div>{reservation?.Room?.name}</div>
-              <div>start: {reservation?.startDate}</div>
-              <div>end: {reservation?.endDate}</div>
-              <div>
-                <button>Edit</button>
-                <button onClick={handleDelete}>Delete</button>
+              <div key={reservation.id}>
+                <div>room: {reservation?.roomId}</div>
+                <div>reservation: {reservation.id}</div>
+                <div>{reservation?.Room?.name}</div>
+                <div>start: {reservation?.startDate}</div>
+                <div>end: {reservation?.endDate}</div>
+                <div>
+                  <button>Edit</button>
+                  <button onClick={handleDelete(reservation.id)}>Delete</button>
+                </div>
               </div>
               <br></br>
             </>

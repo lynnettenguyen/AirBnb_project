@@ -11,27 +11,52 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const allReservations = useSelector(getAllReservations)
-  console.log("......", allReservations)
+  const currRoomReservations = useSelector(getAllReservations).filter(reservation => roomId = reservation.roomId)
+  console.log(currRoomReservations)
 
-  const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
-  const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
+  const tomorrow = new Date()
+  const nextDay = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  nextDay.setDate(nextDay.getDate() + 4)
+
+  const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
+  const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkOwner, setCheckOwner] = useState(false)
   const [showReservations, setShowReservations] = useState(false)
 
-  const allStartDates = allReservations.map(reservation => reservation.startDate)
-  const allEndDates = allReservations.map(reservation => reservation.endDate)
+  const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
+  const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
 
   useEffect(() => {
     dispatch(listAllReservations(roomId))
 
     const errors = []
-    if (sessionUser?.id === room?.ownerId) errors.push("Hosts can't reserve their own listings")
-    else if (new Date(checkIn) === new Date(checkOut)) errors.push("Reservations must be a minimum of 1 day")
-    else if (new Date().toISOString().slice(0, 10) === checkIn) errors.push("Reservations must be for future dates")
-    else if (new Date(checkIn) > new Date(checkOut)) errors.push("Check-in date must be prior to check-out date")
-    else if (allStartDates.includes(checkIn) || allEndDates.includes(checkIn) || allStartDates.includes(checkOut) || allEndDates.includes(checkOut)) errors.push("Selected dates conflict with an existing booking")
+    if (sessionUser?.id === room?.ownerId)
+      errors.push("Hosts can't reserve their own listings")
+    else if (new Date(checkIn) === new Date(checkOut))
+      errors.push("Reservations must be a minimum of 1 day")
+    else if (new Date().toISOString().slice(0, 10) === checkIn)
+      errors.push("Reservations must be for future dates")
+    else if (new Date(checkIn) > new Date(checkOut))
+      errors.push("Check-in date must be prior to check-out date")
+
+    for (let i = 0; i < allStartDates.length; i++) {
+      let startReq = new Date(checkIn);
+      let endReq = new Date(checkOut);
+      let startRes = new Date(allStartDates[i]);
+      let endRes = new Date(allEndDates[i]);
+
+      if ((startRes <= startReq && endRes >= endReq) ||
+        (startRes <= startReq && endRes >= startReq) ||
+        (startRes <= endReq && endRes >= endReq)) {
+        errors.push("Selected dates conflict with an existing booking")
+      }
+      else if (startRes === startReq)
+        errors.push("Check-in date conflicts with an existing booking")
+      else if (endRes === endReq)
+        errors.push("Check-out date conflicts with an existing booking")
+    }
 
     if (errors.length > 0) {
       setReservationErrors(errors)
@@ -99,15 +124,18 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               />
             </div>
           </div>
-          <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Dates booked:" : "View current reservations"}</button>
+          <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{currRoomReservations.length > 0 ? showReservations ?"Hide reservations" : "View reservations" : "No reservations! Book Now!"}</button>
           {showReservations ?
             <div className="outer-list-reservation">
-              <div className="list-reservations-div"></div>
-              {allReservations.map(reservation => {
+              {currRoomReservations.map(reservation => {
                 return (
-                  <>
-                    <div>{reservation.startDate} to {reservation.endDate}</div>
-                  </>
+                  <div key={reservation.id} className="list-reservations-div">
+                    <div className="inner-list-div">
+                      <div className="view-start">{reservation.startDate}</div>
+                      <div className="view-to">to</div>
+                      <div className="view-end">{reservation.endDate}</div>
+                    </div>
+                  </div>
                 )
               })}
             </div> : <></>}
@@ -123,13 +151,9 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" disabled>Log in to Reserve</button>
             }
             {reservationErrors.length > 0 && (
-                <div className="reserve-errors">
-                  {reservationErrors.map((error) => (
-                    <div key={error}>{error}</div>
-                  ))}
-                </div>
-              )
-            }
+              <div className="reserve-errors">{reservationErrors[0]}
+              </div>
+            )}
           </div>
         </div>
         <div className="fee-warning">

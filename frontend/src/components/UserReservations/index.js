@@ -64,11 +64,13 @@ const UserReservations = () => {
         <div className="reservation-header">Upcoming Reservations</div>
         <form onSubmit={handleSubmit}>
           {trips?.map((reservation, i) => {
-            const startDate = new Date(reservation?.startDate)
+            let startDate = new Date(reservation?.startDate)
+            startDate = new Date(startDate.getTime() + startDate.getTimezoneOffset() * 60000)
             const startMonth = startDate.toLocaleString('default', { month: 'short' })
             const startDay = startDate.getDate()
 
-            const endDate = new Date(reservation?.endDate)
+            let endDate = new Date(reservation?.endDate)
+            endDate = new Date(endDate.getTime() + endDate.getTimezoneOffset() * 60000)
             const endMonth = endDate.toLocaleString('default', { month: 'short' })
             const endDay = endDate.getDate()
             const endYear = endDate.getFullYear()
@@ -91,9 +93,8 @@ const UserReservations = () => {
                               <div className="day-res">{' '}{startDay} - {endDay} </div>
                             </div> :
                               <div className="res-month-day">
-                                <span>{startMonth} {startDay}</span>
-                                <div> - </div>
-                                <div>{endMonth} {endDay}</div>
+                                <span className="date-res-other">{startMonth} {startDay} - </span>
+                                <div className="date-res-other">{endMonth} {endDay}</div>
                               </div>
                             }
                             <div className="res-year">{endYear}</div>
@@ -116,38 +117,38 @@ const UserReservations = () => {
                     </div>
                   </div>
                 </div>
-                {showEdit ? editReservation === reservation.roomId ? <div className="middle-change-res">
-                  <section>
-                    <div className="reservation-dates">
-                      <div className="res-check-in">
-                        <label className="res-check-label">CHECK-IN</label>
+                {
+                  showEdit ? editReservation === reservation.roomId ? <div className="middle-change-res">
+                    <div className="reservation-dates-res">
+                      <div className="check-res">
+                        <label className="check-label">CHECK-IN</label>
                         <input
                           type="date"
                           min={new Date().toISOString().split('T')[0]}
-                          className="res-select-date"
+                          className="select-date-res"
                           value={new Date(checkIn).toISOString().slice(0, 10)}
                           onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
                         />
                       </div>
-                      <div className="res-check-out">
-                        <label className="res-check-label">CHECKOUT</label>
+                      <div className="check-res">
+                        <label className="check-label">CHECKOUT</label>
                         <input
                           type="date"
                           min={new Date().toISOString().split('T')[0]}
-                          className="res-select-date"
+                          className="select-date-res"
                           value={new Date(checkOut).toISOString().slice(0, 10)}
                           onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
                         />
                       </div>
                     </div>
-                  </section>
-                  <div>
-                    <div className="edit-delete-buttons">
-                      <button type="button" onClick={handleDelete(reservation.id)} className="res-button">Cancel Reservation</button>
-                      <button type="submit" className="res-button">Change Reservation</button>
+                    <div>
+                      <div className="edit-delete-buttons">
+                        <button type="button" onClick={handleDelete(reservation.id)} className="res-button">Cancel Reservation</button>
+                        <button type="submit" className="res-button">Change Reservation</button>
+                      </div>
                     </div>
-                  </div>
-                </div> : <></> : <></>}
+                  </div> : <></> : <></>
+                }
               </div>
             )
           })}

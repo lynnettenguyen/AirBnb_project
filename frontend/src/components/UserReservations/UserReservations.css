@@ -5,12 +5,12 @@
 
 .trips-header {
   font-size: 2rem;
-  padding: 1rem 0 0;
+  padding: 1.6rem 0 0;
   font-weight: 500;
 }
 
 .reservation-header {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   padding: 1rem 0;
 }
 
@@ -26,6 +26,7 @@
 .middle-change-res {
   display: flex;
   width: 70rem;
+  border-radius: 20px;
 }
 
 .main-reservation-content {
@@ -72,6 +73,8 @@
 .res-img {
   height: 100%;
   width: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .left-res-content {
@@ -79,7 +82,7 @@
 }
 
 .bottom-change-res {
-  width: 4rem;
+  width: 5rem;
   padding: 0.5rem 2rem;
   height: 10rem;
 }
@@ -91,10 +94,12 @@
 .month-res {
   font-size: 1.3rem;
   padding-bottom: 0.2rem;
+  font-weight: 250;
 }
 
 .day-res {
   font-size: 1.1rem;
+  font-weight: 250;
 }
 
 .res-year {
@@ -107,5 +112,60 @@
 }
 
 .bottom-dates {
+  padding-right: 1rem;
   border-right: 1px rgba(128, 128, 128, 0.286) solid;
+}
+
+.date-res-other {
+  font-size: 1.1rem;
+  font-weight: 250;
+}
+
+.res-address,
+.res-city-state {
+  font-size: 1.2rem;
+  font-weight: 250;
+}
+
+.res-select-date {
+  border: none;
+  width: 10rem;
+}
+
+.reservation-dates-res {
+  display: flex;
+  height: 5rem;
+  margin-left: 1rem;
+}
+
+.check-res {
+  display: flex;
+  flex-direction: column;
+  border: 1px grey solid;
+  border-radius: 10px;
+  height: 3rem;
+  padding: 0.3rem;
+  margin: 1rem 0.5rem;
+}
+
+.select-date-res {
+  border: none;
+  margin: 0;
+  padding: 0.2rem;
+  width: 8rem;
+  height: 1.5rem;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.7rem;
+}
+
+.res-button {
+  margin: 0.3rem;
+}
+
+.middle-change-res {
+  height: 4rem;
 }

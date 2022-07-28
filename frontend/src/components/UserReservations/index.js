@@ -15,6 +15,7 @@ const UserReservations = () => {
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
   const [editReservation, setEditReservation] = useState(0)
+  const [showEdit, setShowEdit] = useState(false)
 
   // id each edit button,-1 to close
 
@@ -76,30 +77,29 @@ const UserReservations = () => {
               <div className="outer-main">
                 <div key={reservation.id} className="main-reservation-content">
                   <div className="left-res-content">
-                    <div className="top-left-res-content">
-                      <div className="top-left-name">
-                        <div>{reservation?.Room?.name}</div>
-                      </div>
-                      <div className="top-left-delete">
-                        <button onClick={handleDelete(reservation.id)} className="res-delete">Cancel Reservation</button>
-                      </div>
-                    </div>
-                    <div className="bottom-left-res-content">
-                      <div className="bottom-change-res">
-                        <div className="bottom-edit-res">
-                          <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId) }}>Edit</button>
-                        </div>
-                        <div className="bottom-dates">
-                          {startMonth === endMonth ? <div className="res-month-day">{`${startMonth}${startDay}-${endDay}`}</div> :
-                            <div>start: {`${startMonth}${startDay}-${endMonth}${endDay}`}</div>
-                          }
-                          <div className="res-year">{endYear}</div>
+                    <div className="left-res-inner">
+                      <div className="top-left-res-content">
+                        <div className="top-left-name">
+                          <div>{reservation?.Room?.name}</div>
                         </div>
                       </div>
-                      <div className="bottom-location">
-                        <div className="res-address">{reservation?.Room?.address}</div>
-                        <div className="res-city-state">{`${reservation?.Room?.city}, ${reservation?.Room?.state}`}</div>
-                        <div className="res-country">{reservation?.Room?.country}</div>
+                      <div className="bottom-left-res-content">
+                        <div className="bottom-change-res">
+                          <div className="bottom-edit-res">
+                            <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId); setShowEdit(!showEdit) }}>Edit</button>
+                          </div>
+                          <div className="bottom-dates">
+                            {startMonth === endMonth ? <div className="res-month-day">{`${startMonth}${startDay}-${endDay}`}</div> :
+                              <div>start: {`${startMonth}${startDay}-${endMonth}${endDay}`}</div>
+                            }
+                            <div className="res-year">{endYear}</div>
+                          </div>
+                        </div>
+                        <div className="bottom-location">
+                          <div className="res-address">{reservation?.Room?.address}</div>
+                          <div className="res-city-state">{`${reservation?.Room?.city}, ${reservation?.Room?.state}`}</div>
+                          <div className="res-country">{reservation?.Room?.country}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -109,7 +109,7 @@ const UserReservations = () => {
                     </div>
                   </div>
                 </div>
-                {editReservation === reservation.roomId ? <div className="middle-change-res">
+                {showEdit ? editReservation === reservation.roomId ? <div className="middle-change-res">
                   <section>
                     <div className="reservation-dates">
                       <div className="res-check-in">
@@ -135,9 +135,12 @@ const UserReservations = () => {
                     </div>
                   </section>
                   <div>
-                    <button type="submit">Change Reservation</button>
+                    <div className="edit-delete-buttons">
+                      <button type="button" onClick={handleDelete(reservation.id)} className="res-button">Cancel Reservation</button>
+                      <button type="submit" className="res-button">Change Reservation</button>
+                    </div>
                   </div>
-                </div> : <></>}
+                </div> : <></> : <></>}
               </div>
             )
           })}

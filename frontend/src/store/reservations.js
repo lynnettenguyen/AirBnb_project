@@ -13,9 +13,9 @@ const listReservations = (reservations) => ({
   reservations
 })
 
-const findReservation = (reservation) => ({
+const findReservations = (reservations) => ({
   type: FIND_RESERVATIONS,
-  reservation
+  reservations
 })
 
 const editReservation = (reservation) => ({
@@ -25,7 +25,8 @@ const editReservation = (reservation) => ({
 
 const createReservation = (newReservation) => ({
   type: CREATE_RESERVATIONS,
-  newReservation})
+  newReservation
+})
 
 const deleteReservation = (reservationId) => ({
   type: DELETE_RESERVATIONS,
@@ -36,65 +37,61 @@ export const listAllReservations = (roomId) => async (dispatch) => {
   const response = await csrfFetch(`/api/rooms/${roomId}/reservations`);
   if (response.ok) {
     const reservationObj = await response.json();
-    // console.log(typeof reservationObj.reservations)
-    console.log(reservationObj.reservations)
     dispatch(listReservations(reservationObj.reservations))
   }
   return response;
 }
 
-// export const findRoomById = (roomId) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/rooms/${roomId}`)
-//   if (response.ok) {
-//     const room = await response.json()
-//     dispatch(findRoom(room))
-//   }
-//   return response;
-// }
+export const findUserReservation = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/reservations`)
+  if (response.ok) {
+    const reservations = await response.json()
+    dispatch(findReservations(reservations))
+  }
+  return response;
+}
 
-// export const hostNewRoom = (roomData) => async (dispatch) => {
-//   const { ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
-//   const response = await csrfFetch(`/api/rooms`, {
-//     method: "POST",
-//     body: JSON.stringify({
-//       ownerId, address, city, state, country, lat, lng, name, description, price
-//     })
-//   })
-//   if (response.ok) {
-//     const newRoom = await response.json()
-//     dispatch(createRoom(newRoom));
-//     return newRoom;
-//   }
-// }
+export const bookNewReservation = (reservationData) => async (dispatch) => {
+  const { userId, roomId, startDate, endDate } = reservationData;
+  const response = await csrfFetch(`/api/rooms`, {
+    method: "POST",
+    body: JSON.stringify({
+      userId, roomId, startDate, endDate
+    })
+  })
+  if (response.ok) {
+    const newReservation = await response.json()
+    dispatch(createReservation(newReservation));
+    return newReservation;
+  }
+}
 
-// export const updateRoom = (roomData) => async (dispatch) => {
-//   const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
-//   const response = await csrfFetch(`/api/rooms/${roomId}`, {
-//     method: "PUT",
-//     // headers: { "Content-Type": "Application/json" },
-//     body: JSON.stringify({
-//       roomId, ownerId, address, city, state, country, lat, lng, name, description, price
-//     })
-//   })
-//   if (response.ok) {
-//     const room = await response.json()
-//     dispatch(editRoom(room));
-//     console.log('ROOM', room)
-//     return room;
-//   }
-// }
+export const updateReservation = (reservationData) => async (dispatch) => {
+  const { reservationId, userId, roomId, startDate, endDate } = reservationData;
+  const response = await csrfFetch(`/api/rooms/${roomId}/reservations/${reservationId}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      userId, roomId, startDate, endDate
+    })
+  })
+  if (response.ok) {
+    const reservation = await response.json()
+    dispatch(editReservation(reservation));
+    return reservation;
+  }
+}
 
-// export const removeRoom = (roomId) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/rooms/${roomId}`, {
-//     method: "DELETE",
-//     body: JSON.stringify({
-//       roomId
-//     })
-//   })
-//   const deletedRoom = await response.json();
-//   dispatch(deleteRoom(roomId));
-//   return deletedRoom;
-// }
+export const removeReservation = (reservationId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reservations/${reservationId}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      reservationId
+    })
+  })
+  const deletedReservation = await response.json();
+  dispatch(deleteReservation(reservationId));
+  return deletedReservation;
+}
 
 const initialState = {}
 const reservationReducer = (state = initialState, action) => {

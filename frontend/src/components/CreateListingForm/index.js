@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { hostNewRoom, findRoomById } from "../../store/rooms";
@@ -376,47 +375,47 @@ const CreateListingForm = () => {
                   <div>
                     <input
                       type="text"
-                      placeholder="image.url"
+                      placeholder="https://www.link_image_main.url"
                       className="multi-input"
                       value={image1}
-                      onChange={e => { setImage1(e.target.value); setCheckInput(false) }}
+                      onChange={e => { setImage1(e.target.value); }}
                       required
                     />
                   </div>
                   <div>
                     <input
                       type="text"
-                      placeholder="image.url"
+                      placeholder="https://www.link_image_2.url"
                       className="multi-input"
                       value={image2}
-                      onChange={e => { setImage2(e.target.value); setCheckInput(false) }}
+                      onChange={e => { setImage2(e.target.value); }}
                       required
                     />
                   </div>
                   <div>
                     <input
                       type="text"
-                      placeholder="image.url"
+                      placeholder="https://www.link_image_3.url"
                       className="multi-input"
                       value={image3}
-                      onChange={e => { setImage3(e.target.value); setCheckInput(false) }}
+                      onChange={e => { setImage3(e.target.value); }}
                       required
                     />
                   </div>
                   <div>
                     <input
                       type="text"
-                      placeholder="image.url"
+                      placeholder="https://www.link_image_4.url"
                       className="multi-input"
                       value={image4}
-                      onChange={e => { setImage4(e.target.value); setCheckInput(false) }}
+                      onChange={e => { setImage4(e.target.value); }}
                       required
                     />
                   </div>
                   <div>
                     <input
                       type="text"
-                      placeholder="image.url"
+                      placeholder="https://www.link_image_5.url"
                       className="multi-input"
                       value={image5}
                       onChange={e => { setImage5(e.target.value); setCheckInput(false) }}

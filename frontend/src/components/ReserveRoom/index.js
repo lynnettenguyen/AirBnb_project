@@ -42,7 +42,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
                 className="select-date"
                 value={new Date(checkIn).toISOString().slice(0, 10)}
                 onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
-                />
+              />
             </div>
             <div className="check-out">
               <label>CHECKOUT</label>
@@ -66,14 +66,22 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
         </form>
       </div>
       <div className="total-fees">
-        <div>{room?.price} x # nights</div>
-        <div className="price">$$$$</div>
-        <div>Cleaning Fee</div>
-        <div className="price">$$$$</div>
-        <div>Service Fee</div>
-        <div className="price">$$$$</div>
-        <div>Total before Taxes</div>
-        <div className="price">$$$$</div>
+        <div className="top-fees">
+          <div className="fee-label">
+            <div className="each-fee">{`${room?.price} x ${Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime())/(1000 * 3600 * 24))} nights`}</div>
+            <div className="each-fee">Cleaning Fee</div>
+            <div className="each-fee">Service Fee</div>
+          </div>
+          <div className="fee-price">
+            <div className="fee-number">$$$</div>
+            <div className="fee-number">$$$</div>
+            <div className="fee-number">$$$</div>
+          </div>
+        </div>
+        <div className="total-fees-bottom">
+          <div className="total-each-fee">Total before taxes</div>
+          <div className="total-fee-number">$$$</div>
+        </div>
       </div>
     </div>
   )

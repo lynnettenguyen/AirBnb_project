@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       Room.belongsTo(models.User, { foreignKey: 'ownerId', as: 'Owner' })
       Room.hasMany(models.Review, { foreignKey: 'roomId', onDelete: 'CASCADE', hooks: true })
       Room.hasMany(models.Image, { foreignKey: 'roomId', as: 'images', onDelete: 'CASCADE', hooks: true })
-      Room.hasMany(models.Image, { foreignKey: 'roomId', as: 'previewImage', onDelete: 'CASCADE', hooks: true })
+      // Room.hasMany(models.Image, { foreignKey: 'roomId', as: 'previewImage', onDelete: 'CASCADE', hooks: true })
       Room.hasMany(models.Reservation, { foreignKey: 'roomId', onDelete: 'CASCADE', hooks: true })
     }
   }

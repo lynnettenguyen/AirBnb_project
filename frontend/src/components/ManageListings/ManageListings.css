@@ -12,13 +12,14 @@
   grid-template-columns: 2fr 1fr;
 }
 
-.listing-city-state, .listing-price {
+.listing-city-state,
+.listing-price {
   font-size: 1rem;
 }
 
 .listings-reservation-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-  border-color: #D70466;
+  border: none;
   border-radius: 10px;
   color: white;
   font-weight: 600;

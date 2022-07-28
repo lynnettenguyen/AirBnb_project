@@ -96,6 +96,12 @@
   font-size: 1rem;
 }
 
+.room-reviews,
+.room-location {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 .span-separator {
   font-size: 22px;
   margin: 0 15px;
@@ -115,7 +121,7 @@
 .edit-listing-button,
 .delete-listing-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-  border-color: #D70466;
+  border: none;
   border-radius: 10px;
   color: white;
   font-size: 1rem;
@@ -132,7 +138,7 @@
 .room-description {
   font-size: 22px;
   font-weight: 200;
-  padding: 1rem 2.2rem;
+  padding: 1rem 2.5rem 0 1rem;
 }
 
 @media screen and (max-width: 1700px) {
@@ -141,7 +147,7 @@
   }
 
   .right-image-div {
-    grid-template-columns: repeat(2, 370px);
+    grid-template-columns: repeat(2, 364px);
     grid-template-rows: repeat(2, 360px);
   }
 

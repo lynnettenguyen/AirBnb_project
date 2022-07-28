@@ -13,7 +13,7 @@ router.get('/rooms', requireAuth, async (req, res) => {
             attributes: { exclude: ['numReviews', 'avgStarRating'] },
             include: {
                 model: Image,
-                as: 'previewImage',
+                as: 'images',
                 attributes: ['url']
             }
         }]

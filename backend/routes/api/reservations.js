@@ -31,13 +31,9 @@ router.delete('/:reservationId', requireAuth, async (req, res, next) => {
             id: req.params.reservationId,
             // userId: req.user.id
         },
-        attributes: ['startDate', 'endDate'],
+        // attributes: ['startDate', 'endDate'],
         // raw: true // frontEnd is giving deleteReservation.destroy is not a function
     })
-
-    // console.log("!!!!!!!!", req.params.reservationId)
-    console.log(deleteReservation)
-
 
     if (!deleteReservation) {
         const err = new Error(`Reservation couldn't be found`);

@@ -96,7 +96,7 @@ export const removeReservation = (reservationId) => async (dispatch) => {
 
 const initialState = {}
 const reservationReducer = (state = initialState, action) => {
-  const newState = {}
+  let newState = {}
   switch (action.type) {
     case LIST_RESERVATIONS: {
       action.reservations.map(reservation => newState[reservation.id] = reservation)

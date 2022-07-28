@@ -158,17 +158,38 @@
 }
 
 .view-reservations {
-  padding-top: 0.5rem;
+  margin-top: 0.6rem;
+  padding: 0.2rem;
   border: none;
-  background: none;
   font-size: 1rem;
+  border-radius: 10px;
 }
 
 .view-reservations:hover {
-  color:#d70440
+  color: rgba(35, 35, 35, 0.76);
 }
 
 .outer-list-reservation {
   margin: 0.2rem 0.4rem 0;
   font-size: 1rem;
+}
+
+.list-reservations-div {
+  display: flex;
+}
+
+.inner-list-div {
+  display: grid;
+  grid-template-columns: 1fr 0.1fr 1fr;
+}
+
+.view-to {
+  display: flex;
+  align-items: center;
+  margin: 0 0.3rem;
+}
+
+.view-end {
+  display: flex;
+  width: 5.8rem;
 }

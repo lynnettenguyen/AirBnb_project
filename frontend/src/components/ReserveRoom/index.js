@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findRoomById, removeRoom } from "../../store/rooms";
 import "./ReserveRoom.css"
-import { getAllReservations, listAllReservations, bookNewReservation } from "../../store/reservations";
+import { getAllReservations, listRoomReservations, bookNewReservation } from "../../store/reservations";
 
 const ReserveRoom = ({ roomId, avgStarRating }) => {
   const room = useSelector((state) => state.rooms[roomId])
@@ -28,7 +28,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
 
   useEffect(() => {
-    dispatch(listAllReservations(roomId))
+    dispatch(listRoomReservations(roomId))
 
     const errors = []
     if (sessionUser?.id === room?.ownerId)

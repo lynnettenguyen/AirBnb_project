@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/', requireAuth, async (req, res) => {
     const reservations = await Reservation.findAll({
-        where: { userId: req.user.id },
+        // where: { userId: req.user.id },
         include: [
             {
                 model: Room,

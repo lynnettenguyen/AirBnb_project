@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findUserReservation, getAllReservations, removeReservation, updateReservation } from "../../store/reservations";
+import { listAllReservations, getAllReservations, removeReservation, updateReservation } from "../../store/reservations";
 import "./UserReservations.css"
-import ReserveRoom from "../ReserveRoom";
 
 const UserReservations = () => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const trips = useSelector(getAllReservations)
-
+  const allReservations = useSelector(getAllReservations)
   const [reservationId, setReservationId] = useState()
   const [roomId, setRoomId] = useState()
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
-  const [editReservation, setEditReservation] = useState(false)
+  const [editReservation, setEditReservation] = useState(0)
+
+  // id each edit button,-1 to close
+
+  const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId)
+  const trips = allReservations.filter(reservation => sessionUser.id === reservation.userId)
+  // console.log(trips)
+
+  console.log(reservationsPerRoom)
 
   useEffect(() => {
-    dispatch(findUserReservation())
+    dispatch(listAllReservations())
   }, [])
 
   const handleDelete = (reservationId) => async (e) => {
@@ -27,7 +33,7 @@ const UserReservations = () => {
     const response = await dispatch(removeReservation(reservationId))
 
     if (response) {
-      dispatch(findUserReservation())
+      dispatch(listAllReservations())
     }
   }
 
@@ -45,48 +51,66 @@ const UserReservations = () => {
     const updatedReservation = await dispatch(updateReservation(reservationData))
 
     if (updateReservation) {
-      dispatch(findUserReservation())
+      dispatch(listAllReservations())
     }
   }
 
   return (
-    <>
-      <h2>Trips</h2>
-      <h3>Upcoming Reservations</h3>
+    <div className="trips-page">
       <div className="trips-left-div"></div>
       <div className="trips-main-div">
-        {trips?.map((reservation, i) => {
-          return (
-            <div key={reservation.id} className="main-reservation div">
-              <div className="left-res-content">
-                <div className="top-left-res-content">
-                  <div className="top-left-name">
-                    <div>{reservation?.Room?.name}</div>
+        <div className="trips-header">Trips</div>
+        <div className="reservation-header">Upcoming Reservations</div>
+        <form onSubmit={handleSubmit}>
+          {trips?.map((reservation, i) => {
+            const startDate = new Date(reservation?.startDate)
+            const startMonth = startDate.toLocaleString('default', { month: 'short' })
+            const startDay = startDate.getDate() + 1
+
+            const endDate = new Date(reservation?.endDate)
+            const endMonth = endDate.toLocaleString('default', { month: 'short' })
+            const endDay = endDate.getDate() + 1
+            const endYear = endDate.getFullYear()
+
+            return (
+              <div className="outer-main">
+                <div key={reservation.id} className="main-reservation-content">
+                  <div className="left-res-content">
+                    <div className="top-left-res-content">
+                      <div className="top-left-name">
+                        <div>{reservation?.Room?.name}</div>
+                      </div>
+                      <div className="top-left-delete">
+                        <button onClick={handleDelete(reservation.id)} className="res-delete">Cancel Reservation</button>
+                      </div>
+                    </div>
+                    <div className="bottom-left-res-content">
+                      <div className="bottom-change-res">
+                        <div className="bottom-edit-res">
+                          <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId) }}>Edit</button>
+                        </div>
+                        <div className="bottom-dates">
+                          {startMonth === endMonth ? <div className="res-month-day">{`${startMonth}${startDay}-${endDay}`}</div> :
+                            <div>start: {`${startMonth}${startDay}-${endMonth}${endDay}`}</div>
+                          }
+                          <div className="res-year">{endYear}</div>
+                        </div>
+                      </div>
+                      <div className="bottom-location">
+                        <div className="res-address">{reservation?.Room?.address}</div>
+                        <div className="res-city-state">{`${reservation?.Room?.city}, ${reservation?.Room?.state}`}</div>
+                        <div className="res-country">{reservation?.Room?.country}</div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="top-left-delete">
-                    <button onClick={handleDelete(reservation.id)} className="res-delete">Delete</button>
+                  <div className="right-res-content">
+                    <div className="right-image-res">
+                      <img className="res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
+                    </div>
                   </div>
                 </div>
-                <div className="bottom-left-res-content">
-                  <div className="bottom-location">
-                    <div>{reservation?.Room?.address}</div>
-                    <div>{`${reservation?.Room?.city}, ${reservation?.Room?.state}`}</div>
-                    <div>{reservation?.Room?.country}</div>
-                  </div>
-                  <div className="bottom-change-res">
-                    <div className="bottom-edit-res">
-                      <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(!editReservation) }}>Edit</button>
-                    </div>
-                    <div className="bottom-dates">
-                      <div>start: {reservation?.startDate}</div>
-                      <div>end: {reservation?.endDate}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="middle-change-res">
-                <section>
-                  {editReservation ? <form onSubmit={handleSubmit}>
+                {editReservation === reservation.roomId ? <div className="middle-change-res">
+                  <section>
                     <div className="reservation-dates">
                       <div className="res-check-in">
                         <label className="res-check-label">CHECK-IN</label>
@@ -108,24 +132,20 @@ const UserReservations = () => {
                           onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
                         />
                       </div>
-                      <div>
-                        <button type="submit">Change Reservation</button>
-                      </div>
                     </div>
-                  </form> : <></>}
-                </section>
+                  </section>
+                  <div>
+                    <button type="submit">Change Reservation</button>
+                  </div>
+                </div> : <></>}
               </div>
-              <div className="right-res-content">
-                <div className="right-image-res">
-                  <img className="res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </form>
+
+      </div >
       <div className="trips-right-div"></div>
-    </>
+    </div >
   )
 }
 

@@ -33,7 +33,7 @@ const deleteReservation = (reservationId) => ({
   reservationId
 })
 
-export const listAllReservations = (roomId) => async (dispatch) => {
+export const listRoomReservations = (roomId) => async (dispatch) => {
   const response = await csrfFetch(`/api/rooms/${roomId}/reservations`);
   if (response.ok) {
     const reservationObj = await response.json();
@@ -42,7 +42,7 @@ export const listAllReservations = (roomId) => async (dispatch) => {
   return response;
 }
 
-export const findUserReservation = () => async (dispatch) => {
+export const listAllReservations = () => async (dispatch) => {
   const response = await csrfFetch(`/api/reservations`)
   if (response.ok) {
     const reservations = await response.json()

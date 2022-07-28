@@ -1,0 +1,50 @@
+.trips-page {
+  display: grid;
+  grid-template-columns: 1fr 7fr 1fr;
+}
+
+.trips-header {
+  font-size: 2rem;
+  padding: 1rem 0 0;
+  font-weight: 500;
+}
+
+.reservation-header {
+  font-size: 1.3rem;
+  padding: 1rem 0;
+}
+
+.outer-main {
+  display: flex;
+}
+
+.main-reservation-content {
+  display: grid;
+  grid-template-columns: repeat(2, 600px);
+  border: 1px rgba(128, 128, 128, 0.143) solid;
+}
+
+.top-left-name {
+  font-size: 1.4rem;
+}
+
+.top-left-res-content {
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.top-left-res-content,
+.bottom-left-res-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.top-left-delete {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.res-delete {
+  border: none;
+
+}

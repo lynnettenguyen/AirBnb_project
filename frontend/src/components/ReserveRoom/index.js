@@ -14,8 +14,13 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   const allReservations = useSelector(getAllReservations)
   // console.log("......", allReservations)
 
-  const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
-  const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
+  const tomorrow = new Date()
+  const nextDay = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  nextDay.setDate(nextDay.getDate() + 4)
+
+  const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
+  const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkOwner, setCheckOwner] = useState(false)
   const [showReservations, setShowReservations] = useState(false)

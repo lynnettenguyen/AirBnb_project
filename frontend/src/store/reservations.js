@@ -37,7 +37,8 @@ export const listAllReservations = (roomId) => async (dispatch) => {
   const response = await csrfFetch(`/api/rooms/${roomId}/reservations`);
   if (response.ok) {
     const reservationObj = await response.json();
-    // console.log("!!!!!!!!", reservationObj.reservations)
+    console.log("!!!!!!!! first", reservationObj.reservations)
+    // console.log("!!!!!!!! without", reservationObj)
     dispatch(listReservations(reservationObj.reservations))
   }
   return response;
@@ -47,7 +48,7 @@ export const findUserReservation = () => async (dispatch) => {
   const response = await csrfFetch(`/api/reservations`)
   if (response.ok) {
     const reservations = await response.json()
-    // console.log("!!!!!!!!", reservations.Reservations)
+    // console.log("!!!!!!!! second", reservations.Reservations)
     dispatch(findReservations(reservations.Reservations))
   }
   return response;
@@ -97,25 +98,28 @@ export const removeReservation = (reservationId) => async (dispatch) => {
 
 const initialState = {}
 const reservationReducer = (state = initialState, action) => {
-  const newState = { ...state }
+  const newState = {}
   switch (action.type) {
     case LIST_RESERVATIONS: {
-      for (let reservation of action.reservations) newState[reservation.id] = reservation
-      return newState
+      action.reservations.map(reservation => newState[reservation.id] = reservation)
+      return { ...newState} ;
     }
     case FIND_RESERVATIONS: {
       action.reservations.map(reservation => newState[reservation.id] = reservation)
-      return { ...state, ...newState };
+      return { ...newState };
     }
     case CREATE_RESERVATIONS: {
+
       newState[action.newReservation.id] = action.newReservation;
       return newState;
     }
     case EDIT_RESERVATIONS: {
+
       newState[action.reservation.id] = action.reservation;
       return newState;
     }
     case DELETE_RESERVATIONS: {
+
       delete newState[action.reservationId]
       return newState;
     }

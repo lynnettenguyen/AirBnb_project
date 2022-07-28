@@ -15,7 +15,8 @@ const RoomDetails = () => {
   const history = useHistory()
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
-  // const reservations = useSelect(getAllReservations)
+  const reservations = useSelector(getAllReservations)
+  console.log(".......", reservations)
 
   const [page, setPage] = useState(1)
 

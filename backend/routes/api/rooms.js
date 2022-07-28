@@ -156,7 +156,7 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
 
     const allReservations = await Reservation.findAll({
         where: { roomId: req.params.roomId },
-        attributes: ['roomId', 'startDate', 'endDate']
+        // attributes: ['roomId', 'startDate', 'endDate']
     })
 
     const ownerReservations = await Reservation.findAll({

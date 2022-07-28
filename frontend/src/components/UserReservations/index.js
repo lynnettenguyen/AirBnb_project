@@ -66,11 +66,11 @@ const UserReservations = () => {
           {trips?.map((reservation, i) => {
             const startDate = new Date(reservation?.startDate)
             const startMonth = startDate.toLocaleString('default', { month: 'short' })
-            const startDay = startDate.getDate() + 1
+            const startDay = startDate.getDate()
 
             const endDate = new Date(reservation?.endDate)
             const endMonth = endDate.toLocaleString('default', { month: 'short' })
-            const endDay = endDate.getDate() + 1
+            const endDay = endDate.getDate()
             const endYear = endDate.getFullYear()
 
             return (
@@ -85,14 +85,21 @@ const UserReservations = () => {
                       </div>
                       <div className="bottom-left-res-content">
                         <div className="bottom-change-res">
-                          <div className="bottom-edit-res">
-                            <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId); setShowEdit(!showEdit) }}>Edit</button>
-                          </div>
                           <div className="bottom-dates">
-                            {startMonth === endMonth ? <div className="res-month-day">{`${startMonth}${startDay}-${endDay}`}</div> :
-                              <div>start: {`${startMonth}${startDay}-${endMonth}${endDay}`}</div>
+                            {startMonth === endMonth ? <div className="res-month-day">
+                              <span className="month-res">{startMonth}</span>
+                              <div className="day-res">{' '}{startDay} - {endDay} </div>
+                            </div> :
+                              <div className="res-month-day">
+                                <span>{startMonth} {startDay}</span>
+                                <div> - </div>
+                                <div>{endMonth} {endDay}</div>
+                              </div>
                             }
                             <div className="res-year">{endYear}</div>
+                          </div>
+                          <div className="bottom-edit-res">
+                            <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId); setShowEdit(!showEdit) }} className="res-button">Edit</button>
                           </div>
                         </div>
                         <div className="bottom-location">

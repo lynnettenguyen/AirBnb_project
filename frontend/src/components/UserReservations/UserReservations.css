@@ -25,7 +25,6 @@
 .main-reservation-content,
 .middle-change-res {
   display: flex;
-  /* flex-direction: row; */
   width: 70rem;
 }
 
@@ -40,12 +39,12 @@
 
 .top-left-name {
   font-size: 1.4rem;
+  padding: 1rem 0 1.5rem 1rem;
+  border-bottom: 1px rgba(128, 128, 128, 0.286) solid;
 }
 
 .top-left-res-content {
-  /* display: flex; */
   padding: 1rem;
-  /* justify-content: space-between; */
 }
 
 .top-left-res-content,
@@ -56,6 +55,8 @@
 
 .res-button {
   border: none;
+  border-radius: 10px;
+  padding: 0.3rem;
 }
 
 .right-res-content {
@@ -65,17 +66,46 @@
 
 .right-image-res {
   display: flex;
-  /* justify-content: flex-end; */
-  /* align-items: flex-end; */
   margin-left: 4rem;
 }
 
 .res-img {
   height: 100%;
   width: 100%;
-  /* align-items: flex-end; */
 }
 
 .left-res-content {
   width: 36rem;
+}
+
+.bottom-change-res {
+  width: 4rem;
+  padding: 0.5rem 2rem;
+  height: 10rem;
+}
+
+.bottom-location {
+  padding: 0.5rem 0;
+}
+
+.month-res {
+  font-size: 1.3rem;
+  padding-bottom: 0.2rem;
+}
+
+.day-res {
+  font-size: 1.1rem;
+}
+
+.res-year {
+  font-size: 0.8rem;
+  padding-top: 0.1rem;
+}
+
+.bottom-edit-res {
+  margin-top: 6rem;
+}
+
+.bottom-dates {
+  border-right: 1px rgba(128, 128, 128, 0.286) solid;
 }

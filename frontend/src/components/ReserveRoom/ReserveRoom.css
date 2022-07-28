@@ -8,6 +8,7 @@
 
 .reservation-dates {
   display: flex;
+  justify-content: center;
 }
 
 .select-date {
@@ -22,7 +23,11 @@
 .check-out {
   border: 1px grey solid;
   padding: 1rem 0 0 1rem;
-  width: 10rem;
+  width: 10.4rem;
+}
+
+.check-label {
+  margin-left: 0.2rem;
 }
 
 .check-in {
@@ -61,6 +66,7 @@
 .reserve-price {
   font-weight: 600;
   margin-right: 0.5rem;
+  font-size: 1.7rem
 }
 
 .reserve-rating {
@@ -71,6 +77,12 @@
 
 .reserve-review {
   font-size: 1.1rem;
+  text-decoration: underline;
+}
+
+.reserve-button-div {
+  display: flex;
+  justify-content: center;
 }
 
 .reserve-button {
@@ -81,13 +93,13 @@
   font-size: 18px;
   font-weight: 600;
   height: 55px;
-  margin-top: 18px;
-  width: 22rem;
+  margin-top: 19px;
+  width: 23rem;
 }
 
 .total-fees {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 3fr 1.4fr;
   font-size: 1.3rem;
   font-weight: 250;
 }
@@ -96,22 +108,42 @@
 .total-fees-bottom {
   display: flex;
   justify-content: space-between;
-  margin: 1.2rem 0.2rem 0;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.fee-number {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .total-fees-bottom {
   border-top: 1px solid rgba(128, 128, 128, 0.339);
 }
 
+.each-fee {
+  text-decoration: underline;
+}
+
 .each-fee,
 .fee-number {
-  padding: 0.3rem;
+  padding: 0.8rem 0.3rem;
 }
 
 .total-each-fee,
 .total-fee-number {
-  padding: 0rem 0.3rem 0 0.3rem;
+  padding-top: 0.6rem;
   font-weight: 500;
   display: flex;
   align-items: center;
+  font-size: 1.4rem;
+}
+
+.fee-warning {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.3rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 250;
 }

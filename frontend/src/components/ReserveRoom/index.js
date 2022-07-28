@@ -39,7 +39,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
         <form>
           <div className="reservation-dates">
             <div className="check-in">
-              <label>CHECK-IN</label>
+              <label className="check-label">CHECK-IN</label>
               <input
                 type="date"
                 min={new Date().toISOString().split('T')[0]}
@@ -49,7 +49,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               />
             </div>
             <div className="check-out">
-              <label>CHECKOUT</label>
+              <label className="check-label">CHECKOUT</label>
               <input
                 type="date"
                 min={new Date().toISOString().split('T')[0]}
@@ -66,8 +66,13 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               className="select-guests"
               min="1" />
           </div> */}
-          <button className="reserve-button">Reserve</button>
+          <div className="reserve-button-div">
+            <button className="reserve-button">Reserve</button>
+          </div>
         </form>
+      </div>
+      <div className="fee-warning">
+        <div>You won't be charged yet</div>
       </div>
       <div className="total-fees">
         <div className="top-fees">
@@ -84,7 +89,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
         </div>
         <div className="total-fees-bottom">
           <div className="total-each-fee">Total before taxes</div>
-          <div className="total-fee-number">{`$${((numDays * room?.price) + cleaningFee + serviceFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }`}</div>
+          <div className="total-fee-number">{`$${((numDays * room?.price) + cleaningFee + serviceFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@ export const findUserReservation = () => async (dispatch) => {
 
 export const bookNewReservation = (reservationData) => async (dispatch) => {
   const { userId, roomId, startDate, endDate } = reservationData;
-  const response = await csrfFetch(`/api/rooms`, {
+  const response = await csrfFetch(`/api/rooms/${roomId}/reservations`, {
     method: "POST",
     body: JSON.stringify({
       userId, roomId, startDate, endDate

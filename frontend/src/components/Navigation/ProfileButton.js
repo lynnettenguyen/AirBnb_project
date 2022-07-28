@@ -70,7 +70,7 @@ function ProfileButton({ user }) {
                 <div className="account-div">
                   {user.email}
                 </div>
-                <Link to="/trips" className="link trips">Trips</Link>
+                <Link to="/reservations" className="link trips">Trips</Link>
                 <Link to="/manage-listings" className="link manage-listings">Manage Listings</Link>
                 <Link to="/host-your-home" className="link host-home">Host your Home</Link>
                 <div className="logout-div" onClick={logout}>Log Out</div>

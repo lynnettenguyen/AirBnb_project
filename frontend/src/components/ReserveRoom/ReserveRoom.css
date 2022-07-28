@@ -83,6 +83,11 @@
 .reserve-button-div {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+.reserve-errors {
+  color:#d70440
 }
 
 .reserve-button {
@@ -95,6 +100,10 @@
   height: 55px;
   margin-top: 19px;
   width: 23rem;
+}
+
+.reserve-button:disabled {
+  background: rgba(128, 128, 128, 0.297);
 }
 
 .total-fees {

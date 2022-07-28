@@ -12,7 +12,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   const history = useHistory()
 
   const allReservations = useSelector(getAllReservations)
-  console.log("......", allReservations)
+  // console.log("......", allReservations)
 
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
@@ -27,11 +27,30 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
     dispatch(listAllReservations(roomId))
 
     const errors = []
-    if (sessionUser?.id === room?.ownerId) errors.push("Hosts can't reserve their own listings")
-    else if (new Date(checkIn) === new Date(checkOut)) errors.push("Reservations must be a minimum of 1 day")
-    else if (new Date().toISOString().slice(0, 10) === checkIn) errors.push("Reservations must be for future dates")
-    else if (new Date(checkIn) > new Date(checkOut)) errors.push("Check-in date must be prior to check-out date")
-    else if (allStartDates.includes(checkIn) || allEndDates.includes(checkIn) || allStartDates.includes(checkOut) || allEndDates.includes(checkOut)) errors.push("Selected dates conflict with an existing booking")
+    if (sessionUser?.id === room?.ownerId)
+      errors.push("Hosts can't reserve their own listings")
+    else if (new Date(checkIn) === new Date(checkOut))
+      errors.push("Reservations must be a minimum of 1 day")
+    else if (new Date().toISOString().slice(0, 10) === checkIn)
+      errors.push("Reservations must be for future dates")
+    else if (new Date(checkIn) > new Date(checkOut))
+      errors.push("Check-in date must be prior to check-out date")
+    else if (allStartDates.includes(checkIn) || allStartDates.includes(checkOut))
+      errors.push("Check-in date conflicts with an existing booking")
+    else if (allEndDates.includes(checkIn) || allEndDates.includes(checkOut))
+      errors.push("Check-out date conflicts with an existing booking")
+
+    for (let i = 0; i < allStartDates.length; i++) {
+      let startReq = new Date(checkIn);
+      let endReq = new Date(checkOut);
+      let startRes = new Date(allStartDates[i]);
+      let endRes = new Date(allEndDates[i]);
+
+      if ((startRes <= startReq && endRes >= endReq) ||
+        (startRes <= startReq && endRes >= startReq) ||
+        (startRes <= endReq && endRes >= endReq))
+        errors.push("Selected dates conflict with an existing booking")
+    }
 
     if (errors.length > 0) {
       setReservationErrors(errors)
@@ -123,12 +142,12 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" disabled>Log in to Reserve</button>
             }
             {reservationErrors.length > 0 && (
-                <div className="reserve-errors">
-                  {reservationErrors.map((error) => (
-                    <div key={error}>{error}</div>
-                  ))}
-                </div>
-              )
+              <div className="reserve-errors">
+                {reservationErrors.map((error) => (
+                  <div key={error}>{error}</div>
+                ))}
+              </div>
+            )
             }
           </div>
         </div>

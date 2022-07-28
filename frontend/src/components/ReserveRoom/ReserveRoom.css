@@ -87,7 +87,7 @@
 }
 
 .reserve-errors {
-  color:#d70440
+  color: #d70440
 }
 
 .reserve-button {
@@ -155,4 +155,20 @@
   padding-bottom: 0.5rem;
   font-size: 1.2rem;
   font-weight: 250;
+}
+
+.view-reservations {
+  padding-top: 0.5rem;
+  border: none;
+  background: none;
+  font-size: 1rem;
+}
+
+.view-reservations:hover {
+  color:#d70440
+}
+
+.outer-list-reservation {
+  margin: 0.2rem 0.4rem 0;
+  font-size: 1rem;
 }

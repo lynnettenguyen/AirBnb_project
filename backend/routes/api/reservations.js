@@ -15,14 +15,14 @@ router.get('/', requireAuth, async (req, res) => {
                 include: [
                     {
                         model: Image,
-                        as: 'previewImage',
+                        as: 'images',
                         attributes: ['url']
                     }
                 ]
             }
         ]
     })
-    return res.json({ 'Bookings': reservations })
+    return res.json({ 'Reservations': reservations })
 })
 
 router.delete('/:reservationId', requireAuth, async (req, res, next) => {

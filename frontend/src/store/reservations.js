@@ -46,7 +46,8 @@ export const findUserReservation = () => async (dispatch) => {
   const response = await csrfFetch(`/api/reservations`)
   if (response.ok) {
     const reservations = await response.json()
-    dispatch(findReservations(reservations))
+    // console.log("!!!!!!!!",reservations.Reservations)
+    dispatch(findReservations(reservations.Reservations))
   }
   return response;
 }
@@ -102,7 +103,7 @@ const reservationReducer = (state = initialState, action) => {
       return newState
     }
     case FIND_RESERVATIONS: {
-      newState[action.reservation.id] = action.reservation;
+      action.reservations.map(reservation => newState[reservation.id] = reservation)
       return { ...state, ...newState };
     }
     case CREATE_RESERVATIONS: {

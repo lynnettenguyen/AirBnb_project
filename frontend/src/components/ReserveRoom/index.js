@@ -37,6 +37,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       setReservationErrors(errors)
       setCheckOwner(true)
     } else {
+      setReservationErrors([])
       setCheckOwner(false)
     }
 

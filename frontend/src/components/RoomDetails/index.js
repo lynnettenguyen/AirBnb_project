@@ -5,6 +5,7 @@ import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
 import EditListingForm from "../EditListingForm";
 import ReserveRoom from "../ReserveRoom";
+import { getAllReservations, listAllReservations } from "../../store/reservations";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -14,6 +15,7 @@ const RoomDetails = () => {
   const history = useHistory()
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
+  // const reservations = useSelect(getAllReservations)
 
   const [page, setPage] = useState(1)
 
@@ -43,6 +45,7 @@ const RoomDetails = () => {
 
   useEffect(() => {
     dispatch(findRoomById(roomId))
+    dispatch(listAllReservations(roomId))
   }, [dispatch])
 
   return (

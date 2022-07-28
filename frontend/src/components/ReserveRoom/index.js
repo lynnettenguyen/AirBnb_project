@@ -11,9 +11,8 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const allReservations = useSelector(getAllReservations)
-  const currRoomReservations = allReservations.filter(reservation => roomId === reservation.roomId)
-  console.log("......", currRoomReservations)
+  const currRoomReservations = useSelector(getAllReservations).filter(reservation => roomId = reservation.roomId)
+  console.log(currRoomReservations)
 
   const tomorrow = new Date()
   const nextDay = new Date()
@@ -125,12 +124,12 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               />
             </div>
           </div>
-          <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? currRoomReservations.length > 0 ? "Hide reservations:" : "No reservations! Book now!" : "View reservations"}</button>
+          <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{currRoomReservations.length > 0 ? showReservations ?"Hide reservations" : "View reservations" : "No reservations! Book Now!"}</button>
           {showReservations ?
             <div className="outer-list-reservation">
               {currRoomReservations.map(reservation => {
                 return (
-                  <div className="list-reservations-div">
+                  <div key={reservation.id} className="list-reservations-div">
                     <div className="inner-list-div">
                       <div className="view-start">{reservation.startDate}</div>
                       <div className="view-to">to</div>

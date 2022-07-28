@@ -20,6 +20,10 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
     dispatch(listAllReservations(roomId))
   }, [])
 
+  const numDays = Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24))
+  const cleaningFee = Math.floor(room?.price / 5)
+  const serviceFee = Math.floor(room?.price / 8)
+
   return (
     <div className="reservation-div">
       <div className="reserve-details">
@@ -68,19 +72,19 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       <div className="total-fees">
         <div className="top-fees">
           <div className="fee-label">
-            <div className="each-fee">{`${room?.price} x ${Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime())/(1000 * 3600 * 24))} nights`}</div>
+            <div className="each-fee">{`${room?.price} x ${numDays} nights`}</div>
             <div className="each-fee">Cleaning Fee</div>
             <div className="each-fee">Service Fee</div>
           </div>
           <div className="fee-price">
-            <div className="fee-number">$$$</div>
-            <div className="fee-number">$$$</div>
-            <div className="fee-number">$$$</div>
+            <div className="fee-number">{`$${(numDays * room?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
+            <div className="fee-number">{`$${cleaningFee}`}</div>
+            <div className="fee-number">{`$${serviceFee}`}</div>
           </div>
         </div>
         <div className="total-fees-bottom">
           <div className="total-each-fee">Total before taxes</div>
-          <div className="total-fee-number">$$$</div>
+          <div className="total-fee-number">{`$${((numDays * room?.price) + cleaningFee + serviceFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }`}</div>
         </div>
       </div>
     </div>

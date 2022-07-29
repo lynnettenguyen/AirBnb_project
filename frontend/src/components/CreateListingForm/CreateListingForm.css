@@ -125,10 +125,6 @@
   padding: 1rem;
 }
 
-.hidden {
-  display: none;
-}
-
 .not-visible {
   visibility: hidden;
 }
@@ -152,8 +148,4 @@
 
 .error-message {
   padding-top: 20rem;
-}
-
-.hidden, .cancel-button:disabled {
-  display: none;
 }

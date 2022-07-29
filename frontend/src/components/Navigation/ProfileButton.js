@@ -49,7 +49,6 @@ function ProfileButton({ user }) {
   //   }
   // }, [showMenu])
 
-
   return (
     <>
       <div>

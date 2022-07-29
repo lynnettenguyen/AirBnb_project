@@ -22,9 +22,6 @@ const UserReservations = () => {
   const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId && sessionUser.id !== reservation.userId)
   const trips = allReservations.filter(reservation => sessionUser.id === reservation.userId)
 
-
-  console.log("!!!!!", reservationsPerRoom)
-
   const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
   const allEndDates = reservationsPerRoom.map(reservation => reservation.endDate)
 
@@ -137,7 +134,7 @@ const UserReservations = () => {
                             <div className="res-year">{endYear}</div>
                           </div>
                           <div className="bottom-edit-res">
-                            <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId); setShowEdit(!showEdit) }} className="res-button">{showEdit ? editReservation === reservation.roomId ? "X" : "Edit" : "Edit"}</button>
+                            <button type="button" onClick={() => { setReservationId(reservation?.id); setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setEditReservation(reservation?.id); setShowEdit(!showEdit) }} className="res-button">{showEdit ? editReservation === reservation.id ? "X" : "Edit" : "Edit"}</button>
                           </div>
                         </div>
                         <div className="bottom-location">
@@ -155,7 +152,7 @@ const UserReservations = () => {
                   </div>
                 </div>
                 {
-                  showEdit ? editReservation === reservation.roomId ?
+                  showEdit ? editReservation === reservation.id ?
                     <>
                       <div className="update-res-header">Update reservation:</div>
                       <div className="middle-change-res">

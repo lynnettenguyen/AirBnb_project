@@ -49,22 +49,22 @@ const validateRoom = [
     check('lat')
         .exists({ checkFalsy: true })
         .notEmpty()
-        .custom(async function checkLat(lat) {
+        // .custom(async function checkLat(lat) {
             // if (lat > 90 || lat < -90 || typeof lat !== 'number') {
-            if (lat > 90 || lat < -90 ) {
-                throw Error
-            }
-        })
+        //     if (lat > 90 || lat < -90 ) {
+        //         throw Error
+        //     }
+        // })
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
         .notEmpty()
-        .custom(async function checkLat(lng) {
+        // .custom(async function checkLat(lng) {
             // if (lng > 180 || lng < -180 || typeof lng !== 'number') {
-            if (lng > 180 || lng < -180 ) {
-                throw Error
-            }
-        })
+            // if (lng > 180 || lng < -180 ) {
+            //     throw Error
+            // }
+        // })
         .withMessage('Longitude is not valid'),
     check('name')
         .exists({ checkFalsy: true })

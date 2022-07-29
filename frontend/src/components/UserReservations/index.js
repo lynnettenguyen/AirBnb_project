@@ -118,36 +118,40 @@ const UserReservations = () => {
                   </div>
                 </div>
                 {
-                  showEdit ? editReservation === reservation.roomId ? <div className="middle-change-res">
-                    <div className="reservation-dates-res">
-                      <div className="check-res">
-                        <label className="check-label">CHECK-IN</label>
-                        <input
-                          type="date"
-                          min={new Date().toISOString().split('T')[0]}
-                          className="select-date-res"
-                          value={new Date(checkIn).toISOString().slice(0, 10)}
-                          onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
-                        />
+                  showEdit ? editReservation === reservation.roomId ?
+                    <>
+                      <div className="update-res-header">Update reservation:</div>
+                      <div className="middle-change-res">
+                        <div className="reservation-dates-res">
+                          <div className="check-res">
+                            <label className="check-label">CHECK-IN</label>
+                            <input
+                              type="date"
+                              min={new Date().toISOString().split('T')[0]}
+                              className="select-date-res"
+                              value={new Date(checkIn).toISOString().slice(0, 10)}
+                              onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
+                            />
+                          </div>
+                          <div className="check-res">
+                            <label className="check-label">CHECKOUT</label>
+                            <input
+                              type="date"
+                              min={new Date().toISOString().split('T')[0]}
+                              className="select-date-res"
+                              value={new Date(checkOut).toISOString().slice(0, 10)}
+                              onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="edit-delete-buttons">
+                            <button type="button" onClick={handleDelete(reservation.id)} className="res-button">Cancel Reservation</button>
+                            <button type="submit" className="res-button">Change Reservation</button>
+                          </div>
+                        </div>
                       </div>
-                      <div className="check-res">
-                        <label className="check-label">CHECKOUT</label>
-                        <input
-                          type="date"
-                          min={new Date().toISOString().split('T')[0]}
-                          className="select-date-res"
-                          value={new Date(checkOut).toISOString().slice(0, 10)}
-                          onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="edit-delete-buttons">
-                        <button type="button" onClick={handleDelete(reservation.id)} className="res-button">Cancel Reservation</button>
-                        <button type="submit" className="res-button">Change Reservation</button>
-                      </div>
-                    </div>
-                  </div> : <></> : <></>
+                    </> : <></> : <></>
                 }
               </div>
             )

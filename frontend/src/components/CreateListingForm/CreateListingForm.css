@@ -149,3 +149,11 @@
   margin-bottom: 0;
   margin-left: 1rem;
 }
+
+.error-message {
+  padding-top: 20rem;
+}
+
+.hidden, .cancel-button:disabled {
+  display: none;
+}

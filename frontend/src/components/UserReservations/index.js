@@ -18,7 +18,7 @@ const UserReservations = () => {
   const [showEdit, setShowEdit] = useState(false)
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkDates, setCheckDates] = useState(true)
-  const [cancel, setCancel] = useState(false)
+  const [cancel, setCancel] = useState(true)
 
   const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId && sessionUser.id !== reservation.userId)
   const trips = allReservations.filter(reservation => sessionUser.id === reservation.userId)
@@ -26,22 +26,22 @@ const UserReservations = () => {
   const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
   const allEndDates = reservationsPerRoom.map(reservation => reservation.endDate)
 
-
-  console.log(reservationErrors)
+  console.log(cancel)
 
   useEffect(() => {
     dispatch(listAllReservations())
 
     const errors = []
 
+    if (new Date() > new Date(checkIn)) {
+      errors.push("Cannot modify previous reservations")
+      setCancel(false)
+    }
+
     if (checkIn === checkOut)
       errors.push("Reservations must be a minimum of 1 day")
     else if (new Date(checkIn) > new Date(checkOut))
       errors.push("Check-in date must be prior to check-out date")
-    else if (new Date() > new Date(checkIn)) {
-      errors.push("Cannot update or cancel previous reservations")
-      setCancel(true)
-      }
 
     for (let i = 0; i < allStartDates.length; i++) {
       let startReq = new Date(checkIn);
@@ -162,59 +162,53 @@ const UserReservations = () => {
                 {
                   showEdit ? editReservation === reservation.id ?
                     <>
-                      <div className="update-res-header">Update reservation:</div>
-                      <div className="middle-change-res">
-                        <div className="reservation-dates-res">
-                          <div className="check-res">
-                            <label className="check-label">CHECK-IN</label>
-                            <input
-                              type="date"
-                              min={new Date().toISOString().split('T')[0]}
-                              className="select-date-res"
-                              value={new Date(checkIn).toISOString().slice(0, 10)}
-                              onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
-                              disabled={cancel}
-                            />
-                          </div>
-                          <div className="check-res">
-                            <label className="check-label">CHECKOUT</label>
-                            <input
-                              type="date"
-                              min={new Date().toISOString().split('T')[0]}
-                              className="select-date-res"
-                              value={new Date(checkOut).toISOString().slice(0, 10)}
-                              onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
-                              disabled={cancel}
-                            />
-                          </div>
+                      <div className={new Date() > new Date(checkIn) ? "hidden" : "update-res-header"}>Update reservation:</div>
+                      <div className={new Date() > new Date(checkIn) ? "hidden" : "middle-change-res"}>
+                        <div className={new Date() > new Date(checkIn) ? "hidden" : "reservation-dates-res"}>
+                        <div className="check-res" disabled>
+                          <label className="check-label">CHECK-IN</label>
+                          <input
+                            type="date"
+                            min={new Date().toISOString().split('T')[0]}
+                            className="select-date-res"
+                            value={new Date(checkIn).toISOString().slice(0, 10)}
+                            onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
+                          />
                         </div>
-                        <div>
-                          <div className="edit-delete-buttons">
-                            <button type="submit" className="res-button update-button" disabled={checkDates}>Update Reservation</button>
-                            <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button" disabled={cancel}>Cancel Reservation</button>
-                          </div>
+                        <div className="check-res">
+                          <label className="check-label">CHECKOUT</label>
+                          <input
+                            type="date"
+                            min={new Date().toISOString().split('T')[0]}
+                            className="select-date-res"
+                            value={new Date(checkOut).toISOString().slice(0, 10)}
+                            onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
+                          />
                         </div>
                       </div>
+                      <div>
+                        <div className="edit-delete-buttons">
+                          <button type="submit" className="res-button update-button" disabled={checkDates}>Update Reservation</button>
+                          <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button" disabled={new Date() > new Date(checkIn)}>Cancel Reservation</button>
+                        </div>
+                      </div>
+                    </div>
                       {reservationErrors.length > 0 && (
-                        <>
-                          {/* <ul>
-                            <li className="reserve-errors-edit">{reservationErrors[0]}
-                            </li>
-                          </ul> */}
-                          <ul>
-                            {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
-                          </ul>
-                        </>
-                      )}
-                    </> : <></> : <></>
+                  <>
+                    <ul>
+                      {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                  </>
+                )}
+              </> : <></> : <></>
                 }
-              </div>
-            )
+      </div>
+      )
           })}
-        </form>
+    </form>
 
       </div >
-      <div className="trips-right-div"></div>
+  <div className="trips-right-div"></div>
     </div >
   )
 }

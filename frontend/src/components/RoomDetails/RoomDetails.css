@@ -69,8 +69,7 @@
 }
 
 .room-top-content {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  display: flex;
   padding-bottom: 0.8rem;
 }
 
@@ -133,6 +132,7 @@
 .room-information-bottom {
   display: flex;
   margin: 1rem;
+  justify-content: center;
 }
 
 .default-description {

@@ -18,6 +18,7 @@ const UserReservations = () => {
   const [showEdit, setShowEdit] = useState(false)
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkDates, setCheckDates] = useState(true)
+  const [cancel, setCancel] = useState(false)
 
   const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId && sessionUser.id !== reservation.userId)
   const trips = allReservations.filter(reservation => sessionUser.id === reservation.userId)
@@ -37,8 +38,10 @@ const UserReservations = () => {
       errors.push("Reservations must be a minimum of 1 day")
     else if (new Date(checkIn) > new Date(checkOut))
       errors.push("Check-in date must be prior to check-out date")
-      else if (new Date() > new Date(checkIn))
-      errors.push("Cannot cancel previous reservations")
+    else if (new Date() > new Date(checkIn)) {
+      errors.push("Cannot update or cancel previous reservations")
+      setCancel(true)
+      }
 
     for (let i = 0; i < allStartDates.length; i++) {
       let startReq = new Date(checkIn);
@@ -139,7 +142,7 @@ const UserReservations = () => {
                             <div className="res-year">{endYear}</div>
                           </div>
                           <div className="bottom-edit-res">
-                            <button type="button" onClick={() => { setReservationId(reservation?.id); setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setEditReservation(reservation?.id); setShowEdit(!showEdit) }} className="res-button">{showEdit ? editReservation === reservation.id ? "X" : "Edit" : "Edit"}</button>
+                            <button type="button" onClick={() => { setReservationId(reservation?.id); setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setEditReservation(reservation?.id); setShowEdit(!showEdit); setCancel(false) }} className="res-button">{showEdit ? editReservation === reservation.id ? "X" : "Edit" : "Edit"}</button>
                           </div>
                         </div>
                         <div className="bottom-location">
@@ -170,6 +173,7 @@ const UserReservations = () => {
                               className="select-date-res"
                               value={new Date(checkIn).toISOString().slice(0, 10)}
                               onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
+                              disabled={cancel}
                             />
                           </div>
                           <div className="check-res">
@@ -180,13 +184,14 @@ const UserReservations = () => {
                               className="select-date-res"
                               value={new Date(checkOut).toISOString().slice(0, 10)}
                               onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
+                              disabled={cancel}
                             />
                           </div>
                         </div>
                         <div>
                           <div className="edit-delete-buttons">
-                            <button type="submit" className="res-button" disabled={checkDates}>Update Reservation</button>
-                            <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button">Cancel Reservation</button>
+                            <button type="submit" className="res-button update-button" disabled={checkDates}>Update Reservation</button>
+                            <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button" disabled={cancel}>Cancel Reservation</button>
                           </div>
                         </div>
                       </div>

@@ -193,3 +193,7 @@
 
 /* 1-1 to 1-5 */
 /* can't have start GREATER 1-1 and LESS than 1-5 */
+
+.update-button:disabled, .cancel-button:disabled {
+  visibility: hidden;
+}

@@ -253,7 +253,7 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists
 
         if (userReserved !== req.user.id) {
             if ((startReq >= startRes && startReq < endRes) ||
-                (endReq > startRes && endReq < endRes) ||
+                (endReq > startRes && endReq <= endRes) ||
                 startRes >= startReq && startRes < endReq ||
                 endRes > startReq && endRes <= endReq) {
                 errorResult.errors.date = `Dates conflicts with an existing booking`

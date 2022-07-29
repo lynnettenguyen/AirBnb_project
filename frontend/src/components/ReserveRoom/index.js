@@ -45,7 +45,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       let endRes = new Date(allEndDates[i]);
 
       if ((startReq >= startRes && startReq < endRes) ||
-        (endReq > startRes && endReq < endRes) ||
+        (endReq > startRes && endReq <= endRes) ||
         startRes >= startReq && startRes < endReq ||
         endRes > startReq && endRes <= endReq) {
         errors.push("Selected dates conflict with an existing booking")

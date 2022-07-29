@@ -44,9 +44,10 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       let startRes = new Date(allStartDates[i]);
       let endRes = new Date(allEndDates[i]);
 
-      if ((startRes <= startReq && endRes >= endReq) ||
-        (startRes <= startReq && endRes >= startReq) ||
-        (startRes <= endReq && endRes >= endReq)) {
+      if ((startReq >= startRes && startReq < endRes) ||
+        (endReq > startRes && endReq < endRes) ||
+        startRes >= startReq && startRes < endReq ||
+        endRes > startReq && endRes <= endReq) {
         errors.push("Selected dates conflict with an existing booking")
       } else if (startRes === startReq)
         errors.push("Check-in date conflicts with an existing booking")

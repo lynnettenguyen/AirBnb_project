@@ -135,6 +135,10 @@
   margin: 1rem;
 }
 
+.default-description {
+  width: 80rem;
+}
+
 .room-description {
   font-size: 22px;
   font-weight: 200;
@@ -154,6 +158,10 @@
   .left-image-div {
     width: 40rem;
     margin-right: 1.6rem;
+  }
+
+  .default-description {
+    width: 57rem;
   }
 }
 
@@ -202,5 +210,13 @@
 
   .room-name {
     font-size: 2rem;
+  }
+
+  .default-description {
+    width: 27rem;
+  }
+
+  .room-description {
+    font-size: 1.2rem;
   }
 }

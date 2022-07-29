@@ -60,10 +60,7 @@ const RoomDetails = () => {
               <div className="room-information-top">
                 <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
                 <span className="span-separator">·</span>
-                {/* <span>{`${room?.numReviews ? room.numReviews : 0} reviews`}</span> */}
                 <span className="room-reviews">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
-                {/* <span className="span-separator">.</span>
-                <span>Superhost</span> */}
                 <span className="span-separator">.</span>
                 <span className="room-location">{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
               </div>

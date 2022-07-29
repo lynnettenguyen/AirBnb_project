@@ -121,7 +121,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               />
             </div>
           </div>
-          {currRoomReservations.length > 0 ? <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button> : <div className="view-reservations-other">No Reservations! Book Now!</div>}
+          {currRoomReservations.length > 0 ? (<button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button>) : (<div className="view-reservations-other">No Reservations! Book Now!</div>)}
           {showReservations ?
             <div className="outer-list-reservation">
               {currRoomReservations.length > 0 ? currRoomReservations.map(reservation => {
@@ -147,7 +147,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
             {sessionUser ?
               <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" disabled>Log in to Reserve</button>
             }
-            {reservationErrors.length > 0 && (
+            {currRoomReservations.length > 0 && reservationErrors.length > 0 && (
               <div className="reserve-errors">{reservationErrors[0]}
               </div>
             )}

@@ -51,6 +51,11 @@ function LoginForm() {
         type="submit"
         className="login-form-button"
       >Log In</button>
+      <button
+        type="submit"
+        className="demo-login-form-button"
+        onClick={ () => {setEmail("demo@user.io"); setPassword("password")}}
+      >Demo User</button>
     </form>
   );
 }

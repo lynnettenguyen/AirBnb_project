@@ -123,7 +123,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               />
             </div>
           </div>
-          <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{currRoomReservations.length > 0 ? showReservations ?"Hide reservations" : "View reservations" : "No reservations! Book Now!"}</button>
+          {currRoomReservations.length > 0 ? <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button> : <div className="view-reservations-other">No Reservations! Book Now!</div>}
           {showReservations ?
             <div className="outer-list-reservation">
               {currRoomReservations.map(reservation => {

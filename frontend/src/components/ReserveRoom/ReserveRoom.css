@@ -98,7 +98,7 @@
   font-size: 18px;
   font-weight: 600;
   height: 55px;
-  margin-top: 19px;
+  margin-top: 0.8rem;
   width: 23rem;
 }
 
@@ -158,12 +158,19 @@
 }
 
 .view-reservations {
-  margin-top: 0.6rem;
+  margin-top: 0.7rem;
   margin-left: 0.3rem;
   padding: 0.2rem;
   border: none;
   font-size: 1rem;
   border-radius: 10px;
+}
+
+.view-reservations-other {
+  margin-top: 0.6rem;
+  margin-left: 0.3rem;
+  padding: 0.2rem 0.2rem 0 0;
+  font-size: 1rem;
 }
 
 .view-reservations:hover {

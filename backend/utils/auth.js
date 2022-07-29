@@ -175,19 +175,20 @@ const checkReservationValidation = async function (req, _res, next) {
     }
 
     for (let i = 0; i < currStartDates.length; i++) {
-        let startReserved = new Date(currStartDates[i]);
-        let endReserved = new Date(currEndDates[i]);
+        let startRes = new Date(currStartDates[i]);
+        let endRes= new Date(currEndDates[i]);
 
         let startReq = new Date(startDate)
         let endReq = new Date(endDate)
 
-        if ((startReserved <= startReq && endReserved >= endReq) ||
-            (startReserved <= startReq && endReserved >= startReq) ||
-            (startReserved <= endReq && endReserved >= endReq)) {
+        if ((startReq >= startRes && startReq < endRes) ||
+            (endReq > startRes && endReq < endRes) ||
+            startRes >= startReq && startRes < endReq ||
+            endRes > startReq && endRes <= endReq) {
             errorResult.errors.date = `Dates conflicts with an existing booking`
-        } else if (startReserved === startReq) {
+        } else if (startRes === startReq) {
             errorResult.errors.startDate = 'Start date conflicts with an existing booking'
-        } else if (endReserved === endReq) {
+        } else if (endRes === endReq) {
             errorResult.errors.endDate = 'End date conflicts with an existing booking'
         }
     }

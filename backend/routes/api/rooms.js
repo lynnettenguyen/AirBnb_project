@@ -49,22 +49,22 @@ const validateRoom = [
     check('lat')
         .exists({ checkFalsy: true })
         .notEmpty()
-    //     .custom(async function checkLat(lat) {
-    //         if (lat > 90 || lat < -90 || typeof lat !== 'number') {
-    //         if (lat > 90 || lat < -90 ) {
-    //             throw Error
-    //         }
-    //     })
+        //     .custom(async function checkLat(lat) {
+        //         if (lat > 90 || lat < -90 || typeof lat !== 'number') {
+        //         if (lat > 90 || lat < -90 ) {
+        //             throw Error
+        //         }
+        //     })
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
         .notEmpty()
-    //     .custom(async function checkLat(lng) {
-    //         if (lng > 180 || lng < -180 || typeof lng !== 'number') {
-    //         if (lng > 180 || lng < -180 ) {
-    //             throw Error
-    //         }
-    //     })
+        //     .custom(async function checkLat(lng) {
+        //         if (lng > 180 || lng < -180 || typeof lng !== 'number') {
+        //         if (lng > 180 || lng < -180 ) {
+        //             throw Error
+        //         }
+        //     })
         .withMessage('Longitude is not valid'),
     check('name')
         .exists({ checkFalsy: true })
@@ -181,14 +181,8 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
     }
 })
 
-router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwner, validateDate, checkReservationValidation], async (req, res) => {
+router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwner, validateDate, checkReservationValidation], async (req, res, next) => {
     const { startDate, endDate } = req.body;
-
-    if (new Date(startDate) > new Date(endDate)) {
-        const err = new Error(`End date must be after start date`);
-        err.status = 400;
-        return next(err);
-    }
 
     const newReservation = await Reservation.create({
         userId: req.user.id,
@@ -196,7 +190,14 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwne
         startDate: startDate,
         endDate: endDate,
     })
-    return res.json(newReservation)
+
+    if (new Date(startDate) > new Date(endDate)) {
+        const err = new Error(`Check-in date must be prior to checkout date`);
+        err.status = 400;
+        return next(err);
+    } else {
+        return res.json(newReservation)
+    }
 })
 
 router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists, checkNotOwner, validateDate], async (req, res, next) => {

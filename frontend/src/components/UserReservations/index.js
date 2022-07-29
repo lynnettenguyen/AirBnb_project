@@ -119,7 +119,7 @@ const UserReservations = () => {
         <form onSubmit={handleSubmit}>
           {trips?.map((reservation, i) => {
             <div className="reservation-header">Upcoming/ Past Reservations</div>
-            
+
             let startDate = new Date(reservation?.startDate)
             startDate = new Date(startDate.getTime() + startDate.getTimezoneOffset() * 60000)
             const startMonth = startDate.toLocaleString('default', { month: 'short' })
@@ -169,7 +169,9 @@ const UserReservations = () => {
                   </div>
                   <div className="right-res-content">
                     <div className="right-image-res">
+                    <Link to={`/rooms/${reservation.roomId}`}>
                       <img className="res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
+                    </Link>
                     </div>
                   </div>
                 </div>

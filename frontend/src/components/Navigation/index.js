@@ -34,14 +34,18 @@ function Navigation({ isLoaded }) {
   }
   return (
     <>
-      <nav>
-        <div className='navigation-bar-div'>
-          <NavLink exact to="/" className="nav-link home-link">
-            <span className="iconify" data-icon="fa-brands:airbnb" data-width="48"></span>
-            <span className='airbnb-name'>wherebnb</span>
-          </NavLink>
-          {isLoaded && sessionLinks}
-        </div>
+      <nav className="main-nav">
+          <div className="navigation-outer">
+            <div className="nav-side"></div>
+            <div className='navigation-bar'>
+              <NavLink exact to="/" className="nav-link home-link">
+                <span className="iconify" data-icon="fa-brands:airbnb" data-width="48"></span>
+                <span className='airbnb-name'>wherebnb</span>
+              </NavLink>
+              {isLoaded && sessionLinks}
+            </div>
+            <div className="nav-side"></div>
+          </div>
       </nav>
     </>
   );

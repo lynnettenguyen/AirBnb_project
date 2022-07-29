@@ -1,8 +1,12 @@
-.navigation-bar-div {
-  border-bottom: 1px #71717150 solid;
+.navigation-bar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 200px;
+  padding: 20px;
+  width: 1700px;
+}
+
+.main-nav {
+  border-bottom: 1px #71717150 solid;
 }
 
 .login {
@@ -32,4 +36,9 @@
   line-height: 20px;
   padding-left: 8px;
   padding-top: 14px;
+}
+
+.navigation-outer {
+  display: flex;
+  justify-content: center;
 }

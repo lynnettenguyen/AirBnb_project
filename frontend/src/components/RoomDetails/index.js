@@ -45,7 +45,8 @@ const RoomDetails = () => {
   }
 
   useEffect(() => {
-    dispatch(findRoomById(roomId)).then(dispatch(listRoomReservations(roomId)))
+    dispatch(findRoomById(roomId))
+    dispatch(listRoomReservations(roomId))
   }, [dispatch])
 
   return (
@@ -95,7 +96,7 @@ const RoomDetails = () => {
           </div>
           <div className="room-information-bottom">
             <div className="default-description">
-            <div className="room-description">{room?.description}</div>
+              <div className="room-description">{room?.description}</div>
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>

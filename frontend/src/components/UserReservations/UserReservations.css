@@ -57,8 +57,12 @@
 .res-button {
   border: none;
   border-radius: 10px;
-  padding: 0.3rem;
+  padding: 0.3rem 0.4rem;
   margin: 0.13rem 0.3rem 0.3rem;
+}
+
+.res-button:hover {
+  cursor: pointer;
 }
 
 .right-res-content {
@@ -189,4 +193,3 @@
 
 /* 1-1 to 1-5 */
 /* can't have start GREATER 1-1 and LESS than 1-5 */
-

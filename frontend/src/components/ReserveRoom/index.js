@@ -18,49 +18,59 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   tomorrow.setDate(tomorrow.getDate() + 1)
   nextDay.setDate(nextDay.getDate() + 4)
 
-  const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
-  const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
+  const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
+  const [checkOut, setCheckOut] = useState(tomorrow.toISOString().slice(0, 10))
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkOwner, setCheckOwner] = useState(false)
   const [showReservations, setShowReservations] = useState(false)
 
   const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
   const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
+  console.log(reservationErrors, "ERRORS")
 
   useEffect(() => {
     dispatch(listRoomReservations(roomId))
 
     const errors = []
-    if (sessionUser?.id === room?.ownerId)
+
+    if (sessionUser?.id === room?.ownerId) {
+      setCheckOwner(true)
       errors.push("Hosts can't reserve their own listings")
-    else if (new Date(checkIn) === new Date(checkOut))
-      errors.push("Reservations must be a minimum of 1 day")
-    else if (new Date(checkIn) > new Date(checkOut))
-      errors.push("Check-in date must be prior to check-out date")
-
-    for (let i = 0; i < allStartDates.length; i++) {
-      let startReq = new Date(checkIn);
-      let endReq = new Date(checkOut);
-      let startRes = new Date(allStartDates[i]);
-      let endRes = new Date(allEndDates[i]);
-
-      if ((startReq >= startRes && startReq < endRes) ||
-        (endReq > startRes && endReq <= endRes) ||
-        startRes >= startReq && startRes < endReq ||
-        endRes > startReq && endRes <= endReq) {
-        errors.push("Selected dates conflict with an existing booking")
-      } else if (startRes === startReq)
-        errors.push("Check-in date conflicts with an existing booking")
-      else if (endRes === endReq)
-        errors.push("Check-out date conflicts with an existing booking")
     }
+
+    // else if (new Date(checkIn) === new Date(checkOut))
+    //   errors.push("Reservations must be a minimum of 1 day")
+    // else if (new Date(checkIn) > new Date(checkOut))
+    //   errors.push("Check-in date must be prior to check-out date")
+
+    // for (let i = 0; i < allStartDates.length; i++) {
+    //   let startReq = new Date(checkIn);
+    //   startReq = new Date(startReq.getTime() + startReq.getTimezoneOffset() * 60000)
+    //   let endReq = new Date(checkOut);
+    //   endReq = new Date(endReq.getTime() + endReq.getTimezoneOffset() * 60000)
+    //   let startRes = new Date(allStartDates[i]);
+    //   startRes = new Date(startRes.getTime() + startRes.getTimezoneOffset() * 60000)
+    //   let endRes = new Date(allEndDates[i]);
+    //   endRes = new Date(endRes.getTime() + endRes.getTimezoneOffset() * 60000)
+
+    //   if ((startReq >= startRes && startReq < endRes) ||
+    //     (endReq > startRes && endReq <= endRes) ||
+    //     startRes >= startReq && startRes < endReq ||
+    //     endRes > startReq && endRes <= endReq) {
+    //     errors.push("Selected dates conflict with an existing booking")
+    //     continue;
+    //   } else
+    //     if (startRes === startReq)
+    //       errors.push("Check-in date conflicts with an existing booking")
+    //     else if (endRes === endReq)
+    //       errors.push("Check-out date conflicts with an existing booking")
+    // }
+
 
     if (errors.length > 0) {
       setReservationErrors(errors)
-      setCheckOwner(true)
     } else {
       setReservationErrors([])
-      setCheckOwner(false)
     }
 
   }, [dispatch, checkIn, checkOut])
@@ -80,6 +90,11 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
     }
 
     const reservationResponse = await dispatch(bookNewReservation(reservationData))
+      .catch(async (res) => {
+        const data = await res.json();
+        console.log(data)
+        if (data && data.errors) { setReservationErrors(Object.values(data)); }
+      })
 
     if (reservationResponse) {
       history.push("/reservations")
@@ -123,7 +138,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
           </div>
           {currRoomReservations.length > 0 ? (<button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button>) : (<div className="view-reservations-other">No Reservations! Book Now!</div>)}
           {showReservations ?
-            <div className="outer-list-reservation">
+            (<div className="outer-list-reservation">
               {currRoomReservations.length > 0 ? currRoomReservations.map(reservation => {
                 return (
                   <div key={`${reservation.id}`} className="list-reservations-div">
@@ -134,8 +149,8 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
                     </div>
                   </div>
                 )
-              }): <></>}
-            </div> : <></>}
+              }) : <></>}
+            </div>) : <></>}
           {/* <div className="guests">
             <label>Guests</label>
             <input
@@ -147,9 +162,12 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
             {sessionUser ?
               <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" disabled>Log in to Reserve</button>
             }
-            {currRoomReservations.length > 0 && reservationErrors.length > 0 && (
-              <div className="reserve-errors">{reservationErrors[0]}
-              </div>
+            {reservationErrors.length > 0 && (
+              // <div className="reserve-errors">{reservationErrors[0]}
+              // </div>
+              <ul>
+                {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
+              </ul>
             )}
           </div>
         </div>

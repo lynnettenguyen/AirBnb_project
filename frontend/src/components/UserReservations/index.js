@@ -25,6 +25,9 @@ const UserReservations = () => {
   const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
   const allEndDates = reservationsPerRoom.map(reservation => reservation.endDate)
 
+
+  console.log(reservationErrors)
+
   useEffect(() => {
     dispatch(listAllReservations())
 
@@ -34,6 +37,8 @@ const UserReservations = () => {
       errors.push("Reservations must be a minimum of 1 day")
     else if (new Date(checkIn) > new Date(checkOut))
       errors.push("Check-in date must be prior to check-out date")
+      else if (new Date() > new Date(checkIn))
+      errors.push("Cannot cancel previous reservations")
 
     for (let i = 0; i < allStartDates.length; i++) {
       let startReq = new Date(checkIn);
@@ -186,10 +191,15 @@ const UserReservations = () => {
                         </div>
                       </div>
                       {reservationErrors.length > 0 && (
-                        <ul>
-                          <li className="reserve-errors-edit">{reservationErrors[0]}
-                          </li>
-                        </ul>
+                        <>
+                          {/* <ul>
+                            <li className="reserve-errors-edit">{reservationErrors[0]}
+                            </li>
+                          </ul> */}
+                          <ul>
+                            {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
+                          </ul>
+                        </>
                       )}
                     </> : <></> : <></>
                 }

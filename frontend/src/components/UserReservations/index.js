@@ -71,6 +71,7 @@ const UserReservations = () => {
     const response = await dispatch(removeReservation(reservationId))
 
     if (response) {
+      setShowEdit(false)
       dispatch(listAllReservations())
     }
   }
@@ -115,9 +116,10 @@ const UserReservations = () => {
             <div></div>
           </div>
         </div>}
-        <div className="reservation-header">Upcoming/ Past Reservations</div>
         <form onSubmit={handleSubmit}>
           {trips?.map((reservation, i) => {
+            <div className="reservation-header">Upcoming/ Past Reservations</div>
+            
             let startDate = new Date(reservation?.startDate)
             startDate = new Date(startDate.getTime() + startDate.getTimezoneOffset() * 60000)
             const startMonth = startDate.toLocaleString('default', { month: 'short' })

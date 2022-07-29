@@ -184,18 +184,18 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
 router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwner, validateDate, checkReservationValidation], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
-    const newReservation = await Reservation.create({
-        userId: req.user.id,
-        roomId: req.params.roomId,
-        startDate: startDate,
-        endDate: endDate,
-    })
-
     if (new Date(startDate) > new Date(endDate)) {
         const err = new Error(`Invalid date selection`);
         err.status = 400;
         return next(err);
     } else {
+
+        const newReservation = await Reservation.create({
+            userId: req.user.id,
+            roomId: req.params.roomId,
+            startDate: startDate,
+            endDate: endDate,
+        })
         return res.json(newReservation)
     }
 })

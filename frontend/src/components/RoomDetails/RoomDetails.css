@@ -99,7 +99,7 @@
 
 .room-reviews,
 .room-location {
-  text-decoration: underline;
+  /* text-decoration: underline; */
   font-weight: 500;
 }
 

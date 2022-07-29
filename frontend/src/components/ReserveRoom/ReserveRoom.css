@@ -77,7 +77,7 @@
 
 .reserve-review {
   font-size: 1.1rem;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .reserve-button-div {
@@ -131,7 +131,7 @@
 }
 
 .each-fee {
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .each-fee,

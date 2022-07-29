@@ -11,19 +11,19 @@
 .all-rooms-div {
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(4, 420px);
+  grid-template-columns: repeat(4, 430px);
   place-items: center;
 }
 
 .room-div {
   height: 490px;
-  width: 400px;
+  width: 405px;
   margin: 10px;
 }
 
 .img-div {
-  height: 396px;
-  width: 392px;
+  height: 400px;
+  width: 402px;
   display: flex;
   margin: auto;
 }

@@ -73,6 +73,12 @@
   grid-template-columns: 3fr 2fr;
   padding-bottom: 0.8rem;
   margin: 0 0.8em;
+  width: 1730px;
+}
+
+.outer-top-content {
+  display: flex;
+  justify-content: center;
 }
 
 .room-header {

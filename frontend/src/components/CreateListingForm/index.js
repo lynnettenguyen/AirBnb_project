@@ -40,18 +40,25 @@ const CreateListingForm = () => {
     toggleNext(e.target.value)
   }
 
+  console.log(validationErrors)
+
   useEffect(() => {
     const errors = []
     if (!address.length) errors.push("valid address required")
     if (!city.length) errors.push("valid city required")
-
     if (!state.length) errors.push("valid state required")
     if (!country.length) errors.push("valid country required")
-    if (isNaN(lat) || lat > 90 || lat < -90) errors.push("valid latitude between -90 to +90 required")
-    if (isNaN(lng) || lng > 180 || lng < -180) errors.push("valid longitude -180 to +180 required")
 
-    if (errors.length > 0) setValidationErrors(errors)
-    else setCheckInput(false)
+    let latNum = parseInt(lat, 10)
+    let lngNum = parseInt(lng, 10)
+
+    if (isNaN(latNum) || lat > 90 || lat < -90) errors.push("valid latitude between -90 to +90 required")
+    if (isNaN(lngNum) || lng > 180 || lng < -180) errors.push("valid longitude -180 to +180 required")
+
+    if (errors.length > 0) {
+      setCheckInput(true)
+      setValidationErrors(errors)
+    } else setCheckInput(false)
 
   }, [address, city, state, country, lat, lng])
 
@@ -260,9 +267,11 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="latitude"
                       className="multi-input"
+                      min="-90"
+                      max="90"
                       value={lat}
                       onChange={e => { setLat(e.target.value); }}
                       required
@@ -270,9 +279,11 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="longitude"
                       className="multi-input"
+                      min="-180"
+                      max="180"
                       value={lng}
                       onChange={e => { setLng(e.target.value); }}
                       required
@@ -282,7 +293,6 @@ const CreateListingForm = () => {
                 <div className="create-content-buttons">
                   <div className="back-next-buttons">{formButtons}</div>
                 </div>
-
               </div>
             </div>
           </section>

@@ -20,6 +20,22 @@ const EditListingForm = ({ listingId, returnToListing }) => {
   const [name, setName] = useState(room.name)
   const [description, setDescription] = useState(room.description)
   const [price, setPrice] = useState(room.price)
+  const [errors, setErrors] = useState([]);
+  const [disableButton, setDisableButton] = useState(false)
+
+  useEffect(() => {
+    const errors = [];
+    if (lat > 90 || lat < -90) errors.push("Latitude must be between - 90 to 90")
+    if (lng > 180 || lng < -180) errors.push("Longitude must be between - 90 to 90")
+    
+
+    if (errors.length > 0) {
+      setErrors(errors)
+      setDisableButton(true)
+    }
+
+  }, [lat, lng])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -39,6 +55,15 @@ const EditListingForm = ({ listingId, returnToListing }) => {
     }
 
     const response = await dispatch(updateRoom(roomData))
+      .catch(async (res) => {
+        const data = await res.json();
+        console.log(data)
+        if (data && data.errors)
+          if (data) {
+            const errors = Object.values(data.errors)
+            setErrors(errors)
+          }
+      })
 
     if (response) {
       dispatch(findRoomById(listingId))
@@ -137,7 +162,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             </div>
             <div>
               <div className="edit-listing-label">
-              <label>Update your Description</label>
+                <label>Update your Description</label>
               </div>
               <textarea
                 value={description}
@@ -148,7 +173,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             </div>
             <div>
               <div className="edit-listing-label">
-              <label>Price per Night</label>
+                <label>Price per Night</label>
               </div>
               <input
                 type="number"
@@ -158,8 +183,11 @@ const EditListingForm = ({ listingId, returnToListing }) => {
                 required
               />
             </div>
+            {errors.length > 0 && (<ul>
+              {errors.map((error, i) => <li key={i}>{error}</li>)}
+            </ul>)}
             <div className="update-button">
-            <button type="submit" className="update-listing-button">Confirm</button>
+              <button type="submit" disabled={disableButton} className="update-listing-button">Confirm</button>
             </div>
           </form>
         </div>

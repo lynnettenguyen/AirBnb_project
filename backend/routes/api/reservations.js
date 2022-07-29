@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/', requireAuth, async (req, res) => {
     const reservations = await Reservation.findAll({
-        where: { userId: req.user.id },
+        // where: { userId: req.user.id },
         include: [
             {
                 model: Room,
@@ -29,12 +29,11 @@ router.delete('/:reservationId', requireAuth, async (req, res, next) => {
     const deleteReservation = await Reservation.findOne({
         where: {
             id: req.params.reservationId,
-            userId: req.user.id
+            // userId: req.user.id
         },
-        attributes: ['startDate', 'endDate'],
-        raw: true
+        // attributes: ['startDate', 'endDate'],
+        // raw: true // frontEnd is giving deleteReservation.destroy is not a function
     })
-
 
     if (!deleteReservation) {
         const err = new Error(`Reservation couldn't be found`);

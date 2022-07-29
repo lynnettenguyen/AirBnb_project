@@ -114,7 +114,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
                     <label>Latitude</label>
                   </div>
                   <input
-                    type="text"
+                    type="number"
                     className="edit-listing-input lat"
                     value={lat}
                     onChange={e => setLat(e.target.value)}
@@ -126,7 +126,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
                     <label>Longitude</label>
                   </div>
                   <input
-                    type="text"
+                    type="number"
                     className="edit-listing-input lng"
                     value={lng}
                     onChange={e => setLng(e.target.value)}

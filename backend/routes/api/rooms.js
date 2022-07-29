@@ -50,7 +50,8 @@ const validateRoom = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .custom(async function checkLat(lat) {
-            if (lat > 90 || lat < -90 || typeof lat !== 'number') {
+            // if (lat > 90 || lat < -90 || typeof lat !== 'number') {
+            if (lat > 90 || lat < -90 ) {
                 throw Error
             }
         })
@@ -59,7 +60,8 @@ const validateRoom = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .custom(async function checkLat(lng) {
-            if (lng > 180 || lng < -180 || typeof lng !== 'number') {
+            // if (lng > 180 || lng < -180 || typeof lng !== 'number') {
+            if (lng > 180 || lng < -180 ) {
                 throw Error
             }
         })
@@ -156,7 +158,7 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
 
     const allReservations = await Reservation.findAll({
         where: { roomId: req.params.roomId },
-        attributes: ['roomId', 'startDate', 'endDate']
+        // attributes: ['roomId', 'startDate', 'endDate']
     })
 
     const ownerReservations = await Reservation.findAll({
@@ -245,20 +247,21 @@ router.put('/:roomId/reservations/:reservationId', [requireAuth, checkRoomExists
 
     for (let i = 0; i < currStartDates.length; i++) {
         let userReserved = reservationUser[i]
-        let startReserved = new Date(currStartDates[i]);
-        let endReserved = new Date(currEndDates[i]);
+        let startRes = new Date(currStartDates[i]);
+        let endRes = new Date(currEndDates[i]);
 
         let startReq = new Date(currentReservation.startDate)
         let endReq = new Date(currentReservation.endDate)
 
         if (userReserved !== req.user.id) {
-            if ((startReserved <= startReq && endReserved >= endReq) ||
-                (startReserved <= startReq && endReserved >= startReq) ||
-                (startReserved <= endReq && endReserved >= endReq)) {
+            if ((startReq >= startRes && startReq < endRes) ||
+                (endReq > startRes && endReq <= endRes) ||
+                startRes >= startReq && startRes < endReq ||
+                endRes > startReq && endRes <= endReq) {
                 errorResult.errors.date = `Dates conflicts with an existing booking`
-            } else if (startReserved === startReq) {
+            } else if (startRes === startReq) {
                 errorResult.errors.startDate = 'Start date conflicts with an existing booking'
-            } else if (endReserved === endReq) {
+            } else if (endRes === endReq) {
                 errorResult.errors.endDate = 'End date conflicts with an existing booking'
             }
         }

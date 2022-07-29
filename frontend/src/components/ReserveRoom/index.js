@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findRoomById, removeRoom } from "../../store/rooms";
 import "./ReserveRoom.css"
-import { getAllReservations, listAllReservations, bookNewReservation } from "../../store/reservations";
+import { getAllReservations, listRoomReservations, bookNewReservation } from "../../store/reservations";
 
 const ReserveRoom = ({ roomId, avgStarRating }) => {
   const room = useSelector((state) => state.rooms[roomId])
@@ -11,8 +11,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const currRoomReservations = useSelector(getAllReservations).filter(reservation => roomId = reservation.roomId)
-  console.log(currRoomReservations)
+  const currRoomReservations = useSelector(getAllReservations)
 
   const tomorrow = new Date()
   const nextDay = new Date()
@@ -29,15 +28,13 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
 
   useEffect(() => {
-    dispatch(listAllReservations(roomId))
+    dispatch(listRoomReservations(roomId))
 
     const errors = []
     if (sessionUser?.id === room?.ownerId)
       errors.push("Hosts can't reserve their own listings")
     else if (new Date(checkIn) === new Date(checkOut))
       errors.push("Reservations must be a minimum of 1 day")
-    else if (new Date().toISOString().slice(0, 10) === checkIn)
-      errors.push("Reservations must be for future dates")
     else if (new Date(checkIn) > new Date(checkOut))
       errors.push("Check-in date must be prior to check-out date")
 
@@ -47,12 +44,12 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       let startRes = new Date(allStartDates[i]);
       let endRes = new Date(allEndDates[i]);
 
-      if ((startRes <= startReq && endRes >= endReq) ||
-        (startRes <= startReq && endRes >= startReq) ||
-        (startRes <= endReq && endRes >= endReq)) {
+      if ((startReq >= startRes && startReq < endRes) ||
+        (endReq > startRes && endReq <= endRes) ||
+        startRes >= startReq && startRes < endReq ||
+        endRes > startReq && endRes <= endReq) {
         errors.push("Selected dates conflict with an existing booking")
-      }
-      else if (startRes === startReq)
+      } else if (startRes === startReq)
         errors.push("Check-in date conflicts with an existing booking")
       else if (endRes === endReq)
         errors.push("Check-out date conflicts with an existing booking")
@@ -66,7 +63,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       setCheckOwner(false)
     }
 
-  }, [checkIn, checkOut])
+  }, [dispatch, checkIn, checkOut])
 
   const numDays = Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24))
   const cleaningFee = Math.floor(room?.price / 5)
@@ -124,16 +121,16 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               />
             </div>
           </div>
-          <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{currRoomReservations.length > 0 ? showReservations ?"Hide reservations" : "View reservations" : "No reservations! Book Now!"}</button>
+          {currRoomReservations.length > 0 ? <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button> : <div className="view-reservations-other">No Reservations! Book Now!</div>}
           {showReservations ?
             <div className="outer-list-reservation">
               {currRoomReservations.map(reservation => {
                 return (
-                  <div key={reservation.id} className="list-reservations-div">
+                  <div key={`${reservation.id}`} className="list-reservations-div">
                     <div className="inner-list-div">
-                      <div className="view-start">{reservation.startDate}</div>
-                      <div className="view-to">to</div>
-                      <div className="view-end">{reservation.endDate}</div>
+                      <div key={`start${reservation.id}`} className="view-start">{reservation.startDate}</div>
+                      <div key={`to${reservation.id}`} className="view-to">to</div>
+                      <div key={`end${reservation.id}`} className="view-end">{reservation.endDate}</div>
                     </div>
                   </div>
                 )

@@ -33,21 +33,19 @@ const deleteReservation = (reservationId) => ({
   reservationId
 })
 
-export const listAllReservations = (roomId) => async (dispatch) => {
+export const listRoomReservations = (roomId) => async (dispatch) => {
   const response = await csrfFetch(`/api/rooms/${roomId}/reservations`);
   if (response.ok) {
     const reservationObj = await response.json();
-    // console.log("!!!!!!!!", reservationObj.reservations)
     dispatch(listReservations(reservationObj.reservations))
   }
   return response;
 }
 
-export const findUserReservation = () => async (dispatch) => {
+export const listAllReservations = () => async (dispatch) => {
   const response = await csrfFetch(`/api/reservations`)
   if (response.ok) {
     const reservations = await response.json()
-    // console.log("!!!!!!!!", reservations.Reservations)
     dispatch(findReservations(reservations.Reservations))
   }
   return response;
@@ -86,36 +84,40 @@ export const updateReservation = (reservationData) => async (dispatch) => {
 export const removeReservation = (reservationId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reservations/${reservationId}`, {
     method: "DELETE",
-    body: JSON.stringify({
-      reservationId
-    })
+    // body: JSON.stringify({
+    //   reservationId
+    // })
   })
   const deletedReservation = await response.json();
   dispatch(deleteReservation(reservationId));
   return deletedReservation;
+  // return;
 }
 
 const initialState = {}
 const reservationReducer = (state = initialState, action) => {
-  const newState = { ...state }
+  let newState = {}
   switch (action.type) {
     case LIST_RESERVATIONS: {
-      for (let reservation of action.reservations) newState[reservation.id] = reservation
-      return newState
+      action.reservations.map(reservation => newState[reservation.id] = reservation)
+      return newState;
     }
     case FIND_RESERVATIONS: {
       action.reservations.map(reservation => newState[reservation.id] = reservation)
-      return { ...state, ...newState };
+      return newState;
     }
     case CREATE_RESERVATIONS: {
+      newState = { ...state }
       newState[action.newReservation.id] = action.newReservation;
       return newState;
     }
     case EDIT_RESERVATIONS: {
+      newState = { ...state }
       newState[action.reservation.id] = action.reservation;
       return newState;
     }
     case DELETE_RESERVATIONS: {
+      newState = { ...state }
       delete newState[action.reservationId]
       return newState;
     }

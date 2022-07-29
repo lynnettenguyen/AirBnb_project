@@ -125,10 +125,6 @@
   padding: 1rem;
 }
 
-.hidden {
-  display: none;
-}
-
 .not-visible {
   visibility: hidden;
 }
@@ -148,4 +144,8 @@
 .right-content-demo {
   margin-bottom: 0;
   margin-left: 1rem;
+}
+
+.error-message {
+  padding-top: 20rem;
 }

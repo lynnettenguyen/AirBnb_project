@@ -95,7 +95,9 @@ const RoomDetails = () => {
             </div>
           </div>
           <div className="room-information-bottom">
-            <div className="room-description">{room?.description}</div>
+            <div className="default-description">
+              <div className="room-description">{room?.description}</div>
+            </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
         </div>

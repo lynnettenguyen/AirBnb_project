@@ -29,24 +29,24 @@ module.exports = (sequelize, DataTypes) => {
     startDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      validate: {
-        checkDate(date) {
-          if (new Date(date) < new Date()) {
-            throw new Error('Selected date must be in the future')
-          }
-        }
-      }
+      // validate: {
+      //   checkDate(date) {
+      //     if (new Date(date) < new Date()) {
+      //       throw new Error('Selected date must be in the future')
+      //     }
+      //   }
+      // }
     },
     endDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      validate: {
-        checkDate(date) {
-          if (new Date(date) < new Date()) {
-            throw new Error('Selected date must be in the future')
-          }
-        },
-      },
+      // validate: {
+      //   checkDate(date) {
+      //     if (new Date(date) <= new Date()) {
+      //       throw new Error('Selected date must be in the future')
+      //     }
+      //   },
+      // },
     },
   }, {
     sequelize,

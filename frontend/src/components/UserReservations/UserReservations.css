@@ -29,6 +29,15 @@
   border-radius: 20px;
 }
 
+.main-no-trips {
+  border-radius: 20px;
+  width: 35rem;
+  padding: 2rem;
+  border: 1px rgba(128, 128, 128, 0.143) solid;
+  height: 15rem;
+  margin-top: 1rem;
+}
+
 .main-reservation-content {
   height: 20rem;
   border: 1px rgba(128, 128, 128, 0.143) solid;
@@ -57,8 +66,12 @@
 .res-button {
   border: none;
   border-radius: 10px;
-  padding: 0.3rem;
+  padding: 0.3rem 0.4rem;
   margin: 0.13rem 0.3rem 0.3rem;
+}
+
+.res-button:hover {
+  cursor: pointer;
 }
 
 .right-res-content {
@@ -178,7 +191,7 @@
 
 .reserve-errors-edit {
   margin: 0.5rem 0 0 1rem;
-  color:#ff385c;
+  color: #ff385c;
   font-size: 0.9rem;
 }
 
@@ -187,6 +200,30 @@
   background: none;
 }
 
-/* 1-1 to 1-5 */
-/* can't have start GREATER 1-1 and LESS than 1-5 */
+.update-button:disabled,
+.cancel-button:disabled {
+  visibility: hidden;
+}
 
+.start-search-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 350;
+  height: 55px;
+  margin-top: 2rem;
+  width: 11rem;
+}
+
+.no-trips-header {
+  font-size: 1.5rem;
+  padding: 1.2rem 0 1rem 0;
+}
+
+.no-trips-caption {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: grey;
+}

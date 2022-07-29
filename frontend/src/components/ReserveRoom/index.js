@@ -15,8 +15,8 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
 
   const tomorrow = new Date()
   const nextDay = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 1)
-  nextDay.setDate(nextDay.getDate() + 4)
+  tomorrow.setDate(tomorrow.getDate() + 4)
+  nextDay.setDate(nextDay.getDate() + 5)
 
   const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
@@ -31,36 +31,16 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
     dispatch(listRoomReservations(roomId))
 
     const errors = []
-    if (sessionUser?.id === room?.ownerId)
+
+    if (sessionUser?.id === room?.ownerId) {
+      setCheckOwner(true)
       errors.push("Hosts can't reserve their own listings")
-    else if (new Date(checkIn) === new Date(checkOut))
-      errors.push("Reservations must be a minimum of 1 day")
-    else if (new Date(checkIn) > new Date(checkOut))
-      errors.push("Check-in date must be prior to check-out date")
-
-    for (let i = 0; i < allStartDates.length; i++) {
-      let startReq = new Date(checkIn);
-      let endReq = new Date(checkOut);
-      let startRes = new Date(allStartDates[i]);
-      let endRes = new Date(allEndDates[i]);
-
-      if ((startReq >= startRes && startReq < endRes) ||
-        (endReq > startRes && endReq <= endRes) ||
-        startRes >= startReq && startRes < endReq ||
-        endRes > startReq && endRes <= endReq) {
-        errors.push("Selected dates conflict with an existing booking")
-      } else if (startRes === startReq)
-        errors.push("Check-in date conflicts with an existing booking")
-      else if (endRes === endReq)
-        errors.push("Check-out date conflicts with an existing booking")
     }
 
     if (errors.length > 0) {
       setReservationErrors(errors)
-      setCheckOwner(true)
     } else {
       setReservationErrors([])
-      setCheckOwner(false)
     }
 
   }, [dispatch, checkIn, checkOut])
@@ -79,11 +59,17 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       endDate: checkOut
     }
 
-    const reservationResponse = await dispatch(bookNewReservation(reservationData))
-
-    if (reservationResponse) {
-      history.push("/reservations")
-    }
+    dispatch(bookNewReservation(reservationData))
+      .then(() => { history.push("/reservations") })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) { setReservationErrors(Object.values(data.errors)); }
+        else if (data) {
+          const errors = []
+          errors.push(data.message)
+          setReservationErrors(errors)
+        }
+      })
   }
 
   return (
@@ -121,10 +107,10 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               />
             </div>
           </div>
-          {currRoomReservations.length > 0 ? <button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button> : <div className="view-reservations-other">No Reservations! Book Now!</div>}
+          {currRoomReservations.length > 0 ? (<button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button>) : (<div className="view-reservations-other">No Reservations! Book Now!</div>)}
           {showReservations ?
-            <div className="outer-list-reservation">
-              {currRoomReservations.map(reservation => {
+            (<div className="outer-list-reservation">
+              {currRoomReservations.length > 0 ? currRoomReservations.map(reservation => {
                 return (
                   <div key={`${reservation.id}`} className="list-reservations-div">
                     <div className="inner-list-div">
@@ -134,8 +120,8 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
                     </div>
                   </div>
                 )
-              })}
-            </div> : <></>}
+              }) : <></>}
+            </div>) : <></>}
           {/* <div className="guests">
             <label>Guests</label>
             <input
@@ -148,8 +134,10 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" disabled>Log in to Reserve</button>
             }
             {reservationErrors.length > 0 && (
-              <div className="reserve-errors">{reservationErrors[0]}
-              </div>
+              // <div className="reserve-errors">{reservationErrors[0]}</div>
+              <ul>
+                {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
+              </ul>
             )}
           </div>
         </div>

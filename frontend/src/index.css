@@ -10,3 +10,15 @@ html {
     "Helvetica Neue",
     sans-serif;
 }
+
+button:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+button:active {
+  transform: translateY(3px);
+}

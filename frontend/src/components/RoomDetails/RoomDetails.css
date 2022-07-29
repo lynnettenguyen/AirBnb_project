@@ -70,8 +70,9 @@
 
 .room-top-content {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 2fr;
   padding-bottom: 0.8rem;
+  margin: 0 0.8em;
 }
 
 .room-header {
@@ -98,7 +99,7 @@
 
 .room-reviews,
 .room-location {
-  text-decoration: underline;
+  /* text-decoration: underline; */
   font-weight: 500;
 }
 
@@ -133,6 +134,11 @@
 .room-information-bottom {
   display: flex;
   margin: 1rem;
+  justify-content: center;
+}
+
+.default-description {
+  width: 80rem;
 }
 
 .room-description {
@@ -154,6 +160,10 @@
   .left-image-div {
     width: 40rem;
     margin-right: 1.6rem;
+  }
+
+  .default-description {
+    width: 57rem;
   }
 }
 
@@ -202,5 +212,13 @@
 
   .room-name {
     font-size: 2rem;
+  }
+
+  .default-description {
+    width: 27rem;
+  }
+
+  .room-description {
+    font-size: 1.2rem;
   }
 }

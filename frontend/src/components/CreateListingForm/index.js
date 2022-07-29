@@ -29,6 +29,7 @@ const CreateListingForm = () => {
   const [image4, setImage4] = useState("")
   const [image5, setImage5] = useState("")
   const [validationErrors, setValidationErrors] = useState([])
+  const [errors, setErrors] = useState([])
 
   const toggleNext = (e) => {
     if (e.length > 1) setCheckInput(false)
@@ -40,20 +41,33 @@ const CreateListingForm = () => {
     toggleNext(e.target.value)
   }
 
+  console.log(validationErrors)
+
+  console.log(isNaN(parseInt(4, 10)))
+
   useEffect(() => {
     const errors = []
-    if (!address.length) errors.push("valid address required")
-    if (!city.length) errors.push("valid city required")
 
-    if (!state.length) errors.push("valid state required")
-    if (!country.length) errors.push("valid country required")
-    if (isNaN(lat) || lat > 90 || lat < -90) errors.push("valid latitude between -90 to +90 required")
-    if (isNaN(lng) || lng > 180 || lng < -180) errors.push("valid longitude -180 to +180 required")
+    let latNum = parseInt(lat, 10)
+    let lngNum = parseInt(lng, 10)
 
-    if (errors.length > 0) setValidationErrors(errors)
-    else setCheckInput(false)
+    if (address === "") errors.push("valid address required")
+    if (city === "") errors.push("valid city required")
+    if (state === "") errors.push("valid state required")
+    if (country === "") errors.push("valid country required")
+    if (lat === "" || !isNaN(latNum) && (lat > 90 || lat < -90)) errors.push("valid latitude between -90 to +90 required")
+    if (lng === "" || isNaN(lngNum) && (lng > 180 || lng < -180)) errors.push("valid longitude -180 to +180 required")
 
-  }, [address, city, state, country, lat, lng])
+    if (errors.length > 0) {
+      setCheckInput(true)
+      setValidationErrors(errors)
+    } else setCheckInput(false)
+
+  }, [page, address, city, state, country, lat, lng])
+
+  // const resetErrors = () => {
+  //   setValidationErrors([])
+  // }
 
   const setDemoAddress = () => {
     setAddress("19508 Boggy Ford Rd")
@@ -78,8 +92,8 @@ const CreateListingForm = () => {
   if (page > 1) {
     formButtons = (
       <>
-        <button onClick={() => setPage(page - 1)} className="back-button">Back</button>
-        <button onClick={() => { setPage(page + 1); setCheckInput(true) }} className="next-button" disabled={checkInput}>Next</button>
+        <button type="button" onClick={() => { setPage(page - 1); setCheckInput(false) }} className="back-button">Back</button>
+        <button type="button" onClick={() => { setPage(page + 1); setCheckInput(true) }} className="next-button" disabled={checkInput}>Next</button>
       </>
     )
   }
@@ -100,15 +114,24 @@ const CreateListingForm = () => {
       price,
     }
 
+    // const roomResponse = await dispatch(hostNewRoom(roomData))
+
     const roomResponse = await dispatch(hostNewRoom(roomData))
+      .catch(async (res) => {
+        const data = await res.json();
+        console.log(data)
+        if (data && data.errors)
+          if (data) {
+            const errors = Object.values(data.errors)
+            setErrors(errors)
+          }
+      })
 
     if (roomResponse) {
       setRoomId(roomResponse.id)
-      // dispatch(findRoomById(roomId))
-      // history.push(`/rooms/${roomResponse.id}`)
+      setPage(6)
     }
   }
-
 
   const handleImagesSubmit = async (e) => {
     e.preventDefault()
@@ -184,7 +207,7 @@ const CreateListingForm = () => {
                     Create your title
                   </label>
                   <div className="right-content-demo">
-                    <button onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                    <button type="button" onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -214,7 +237,7 @@ const CreateListingForm = () => {
                     Provide your location
                   </label>
                   <div className="right-content-demo">
-                    <button onClick={setDemoAddress} className="demo-buttons">demo</button>
+                    <button type="button" onClick={setDemoAddress} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -260,7 +283,7 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="latitude"
                       className="multi-input"
                       value={lat}
@@ -270,7 +293,7 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="longitude"
                       className="multi-input"
                       value={lng}
@@ -282,7 +305,8 @@ const CreateListingForm = () => {
                 <div className="create-content-buttons">
                   <div className="back-next-buttons">{formButtons}</div>
                 </div>
-
+                <div>
+                </div>
               </div>
             </div>
           </section>
@@ -299,7 +323,7 @@ const CreateListingForm = () => {
                     </label>
                   </div>
                   <div className="right-content-demo">
-                    <button onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restroom, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                    <button type="button" onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restroom, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }} className="demo-buttons">demo</button>
                   </div>
                 </div>
                 <div className="right-content-input">
@@ -310,7 +334,8 @@ const CreateListingForm = () => {
                       className="create-input-textarea"
                       value={description}
                       onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
-                      required>
+                    // required
+                    >
                     </textarea>
                   </div>
                 </div>
@@ -337,19 +362,26 @@ const CreateListingForm = () => {
                 <div className="right-content-input">
                   <div>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="$"
                       className="create-input"
                       value={price}
+                      min="1"
                       onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
                       required
                     />
                   </div>
+                  {errors.length > 0 && (<>
+                    <div className="error-message">Please return to the previous page to correct the following errors: </div> <ul>
+                      {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    </ul>
+                  </>
+                  )}
                 </div>
                 <div className="right-content-button">
                   <div className="back-next-buttons">
-                    <button onClick={() => setPage(4)} className="back-button">Back</button>
-                    <button type="submit" onClick={() => setPage(6)} className="next-button" disabled={checkInput}>Next</button>
+                    <button type="button" onClick={() => { setPage(4); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="submit" className="next-button" disabled={checkInput}>Next</button>
                   </div>
                 </div>
               </div>
@@ -374,7 +406,7 @@ const CreateListingForm = () => {
                 <div className="right-content-input">
                   <div>
                     <input
-                      type="text"
+                      type="url"
                       placeholder="https://www.link_image_main.url"
                       className="multi-input"
                       value={image1}
@@ -384,7 +416,7 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="url"
                       placeholder="https://www.link_image_2.url"
                       className="multi-input"
                       value={image2}
@@ -394,7 +426,7 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="url"
                       placeholder="https://www.link_image_3.url"
                       className="multi-input"
                       value={image3}
@@ -404,7 +436,7 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="url"
                       placeholder="https://www.link_image_4.url"
                       className="multi-input"
                       value={image4}
@@ -414,7 +446,7 @@ const CreateListingForm = () => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="url"
                       placeholder="https://www.link_image_5.url"
                       className="multi-input"
                       value={image5}
@@ -425,7 +457,7 @@ const CreateListingForm = () => {
                 </div>
                 <div className="right-content-button">
                   <div className="back-next-buttons">
-                    <button className="back-button not-visible">Back</button>
+                    <button type="button" className="back-button not-visible">Back</button>
                     <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
                   </div>
                 </div>

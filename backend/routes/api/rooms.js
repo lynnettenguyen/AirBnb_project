@@ -188,8 +188,11 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwne
         const err = new Error(`Invalid date selection`);
         err.status = 400;
         return next(err);
+    } else if (startDate === endDate) {
+        const err = new Error(`Reservations must be minimum of 1 day`);
+        err.status = 400;
+        return next(err);
     } else {
-
         const newReservation = await Reservation.create({
             userId: req.user.id,
             roomId: req.params.roomId,

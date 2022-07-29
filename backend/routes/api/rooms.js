@@ -50,7 +50,8 @@ const validateRoom = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .custom(async function checkLat(lat) {
-            if (lat > 90 || lat < -90 || typeof lat !== 'number') {
+            // if (lat > 90 || lat < -90 || typeof lat !== 'number') {
+            if (lat > 90 || lat < -90 ) {
                 throw Error
             }
         })
@@ -59,7 +60,8 @@ const validateRoom = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .custom(async function checkLat(lng) {
-            if (lng > 180 || lng < -180 || typeof lng !== 'number') {
+            // if (lng > 180 || lng < -180 || typeof lng !== 'number') {
+            if (lng > 180 || lng < -180 ) {
                 throw Error
             }
         })

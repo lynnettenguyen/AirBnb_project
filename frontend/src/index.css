@@ -18,3 +18,7 @@ button:hover {
 .hidden {
   display: none;
 }
+
+button:active {
+  transform: translateY(3px);
+}

@@ -69,8 +69,10 @@
 }
 
 .room-top-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
   padding-bottom: 0.8rem;
+  margin: 0 0.8em;
 }
 
 .room-header {

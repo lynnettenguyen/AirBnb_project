@@ -19,7 +19,7 @@
   flex-direction: column;
   width: 86rem;
   margin: 0;
-  padding: 1rem;
+  padding: 1rem 0 0.5rem 0;
 }
 
 .main-reservation-content,
@@ -58,11 +58,17 @@
   border: none;
   border-radius: 10px;
   padding: 0.3rem;
+  margin: 0.13rem 0.3rem 0.3rem;
 }
 
 .right-res-content {
   display: flex;
   height: 20rem;
+}
+
+.cancel-button {
+  color: #ff385c;
+  font-weight: 600;
 }
 
 .right-image-res {
@@ -161,10 +167,6 @@
   padding-top: 0.7rem;
 }
 
-.res-button {
-  margin: 0.3rem;
-}
-
 .middle-change-res {
   height: 4rem;
 }
@@ -173,3 +175,18 @@
   padding: 0.7rem 0 0 0.5rem;
   font-size: 1rem;
 }
+
+.reserve-errors-edit {
+  margin: 0.5rem 0 0 1rem;
+  color:#ff385c;
+  font-size: 0.9rem;
+}
+
+.res-button:disabled {
+  color: grey;
+  background: none;
+}
+
+/* 1-1 to 1-5 */
+/* can't have start GREATER 1-1 and LESS than 1-5 */
+

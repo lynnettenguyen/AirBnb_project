@@ -35,8 +35,6 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       errors.push("Hosts can't reserve their own listings")
     else if (new Date(checkIn) === new Date(checkOut))
       errors.push("Reservations must be a minimum of 1 day")
-    else if (new Date().toISOString().slice(0, 10) === checkIn)
-      errors.push("Reservations must be for future dates")
     else if (new Date(checkIn) > new Date(checkOut))
       errors.push("Check-in date must be prior to check-out date")
 
@@ -50,8 +48,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
         (startRes <= startReq && endRes >= startReq) ||
         (startRes <= endReq && endRes >= endReq)) {
         errors.push("Selected dates conflict with an existing booking")
-      }
-      else if (startRes === startReq)
+      } else if (startRes === startReq)
         errors.push("Check-in date conflicts with an existing booking")
       else if (endRes === endReq)
         errors.push("Check-out date conflicts with an existing booking")
@@ -65,7 +62,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
       setCheckOwner(false)
     }
 
-  }, [checkIn, checkOut])
+  }, [dispatch, checkIn, checkOut])
 
   const numDays = Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24))
   const cleaningFee = Math.floor(room?.price / 5)

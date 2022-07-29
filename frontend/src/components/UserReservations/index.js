@@ -16,18 +16,54 @@ const UserReservations = () => {
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
   const [editReservation, setEditReservation] = useState(0)
   const [showEdit, setShowEdit] = useState(false)
+  const [reservationErrors, setReservationErrors] = useState([])
+  const [checkDates, setCheckDates] = useState(true)
 
-  // id each edit button,-1 to close
-
-  const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId)
+  const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId && sessionUser.id !== reservation.userId)
   const trips = allReservations.filter(reservation => sessionUser.id === reservation.userId)
-  // console.log(trips)
 
-  console.log(reservationsPerRoom)
+
+  console.log("!!!!!", reservationsPerRoom)
+
+  const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
+  const allEndDates = reservationsPerRoom.map(reservation => reservation.endDate)
 
   useEffect(() => {
     dispatch(listAllReservations())
-  }, [])
+
+    const errors = []
+
+    if (checkIn === checkOut)
+      errors.push("Reservations must be a minimum of 1 day")
+    else if (new Date(checkIn) > new Date(checkOut))
+      errors.push("Check-in date must be prior to check-out date")
+
+    for (let i = 0; i < allStartDates.length; i++) {
+      let startReq = new Date(checkIn);
+      let endReq = new Date(checkOut);
+      let startRes = new Date(allStartDates[i]);
+      let endRes = new Date(allEndDates[i]);
+
+      if ((startReq >= startRes && startReq < endRes) ||
+        (endReq > startRes && endReq < endRes) ||
+        startRes >= startReq && startRes < endReq ||
+        endRes > startReq && endRes <= endReq)
+        errors.push("Selected dates conflict with an existing booking")
+      else if (startRes === startReq)
+        errors.push("Check-in date conflicts with an existing booking")
+      else if (endRes === endReq)
+        errors.push("Check-out date conflicts with an existing booking")
+    }
+
+    if (errors.length > 0) {
+      setReservationErrors(errors)
+      setCheckDates(true)
+    } else {
+      setReservationErrors([])
+      setCheckDates(false)
+    }
+
+  }, [dispatch, checkIn, checkOut])
 
   const handleDelete = (reservationId) => async (e) => {
     e.preventDefault()
@@ -52,6 +88,7 @@ const UserReservations = () => {
     const updatedReservation = await dispatch(updateReservation(reservationData))
 
     if (updateReservation) {
+      setShowEdit(false)
       dispatch(listAllReservations())
     }
   }
@@ -100,7 +137,7 @@ const UserReservations = () => {
                             <div className="res-year">{endYear}</div>
                           </div>
                           <div className="bottom-edit-res">
-                            <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId); setShowEdit(!showEdit) }} className="res-button">Edit</button>
+                            <button type="button" onClick={() => { setRoomId(reservation?.roomId); setCheckIn(reservation?.startDate); setCheckOut(reservation?.endDate); setReservationId(reservation?.id); setEditReservation(reservation?.roomId); setShowEdit(!showEdit) }} className="res-button">{showEdit ? editReservation === reservation.roomId ? "X" : "Edit" : "Edit"}</button>
                           </div>
                         </div>
                         <div className="bottom-location">
@@ -146,11 +183,17 @@ const UserReservations = () => {
                         </div>
                         <div>
                           <div className="edit-delete-buttons">
-                            <button type="button" onClick={handleDelete(reservation.id)} className="res-button">Cancel Reservation</button>
-                            <button type="submit" className="res-button">Change Reservation</button>
+                            <button type="submit" className="res-button" disabled={checkDates}>Update Reservation</button>
+                            <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button">Cancel Reservation</button>
                           </div>
                         </div>
                       </div>
+                      {reservationErrors.length > 0 && (
+                        <ul>
+                          <li className="reserve-errors-edit">{reservationErrors[0]}
+                          </li>
+                        </ul>
+                      )}
                     </> : <></> : <></>
                 }
               </div>

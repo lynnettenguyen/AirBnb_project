@@ -192,7 +192,7 @@ router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwne
     })
 
     if (new Date(startDate) > new Date(endDate)) {
-        const err = new Error(`Check-in date must be prior to checkout date`);
+        const err = new Error(`Invalid date selection`);
         err.status = 400;
         return next(err);
     } else {

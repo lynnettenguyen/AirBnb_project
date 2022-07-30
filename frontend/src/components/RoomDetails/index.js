@@ -51,8 +51,7 @@ const RoomDetails = () => {
 
   return (
     <>
-      {page === 1 && <div className="whole-page">
-        <div className="left-space"></div>
+      {page === 1 &&
         <div className="room-content">
           <div className="outer-top-content">
             <div></div>
@@ -105,8 +104,6 @@ const RoomDetails = () => {
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
         </div>
-        <div className="right-space"></div>
-      </div>
       }
       {page === 2 && <EditListingForm listingId={roomId} returnToListing={returnToListing} />}
     </>

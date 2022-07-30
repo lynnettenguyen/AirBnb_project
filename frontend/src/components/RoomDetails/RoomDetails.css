@@ -137,13 +137,13 @@
 }
 
 .default-description {
-  width: 60rem;
+  width: 45rem;
 }
 
 .room-description {
   font-size: 1rem;
   font-weight: 250;
-  padding: 1rem 2.5rem 0 1rem;
+  padding-top: 1rem;
 }
 /*
 @media screen and (max-width: 1700px) {

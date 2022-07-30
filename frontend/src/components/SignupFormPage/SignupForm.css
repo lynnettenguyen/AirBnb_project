@@ -28,7 +28,19 @@ input {
 }
 
 .signUp-header {
-  margin-top: 0px;
+  margin: 27px 0 25px;
   font-size: 22px;
   font-weight: normal;
+}
+
+.errors-signup {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.signup-outer-errors {
+  display: flex;
+  justify-content: flex-start;
+  width: 430px;
+  height: 2rem;
 }

@@ -10,7 +10,7 @@
 .navigation-bar {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 0 2.4rem 0;
+  padding: 1rem 0 1.3rem 0;
   width: 100rem;
 }
 
@@ -19,7 +19,6 @@
 }
 
 .signup {
-  margin-right: 20px;
   font-size: 18px;
 }
 
@@ -31,7 +30,6 @@
   color: #ff385c;
   display: flex;
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .airbnb-name {

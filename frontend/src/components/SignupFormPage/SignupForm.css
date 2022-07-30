@@ -33,14 +33,14 @@ input {
   font-weight: normal;
 }
 
-.errors-signup {
+.errors-signUp {
   margin: 0;
   font-size: 0.8rem;
 }
 
-.signup-outer-errors {
+.signUp-outer-errors {
   display: flex;
   justify-content: flex-start;
   width: 430px;
-  height: 2rem;
+  max-height: 2rem;
 }

@@ -1,29 +1,22 @@
-.all-rooms-page {
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-}
-
 .outer-rooms-div {
   display: flex;
   justify-content: center;
 }
 
 .all-rooms-div {
-  padding: 10px;
   display: grid;
-  grid-template-columns: repeat(4, 430px);
+  grid-template-columns: repeat(5, 325px);
   place-items: center;
 }
 
 .room-div {
-  height: 490px;
-  width: 405px;
-  margin: 10px;
+  height: 370px;
+  width: 300px;
 }
 
 .img-div {
-  height: 400px;
-  width: 402px;
+  height: 285px;
+  width: 302px;
   display: flex;
   margin: auto;
 }
@@ -38,8 +31,9 @@
 .room-detail {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  padding: 15px 10px;
-  font-size: 1.3rem;
+  padding: 15px 0;
+  font-size: 1rem;
+  letter-spacing: 0.03rem;
 }
 
 .room-info {
@@ -54,8 +48,21 @@
 }
 
 .room-city-state {
+  font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: 0%;
+  width: 215px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.random-distance {
+  color: #8e8e8e;
+  font-weight: 300;
+  padding: 0.25rem 0;
 }
 
 .room-price-night {
@@ -67,8 +74,13 @@
   font-weight: 250;
 }
 
-.star-icon{
-  font-size: 1.1rem;
+.star-icon {
+  display: flex;
+  font-size: 0.7rem;
+}
+
+.star-design {
+  padding-top: 0.2rem;
 }
 
 .room-link {
@@ -78,6 +90,7 @@
 
 .number-rating {
   font-weight: 250;
+  font-size: 0.9rem;
 }
 
 @media screen and (max-width: 990px) {

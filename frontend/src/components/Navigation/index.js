@@ -36,7 +36,6 @@ function Navigation({ isLoaded }) {
     <>
       <nav className="main-nav">
           <div className="navigation-outer">
-            <div className="nav-side"></div>
             <div className='navigation-bar'>
               <NavLink exact to="/" className="nav-link home-link">
                 <span className="iconify" data-icon="fa-brands:airbnb" data-width="40"></span>
@@ -44,7 +43,6 @@ function Navigation({ isLoaded }) {
               </NavLink>
               {isLoaded && sessionLinks}
             </div>
-            <div className="nav-side"></div>
           </div>
       </nav>
     </>

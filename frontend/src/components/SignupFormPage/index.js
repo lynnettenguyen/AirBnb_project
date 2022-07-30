@@ -85,9 +85,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <div className="signup-outer-errors">
+      <div className="signUp-outer-errors">
       {errors.length > 0 && (<ul>
-        {errors.map((error, idx) => <li className="errors-signup" key={idx}>{error}</li>)}
+          {errors.map((error, idx) => <li className="errors-signUp" key={idx}>{error}</li>)}
       </ul>)}
       </div>
       <button className="signUp-button" type="submit">Sign Up</button>

@@ -17,14 +17,14 @@
 
 .room-images {
   display: grid;
-  grid-template-columns: repeat(2, 860px);
+  grid-template-columns: repeat(2, 869px);
   place-items: center;
 }
 
 .left-image-div {
   height: 44rem;
-  width: 52.3rem;
-  padding-left: 2px;
+  width: 53rem;
+  padding-left: 10px;
 }
 
 .main-image {

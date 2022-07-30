@@ -41,10 +41,6 @@ const CreateListingForm = () => {
     toggleNext(e.target.value)
   }
 
-  console.log(validationErrors)
-
-  console.log(isNaN(parseInt(4, 10)))
-
   useEffect(() => {
     const errors = []
 
@@ -55,9 +51,15 @@ const CreateListingForm = () => {
     if (city === "") errors.push("valid city required")
     if (state === "") errors.push("valid state required")
     if (country === "") errors.push("valid country required")
-    if (lat === "" || !isNaN(latNum) && (lat > 90 || lat < -90)) errors.push("valid latitude between -90 to +90 required")
-    if (lng === "" || isNaN(lngNum) && (lng > 180 || lng < -180)) errors.push("valid longitude -180 to +180 required")
-
+    if (lat === "" || !isNaN(latNum) && (lat > 90 || lat < -90)) {
+      errors.push("valid latitude between -90 to +90 required")
+      setCheckInput(true)
+    }
+    if (lng === "" || isNaN(lngNum) && (lng > 180 || lng < -180)) {
+      errors.push("valid longitude -180 to +180 required")
+      setCheckInput(true)
+    }
+    
     if (errors.length > 0) {
       setCheckInput(true)
       setValidationErrors(errors)

@@ -56,7 +56,19 @@ module.exports = {
         userId: 6,
         startDate: '2022-10-04',
         endDate: '2022-10-07'
-      }
+      },
+      {
+        roomId: 13,
+        userId: 6,
+        startDate: '2022-10-04',
+        endDate: '2022-10-07'
+      },
+      {
+        roomId: 13,
+        userId: 1,
+        startDate: '2022-12-04',
+        endDate: '2022-12-07'
+      },
     ], {});
   },
 

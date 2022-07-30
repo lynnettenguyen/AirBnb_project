@@ -81,7 +81,6 @@ export const updateRoom = (roomData) => async (dispatch) => {
   if (response.ok) {
     const room = await response.json()
     dispatch(editRoom(room));
-    console.log('ROOM', room)
     return room;
   }
 }

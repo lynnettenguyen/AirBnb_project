@@ -1,6 +1,8 @@
 .trips-page {
-  display: grid;
-  grid-template-columns: 1fr 7fr 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr 7fr 1fr; */
+  display: flex;
+  justify-content: center;
 }
 
 .trips-header {
@@ -226,4 +228,8 @@
   font-size: 1.2rem;
   font-weight: 200;
   color: grey;
+}
+
+.trips-main-div {
+  margin-right: 340px;
 }

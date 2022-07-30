@@ -50,6 +50,17 @@
   border-radius: 10px;
   background: none;
   margin-left: 1rem;
+  width: 24rem;
+  border: rgba(128, 128, 128, 0.338) 1px solid;
+}
+
+.no-session-button {
+  font-size: 1.2rem;
+  font-weight: 250;
+  padding: 0.85rem 1.2rem 1rem;
+  border-radius: 10px;
+  background: none;
+  margin-left: 1rem;
   width: 22rem;
   border: rgba(128, 128, 128, 0.338) 1px solid;
 }

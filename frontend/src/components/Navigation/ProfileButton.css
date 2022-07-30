@@ -19,6 +19,7 @@
 
 .profile-button:hover {
   box-shadow: rgba(129, 129, 129, 0.492) 0px 4px 3px -2.5px;
+  transform: none;
 }
 
 .profile-dropdown {

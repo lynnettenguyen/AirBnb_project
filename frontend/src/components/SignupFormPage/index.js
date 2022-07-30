@@ -25,7 +25,6 @@ function SignupFormPage() {
       return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
         .catch(async (res) => {
           const data = await res.json();
-          console.log(data)
           if (data && data.errors)
             if (data) {
               const errors = Object.values(data.errors)

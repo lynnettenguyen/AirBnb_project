@@ -59,17 +59,13 @@ const CreateListingForm = () => {
       errors.push("valid longitude -180 to +180 required")
       setCheckInput(true)
     }
-    
+
     if (errors.length > 0) {
       setCheckInput(true)
       setValidationErrors(errors)
     } else setCheckInput(false)
 
   }, [page, address, city, state, country, lat, lng])
-
-  // const resetErrors = () => {
-  //   setValidationErrors([])
-  // }
 
   const setDemoAddress = () => {
     setAddress("19508 Boggy Ford Rd")
@@ -121,7 +117,6 @@ const CreateListingForm = () => {
     const roomResponse = await dispatch(hostNewRoom(roomData))
       .catch(async (res) => {
         const data = await res.json();
-        console.log(data)
         if (data && data.errors)
           if (data) {
             const errors = Object.values(data.errors)
@@ -192,7 +187,8 @@ const CreateListingForm = () => {
           <div>
             <div className="create-new-label">Start a new listing</div>
             <div className="create-new-button-div">
-              <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button>
+              {sessionUser? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
+              <button className="no-session-button" disabled="true">Login to begin hosting</button>}
               <span className="white-space"></span>
             </div>
           </div>

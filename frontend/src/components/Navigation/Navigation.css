@@ -60,24 +60,24 @@
 
 @media screen and (min-width: 1300px) and (max-width: 1450px) {
   .navigation-bar {
-    width: 66rem;
+    width: 70rem;
   }
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1300px) {
+@media screen and (min-width: 1150px) and (max-width: 1300px) {
   .navigation-bar {
     width: 64rem;
   }
 }
 
-@media screen and (min-width: 650px) and (max-width: 1000px) {
+@media screen and (min-width: 850px) and (max-width: 1150px) {
   .navigation-bar {
     width: 50rem;
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 850px) {
   .navigation-bar {
-    width: 30rem;
+    width: 45rem;
   }
 }

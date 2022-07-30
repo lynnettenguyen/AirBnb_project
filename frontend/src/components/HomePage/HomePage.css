@@ -7,7 +7,7 @@
   display: grid;
   /* grid-template-columns: repeat(5, 325px); */
   grid-template-columns: repeat(5, 20%);
-  /* place-items: center; */
+  place-items: center;
   margin: 1%;
 }
 
@@ -151,7 +151,7 @@
   @media screen and (min-width: 1301px) and (max-width: 1700px) {
     .all-rooms-div {
       display: grid;
-      grid-template-columns: repeat(4, 287px);
+      grid-template-columns: repeat(4, 290px);
     }
 
     .img-div {
@@ -162,6 +162,6 @@
     .room-div {
       height: 340px;
       width: 250px;
-      margin-top: 20px;
+      margin: 10px;
     }
   }

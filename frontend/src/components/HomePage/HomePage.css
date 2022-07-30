@@ -5,13 +5,15 @@
 
 .all-rooms-div {
   display: grid;
-  grid-template-columns: repeat(5, 325px);
-  place-items: center;
+  /* grid-template-columns: repeat(5, 325px); */
+  grid-template-columns: repeat(5, 20%);
+  /* place-items: center; */
+  margin: 1%;
 }
 
 .room-div {
-  height: 370px;
-  width: 300px;
+  height: 395px;
+  width: 320px;
 }
 
 .img-div {
@@ -31,7 +33,7 @@
 .room-detail {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  padding: 15px 0;
+  padding: 15px 10px;
   font-size: 1rem;
   letter-spacing: 0.03rem;
 }
@@ -122,7 +124,7 @@
     }
 
     .room-div {
-      height: 460px;
+      height: 445px;
       width: 380px;
       margin-top: 20px;
     }
@@ -140,7 +142,7 @@
     }
 
     .room-div {
-      height: 400px;
+      height: 385px;
       width: 310px;
       margin: 20px 0 0;
     }
@@ -158,18 +160,8 @@
     }
 
     .room-div {
-      height: 350px;
+      height: 340px;
       width: 250px;
       margin-top: 20px;
-    }
-  }
-
-  @media screen and (min-width: 1701px) {
-    .all-rooms-div {
-      margin: 40px 150px;
-    }
-
-    .room-div {
-      margin: 10px;
     }
   }

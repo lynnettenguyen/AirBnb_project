@@ -122,6 +122,10 @@
 .bottom-change-res {
   width: 5rem;
   padding: 0.5rem 2rem;
+  height: 10rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .bottom-location {
@@ -142,10 +146,6 @@
 .res-year {
   font-size: 0.8rem;
   padding-top: 0.1rem;
-}
-
-.bottom-edit-res {
-  margin-top: 4.5rem;
 }
 
 .bottom-dates {

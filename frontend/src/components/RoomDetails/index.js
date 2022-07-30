@@ -54,7 +54,6 @@ const RoomDetails = () => {
       {page === 1 &&
         <div className="room-content">
           <div className="outer-top-content">
-            <div></div>
             <div className="room-top-content">
               <div className="room-header">
                 <div className="room-name">{room?.name}</div>
@@ -95,7 +94,6 @@ const RoomDetails = () => {
                 })}
               </div>
             </div>
-            <div></div>
           </div>
           <div className="room-information-bottom">
             <div className="default-description">

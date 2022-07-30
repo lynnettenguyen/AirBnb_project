@@ -22,7 +22,7 @@
 }
 
 .left-image-div {
-  height: 27.65rem;
+  height: 30.65rem;
   width: 35.55rem;
 }
 
@@ -39,7 +39,7 @@
 .right-image-div {
   display: grid;
   grid-template-columns: repeat(2, 280px);
-  grid-template-rows: repeat(2, 225px);
+  grid-template-rows: repeat(2, 250px);
 }
 
 .side-image-div {
@@ -68,30 +68,24 @@
 }
 
 .room-top-content {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
+  display: flex;
+  justify-content: space-between;
   padding-bottom: 0.8rem;
-  margin: 0 0.8em;
-  width: 1730px;
+  margin: 0 1rem;
 }
 
 .outer-top-content {
-  display: flex;
-  justify-content: center;
-}
-
-.room-header {
-  margin-left: 18.3rem;
+  margin: 0 12.5%;
 }
 
 .room-name {
-  font-size: 2.3rem;
+  font-size: 1.8rem;
   font-weight: 450;
 }
 
 .room-information-top {
-  font-size: 20px;
-  margin: 0.8rem 0 0.5rem;
+  font-size: 1rem;
+  margin: 0.3rem 0 0;
 }
 
 .fa-star {
@@ -130,9 +124,9 @@
   border: none;
   border-radius: 10px;
   color: white;
-  font-size: 1rem;
+  font-size: 0.9rem;
   height: 2rem;
-  width: 6rem;
+  width: 5rem;
   margin-right: 1rem;
 }
 
@@ -143,15 +137,15 @@
 }
 
 .default-description {
-  width: 80rem;
+  width: 60rem;
 }
 
 .room-description {
-  font-size: 22px;
-  font-weight: 200;
+  font-size: 1rem;
+  font-weight: 250;
   padding: 1rem 2.5rem 0 1rem;
 }
-
+/*
 @media screen and (max-width: 1700px) {
   .room-images {
     grid-template-columns: repeat(2, 680px);
@@ -226,4 +220,4 @@
   .room-description {
     font-size: 1.2rem;
   }
-}
+} */

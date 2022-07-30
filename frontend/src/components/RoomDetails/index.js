@@ -53,6 +53,7 @@ const RoomDetails = () => {
     <>
       {page === 1 &&
         <div className="room-content">
+          <div className="main-top">
           <div className="outer-top-content">
             <div className="room-top-content">
               <div className="room-header">
@@ -94,6 +95,7 @@ const RoomDetails = () => {
                 })}
               </div>
             </div>
+          </div>
           </div>
           <div className="room-information-bottom">
             <div className="default-description">

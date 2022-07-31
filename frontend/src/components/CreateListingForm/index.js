@@ -55,7 +55,7 @@ const CreateListingForm = () => {
       errors.push("valid latitude between -90 to +90 required")
       setCheckInput(true)
     }
-    if (lng === "" || isNaN(lngNum) && (lng > 180 || lng < -180)) {
+    if (lng === "" || !isNaN(lngNum) && (lng > 180 || lng < -180)) {
       errors.push("valid longitude -180 to +180 required")
       setCheckInput(true)
     }

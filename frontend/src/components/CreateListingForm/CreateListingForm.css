@@ -12,6 +12,7 @@
 .create-content-right {
   display: flex;
   flex-direction: column;
+  padding-top: 8rem;
 }
 
 .right-content-input {
@@ -19,16 +20,10 @@
 }
 
 
-.header-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .create-header {
   background: linear-gradient(#e1005a, #d70069, #c90079, #b6008b, #9c009c, #7800ac, #3b07bb);
-  height: 45rem;
-  width: 35rem;
+  height: 40rem;
+  width: 30rem;
   margin: 5rem 5rem 0 0;
   display: flex;
   padding: 0 4rem 8rem 4rem;

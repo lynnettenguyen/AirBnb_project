@@ -37,6 +37,7 @@
   box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
   border-radius: 20px;
   background: white;
+  z-index: 1;
 }
 
 .logout-div,

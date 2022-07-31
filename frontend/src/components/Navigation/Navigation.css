@@ -1,5 +1,7 @@
 .main-nav {
   border-bottom: 1px #71717150 solid;
+  /* position: relative; */
+
 }
 
 .navigation-outer {
@@ -8,10 +10,12 @@
 }
 
 .navigation-bar {
+  /* position: absolute; */
   display: flex;
   justify-content: space-between;
   padding: 1rem 0 1.3rem 0;
   width: 100rem;
+  /* left: 100px; */
 }
 
 .login {

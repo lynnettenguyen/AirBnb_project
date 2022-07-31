@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: column;
   padding: 0.7rem 0 0.5rem 0;
+  max-width: 80rem;
 }
 
 .main-reservation-content,
@@ -30,7 +31,6 @@
   display: flex;
   border-radius: 20px;
   width: 65rem;
-  height: auto;
 }
 
 .main-no-trips {
@@ -79,6 +79,7 @@
 
 .top-left-res-content {
   padding: 1rem;
+  /* margin-left: 1rem; */
 }
 
 .top-left-res-content,
@@ -118,7 +119,7 @@
 }
 
 .left-res-content {
-  width: 36rem;
+  width: 42rem;
 }
 
 .bottom-change-res {

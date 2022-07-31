@@ -171,6 +171,42 @@ module.exports = {
         stars: 5,
         review: 'My family and I had a wonderful stay in this home. The house is beautiful and the pool is sparkling and quite refreshing on the hot June days. We loved having the outdoor kitchen, and the house was equipped with everything we needed to take advantage of the lovely food available in the local markets. The house is very well located for exploring all of the wonderful nearby towns and for taking longer day trips. We are already looking forward to our return!'
       },
+      {
+        userId: 2,
+        roomId: 13,
+        stars: 5,
+        review: 'This is a beautiful house in an beautiful location and stunning views. This host was remarkable, available for every need and really made us feel like his personal house guests. Hope to come here again!'
+      },
+      {
+        userId: 5,
+        roomId: 13,
+        stars: 5,
+        review: 'We have stayed in many Airbnb’s over the past few years and we can say, without a doubt, this is the best experience we have ever had. The villa is absolutely stunning, spotlessly clean and every little detail has been thought of. The location is amazing, so close to the beautiful lake and beach; we had so much fun.'
+      },
+      {
+        userId: 6,
+        roomId: 13,
+        stars: 4,
+        review: 'The space was lovely and worked well for our group of two families. The pool area had a great view and was very nice. This would be a lovely place to stay in high season.'
+      },
+      {
+        userId: 6,
+        roomId: 14,
+        stars: 5,
+        review: 'My friends and I had a great time! The house is very tastefully furnished, the garden invites you to relax or have a barbecue in the evening. The city beach is just a few minutes walk away, by Uber you will find some other nice beaches around.'
+      },
+      {
+        userId: 1,
+        roomId: 15,
+        stars: 5,
+        review: 'We came with a party of 6 for my daughters 21st. Everyone stayed comfortably and loved the house. It was super clean and everything worked perfectly. There was also an amazing view where you could see animals and tons of nature. Will definitely be back to this beautiful home. We loved it!!'
+      },
+      {
+        userId: 1,
+        roomId: 16,
+        stars: 5,
+        review: 'The Sea Ranch House is a dream location in the forest, and was exactly what we were looking for in terms of a tranquil, cozy escape, would highly recommend!'
+      },
     ], {});
   },
 

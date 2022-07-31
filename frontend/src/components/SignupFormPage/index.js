@@ -25,12 +25,11 @@ function SignupFormPage() {
       return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
         .catch(async (res) => {
           const data = await res.json();
-          console.log(data)
           if (data && data.errors)
-          if (data) {
-            const errors = Object.values(data.errors)
-            setErrors(errors)
-          }
+            if (data) {
+              const errors = Object.values(data.errors)
+              setErrors(errors)
+            }
         });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -38,9 +37,6 @@ function SignupFormPage() {
 
   return (
     <form onSubmit={handleSubmit} className="signUp-form">
-      {errors.length > 0 && (<ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>)}
       <div>
         <h2 className="signUp-header">Welcome to WhereBnb</h2>
       </div>
@@ -89,6 +85,11 @@ function SignupFormPage() {
           required
         />
       </label>
+      <div className="signUp-outer-errors">
+      {errors.length > 0 && (<ul>
+          {errors.map((error, idx) => <li className="errors-signUp" key={idx}>{error}</li>)}
+      </ul>)}
+      </div>
       <button className="signUp-button" type="submit">Sign Up</button>
     </form>
   );

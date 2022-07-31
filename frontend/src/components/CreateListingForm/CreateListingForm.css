@@ -12,6 +12,7 @@
 .create-content-right {
   display: flex;
   flex-direction: column;
+  padding-top: 8rem;
 }
 
 .right-content-input {
@@ -19,22 +20,16 @@
 }
 
 
-.header-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .create-header {
   background: linear-gradient(#e1005a, #d70069, #c90079, #b6008b, #9c009c, #7800ac, #3b07bb);
-  height: 45rem;
-  width: 35rem;
+  height: 40rem;
+  width: 30rem;
   margin: 5rem 5rem 0 0;
   display: flex;
   padding: 0 4rem 8rem 4rem;
   align-items: center;
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   border-radius: 20px;
 }
 
@@ -47,6 +42,18 @@
   font-size: 1.2rem;
   font-weight: 250;
   padding: 0.5rem 1.2rem 1rem;
+  border-radius: 10px;
+  background: none;
+  margin-left: 1rem;
+  width: 24rem;
+  border: rgba(128, 128, 128, 0.338) 1px solid;
+  white-space: nowrap;
+}
+
+.no-session-button {
+  font-size: 1.2rem;
+  font-weight: 250;
+  padding: 0.85rem 1.2rem 1rem;
   border-radius: 10px;
   background: none;
   margin-left: 1rem;

@@ -6,7 +6,6 @@ import './LoginForm.css';
 
 function LoginForm() {
   const dispatch = useDispatch();
-  // const [credential, setCredential] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -17,15 +16,17 @@ function LoginForm() {
     return dispatch(sessionActions.login({ email, password }))
       .catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        if (data && data.errors) setErrors(Object.values(data.errors));
+        else if (data) {
+          const errors = []
+          errors.push(data.message)
+          setErrors(errors)
+        }
       });
   }
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
       <h1 className="login-header">Welcome to WhereBnb</h1>
       <label className="login-label">
         <input
@@ -35,7 +36,7 @@ function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          />
+        />
       </label>
       <label>
         <input
@@ -45,8 +46,11 @@ function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          />
+        />
       </label>
+      <ul className='login-ul'>
+        {errors.map((error, idx) => <li key={idx} className="login-errors">{error}</li>)}
+      </ul>
       <button
         type="submit"
         className="login-form-button"
@@ -54,7 +58,7 @@ function LoginForm() {
       <button
         type="submit"
         className="demo-login-form-button"
-        onClick={ () => {setEmail("demo@user.io"); setPassword("password")}}
+        onClick={() => { setEmail("demo@user.io"); setPassword("password") }}
       >Demo User</button>
     </form>
   );

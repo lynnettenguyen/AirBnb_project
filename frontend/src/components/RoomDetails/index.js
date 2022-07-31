@@ -51,29 +51,31 @@ const RoomDetails = () => {
 
   return (
     <>
-      {page === 1 && <div className="whole-page">
-        <div className="left-space"></div>
+      {page === 1 &&
         <div className="room-content">
-          <div className="room-top-content">
-            <div className="room-header">
-              <div className="room-name">{room?.name}</div>
-              <div className="room-information-top">
-                <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
-                <span className="span-separator">·</span>
-                <span className="room-reviews">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
-                <span className="span-separator">.</span>
-                <span className="room-location">{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+          <div className="main-top">
+          <div className="outer-top-content">
+            <div className="room-top-content">
+              <div className="room-header">
+                <div className="room-name">{room?.name}</div>
+                <div className="room-information-top">
+                  <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
+                  <span className="span-separator">·</span>
+                  <span className="room-reviews">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
+                  <span className="span-separator">·</span>
+                  <span className="room-location">{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+                </div>
               </div>
-            </div>
-            <div className="session-user-buttons">
-              {sessionUser ?
-                <>
-                  {sessionUser?.id === room?.ownerId &&
-                    <div>
-                      <button onClick={handleEdit} className="edit-listing-button">Edit</button>
-                      <button onClick={handleDelete} className="delete-listing-button">Delete</button>
-                    </div>}
-                </> : <></>}
+              <div className="session-user-buttons">
+                {sessionUser ?
+                  <>
+                    {sessionUser?.id === room?.ownerId &&
+                      <div>
+                        <button onClick={handleEdit} className="edit-listing-button">Edit</button>
+                        <button onClick={handleDelete} className="delete-listing-button">Delete</button>
+                      </div>}
+                  </> : <></>}
+              </div>
             </div>
           </div>
           <div className="outer-room-images">
@@ -94,6 +96,7 @@ const RoomDetails = () => {
               </div>
             </div>
           </div>
+          </div>
           <div className="room-information-bottom">
             <div className="default-description">
               <div className="room-description">{room?.description}</div>
@@ -101,8 +104,6 @@ const RoomDetails = () => {
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
         </div>
-        <div className="right-space"></div>
-      </div>
       }
       {page === 2 && <EditListingForm listingId={roomId} returnToListing={returnToListing} />}
     </>

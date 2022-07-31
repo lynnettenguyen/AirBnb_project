@@ -1,10 +1,15 @@
 .trips-page {
-  display: grid;
-  grid-template-columns: 1fr 7fr 1fr;
+  display: flex;
+  justify-content: center;
+  margin-left: 5%
+}
+
+.trips-main-div {
+  width: 80%
 }
 
 .trips-header {
-  font-size: 2rem;
+  font-size: 1.8rem;
   padding: 1.6rem 0 0;
   font-weight: 500;
 }
@@ -17,34 +22,52 @@
 .outer-main {
   display: flex;
   flex-direction: column;
-  width: 86rem;
-  margin: 0;
-  padding: 1rem 0 0.5rem 0;
+  padding: 0.7rem 0 0.5rem 0;
 }
 
 .main-reservation-content,
 .middle-change-res {
   display: flex;
-  width: 70rem;
   border-radius: 20px;
+  width: 65rem;
 }
 
 .main-no-trips {
   border-radius: 20px;
-  width: 35rem;
+  width: 28rem;
   padding: 2rem;
   border: 1px rgba(128, 128, 128, 0.143) solid;
-  height: 15rem;
+  height: 13rem;
   margin-top: 1rem;
 }
 
-.main-reservation-content {
-  height: 20rem;
-  border: 1px rgba(128, 128, 128, 0.143) solid;
+.start-search-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 350;
+  height: 50px;
+  margin-top: 2rem;
+  width: 161px;
 }
 
-.middle-change-res {
-  height: 10rem;
+.no-trips-header {
+  font-size: 1.2rem;
+  padding: 1.2rem 0 1rem 0;
+}
+
+.no-trips-caption {
+  font-size: 1rem;
+  font-weight: 200;
+  color: grey;
+}
+
+.main-reservation-content {
+  height: 18rem;
+  border: 1px rgba(128, 128, 128, 0.143) solid;
+  width: 70%;
 }
 
 .top-left-name {
@@ -60,14 +83,14 @@
 .top-left-res-content,
 .bottom-left-res-content {
   display: flex;
-  flex-direction: row;
 }
 
 .res-button {
   border: none;
   border-radius: 10px;
   padding: 0.3rem 0.4rem;
-  margin: 0.13rem 0.3rem 0.3rem;
+  margin: 0.2rem;
+  font-size: 0.75rem;
 }
 
 .res-button:hover {
@@ -76,7 +99,6 @@
 
 .right-res-content {
   display: flex;
-  height: 20rem;
 }
 
 .cancel-button {
@@ -84,16 +106,13 @@
   font-weight: 600;
 }
 
-.right-image-res {
-  display: flex;
-  margin-left: 4rem;
-}
-
 .res-img {
   height: 100%;
   width: 100%;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  object-fit: cover;
+  padding-left: 3rem;
 }
 
 .left-res-content {
@@ -104,6 +123,9 @@
   width: 5rem;
   padding: 0.5rem 2rem;
   height: 10rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .bottom-location {
@@ -124,10 +146,6 @@
 .res-year {
   font-size: 0.8rem;
   padding-top: 0.1rem;
-}
-
-.bottom-edit-res {
-  margin-top: 6rem;
 }
 
 .bottom-dates {
@@ -156,12 +174,16 @@
   margin-left: 1rem;
 }
 
+.check-label {
+  font-size: 0.8rem;
+}
+
 .check-res {
   display: flex;
   flex-direction: column;
   border: 1px grey solid;
   border-radius: 10px;
-  height: 3rem;
+  height: 2.2rem;
   padding: 0.3rem;
   margin: 0.8rem 0.5rem;
 }
@@ -171,13 +193,14 @@
   margin: 0;
   padding: 0.2rem;
   width: 8rem;
-  height: 1.5rem;
+  height: 1.2rem;
+  font-size: 0.9rem;
 }
 
 .edit-delete-buttons {
   display: flex;
   flex-direction: column;
-  padding-top: 0.7rem;
+  padding-top: 0.3rem;
 }
 
 .middle-change-res {
@@ -186,7 +209,7 @@
 
 .update-res-header {
   padding: 0.7rem 0 0 0.5rem;
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 .reserve-errors-edit {
@@ -205,25 +228,19 @@
   visibility: hidden;
 }
 
-.start-search-button {
-  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 350;
-  height: 55px;
-  margin-top: 2rem;
-  width: 11rem;
+.res-list-error {
+  font-size: 0.8rem;
 }
 
-.no-trips-header {
-  font-size: 1.5rem;
-  padding: 1.2rem 0 1rem 0;
+.ul-res-error {
+  margin: 0;
 }
 
-.no-trips-caption {
-  font-size: 1.2rem;
-  font-weight: 200;
-  color: grey;
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+
+  .main-reservation-content,
+  .middle-change-res {
+    width: 55rem;
+  }
+
 }

@@ -1,3 +1,7 @@
+.show-menu-div {
+  position: relative
+}
+
 .profile-button-div {
   display: flex;
   justify-content: space-between;
@@ -19,6 +23,7 @@
 
 .profile-button:hover {
   box-shadow: rgba(129, 129, 129, 0.492) 0px 4px 3px -2.5px;
+  transform: none;
 }
 
 .profile-dropdown {
@@ -26,18 +31,19 @@
   flex-direction: column;
   margin-right: 5px;
   position: absolute;
-  top: 95px;
-  right: 154px;
-  width: 240px;
+  top: 1rem;
+  right: -0.1rem;
+  width: 220px;
   box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
   border-radius: 20px;
   background: white;
+  z-index: 1;
 }
 
 .logout-div,
 .account-div,
 .link {
-  font-size: 16px;
+  font-size: 0.9rem;
   padding: 15px 60px 15px 20px;
 }
 

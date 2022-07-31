@@ -1,3 +1,7 @@
+.all-listings-div {
+  margin: 0 7%;
+}
+
 .manage-listing-page {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
@@ -49,7 +53,8 @@
 }
 
 .manage-listings-header {
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 1.8rem;
+  padding: 1.6rem 0 1rem;
   margin-left: 4.2rem;
+  font-weight: 500;
 }

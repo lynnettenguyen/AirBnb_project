@@ -30,6 +30,7 @@
   display: flex;
   border-radius: 20px;
   width: 65rem;
+  height: auto;
 }
 
 .main-no-trips {
@@ -99,6 +100,7 @@
 
 .right-res-content {
   display: flex;
+  height: 18rem;
 }
 
 .cancel-button {

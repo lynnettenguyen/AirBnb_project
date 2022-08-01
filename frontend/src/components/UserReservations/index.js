@@ -145,8 +145,7 @@ const UserReservations = () => {
                           </div>
                           <div className="bottom-left-res-content">
                             <div className="bottom-change-res">
-                              {/* <div className="bottom-dates"> */}
-                              <div className={startMonth === endMonth ? "bottom-dates" : "bottom-dates-other"}>
+                              <div className="bottom-dates"> 
                                 {startMonth === endMonth ? <div className="res-month-day">
                                   <span className="month-res">{startMonth}</span>
                                   <div className="day-res">{' '}{startDay} - {endDay} </div>

@@ -9,9 +9,9 @@
 }
 
 .trips-header {
-  font-size: 1.8rem;
-  padding: 1.6rem 0 0;
-  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 1.2rem 0 0.6rem;
+  font-weight: 400;
 }
 
 .reservation-header {
@@ -66,13 +66,13 @@
 }
 
 .main-reservation-content {
-  height: 19rem;
+  height: 17rem;
   border: 1px rgba(128, 128, 128, 0.143) solid;
   width: 65%;
 }
 
 .top-left-name {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding: 1rem 0 1.5rem 1rem;
   border-bottom: 1px rgba(128, 128, 128, 0.286) solid;
 }
@@ -92,7 +92,7 @@
   border-radius: 10px;
   padding: 0.3rem 0.4rem;
   margin: 0.2rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }
 
 .res-button:hover {
@@ -110,7 +110,7 @@
 }
 
 .res-img {
-  height: 19rem;
+  height: 17rem;
   width: 130%;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -136,41 +136,40 @@
 }
 
 .month-res {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding-bottom: 0.2rem;
   font-weight: 250;
 }
 
 .day-res {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 250;
 }
 
 .date-res-other {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 250;
 }
 
 .res-year {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding-top: 0.1rem;
 }
 
 .bottom-dates {
   padding-right: 1rem;
-  margin-bottom: 6rem;
-  border-right: 1px rgba(128, 128, 128, 0.286) solid;
-}
-
-.bottom-dates-other {
-  padding-right: 1rem;
-  margin-bottom: 4.7rem;
+  margin-bottom: 5rem;
   border-right: 1px rgba(128, 128, 128, 0.286) solid;
 }
 
 .res-address,
 .res-city-state {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 250;
+}
+
+.res-country {
+  font-size: 0.8rem;
   font-weight: 250;
 }
 
@@ -185,7 +184,7 @@
 }
 
 .check-label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .check-res {
@@ -202,9 +201,9 @@
   border: none;
   margin: 0;
   padding: 0.2rem;
-  width: 8rem;
+  width: 7rem;
   height: 1.2rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .edit-delete-buttons {

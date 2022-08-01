@@ -25,6 +25,7 @@ const UserReservations = () => {
   const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
   const allEndDates = reservationsPerRoom.map(reservation => reservation.endDate)
 
+  let today = new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
 
   useEffect(() => {
 
@@ -32,7 +33,7 @@ const UserReservations = () => {
 
     const errors = []
 
-    if (new Date() > new Date(checkIn)) {
+    if (today > new Date(checkIn)) {
       errors.push("Cannot modify current reservation")
     }
 
@@ -145,7 +146,7 @@ const UserReservations = () => {
                           </div>
                           <div className="bottom-left-res-content">
                             <div className="bottom-change-res">
-                              <div className="bottom-dates"> 
+                              <div className="bottom-dates">
                                 {startMonth === endMonth ? <div className="res-month-day">
                                   <span className="month-res">{startMonth}</span>
                                   <div className="day-res">{' '}{startDay} - {endDay} </div>
@@ -180,9 +181,9 @@ const UserReservations = () => {
                     {
                       showEdit ? editReservation === reservation.id ?
                         <>
-                          <div className={new Date() > new Date(checkIn) ? "hidden" : "update-res-header"}>Change reservation:</div>
-                          <div className={new Date() > new Date(checkIn) ? "hidden" : "middle-change-res"}>
-                            <div className={new Date() > new Date(checkIn) ? "hidden" : "reservation-dates-res"}>
+                          <div className={today > new Date(checkIn) ? "hidden" : "update-res-header"}>Change reservation:</div>
+                          <div className={today > new Date(checkIn) ? "hidden" : "middle-change-res"}>
+                            <div className={today > new Date(checkIn) ? "hidden" : "reservation-dates-res"}>
                               <div className="check-res" disabled>
                                 <label className="check-label">CHECK-IN</label>
                                 <input
@@ -207,7 +208,7 @@ const UserReservations = () => {
                             <div>
                               <div className="edit-delete-buttons">
                                 <button type="submit" className="res-button update-button" disabled={checkDates}>Update Reservation</button>
-                                <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button" disabled={new Date() > new Date(checkIn)}>Cancel Reservation</button>
+                                <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button" disabled={today > new Date(checkIn)}>Cancel Reservation</button>
                               </div>
                             </div>
                           </div>

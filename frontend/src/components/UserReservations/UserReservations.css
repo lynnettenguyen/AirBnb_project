@@ -119,7 +119,8 @@
 }
 
 .left-res-content {
-  width: 42rem;
+  width: 50rem;
+  /* box-sizing: border-box; */
 }
 
 .bottom-change-res {

@@ -2,12 +2,17 @@
 
 WhereBnb provides lodging and vacation rentals around the world, wherever you want to go!
 
-## Technologies
-- Backend: Node.js, Express.js
-- Frontend: Javascript, React, Redux
-- Database: SQLite
-- Design/Styling: HTML, CSS
-- Hosting: Heroku
+##  Languages, Frameworks, Platforms and Libraries
+### Backend
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+### Frontend: 
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+### Database
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+### ORM
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
+### Hosting
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
 ## Wiki Links
 - [Database Schema](https://github.com/lynnettenguyen/airBnb_project/wiki/Database-Schema)
@@ -30,9 +35,9 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 ![Host](https://user-images.githubusercontent.com/98368183/182081916-edf00c58-defe-4653-a02e-deceb21b5faa.png)
 
 ### Steps to Run Locally
-- Clone the repository: ```git clone git@github.com:lynnettenguyen/whereBnb.git```
-- Install and run npm dependencies in the frontend and backend: ```npm install``` and then ```npm start```
-- Add environment variables:
+- Clone the repository: ```git clone https://github.com/lynnettenguyen/whereBnb.git```
+- Install and run npm dependencies in two separate terminals for frontend and backend: ```npm install``` and then ```npm start```
+- Add environment variables in the backend:
 ```
 PORT=8000
 DB_FILE=db/dev.db

@@ -39,4 +39,4 @@ DB_FILE=db/dev.db
 JWT_SECRET=INSERT-PASSWORD-HERE
 JWT_EXPIRES_IN=604800
 ```
-- Run ```npx dotenv sequelize db:migrate``` and ```npx dotenv sequelzie db:seed:all``` to populate databse
+- Run ```npx dotenv sequelize db:migrate``` and ```npx dotenv sequelzie db:seed:all``` to populate database

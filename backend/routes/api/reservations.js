@@ -35,11 +35,13 @@ router.delete('/:reservationId', requireAuth, async (req, res, next) => {
         // raw: true // frontEnd is giving deleteReservation.destroy is not a function
     })
 
+    let today = new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+
     if (!deleteReservation) {
         const err = new Error(`Reservation couldn't be found`);
         err.status = 404;
         return next(err)
-    } else if (new Date(deleteReservation.startDate) < new Date()) {
+    } else if (new Date(deleteReservation.startDate) < today) {
         const err = new Error(`Reservations that have been started can't be deleted`);
         err.status = 404;
         return next(err)

@@ -207,6 +207,18 @@ module.exports = {
         stars: 5,
         review: 'The Sea Ranch House is a dream location in the forest, and was exactly what we were looking for in terms of a tranquil, cozy escape, would highly recommend!'
       },
+      {
+        userId: 1,
+        roomId: 18,
+        stars: 5,
+        review: 'Absolutely fantastic place. Beautiful private villa, gorgeously decorated and very stylish. Wish I could buy this property and live here!!! Host was amazing and very responsive. Thanks for the lovely stay. This was a very romantic getaway!'
+      },
+      {
+        userId: 1,
+        roomId: 19,
+        stars: 5,
+        review: 'House is beautiful! One of the few chic rentals in Tahoe that is updated modern and still cozy. We loved everything about our stay here!'
+      },
     ], {});
   },
 

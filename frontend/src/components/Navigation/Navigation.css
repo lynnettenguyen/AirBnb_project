@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 0 1.3rem 0;
-  width: 100rem;
+  width: 93.5rem;
   /* left: 100px; */
 }
 
@@ -44,21 +44,16 @@
   padding-top: 14px;
 }
 
-@media screen and (min-width: 1700px) and (max-width: 2000px) {
-  .navigation-bar {
-    width: 100rem;
-  }
-}
 
 @media screen and (min-width: 1650px) and (max-width: 1700px) {
   .navigation-bar {
-    width: 72rem;
+    width: 69rem;
   }
 }
 
 @media screen and (min-width: 1450px) and (max-width: 1650px) {
   .navigation-bar {
-    width: 69rem;
+    width: 70rem;
   }
 }
 
@@ -76,7 +71,7 @@
 
 @media screen and (min-width: 850px) and (max-width: 1150px) {
   .navigation-bar {
-    width: 50rem;
+    width: 62rem;
   }
 }
 

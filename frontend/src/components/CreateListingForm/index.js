@@ -112,8 +112,6 @@ const CreateListingForm = () => {
       price,
     }
 
-    // const roomResponse = await dispatch(hostNewRoom(roomData))
-
     const roomResponse = await dispatch(hostNewRoom(roomData))
       .catch(async (res) => {
         const data = await res.json();
@@ -178,17 +176,16 @@ const CreateListingForm = () => {
 
   return (
     <div className="create-page">
-      <div></div>
       {page === 1 &&
         <div className="create-content">
           <div className="header-div">
             <div className="create-header">Welcome</div>
           </div>
-          <div>
+          <div className="create-content-right">
             <div className="create-new-label">Start a new listing</div>
             <div className="create-new-button-div">
-              {sessionUser? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
-              <button className="no-session-button" disabled="true">Login to begin hosting</button>}
+              {sessionUser ? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
+                <button className="no-session-button" disabled="true">Login to begin hosting</button>}
               <span className="white-space"></span>
             </div>
           </div>
@@ -282,7 +279,7 @@ const CreateListingForm = () => {
                   <div>
                     <input
                       type="number"
-                      placeholder="latitude"
+                      placeholder="latitude (-90 to +90)"
                       className="multi-input"
                       value={lat}
                       onChange={e => { setLat(e.target.value); }}
@@ -292,7 +289,7 @@ const CreateListingForm = () => {
                   <div>
                     <input
                       type="number"
-                      placeholder="longitude"
+                      placeholder="longitude (-180 to +180)"
                       className="multi-input"
                       value={lng}
                       onChange={e => { setLng(e.target.value); }}
@@ -332,7 +329,7 @@ const CreateListingForm = () => {
                       className="create-input-textarea"
                       value={description}
                       onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
-                    // required
+                      // required // remove require to set error handler
                     >
                     </textarea>
                   </div>
@@ -370,8 +367,8 @@ const CreateListingForm = () => {
                     />
                   </div>
                   {errors.length > 0 && (<>
-                    <div className="error-message">Please return to the previous page to correct the following errors: </div> <ul>
-                      {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    <div className="error-message">Please return to the previous pages to correct the following errors: </div> <ul className="error-message-ul">
+                      {errors.map((error, i) => <li className="error-message-li" key={i}>{error}</li>)}
                     </ul>
                   </>
                   )}
@@ -464,7 +461,6 @@ const CreateListingForm = () => {
           </section>)
         }
       </form>
-      <div></div>
     </div>
 
   )

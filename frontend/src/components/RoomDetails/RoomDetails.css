@@ -146,7 +146,7 @@
 .room-description {
   font-size: 1rem;
   font-weight: 250;
-  padding-top: 1rem;
+  padding: 0.7rem 1.2rem 0 0rem;
 }
 
 @media screen and (max-width: 1700px) {

@@ -1,51 +1,48 @@
 .create-page {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  display: flex;
+  justify-content: center;
 }
 
 .create-content {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 2rem;
 }
 
 .create-content-right {
   display: flex;
   flex-direction: column;
-  padding-top: 8rem;
+  padding: 8rem 2rem;
 }
 
 .right-content-input {
-  height: 30rem;
+  height: 23rem;
 }
-
 
 .create-header {
   background: linear-gradient(#e1005a, #d70069, #c90079, #b6008b, #9c009c, #7800ac, #3b07bb);
-  height: 40rem;
-  width: 30rem;
-  margin: 5rem 5rem 0 0;
+  height: 33rem;
+  width: 23rem;
   display: flex;
   padding: 0 4rem 8rem 4rem;
   align-items: center;
   color: white;
-  font-size: 3rem;
+  font-size: 2.5rem;
   border-radius: 20px;
 }
 
 .create-new-label {
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   margin-bottom: 0.6rem;
 }
 
 .create-new-button {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 250;
-  padding: 0.5rem 1.2rem 1rem;
+  padding: 0.4rem 0.9rem 0.9rem;
   border-radius: 10px;
   background: none;
   margin-left: 1rem;
-  width: 24rem;
+  width: 22rem;
   border: rgba(128, 128, 128, 0.338) 1px solid;
   white-space: nowrap;
 }
@@ -62,7 +59,7 @@
 }
 
 .white-space {
-  padding: 4rem;
+  padding: 3.5rem;
 }
 
 .fa-plus {
@@ -86,13 +83,16 @@
   align-items: flex-end;
 }
 
-.create-input {
-  width: 30rem;
+.create-input, .multi-input {
+  width: 26rem;
+  font-size: 0.9rem;
+  height: 2.2rem;
+  font-weight: 250;
 }
 
 .back-button {
   padding: 0.8rem 1rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   border: none;
   background: none;
 }
@@ -104,31 +104,28 @@
 
 .next-button:disabled {
   padding: 0.8rem 1rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   border: none;
   border-radius: 10px;
 }
 
 .next-button:enabled {
   padding: 0.8rem 1rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   border: none;
   border-radius: 10px;
   background-color: black;
   color: white;
 }
 
-.multi-input {
-  width: 30rem;
-}
-
 .create-input-textarea {
-  width: 30rem;
+  width: 26rem;
   height: 17rem;
   border-radius: 10px;
   resize: none;
   margin: 1rem 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: 250;
   padding: 1rem;
 }
 
@@ -154,5 +151,14 @@
 }
 
 .error-message {
-  padding-top: 20rem;
+  padding-top: 18.5rem;
+  font-size: 0.7rem;
+}
+
+.error-message-li {
+  font-size: 0.7rem;
+}
+
+.error-message-ul {
+  margin: 0.3rem 0;
 }

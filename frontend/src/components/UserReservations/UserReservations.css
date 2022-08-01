@@ -1,7 +1,7 @@
 .trips-page {
   display: flex;
   justify-content: center;
-  margin-left: 5%
+  margin: 0 8%;
 }
 
 .trips-main-div {
@@ -9,9 +9,9 @@
 }
 
 .trips-header {
-  font-size: 1.8rem;
-  padding: 1.6rem 0 0;
-  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 1.2rem 0 0.6rem;
+  font-weight: 400;
 }
 
 .reservation-header {
@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: column;
   padding: 0.7rem 0 0.5rem 0;
+  /* max-width: 80rem; */
 }
 
 .main-reservation-content,
@@ -67,17 +68,18 @@
 .main-reservation-content {
   height: 18rem;
   border: 1px rgba(128, 128, 128, 0.143) solid;
-  width: 70%;
+  width: 65%;
+  padding-left: 1rem;
 }
 
 .top-left-name {
-  font-size: 1.4rem;
-  padding: 1rem 0 1.5rem 1rem;
-  border-bottom: 1px rgba(128, 128, 128, 0.286) solid;
+  font-size: 1.1rem;
+  padding: 0.5rem 0 0.3rem 0.5rem;
 }
 
 .top-left-res-content {
-  padding: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px rgba(128, 128, 128, 0.286) solid;
 }
 
 .top-left-res-content,
@@ -85,12 +87,16 @@
   display: flex;
 }
 
+.bottom-left-res-content {
+  padding-top: 0.5rem;
+}
+
 .res-button {
   border: none;
   border-radius: 10px;
   padding: 0.3rem 0.4rem;
   margin: 0.2rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }
 
 .res-button:hover {
@@ -99,6 +105,7 @@
 
 .right-res-content {
   display: flex;
+  padding-left: 1rem;
 }
 
 .cancel-button {
@@ -107,22 +114,20 @@
 }
 
 .res-img {
-  height: 100%;
-  width: 100%;
+  height: 18rem;
+  width: 22rem;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   object-fit: cover;
-  padding-left: 3rem;
 }
 
 .left-res-content {
-  width: 36rem;
+  width: 53rem;
 }
 
 .bottom-change-res {
   width: 5rem;
-  padding: 0.5rem 2rem;
-  height: 10rem;
+  padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -133,34 +138,40 @@
 }
 
 .month-res {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding-bottom: 0.2rem;
   font-weight: 250;
 }
 
 .day-res {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 250;
+}
+
+.date-res-other {
+  font-size: 1rem;
   font-weight: 250;
 }
 
 .res-year {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding-top: 0.1rem;
 }
 
 .bottom-dates {
   padding-right: 1rem;
+  margin-bottom: 5.4rem;
   border-right: 1px rgba(128, 128, 128, 0.286) solid;
-}
-
-.date-res-other {
-  font-size: 1.1rem;
-  font-weight: 250;
 }
 
 .res-address,
 .res-city-state {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 250;
+}
+
+.res-country {
+  font-size: 0.8rem;
   font-weight: 250;
 }
 
@@ -175,7 +186,7 @@
 }
 
 .check-label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .check-res {
@@ -192,9 +203,9 @@
   border: none;
   margin: 0;
   padding: 0.2rem;
-  width: 8rem;
+  width: 7rem;
   height: 1.2rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .edit-delete-buttons {
@@ -230,17 +241,9 @@
 
 .res-list-error {
   font-size: 0.8rem;
+  padding-top: 0.3rem;
 }
 
 .ul-res-error {
   margin: 0;
-}
-
-@media screen and (min-width: 1200px) and (max-width: 1600px) {
-
-  .main-reservation-content,
-  .middle-change-res {
-    width: 55rem;
-  }
-
 }

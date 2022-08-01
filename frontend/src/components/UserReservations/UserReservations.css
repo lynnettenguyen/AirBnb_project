@@ -111,11 +111,10 @@
 
 .res-img {
   height: 17rem;
-  width: 130%;
+  width: 23rem;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   object-fit: cover;
-  padding-left: 3rem;
 }
 
 .left-res-content {

@@ -39,6 +39,7 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 - Install and run npm dependencies in two separate terminals for frontend and backend: ```npm install``` and then ```npm start```
 - Add environment variables in the backend:
 ```
+// .env
 PORT=8000
 DB_FILE=db/dev.db
 JWT_SECRET=INSERT-PASSWORD-HERE

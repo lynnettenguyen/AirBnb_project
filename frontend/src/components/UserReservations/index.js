@@ -95,6 +95,7 @@ const UserReservations = () => {
     if (updateReservation) {
       setShowEdit(false)
       dispatch(listAllReservations())
+      dispatch(listAllReservations(roomId))
     }
   }
 

@@ -58,8 +58,8 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
     }
 
     dispatch(bookNewReservation(reservationData))
-    .then(() => { history.push("/reservations") })
     // .then(dispatch(listAllReservations(roomId)))
+    .then(() => { history.push("/reservations") })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) { setReservationErrors(Object.values(data.errors)); }

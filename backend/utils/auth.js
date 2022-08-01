@@ -166,25 +166,19 @@ const checkReservationValidation = async function (req, _res, next) {
 
     let currStartDates = []
     let currEndDates = []
-    let reservationUser = [];
+    // let reservationUser = [];
 
     for (let i = 0; i < Object.keys(allReservations).length; i++) {
         currStartDates.push(allReservations[i].startDate)
         currEndDates.push(allReservations[i].endDate)
-        reservationUser.push(allReservations[i].userId)
     }
 
     for (let i = 0; i < currStartDates.length; i++) {
-        let startRes = new Date(currStartDates[i]);
-        startRes = new Date(startRes.getTime() + startRes.getTimezoneOffset() * 60000)
-        let endRes = new Date(currEndDates[i]);
-        endRes = new Date(endRes.getTime() + endRes.getTimezoneOffset() * 60000)
+        let startRes = new Date(currStartDates[i]).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+        let endRes = new Date(currEndDates[i]).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
 
-        let startReq = new Date(startDate)
-        let endReq = new Date(endDate)
-        startReq = new Date(startReq.getTime() + startReq.getTimezoneOffset() * 60000)
-        endReq = new Date(endReq.getTime() + endReq.getTimezoneOffset() * 60000)
-
+        let startReq = new Date(startDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+        let endReq = new Date(endDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
 
         if ((startReq > startRes && startReq < endRes) ||
             (endReq > startRes && endReq < endRes) ||

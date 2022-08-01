@@ -37,13 +37,13 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 ### Steps to Run Locally
 - Clone the repository: ```git clone https://github.com/lynnettenguyen/whereBnb.git```
 - Install and run npm dependencies in two separate terminals for frontend and backend: ```npm install``` and then ```npm start```
-- Add environment variables in the backend:
-```
+- Add backend environment variables:
+```js
 // .env
 PORT=8000
 DB_FILE=db/dev.db
 JWT_SECRET=INSERT-PASSWORD-HERE
 JWT_EXPIRES_IN=604800
 ```
-- Setup database in the backend: ```npx dotenv sequelize db:migrate``` and ```npx dotenv sequelzie db:seed:all```
+- Setup backend database: ```npx dotenv sequelize db:migrate``` and ```npx dotenv sequelzie db:seed:all```
 - Navigate to [localhost:3000](http://localhost:3000/)

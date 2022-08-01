@@ -145,7 +145,8 @@ const UserReservations = () => {
                           </div>
                           <div className="bottom-left-res-content">
                             <div className="bottom-change-res">
-                              <div className="bottom-dates">
+                              {/* <div className="bottom-dates"> */}
+                              <div className={startMonth === endMonth ? "bottom-dates" : "bottom-dates-other"}>
                                 {startMonth === endMonth ? <div className="res-month-day">
                                   <span className="month-res">{startMonth}</span>
                                   <div className="day-res">{' '}{startDay} - {endDay} </div>
@@ -180,7 +181,7 @@ const UserReservations = () => {
                     {
                       showEdit ? editReservation === reservation.id ?
                         <>
-                          <div className={new Date() > new Date(checkIn) ? "hidden" : "update-res-header"}>Update reservation:</div>
+                          <div className={new Date() > new Date(checkIn) ? "hidden" : "update-res-header"}>Change reservation:</div>
                           <div className={new Date() > new Date(checkIn) ? "hidden" : "middle-change-res"}>
                             <div className={new Date() > new Date(checkIn) ? "hidden" : "reservation-dates-res"}>
                               <div className="check-res" disabled>

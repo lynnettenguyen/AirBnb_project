@@ -1,7 +1,7 @@
 .trips-page {
   display: flex;
   justify-content: center;
-  margin-left: 5%
+  margin: 0 8%;
 }
 
 .trips-main-div {
@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   padding: 0.7rem 0 0.5rem 0;
-  max-width: 80rem;
+  /* max-width: 80rem; */
 }
 
 .main-reservation-content,
@@ -66,13 +66,13 @@
 }
 
 .main-reservation-content {
-  height: 18rem;
+  height: 19rem;
   border: 1px rgba(128, 128, 128, 0.143) solid;
-  width: 70%;
+  width: 65%;
 }
 
 .top-left-name {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 1rem 0 1.5rem 1rem;
   border-bottom: 1px rgba(128, 128, 128, 0.286) solid;
 }
@@ -110,8 +110,8 @@
 }
 
 .res-img {
-  height: 100%;
-  width: 100%;
+  height: 19rem;
+  width: 130%;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   object-fit: cover;
@@ -119,14 +119,13 @@
 }
 
 .left-res-content {
-  width: 50rem;
+  width: 53rem;
   /* box-sizing: border-box; */
 }
 
 .bottom-change-res {
   width: 5rem;
   padding: 0.5rem 2rem;
-  height: 10rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -147,6 +146,11 @@
   font-weight: 250;
 }
 
+.date-res-other {
+  font-size: 1.1rem;
+  font-weight: 250;
+}
+
 .res-year {
   font-size: 0.8rem;
   padding-top: 0.1rem;
@@ -154,17 +158,19 @@
 
 .bottom-dates {
   padding-right: 1rem;
+  margin-bottom: 6rem;
   border-right: 1px rgba(128, 128, 128, 0.286) solid;
 }
 
-.date-res-other {
-  font-size: 1.1rem;
-  font-weight: 250;
+.bottom-dates-other {
+  padding-right: 1rem;
+  margin-bottom: 4.7rem;
+  border-right: 1px rgba(128, 128, 128, 0.286) solid;
 }
 
 .res-address,
 .res-city-state {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 250;
 }
 

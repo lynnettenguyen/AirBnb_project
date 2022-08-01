@@ -10,7 +10,7 @@
 .profile-button {
   background-color: white;
   border: 1px #71717150 solid;
-  border-radius: 22px;
+  border-radius: 20px;
   margin-top: 8px;
 }
 
@@ -32,7 +32,8 @@
   margin-right: 5px;
   position: absolute;
   top: 1rem;
-  right: -0.1rem;
+  /* right: -0.1rem; */
+  left: -8.4rem;
   width: 220px;
   box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
   border-radius: 20px;

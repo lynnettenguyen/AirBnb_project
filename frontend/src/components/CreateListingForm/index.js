@@ -178,16 +178,15 @@ const CreateListingForm = () => {
 
   return (
     <div className="create-page">
-      <div></div>
       {page === 1 &&
         <div className="create-content">
           <div className="header-div">
             <div className="create-header">Welcome</div>
           </div>
-          <div>
+          <div className="create-content-right">
             <div className="create-new-label">Start a new listing</div>
             <div className="create-new-button-div">
-              {sessionUser? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
+              {sessionUser ? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
               <button className="no-session-button" disabled="true">Login to begin hosting</button>}
               <span className="white-space"></span>
             </div>
@@ -464,7 +463,6 @@ const CreateListingForm = () => {
           </section>)
         }
       </form>
-      <div></div>
     </div>
 
   )

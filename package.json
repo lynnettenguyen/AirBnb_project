@@ -14,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lynnettenguyen/authenticate-me.git"
+    "url": "git+https://github.com/lynnettenguyen/whereBnb.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lynnettenguyen/authenticate-me/issues"
+    "url": "https://github.com/lynnettenguyen/whereBnb/issues"
   },
-  "homepage": "https://github.com/lynnettenguyen/authenticate-me#readme"
+  "homepage": "https://github.com/lynnettenguyen/whereBnb#readme"
 }

@@ -185,7 +185,7 @@ const CreateListingForm = () => {
             <div className="create-new-label">Start a new listing</div>
             <div className="create-new-button-div">
               {sessionUser ? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
-              <button className="no-session-button" disabled="true">Login to begin hosting</button>}
+                <button className="no-session-button" disabled="true">Login to begin hosting</button>}
               <span className="white-space"></span>
             </div>
           </div>
@@ -329,7 +329,7 @@ const CreateListingForm = () => {
                       className="create-input-textarea"
                       value={description}
                       onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
-                    // required
+                      // required // remove require to set error handler
                     >
                     </textarea>
                   </div>

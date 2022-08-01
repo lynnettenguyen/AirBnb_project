@@ -85,7 +85,7 @@ const checkNotOwner = async function (req, _res, next) {
     })
 
     if (Object.keys(room).length) {
-        const err = new Error('Unable to book or review spots owned by the current user');
+        const err = new Error(`Hosts can't reserve their own listings`);
         err.status = 403;
         return next(err);
     } else {
@@ -186,9 +186,9 @@ const checkReservationValidation = async function (req, _res, next) {
             (endRes > startReq && endRes < endReq)) {
             errorResult.errors.date = `Dates conflicts with an existing reservation`
         } else if (startRes === startReq) {
-            errorResult.errors.startDate = 'Start date conflicts with an existing reservation'
+            errorResult.errors.startDate = 'Check-in date conflicts with an existing reservation'
         } else if (endRes === endReq) {
-            errorResult.errors.endDate = 'End date conflicts with an existing reservation'
+            errorResult.errors.endDate = 'Check-out date conflicts with an existing reservation'
         }
     }
 

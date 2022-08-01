@@ -26,12 +26,12 @@
   padding: 0 4rem 8rem 4rem;
   align-items: center;
   color: white;
-  font-size: 3rem;
+  font-size: 2.5rem;
   border-radius: 20px;
 }
 
 .create-new-label {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   margin-bottom: 0.6rem;
 }
 
@@ -151,12 +151,12 @@
 }
 
 .error-message {
-  padding-top: 19rem;
-  font-size: 0.6rem;
+  padding-top: 18.5rem;
+  font-size: 0.7rem;
 }
 
 .error-message-li {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .error-message-ul {

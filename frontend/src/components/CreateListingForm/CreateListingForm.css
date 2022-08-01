@@ -38,7 +38,7 @@
 .create-new-button {
   font-size: 1rem;
   font-weight: 250;
-  padding: 0.5rem 1rem 1rem;
+  padding: 0.4rem 0.9rem 0.9rem;
   border-radius: 10px;
   background: none;
   margin-left: 1rem;
@@ -151,5 +151,14 @@
 }
 
 .error-message {
-  padding-top: 20rem;
+  padding-top: 19rem;
+  font-size: 0.6rem;
+}
+
+.error-message-li {
+  font-size: 0.6rem;
+}
+
+.error-message-ul {
+  margin: 0.3rem 0;
 }

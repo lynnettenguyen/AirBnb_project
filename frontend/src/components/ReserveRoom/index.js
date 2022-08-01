@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findRoomById, removeRoom } from "../../store/rooms";
 import "./ReserveRoom.css"
-import { getAllReservations, listRoomReservations, bookNewReservation } from "../../store/reservations";
+import { getAllReservations, listRoomReservations, bookNewReservation, listAllReservations } from "../../store/reservations";
 
 const ReserveRoom = ({ roomId, avgStarRating }) => {
   const room = useSelector((state) => state.rooms[roomId])
@@ -39,8 +39,6 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
 
     if (errors.length > 0) {
       setReservationErrors(errors)
-    } else {
-      setReservationErrors([])
     }
 
   }, [dispatch, checkIn, checkOut])
@@ -60,7 +58,8 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
     }
 
     dispatch(bookNewReservation(reservationData))
-      .then(() => { history.push("/reservations") })
+    .then(() => { history.push("/reservations") })
+    // .then(dispatch(listAllReservations(roomId)))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) { setReservationErrors(Object.values(data.errors)); }
@@ -135,7 +134,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
             }
             {reservationErrors.length > 0 && (
               // <div className="reserve-errors">{reservationErrors[0]}</div>
-              <ul>
+              <ul className="res-error-ul-host">
                 {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
               </ul>
             )}

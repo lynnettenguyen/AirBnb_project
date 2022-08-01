@@ -206,6 +206,7 @@
   width: 4.7rem;
 }
 
-/* @media screen and (max-width: 1000px) {
-  }
-} */
+.res-error-ul-host {
+  margin: 0.3rem 0;
+  font-size: 0.8rem;
+}

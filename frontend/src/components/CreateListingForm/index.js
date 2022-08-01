@@ -112,8 +112,6 @@ const CreateListingForm = () => {
       price,
     }
 
-    // const roomResponse = await dispatch(hostNewRoom(roomData))
-
     const roomResponse = await dispatch(hostNewRoom(roomData))
       .catch(async (res) => {
         const data = await res.json();
@@ -281,7 +279,7 @@ const CreateListingForm = () => {
                   <div>
                     <input
                       type="number"
-                      placeholder="latitude"
+                      placeholder="latitude (-90 to +90)"
                       className="multi-input"
                       value={lat}
                       onChange={e => { setLat(e.target.value); }}
@@ -291,7 +289,7 @@ const CreateListingForm = () => {
                   <div>
                     <input
                       type="number"
-                      placeholder="longitude"
+                      placeholder="longitude (-180 to +180)"
                       className="multi-input"
                       value={lng}
                       onChange={e => { setLng(e.target.value); }}
@@ -369,8 +367,8 @@ const CreateListingForm = () => {
                     />
                   </div>
                   {errors.length > 0 && (<>
-                    <div className="error-message">Please return to the previous page to correct the following errors: </div> <ul>
-                      {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    <div className="error-message">Please return to the previous pages to correct the following errors: </div> <ul className="error-message-ul">
+                      {errors.map((error, i) => <li className="error-message-li" key={i}>{error}</li>)}
                     </ul>
                   </>
                   )}

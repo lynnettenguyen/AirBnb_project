@@ -513,6 +513,96 @@ module.exports = {
         type: 'room',
         url: 'https://a0.muscache.com/im/pictures/0f53e300-9ff2-451a-ac96-d7a66836a3a2.jpg?im_w=1200'
       },
+      {
+        userId: 2,
+        roomId: 18,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/da13ccea-80d1-4cf4-b275-41f1b5aa19f9.jpg?im_w=1200'
+      },
+      {
+        userId: 2,
+        roomId: 18,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/a4230759-47cb-4110-b680-f21ce19c8983.jpg?im_w=1200'
+      },
+      {
+        userId: 2,
+        roomId: 18,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/ca445e4c-fff9-449f-a525-bb327018da74.jpg?im_w=720'
+      },
+      {
+        userId: 2,
+        roomId: 18,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/e17692f1-8840-4e42-879c-254d631e138b.jpg?im_w=1200'
+      },
+      {
+        userId: 2,
+        roomId: 18,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/d7ade675-6c3f-4dfd-bff5-849c3f08e048.jpg?im_w=720'
+      },
+      {
+        userId: 3,
+        roomId: 19,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/6a24d18a-d28f-4b2e-9280-2e9e51060b50.jpg?im_w=1200'
+      },
+      {
+        userId: 3,
+        roomId: 19,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-36771267/original/7067d0e1-8c3b-4588-97de-3e1a4793f86b.jpeg?im_w=1200'
+      },
+      {
+        userId: 3,
+        roomId: 19,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-36771267/original/bc685587-1e3d-419e-ae7b-5c450fecc7eb.jpeg?im_w=1200'
+      },
+      {
+        userId: 3,
+        roomId: 19,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/6a27599c-45ba-4542-8784-73017f30f00e.jpg?im_w=720'
+      },
+      {
+        userId: 3,
+        roomId: 19,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-36771267/original/22571450-7b42-4fa4-ad15-24ffe99e1c0d.jpeg?im_w=720'
+      },
+      {
+        userId: 5,
+        roomId: 20,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/eeda2a05-f344-4f3c-8e8d-b35b33dd5135.jpg?im_w=720'
+      },
+      {
+        userId: 5,
+        roomId: 20,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-44787980/original/287f8582-7703-44af-a5dc-7f1ba6d02b01.jpeg?im_w=720'
+      },
+      {
+        userId: 5,
+        roomId: 20,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-44787980/original/86b1231b-1f95-43fa-bdc0-7676e563d89c.jpeg?im_w=720'
+      },
+      {
+        userId: 5,
+        roomId: 20,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-44787980/original/695d68af-ab2b-485b-995d-7e9339a5aee0.jpeg?im_w=1200v'
+      },
+      {
+        userId: 5,
+        roomId: 20,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-44787980/original/97a29184-9623-4e45-867f-6d050049eb5b.jpeg?im_w=1200'
+      },
     ], {});
 
   },

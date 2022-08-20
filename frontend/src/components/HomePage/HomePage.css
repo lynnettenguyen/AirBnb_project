@@ -15,7 +15,7 @@
 
 .room-div {
   box-sizing: border-box;
-  height: 395px;
+  height: 375px;
   width: 280px;
   margin: 10px;
 }
@@ -57,7 +57,7 @@
 }
 
 .room-city-state {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0%;
   width: 200px;
@@ -72,10 +72,12 @@
   color: #8e8e8e;
   font-weight: 300;
   padding: 0.25rem 0;
+  font-size: 0.9rem;
 }
 
 .room-price-night {
   display: flex;
+  font-size: 0.9rem;
 }
 
 .room-night {

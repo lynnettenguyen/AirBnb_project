@@ -373,7 +373,7 @@ router.delete('/:roomId', [requireAuth, checkOwnerRoom], async (req, res) => {
 })
 
 router.get('/', async (req, res, next) => {
-    const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice, country } = req.query;
 
     const pagination = {}
     const results = {}
@@ -403,7 +403,7 @@ router.get('/', async (req, res, next) => {
 
     if (pagination.offset < 0) pagination.offset = 0;
 
-    console.log(minLat - Math.floor(minLat))
+    // console.log(minLat - Math.floor(minLat))
     if (minLat) {
         if ((minLat - Math.floor(minLat)) !== 0) roomQuery.lat = { [Op.gte]: minLat }
         else errorResult.errors.minLat = 'Minimum latitude is invalid'
@@ -438,6 +438,10 @@ router.get('/', async (req, res, next) => {
         // if (maxPrice.includes('.0')) roomQuery.price = { [Op.lte]: maxPrice }
         // else if ((maxPrice - Math.floor(maxPrice)) !== 0) roomQuery.price = { [Op.lte]: maxPrice }
         // else errorResult.errors.minPrice = 'Maximum price must be a decimal'
+    }
+
+    if (country && country !== "") {
+        roomQuery.country = { [Op.substring]: country };
     }
 
     results.Rooms = await Room.unscoped().findAll({

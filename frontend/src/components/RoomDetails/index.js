@@ -6,6 +6,7 @@ import "./RoomDetails.css"
 import EditListingForm from "../EditListingForm";
 import ReserveRoom from "../ReserveRoom";
 import { getAllReservations, listRoomReservations } from "../../store/reservations";
+import Maps from '../Maps'
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -54,48 +55,48 @@ const RoomDetails = () => {
       {page === 1 &&
         <div className="room-content">
           <div className="main-top">
-          <div className="outer-top-content">
-            <div className="room-top-content">
-              <div className="room-header">
-                <div className="room-name">{room?.name}</div>
-                <div className="room-information-top">
-                  <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
-                  <span className="span-separator">·</span>
-                  <span className="room-reviews">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
-                  <span className="span-separator">·</span>
-                  <span className="room-location">{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+            <div className="outer-top-content">
+              <div className="room-top-content">
+                <div className="room-header">
+                  <div className="room-name">{room?.name}</div>
+                  <div className="room-information-top">
+                    <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
+                    <span className="span-separator">·</span>
+                    <span className="room-reviews">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
+                    <span className="span-separator">·</span>
+                    <span className="room-location">{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+                  </div>
+                </div>
+                <div className="session-user-buttons">
+                  {sessionUser ?
+                    <>
+                      {sessionUser?.id === room?.ownerId &&
+                        <div>
+                          <button onClick={handleEdit} className="edit-listing-button">Edit</button>
+                          <button onClick={handleDelete} className="delete-listing-button">Delete</button>
+                        </div>}
+                    </> : <></>}
                 </div>
               </div>
-              <div className="session-user-buttons">
-                {sessionUser ?
-                  <>
-                    {sessionUser?.id === room?.ownerId &&
-                      <div>
-                        <button onClick={handleEdit} className="edit-listing-button">Edit</button>
-                        <button onClick={handleDelete} className="delete-listing-button">Delete</button>
-                      </div>}
-                  </> : <></>}
+            </div>
+            <div className="outer-room-images">
+              <div className="room-images">
+                <div className="left-image-div">
+                  {room?.images &&
+                    <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
+                </div>
+                <div className="right-image-div">
+                  {room?.images?.map((image, i) => {
+                    if (i > 0)
+                      return (
+                        <div className="side-image-div" key={image.url}>
+                          <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
+                        </div>
+                      )
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="outer-room-images">
-            <div className="room-images">
-              <div className="left-image-div">
-                {room?.images &&
-                  <img src={room?.images[0]?.url} alt="exterior" className="main-image"></img>}
-              </div>
-              <div className="right-image-div">
-                {room?.images?.map((image, i) => {
-                  if (i > 0)
-                    return (
-                      <div className="side-image-div" key={image.url}>
-                        <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
-                      </div>
-                    )
-                })}
-              </div>
-            </div>
-          </div>
           </div>
           <div className="room-information-bottom">
             <div className="default-description">
@@ -103,6 +104,7 @@ const RoomDetails = () => {
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
+          <Maps />
         </div>
       }
       {page === 2 && <EditListingForm listingId={roomId} returnToListing={returnToListing} />}

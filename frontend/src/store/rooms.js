@@ -34,8 +34,9 @@ const deleteRoom = (roomId) => ({
   roomId
 })
 
-export const listAllRooms = () => async (dispatch) => {
+export const listAllRooms = (country) => async (dispatch) => {
   const response = await csrfFetch(`/api/rooms`);
+  // const response = await csrfFetch(`/api/rooms?country=${country}`);
   if (response.ok) {
     const roomsObj = await response.json();
     // console.log(typeof roomsObj.Rooms)

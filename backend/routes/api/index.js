@@ -9,6 +9,7 @@ const roomsRouter = require('./rooms.js')
 const reservationRouter = require('./reservations.js')
 const reviewRouter = require('./reviews.js')
 const imageRouter = require('./images.js')
+const mapsRouter = require('./maps.js')
 
 const { setTokenCookie } = require('../../utils/auth.js');
 const { requireAuth } = require('../../utils/auth.js');
@@ -25,6 +26,7 @@ router.use('/rooms', roomsRouter)
 router.use('/reservations', reservationRouter)
 router.use('/reviews', reviewRouter)
 router.use('/images', imageRouter)
+router.use('/maps', mapsRouter)
 
 // will test the restoreUser middleware and check whether or not the req.user key has been populated by the middleware properly
 router.get(

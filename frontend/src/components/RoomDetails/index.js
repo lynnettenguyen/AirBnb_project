@@ -7,6 +7,7 @@ import EditListingForm from "../EditListingForm";
 import ReserveRoom from "../ReserveRoom";
 import { getAllReservations, listRoomReservations } from "../../store/reservations";
 import Maps from '../Maps'
+import Reviews from "./Reviews";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -104,6 +105,7 @@ const RoomDetails = () => {
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
+          <Reviews room={room} roomId={roomId} />
           <Maps room={room} />
         </div>
       }

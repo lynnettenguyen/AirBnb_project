@@ -38,3 +38,8 @@ button:disabled {
   font-size: 1.5rem;
   font-weight: 240;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

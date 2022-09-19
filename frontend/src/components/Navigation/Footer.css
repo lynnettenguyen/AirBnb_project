@@ -1,0 +1,40 @@
+.footer-main {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 20px 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+  border-top: 1px solid rgba(128, 128, 128, 0.643);
+}
+
+
+.footer-inner {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fa-github,
+.fa-linkedin-in,
+.fa-folder-open {
+  font-size: 20px;
+}
+
+.footer-main a {
+  text-decoration: none;
+}
+
+.social-link {
+  padding: 0 10px;
+}
+
+.footer-main a:visited,
+a:active,
+a:focus {
+  text-decoration: none;
+}

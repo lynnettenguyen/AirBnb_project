@@ -104,7 +104,7 @@ const RoomDetails = () => {
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
-          <Maps />
+          <Maps room={room} />
         </div>
       }
       {page === 2 && <EditListingForm listingId={roomId} returnToListing={returnToListing} />}

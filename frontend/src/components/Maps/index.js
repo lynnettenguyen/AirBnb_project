@@ -14,11 +14,11 @@ const Maps = () => {
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: APIKey,
-    // id: 'google-map-script'
+    // id: 'google-map'
   })
 
   const containerStyle = {
-    width: '400px',
+    width: '70%',
     height: '400px'
   };
 
@@ -31,12 +31,14 @@ const Maps = () => {
     <>
       {isLoaded &&
         (
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-          >
-          </GoogleMap>
+          <div className='maps-main'>
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={center}
+              zoom={10}
+            >
+            </GoogleMap>
+          </div>
         )}
     </>
   )

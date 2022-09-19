@@ -14,7 +14,7 @@ const Maps = ({ room }) => {
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: APIKey,
-    // id: 'google-map-script'
+    id: 'google-maps-script'
   })
 
   const containerStyle = {
@@ -23,8 +23,8 @@ const Maps = ({ room }) => {
   };
 
   const center = {
-    lat: room?.lat,
-    lng: room?.lng
+    lat: Number(room?.lat),
+    lng: Number(room?.lng)
   };
 
   const circleOptions = {

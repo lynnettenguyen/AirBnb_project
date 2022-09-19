@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/api'
 import './Maps.css'
 import { getAPIKey } from '../../store/maps'
+import house from './house.svg'
 
 const Maps = ({ room }) => {
   const dispatch = useDispatch()
@@ -40,7 +41,6 @@ const Maps = ({ room }) => {
     radius: 1000
   }
 
-
   return (
     <div className='maps-outer'>
       <div className='maps-header'>Where you'll be</div>
@@ -50,15 +50,12 @@ const Maps = ({ room }) => {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={13}
-            >
-              <Marker
-                position={center}
-              />
+              zoom={13}>
               <Circle
                 center={center}
                 options={circleOptions}
               />
+              <Marker position={center} icon={house} />
             </GoogleMap>
           )}
       </div>

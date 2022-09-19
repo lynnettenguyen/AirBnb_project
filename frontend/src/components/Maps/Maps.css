@@ -23,7 +23,6 @@
 }
 
 @media screen and (max-width: 1214px) {
-
   .maps-main,
   .maps-header {
     width: 67rem;
@@ -31,7 +30,6 @@
 }
 
 @media screen and (max-width: 1130px) {
-
   .maps-main,
   .maps-header {
     width: 63rem;

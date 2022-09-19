@@ -10,6 +10,7 @@ import RoomDetails from "./components/RoomDetails";
 import ManageListings from "./components/ManageListings";
 import CreateListingForm from "./components/CreateListingForm";
 import UserReservations from "./components/UserReservations";
+import Footer from "./components/Navigation/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

@@ -83,7 +83,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
-      }
+      },
+      profile_url: {
+        type: DataTypes.TEXT
+      },
     }, {
     sequelize,
     modelName: "User",

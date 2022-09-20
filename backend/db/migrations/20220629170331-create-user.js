@@ -25,6 +25,9 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false,
       },
+      profile_url: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

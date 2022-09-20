@@ -297,7 +297,7 @@ router.get('/:roomId', checkRoomExists, async (req, res) => {
                 },
                 {
                     model: Review,
-                    attributes: ['stars']
+                    // attributes: ['stars']
                 }
             ],
         })

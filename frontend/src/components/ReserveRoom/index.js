@@ -73,7 +73,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
 
   return (
     < form onSubmit={handleSubmit} >
-      <div className="reservation-div">
+      <div className="reservation-main">
         <div className="reserve-details">
           <div className="reserve-price">{`$${room?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
           <span>night</span>

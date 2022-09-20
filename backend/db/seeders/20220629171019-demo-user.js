@@ -8,43 +8,64 @@ module.exports = {
         email: 'demo@user.io',
         firstName: 'Demo',
         lastName: 'User',
-        hashedPassword: bcrypt.hashSync('password')
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user7.png"
       },
       {
-        email: 'test@user.io',
-        firstName: 'Test',
-        lastName: 'UserOne',
-        hashedPassword: bcrypt.hashSync('password')
+        email: 'Lynnette@user.io',
+        firstName: 'Lynnette',
+        lastName: 'Nguyen',
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user1.png"
       },
       {
-        email: 'test@user2.io',
-        firstName: 'Test',
-        lastName: 'UserTwo',
-        hashedPassword: bcrypt.hashSync('password')
+        email: 'Dyllin@user.io',
+        firstName: 'Dyllin',
+        lastName: 'Nguyen',
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user0.png"
       },
       {
-        email: 'test@user3.io',
-        firstName: 'Test',
-        lastName: 'UserThree',
-        hashedPassword: bcrypt.hashSync('password')
+        email: 'Nathan@user.io',
+        firstName: 'Nathan',
+        lastName: 'Luu',
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user8.png"
       },
       {
-        email: 'demo4@user.io',
-        firstName: 'Four',
-        lastName: 'Person',
-        hashedPassword: bcrypt.hashSync('password')
+        email: 'Kristine@user.io',
+        firstName: 'Kristine',
+        lastName: 'Nguyen',
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user6.png"
       },
       {
-        email: 'demo5@user.io',
-        firstName: 'Five',
-        lastName: 'Person',
-        hashedPassword: bcrypt.hashSync('password')
+        email: 'Sunny@user.io',
+        firstName: 'Sunny',
+        lastName: 'Tran',
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user7.png"
       },
       {
-        email: 'john.smith@gmail.com',
-        firstName: 'John',
-        lastName: 'Smith',
-        hashedPassword: bcrypt.hashSync('secret password')
+        email: 'Vivian@user.io',
+        firstName: 'Vivian',
+        lastName: 'Tang',
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user5.png"
+      },
+      {
+        email: 'Jannette@user.io',
+        firstName: 'Jannette',
+        lastName: 'Tran',
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user3.png"
+      },
+      {
+        email: 'Katie@user.io',
+        firstName: 'Katie',
+        lastName: 'Tran',
+        hashedPassword: bcrypt.hashSync('secret password'),
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user2.png"
       }
     ], {});
   },

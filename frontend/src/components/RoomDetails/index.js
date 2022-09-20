@@ -8,6 +8,7 @@ import ReserveRoom from "../ReserveRoom";
 import { getAllReservations, listRoomReservations } from "../../store/reservations";
 import Maps from '../Maps'
 import Reviews from "./Reviews";
+import { listAllUsers } from "../../store/users";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -18,6 +19,7 @@ const RoomDetails = () => {
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
   const reservations = useSelector(getAllReservations)
+  const users = useSelector(state => state.users)
   // console.log(".......", reservations)
 
   const [page, setPage] = useState(1)
@@ -49,6 +51,7 @@ const RoomDetails = () => {
   useEffect(() => {
     dispatch(findRoomById(roomId))
     dispatch(listRoomReservations(roomId))
+    dispatch(listAllUsers())
   }, [dispatch])
 
   return (
@@ -105,7 +108,7 @@ const RoomDetails = () => {
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
-          <Reviews room={room} roomId={roomId} />
+          <Reviews room={room} avgStarRating={avgStarRating} />
           <Maps room={room} />
         </div>
       }

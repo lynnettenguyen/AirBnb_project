@@ -10,7 +10,7 @@
   display: flex;
   justify-content: flex-start;
   width: 69rem;
-  padding: 20px 0;
+  padding: 24px 0;
   border-top: 1px solid rgb(214, 214, 214);
   font-weight: 500;
   font-size: 1.4rem;
@@ -23,6 +23,7 @@
 }
 
 @media screen and (max-width: 1214px) {
+
   .maps-main,
   .maps-header {
     width: 67rem;
@@ -30,6 +31,7 @@
 }
 
 @media screen and (max-width: 1130px) {
+
   .maps-main,
   .maps-header {
     width: 63rem;

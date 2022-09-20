@@ -29,11 +29,11 @@ const Maps = ({ room }) => {
   };
 
   const circleOptions = {
-    strokeColor: '#DB0C64',
-    strokeOpacity: 0.35,
+    strokeColor: '#f3b2d0',
+    strokeOpacity: 0.45,
     strokeWeight: 0,
-    fillColor: '#DB0C64',
-    fillOpacity: 0.35,
+    fillColor: '#f3b2d0',
+    fillOpacity: 0.45,
     clickable: false,
     draggable: false,
     editable: false,

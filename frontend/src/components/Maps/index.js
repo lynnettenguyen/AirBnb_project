@@ -4,6 +4,7 @@ import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/ap
 import './Maps.css'
 import { getAPIKey } from '../../store/maps'
 import house from './house.svg'
+import mapOptions from './MapStyle'
 
 const Maps = ({ room }) => {
   const dispatch = useDispatch()
@@ -28,6 +29,7 @@ const Maps = ({ room }) => {
     lng: Number(room?.lng)
   };
 
+
   const circleOptions = {
     strokeColor: '#f3b2d0',
     strokeOpacity: 0.45,
@@ -50,7 +52,8 @@ const Maps = ({ room }) => {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={13}>
+              zoom={13}
+              options={{ styles: mapOptions }}>
               <Circle
                 center={center}
                 options={circleOptions}

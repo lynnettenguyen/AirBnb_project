@@ -157,7 +157,7 @@ const mapOptions = [
         "visibility": "off"
       }
     ]
-  }
+  },
 ]
 
 export default mapOptions

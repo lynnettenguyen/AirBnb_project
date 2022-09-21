@@ -29,7 +29,6 @@ const Maps = ({ room }) => {
     lng: Number(room?.lng)
   };
 
-
   const circleOptions = {
     strokeColor: '#f3b2d0',
     strokeOpacity: 0.45,

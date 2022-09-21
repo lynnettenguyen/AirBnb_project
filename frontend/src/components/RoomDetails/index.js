@@ -7,7 +7,7 @@ import EditListingForm from "../EditListingForm";
 import ReserveRoom from "../ReserveRoom";
 import { getAllReservations, listRoomReservations } from "../../store/reservations";
 import Maps from '../Maps'
-import Reviews from "./Reviews";
+import Reviews from "../Reviews";
 import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
 

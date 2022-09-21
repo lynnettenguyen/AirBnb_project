@@ -27,6 +27,18 @@
   gap: 0 60px;
 }
 
+.add-review-header {
+  font-size: 1rem;
+  font-weight: 300;
+  padding: 0.5rem 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.add-review-header:hover {
+  color: #868686;
+}
+
 .reviews-outer {
   padding: 20px 0 10px 0;
 }

@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin: 0 8%;
+  margin-bottom: 100px;
 }
 
 .trips-main-div {
@@ -20,17 +21,12 @@
 }
 
 .outer-main {
-  display: flex;
-  flex-direction: column;
-  padding: 0.7rem 0 0.5rem 0;
-  /* max-width: 80rem; */
+  padding: 0.7rem 0 1rem 0;
 }
 
-.main-reservation-content,
 .middle-change-res {
   display: flex;
   border-radius: 20px;
-  width: 65rem;
 }
 
 .main-no-trips {
@@ -66,19 +62,28 @@
 }
 
 .main-reservation-content {
-  height: 18rem;
-  border: 1px rgba(128, 128, 128, 0.143) solid;
-  width: 65%;
   padding-left: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 450px);
+  height: 300px;
+}
+
+.left-res-content {
+  border-top: 1px rgba(128, 128, 128, 0.143) solid;
+  border-bottom: 1px rgba(128, 128, 128, 0.143) solid;
+  border-left: 1px rgba(128, 128, 128, 0.143) solid;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .top-left-name {
   font-size: 1.1rem;
-  padding: 0.5rem 0 0.3rem 0.5rem;
+  padding: 0.5rem 0 0.3rem 0;
 }
 
 .top-left-res-content {
   padding: 1rem 0;
+  margin: 0 1.2rem;
   border-bottom: 1px rgba(128, 128, 128, 0.286) solid;
 }
 
@@ -104,8 +109,7 @@
 }
 
 .right-res-content {
-  display: flex;
-  padding-left: 1rem;
+  width: 100%;
 }
 
 .cancel-button {
@@ -114,20 +118,20 @@
 }
 
 .res-img {
-  height: 18rem;
-  width: 22rem;
+  width: 100%;
+  height: 100%;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   object-fit: cover;
 }
 
 .left-res-content {
-  width: 53rem;
+  position: relative;
 }
 
 .bottom-change-res {
   width: 5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.6rem 0 1.2rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -135,6 +139,12 @@
 
 .bottom-location {
   padding: 0.5rem 0;
+}
+
+.bottom-edit-res {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
 }
 
 .month-res {
@@ -160,7 +170,6 @@
 
 .bottom-dates {
   padding-right: 1rem;
-  margin-bottom: 5.4rem;
   border-right: 1px rgba(128, 128, 128, 0.286) solid;
 }
 
@@ -219,7 +228,7 @@
 }
 
 .update-res-header {
-  padding: 0.7rem 0 0 0.5rem;
+  padding: 0.7rem 0 0 1.5rem;
   font-size: 0.85rem;
 }
 

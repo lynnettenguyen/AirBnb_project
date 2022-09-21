@@ -172,11 +172,9 @@ const UserReservations = () => {
                         </div>
                       </div>
                       <div className="right-res-content">
-                        <div className="right-image-res">
-                          <Link to={`/rooms/${reservation.roomId}`}>
-                            <img className="res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
-                          </Link>
-                        </div>
+                        <Link to={`/rooms/${reservation.roomId}`}>
+                          <img className="res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
+                        </Link>
                       </div>
                     </div>
                     {

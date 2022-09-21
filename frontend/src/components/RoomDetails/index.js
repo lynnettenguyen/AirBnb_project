@@ -9,6 +9,7 @@ import { getAllReservations, listRoomReservations } from "../../store/reservatio
 import Maps from '../Maps'
 import Reviews from "./Reviews";
 import { listAllUsers } from "../../store/users";
+import { getAllRoomReviews } from "../../store/reviews";
 
 const RoomDetails = () => {
   let { roomId } = useParams()
@@ -52,6 +53,7 @@ const RoomDetails = () => {
     dispatch(findRoomById(roomId))
     dispatch(listRoomReservations(roomId))
     dispatch(listAllUsers())
+    dispatch(getAllRoomReviews(roomId))
   }, [dispatch])
 
   return (

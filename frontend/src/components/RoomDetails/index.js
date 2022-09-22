@@ -21,7 +21,7 @@ const RoomDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
   const reservations = useSelector(getAllReservations)
   const users = useSelector(state => state.users)
-  // console.log(".......", reservations)
+  const [checkDuplicate, setCheckDuplicate] = useState(false)
 
   const [page, setPage] = useState(1)
 
@@ -54,7 +54,9 @@ const RoomDetails = () => {
     dispatch(listRoomReservations(roomId))
     dispatch(listAllUsers())
     dispatch(getAllRoomReviews(roomId))
+
   }, [dispatch])
+
 
   return (
     <>
@@ -110,7 +112,7 @@ const RoomDetails = () => {
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
-          <Reviews room={room} avgStarRating={avgStarRating} />
+          <Reviews room={room} avgStarRating={avgStarRating} roomId={roomId} />
           <Maps room={room} />
         </div>
       }

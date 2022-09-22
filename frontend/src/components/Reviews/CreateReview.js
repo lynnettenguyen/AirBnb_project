@@ -1,17 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
+import { addNewReview } from "../../store/reviews";
+import { findRoomById } from "../../store/rooms";
 import './CreateReview.css'
 
-const CreateReview = () => {
+const CreateReview = ({ setShowReview }) => {
   let { roomId } = useParams()
+  const dispatch = useDispatch()
+  const sessionUser = useSelector(state => state.session.user);
+  const [userId, serUserId] = useState(sessionUser?.id)
+  const [stars, setStars] = useState(0)
   const [review, setReview] = useState("")
-  const [stars, setStars] = useState()
   const [ratedStar1, setRatedStar1] = useState(false)
   const [ratedStar2, setRatedStar2] = useState(false)
   const [ratedStar3, setRatedStar3] = useState(false)
   const [ratedStar4, setRatedStar4] = useState(false)
   const [ratedStar5, setRatedStar5] = useState(false)
+  const [errors, setErrors] = useState([])
+
+  useEffect(() => {
+    const errors = []
+
+    if (stars === 0) errors.push('Please rate your stay from 1 to 5 stars')
+    if (review.length < 10) errors.push('Review must be between 10 and 1000 characters')
+    if (review.length > 1000) errors.push('Review must be between 10 and 1000 characters')
+
+    if (errors.length > 0) setErrors(errors)
+    else setErrors([])
+
+  }, [stars, review])
 
   const changeReviewStars = (num) => {
     if (num >= 1) {
@@ -40,16 +58,38 @@ const CreateReview = () => {
     }
   }
 
-
-  const handleWriteReview = (e) => {
+  const handleWriteReview = async (e) => {
     e.preventDefault()
+
+    if (errors.length > 0) return
+
+    const reviewData = {
+      userId,
+      roomId,
+      stars,
+      review
+    }
+
+    const reviewResponse = await dispatch(addNewReview(reviewData))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(Object.values(data.errors))
+        }
+      })
+
+    if (reviewResponse) {
+      dispatch(findRoomById(roomId))
+      setShowReview(false)
+    }
+
   }
 
   return (
     <>
       <form onSubmit={handleWriteReview} className='review-form'>
         <div className="review-return-outer">
-        <button className="review-return-button">Return to Listing</button>
+          <button className="review-return-button" onClick={() => setShowReview(false)}>Return to Listing</button>
         </div>
         <div className="review-header">How was your stay?</div>
         <div className="review-star-rating">
@@ -70,6 +110,15 @@ const CreateReview = () => {
             onChange={e => setReview(e.target.value)}
             maxLength={1001}
           />
+        </div>
+        {errors.length > 0 && (<>
+          <div className="review-error-message-outer">
+            {errors.map((error, i) => <div className="review-error-message" key={i}>*{error}</div>)}
+          </div>
+        </>
+        )}
+        <div className="review-submit-outer">
+          <button className="review-submit-button">Submit</button>
         </div>
       </form>
     </>

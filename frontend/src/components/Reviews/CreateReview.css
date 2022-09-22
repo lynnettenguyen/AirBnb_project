@@ -59,9 +59,28 @@
   font-size: 1rem;
   font-weight: 250;
   height: 14rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
   padding: 0.7rem;
   resize: none;
   width: 40rem;
   outline: none;
+}
+
+.review-submit-outer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.review-error-message {
+  color: red;
+}
+
+.review-submit-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  height: 2.5rem;
+  padding: 0 1rem;
 }

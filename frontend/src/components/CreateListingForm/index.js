@@ -9,7 +9,6 @@ const CreateListingForm = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
-
   const [userId, serUserId] = useState(sessionUser?.id)
   const [roomId, setRoomId] = useState("")
   const [address, setAddress] = useState("")

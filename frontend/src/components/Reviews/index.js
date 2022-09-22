@@ -4,7 +4,8 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import './Reviews.css'
 import { Modal } from "../../context/Modal";
 import CreateReview from "./CreateReview";
-import { getAllRoomReviews } from "../../store/reviews";
+import { getAllRoomReviews, removeReview } from "../../store/reviews";
+import { findRoomById } from "../../store/rooms";
 
 const Reviews = ({ room, roomId, avgStarRating }) => {
   const dispatch = useDispatch()
@@ -20,6 +21,15 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
       if (review.userId === sessionUser.id) setCheckDuplicate(true)
     })
   })
+
+  const handleEditReview = () => {
+
+  }
+
+  const handleDeleteReview = async (reviewId) => {
+    const deleteReview = await dispatch(removeReview(reviewId))
+    if (deleteReview) dispatch(findRoomById(roomId))
+  }
 
 
   return (
@@ -48,6 +58,10 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
                     <div className="review-first-name">{users[review?.userId]?.firstName}</div>
                     <div className="review-date">{month} {year}</div>
                   </div>
+                  {review.userId === sessionUser.id && <>
+                    <div><button onClick={() => handleEditReview()}>Edit</button></div>
+                    <div><button onClick={() => handleDeleteReview(review.id)}>Delete</button></div>
+                  </>}
                 </div>
                 <div className="review-content">{review?.review}</div>
               </div>

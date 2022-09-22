@@ -122,7 +122,6 @@ const UserReservations = () => {
             </div>}
             <form onSubmit={handleSubmit}>
               {trips?.map((reservation, i) => {
-                <div className="reservation-header">Upcoming/ Past Reservations</div>
 
                 let startDate = new Date(reservation?.startDate)
                 startDate = new Date(startDate.getTime() + startDate.getTimezoneOffset() * 60000)
@@ -207,7 +206,7 @@ const UserReservations = () => {
                             <div>
                               <div className="edit-delete-buttons">
                                 <button type="submit" className="res-button update-button" disabled={checkDates}>Update Reservation</button>
-                                <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button" disabled={today > new Date(checkIn)}>Cancel Reservation</button>
+                                <button type="button" onClick={handleDelete(reservation.id)} className="res-button cancel-button" disabled={today > startDate}>Cancel Reservation</button>
                               </div>
                             </div>
                           </div>

@@ -41,9 +41,11 @@
   font-size: 1.4rem;
   margin: 0 1px;
   color: #ee2877;
+  cursor: pointer;
 }
 
 .fa-star.rated-false {
+  cursor: pointer;
   font-size: 1.4rem;
   margin: 0 1px;
   color: #46464636;

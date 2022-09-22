@@ -219,6 +219,60 @@ module.exports = {
         stars: 5,
         review: 'House is beautiful! One of the few chic rentals in Tahoe that is updated modern and still cozy. We loved everything about our stay here!'
       },
+      {
+        userId: 2,
+        roomId: 21,
+        stars: 5,
+        review: 'My entire stay was perfect. Everyone goes above and beyond to help, make you feel safe and comfortable. I had issues with ordering food one night and Oka helped me get it straightened out. He was always ready and willing to help. And his dogs are super sweet ☺️ They remember your name and are there to greet you every time you leave/return.'
+      },
+      {
+        userId: 4,
+        roomId: 21,
+        stars: 5,
+        review: 'Such an amazing, unique stay in Bali. The treehouse is exactly as described and looks like all the photos - all of our friends were jealous lol the location in Ubud is amazing. Close to lots of activities and great, lively restaurants. The hosts were so friendly and attentive. We loved getting a floating breakfast in the morning and seeing the sunrise from bed. Definitely recommend!'
+      },
+      {
+        userId: 7,
+        roomId: 21,
+        stars: 5,
+        review: 'We had an amazing stay at Rescape, the staff was very friendly and the location was great!'
+      },
+      {
+        userId: 2,
+        roomId: 22,
+        stars: 5,
+        review: 'The villa was absolutely gorgeous, exactly as it is pictured on here. My friends and I had a lovely time and will definitely visit again.'
+      },
+      {
+        userId: 4,
+        roomId: 22,
+        stars: 5,
+        review: 'Amazing place to stay with great care from the whole team. The villa was unreal and bigger than what the photos portrayed!'
+      },
+      {
+        userId: 7,
+        roomId: 22,
+        stars: 5,
+        review: 'This place is beautiful and chic, and the swimming pool is just perfect. Clean place, communication is excellent.'
+      },
+      {
+        userId: 7,
+        roomId: 23,
+        stars: 3,
+        review: 'The villa is amazing. The private pool and the bathtub are so nice. Also the view from the bed is incredible. You always have a contact and everybody is very helpful. Unfortunately we had a problem with the water so sometimes there was none. But i think this is not a common problem. You have to be sure, that it may cost a lot more than common for the driver with a car. But the stay was nice and we would always come back.'
+      },
+      {
+        userId: 8,
+        roomId: 23,
+        stars: 4,
+        review: 'It has been an incredible stay. Very easy to reach through (Hidden by Airbnb) maps. communication with the host was very fluid and very attentive. The house is magnificent, everything thought out to the last detail, the pivoting doors, the pool, the bathtub, the space to take a break on the terrace, the amount of flowers, see the monkeys in the neigbour’s trees and waking up every day with Kuta bay it\'s quite an experience. It has been very inspirational and we only wish to return to Lombok to stay again.'
+      },
+      {
+        userId: 6,
+        roomId: 23,
+        stars: 5,
+        review: 'Incredible view! The photos don’t do it justice. What a fantastic stay, down to every last detail.'
+      },
     ], {});
   },
 

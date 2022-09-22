@@ -383,19 +383,19 @@ router.get('/', async (req, res, next) => {
     const errorResult = { errors: {} }
 
     page = req.query.page === undefined ? 0 : parseInt(req.query.page)
-    size = req.query.size === undefined ? 20 : parseInt(req.query.size)
+    size = req.query.size === undefined ? 25 : parseInt(req.query.size)
 
     if (!Number.isNaN(page) && !Number.isNaN(size)) {
         if (page < 0) {
             errorResult.errors.page = 'Page must be greater than or equal to 0'
         } else if (size < 0) {
             errorResult.errors.size = 'Size must be greater than or equal to 0'
-        } else if (page <= 10 && size <= 20) {
+        } else if (page <= 10 && size <= 25) {
             pagination.limit = size;
             pagination.offset = size * (page - 1)
-        } else if (size > 20) {
-            pagination.limit = 20;
-            pagination.offset = 20 * (page - 1)
+        } else if (size > 25) {
+            pagination.limit = 25;
+            pagination.offset = 25 * (page - 1)
         } else if (page > 10) {
             pagination.limit = size;
             pagination.offset = size * (9)
@@ -463,7 +463,7 @@ router.get('/', async (req, res, next) => {
     })
 
     results.page = page || 0;
-    results.size = size || 20
+    results.size = size || 25
 
     if (Object.keys(errorResult.errors).length) {
         const err = new Error('Validation Error');

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { addNewReview } from "../../store/reviews";
+import { addNewReview, updateReview } from "../../store/reviews";
 import { findRoomById } from "../../store/rooms";
 import './CreateReview.css'
 
-const CreateReview = ({ setShowReview }) => {
+const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) => {
   let { roomId } = useParams()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
+  const reviews = useSelector(state => state.reviews)
   const [userId, serUserId] = useState(sessionUser?.id)
   const [stars, setStars] = useState(0)
   const [review, setReview] = useState("")
@@ -23,13 +24,20 @@ const CreateReview = ({ setShowReview }) => {
     const errors = []
 
     if (stars === 0) errors.push('Please rate your stay from 1 to 5 stars')
-    if (review.length < 10) errors.push('Review must be between 10 and 1000 characters')
-    if (review.length > 1000) errors.push('Review must be between 10 and 1000 characters')
+    if (review?.length < 10) errors.push('Review must be between 10 and 1000 characters')
+    if (review?.length > 1000) errors.push('Review must be between 10 and 1000 characters')
 
     if (errors.length > 0) setErrors(errors)
     else setErrors([])
 
   }, [stars, review])
+
+  useEffect(() => {
+    if (editReview) {
+      changeReviewStars(reviews[reviewId]?.stars)
+      setReview(reviews[reviewId]?.review)
+    }
+  }, [])
 
   const changeReviewStars = (num) => {
     if (num >= 1) {
@@ -63,24 +71,50 @@ const CreateReview = ({ setShowReview }) => {
 
     if (errors.length > 0) return
 
-    const reviewData = {
-      userId,
-      roomId,
-      stars,
-      review
-    }
+    if (editReview) {
 
-    const reviewResponse = await dispatch(addNewReview(reviewData))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(Object.values(data.errors))
-        }
-      })
+      const reviewData = {
+        reviewId,
+        userId,
+        stars,
+        review
+      }
 
-    if (reviewResponse) {
-      dispatch(findRoomById(roomId))
-      setShowReview(false)
+      const editReviewResponse = await dispatch(updateReview(reviewData))
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(Object.values(data.errors))
+          }
+        })
+
+      if (editReviewResponse) {
+        dispatch(findRoomById(roomId))
+        setEditReview(false)
+        setShowReview(false)
+      }
+
+    } else {
+
+      const reviewData = {
+        userId,
+        roomId,
+        stars,
+        review
+      }
+
+      const reviewResponse = await dispatch(addNewReview(reviewData))
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(Object.values(data.errors))
+          }
+        })
+
+      if (reviewResponse) {
+        dispatch(findRoomById(roomId))
+        setShowReview(false)
+      }
     }
 
   }
@@ -118,7 +152,7 @@ const CreateReview = ({ setShowReview }) => {
         </>
         )}
         <div className="review-submit-outer">
-          <button className="review-submit-button">Submit</button>
+          <button className="review-submit-button">{editReview ? "Update" : "Submit"}</button>
         </div>
       </form>
     </>

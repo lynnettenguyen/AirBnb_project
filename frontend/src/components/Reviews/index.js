@@ -14,6 +14,8 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
   const reviews = useSelector(state => state.reviews)
   const [showReview, setShowReview] = useState(false);
   const [checkDuplicate, setCheckDuplicate] = useState(false)
+  const [editReview, setEditReview] = useState(false)
+  const [reviewId, setReviewId] = useState()
 
   useEffect(() => {
     setCheckDuplicate(false)
@@ -22,15 +24,19 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
     })
   })
 
-  const handleEditReview = () => {
-
+  const handleEditReview = (editReviewId) => {
+    setReviewId(editReviewId)
+    setEditReview(true)
+    setShowReview(true)
   }
 
-  const handleDeleteReview = async (reviewId) => {
-    const deleteReview = await dispatch(removeReview(reviewId))
-    if (deleteReview) dispatch(findRoomById(roomId))
+  const handleDeleteReview = async (deleteReviewId) => {
+    const deleteReview = await dispatch(removeReview(deleteReviewId))
+    if (deleteReview) {
+      dispatch(findRoomById(roomId))
+      setEditReview(false)
+    }
   }
-
 
   return (
     <>
@@ -58,10 +64,10 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
                     <div className="review-first-name">{users[review?.userId]?.firstName}</div>
                     <div className="review-date">{month} {year}</div>
                   </div>
-                  {review.userId === sessionUser.id && <>
-                    <div><button onClick={() => handleEditReview()}>Edit</button></div>
-                    <div><button onClick={() => handleDeleteReview(review.id)}>Delete</button></div>
-                  </>}
+                  {review.userId === sessionUser.id && <div className="review-update-buttons-outer">
+                    <button onClick={() => handleEditReview(review.id)} className='review-edit-button'>Edit</button>
+                    <button onClick={() => handleDeleteReview(review.id)} className='review-delete-button'>Delete</button>
+                  </div>}
                 </div>
                 <div className="review-content">{review?.review}</div>
               </div>
@@ -72,7 +78,7 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
       }
       {showReview &&
         <Modal onClose={() => setShowReview(false)}>
-          <CreateReview setShowReview={setShowReview} />
+          <CreateReview setShowReview={setShowReview} editReview={editReview} setEditReview={setEditReview} reviewId={reviewId} />
         </Modal>
       }
     </>

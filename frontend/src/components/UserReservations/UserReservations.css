@@ -1,12 +1,11 @@
 .trips-page {
   display: flex;
   justify-content: center;
-  margin: 0 8%;
   margin-bottom: 100px;
 }
 
 .trips-main-div {
-  width: 80%
+  width: 900px;
 }
 
 .trips-header {
@@ -62,7 +61,6 @@
 }
 
 .main-reservation-content {
-  padding-left: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 450px);
   height: 300px;

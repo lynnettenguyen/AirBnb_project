@@ -20,7 +20,6 @@ const ManageListings = () => {
     <>
       {sessionUser ?
         <div className="manage-listing-page">
-          <div className="manage-listings-left"></div>
           <div className="all-listings-div">
             <div className="manage-listings-header">Manage your Listings</div>
             {userRooms?.map((room, i) => {
@@ -48,7 +47,6 @@ const ManageListings = () => {
             })
             }
           </div>
-          <div className="manage-listings-right"></div>
         </div> : <>
           <div className="no-session-user">
             Error 401 - Unauthorized

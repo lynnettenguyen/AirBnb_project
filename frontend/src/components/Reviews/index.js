@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams, useHistory } from "react-router-dom";
 import './Reviews.css'
 import { Modal } from "../../context/Modal";
 import CreateReview from "./CreateReview";
-import { getAllRoomReviews, removeReview } from "../../store/reviews";
+import { removeReview } from "../../store/reviews";
 import { findRoomById } from "../../store/rooms";
 
 const Reviews = ({ room, roomId, avgStarRating }) => {

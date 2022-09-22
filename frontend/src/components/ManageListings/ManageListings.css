@@ -3,8 +3,8 @@
 }
 
 .manage-listing-page {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+display: flex;
+justify-content: center;
 }
 
 .listing-info {
@@ -12,8 +12,7 @@
   margin-top: 0.5rem;
   font-size: 1.1rem;
   line-height: 1.5rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  width: 520px;
 }
 
 .listing-city-state,
@@ -37,7 +36,6 @@
 .listing-div {
   display: flex;
   justify-content: center;
-  width: 80rem;
 }
 
 .user-img-div {
@@ -55,6 +53,6 @@
 
 .manage-listings-header {
   font-size: 1.4rem;
-  padding: 1.2rem 0 0.6rem;
+  padding: 1.2rem 0.5rem 0.6rem;
   font-weight: 400;
 }

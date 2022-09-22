@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import './SearchBar.css'
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import searchIcon from './MagnifyingGlass.svg'
+import './SearchBar.css'
 import { DateRangePicker } from 'react-date-range'
 import { addDays } from 'date-fns'
 import format from 'date-fns/format'
@@ -11,17 +11,21 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 function SearchBar() {
   const [showCalendar, setShowCalendar] = useState(false)
   const [selectDates, setSelectDates] = useState(false)
-
-  const handleSearch = (e) => {
-    e.preventDefault()
-  }
-
   const [selectDate, setSelectDate] = useState([{
     startDate: new Date(),
     endDate: addDays(new Date(), 7),
     key: 'selection',
   }])
 
+  const history = useHistory()
+  const [destination, setDestination] = useState()
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    // history.index = -1;
+    history.push(`/search/${destination}`)
+
+  }
 
   return (
     <div className='searchBar-outer'>
@@ -30,10 +34,10 @@ function SearchBar() {
           <label className="searchBar-label">Where</label>
           <input
             type='text'
-            placeholder='Search destinations'
+            placeholder='Search destinations! Indonesia, Thailand ...'
             className='searchBar-input'
-            // value={}
-            // onChange={}
+            value={destination}
+            onChange={e => setDestination(e.target.value)}
             maxLength="140"
           />
         </div>

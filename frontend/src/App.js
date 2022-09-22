@@ -11,6 +11,7 @@ import ManageListings from "./components/ManageListings";
 import CreateListingForm from "./components/CreateListingForm";
 import UserReservations from "./components/UserReservations";
 import Footer from "./components/Navigation/Footer";
+import SearchResults from "./components/HomePage/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route path="/rooms/:roomId">
             <RoomDetails />
+          </Route>
+          <Route path="/search/:destination">
+            <SearchResults />
           </Route>
           <Route exact path="/">
             <HomePage />

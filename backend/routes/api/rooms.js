@@ -4,6 +4,7 @@ const express = require('express')
 const { requireAuth,
     checkRoomExists,
     checkNotOwner,
+    checkNotOwnerReviews,
     checkOwnerRoom,
     checkUserReview,
     checkReviewValidation,
@@ -128,7 +129,7 @@ router.get('/:roomId/reviews', checkRoomExists, async (req, res) => {
     return res.json({ 'Review': roomReviews })
 })
 
-router.post('/:roomId/reviews', [requireAuth, checkRoomExists, checkNotOwner, checkReviewValidation], async (req, res, next) => {
+router.post('/:roomId/reviews', [requireAuth, checkRoomExists, checkNotOwnerReviews, checkReviewValidation], async (req, res, next) => {
     const { review, stars } = req.body;
 
     const userReviews = await Review.findAll({

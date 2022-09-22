@@ -93,6 +93,23 @@ const checkNotOwner = async function (req, _res, next) {
     }
 }
 
+const checkNotOwnerReviews = async function (req, _res, next) {
+    const room = await Room.findAll({
+        where: {
+            id: req.params.roomId,
+            ownerId: req.user.id
+        }
+    })
+
+    if (Object.keys(room).length) {
+        const err = new Error(`Hosts can't review their own listings`);
+        err.status = 403;
+        return next(err);
+    } else {
+        return next()
+    }
+}
+
 const checkOwnerRoom = async function (req, _res, next) {
     const room = await Room.findOne({
         where: {
@@ -141,8 +158,8 @@ const checkReviewValidation = function (req, _res, next) {
     const { review, stars } = req.body;
     let errorResult = { errors: {} }
 
-    if (!review) errorResult.errors.review = 'Review text is required'
-    if (stars < 1 || stars > 5) errorResult.errors.star = 'Stars must be an integer from 1 to 5'
+    if (review.length < 10 || review.length > 1000) errorResult.errors.review = 'Review must be between 10 and 1000 characters'
+    if (stars < 1 || stars > 5) errorResult.errors.star = 'Rating must be between 1 to 5 stars'
 
     if (Object.keys(errorResult.errors).length) {
         const err = new Error('Validation Error');
@@ -238,6 +255,7 @@ module.exports = {
     requireAuth,
     checkRoomExists,
     checkNotOwner,
+    checkNotOwnerReviews,
     checkOwnerRoom,
     checkUserReview,
     checkReviewValidation,

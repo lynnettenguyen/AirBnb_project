@@ -7,7 +7,7 @@ import EditListingForm from "../EditListingForm";
 import ReserveRoom from "../ReserveRoom";
 import { getAllReservations, listRoomReservations } from "../../store/reservations";
 import Maps from '../Maps'
-import Reviews from "./Reviews";
+import Reviews from "../Reviews";
 import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
 
@@ -21,7 +21,7 @@ const RoomDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
   const reservations = useSelector(getAllReservations)
   const users = useSelector(state => state.users)
-  // console.log(".......", reservations)
+  const [checkDuplicate, setCheckDuplicate] = useState(false)
 
   const [page, setPage] = useState(1)
 
@@ -54,7 +54,9 @@ const RoomDetails = () => {
     dispatch(listRoomReservations(roomId))
     dispatch(listAllUsers())
     dispatch(getAllRoomReviews(roomId))
+
   }, [dispatch])
+
 
   return (
     <>
@@ -110,7 +112,7 @@ const RoomDetails = () => {
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
-          <Reviews room={room} avgStarRating={avgStarRating} />
+          <Reviews room={room} avgStarRating={avgStarRating} roomId={roomId} />
           <Maps room={room} />
         </div>
       }

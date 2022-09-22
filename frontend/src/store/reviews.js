@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf"
+
 const GET_ROOM_REVIEWS = 'reviews/GET_ROOM_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const EDIT_REVIEW = 'reviews/EDIT_REVIEW'
@@ -25,7 +27,7 @@ const deleteReview = (reviewId) => ({
 
 
 export const getAllRoomReviews = (roomId) => async (dispatch) => {
-  const response = await fetch(`/api/rooms/${roomId}/reviews`);
+  const response = await csrfFetch(`/api/rooms/${roomId}/reviews`);
 
   if (response.ok) {
     const reviews = await response.json();
@@ -36,7 +38,7 @@ export const getAllRoomReviews = (roomId) => async (dispatch) => {
 
 export const addNewReview = (reviewData) => async (dispatch) => {
   const { userId, roomId, stars, review } = reviewData;
-  const response = await fetch(`/api/rooms/${roomId}/reviews`, {
+  const response = await csrfFetch(`/api/rooms/${roomId}/reviews`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -54,14 +56,14 @@ export const addNewReview = (reviewData) => async (dispatch) => {
 }
 
 export const updateReview = (reviewData) => async (dispatch) => {
-  const { reviewId, userId, roomId, stars, review } = reviewData;
-  const response = await fetch(`/api/rooms/${roomId}/reviews/${reviewId}`, {
+  const { reviewId, userId, stars, review } = reviewData;
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "PUT",
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      reviewId, userId, roomId, stars, review
+      reviewId, userId, stars, review
     })
   })
 
@@ -74,7 +76,7 @@ export const updateReview = (reviewData) => async (dispatch) => {
 }
 
 export const removeReview = (reviewId) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/${reviewId}`, {
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "DELETE"
   })
 

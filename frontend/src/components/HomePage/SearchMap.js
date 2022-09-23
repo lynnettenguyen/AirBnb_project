@@ -44,8 +44,10 @@ const SearchMap = ({ searchRooms }) => {
   };
 
   const center = {
-    lat: Number(midLat),
-    lng: Number(midLng)
+    // lat: Number(midLat),
+    // lng: Number(midLng)
+    lat: midLat,
+    lng: midLng
   };
 
 
@@ -55,7 +57,7 @@ const SearchMap = ({ searchRooms }) => {
         (<GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={6}
+          zoom={5}
           options={{ styles: mapOptions }}
         >
           {searchRooms.map((room) => {

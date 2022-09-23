@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from "react-router-dom";
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import './SearchMap.css'
 import { getAPIKey } from '../../store/maps'
 import mapOptions from '../Maps/MapStyle'
 
 const SearchMap = ({ searchRooms }) => {
+  let { destination } = useParams()
 
   let latSum;
   let lngSum;
 
   useEffect(() => {
     dispatch(getAPIKey())
-  }, [latSum, lngSum])
 
     if (searchRooms.length > 0) {
 
@@ -23,13 +24,19 @@ const SearchMap = ({ searchRooms }) => {
       lngSum = () => {
         return searchRooms.reduce((sum, { lng }) => sum + lng, 0)
       }
+
+      setMidLat(latSum() / searchRooms.length)
+      setMidLng(lngSum() / searchRooms.length)
     }
+  }, [destination])
 
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
   const [room, setRoom] = useState()
-  const [midLat, setMidLat] = useState(searchRooms.length > 0 ? latSum() / searchRooms.length : 0)
-  const [midLng, setMidLng] = useState(searchRooms.length > 0 ? lngSum() / searchRooms.length : 0)
+  const [midLat, setMidLat] = useState(0)
+  const [midLng, setMidLng] = useState(0)
+
+  console.log(midLat, midLng)
 
 
   const { isLoaded } = useJsApiLoader({

@@ -8,20 +8,22 @@ import mapOptions from '../Maps/MapStyle'
 
 const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
-
-  let latSum;
-  let lngSum;
+  const dispatch = useDispatch()
+  const APIKey = useSelector(state => state.map.APIKey)
+  const [room, setRoom] = useState()
+  const [midLat, setMidLat] = useState(100)
+  const [midLng, setMidLng] = useState(100)
 
   useEffect(() => {
     dispatch(getAPIKey())
 
     if (searchRooms.length > 0) {
 
-      latSum = () => {
+      const latSum = () => {
         return searchRooms.reduce((sum, { lat }) => sum + lat, 0)
       }
 
-      lngSum = () => {
+      const lngSum = () => {
         return searchRooms.reduce((sum, { lng }) => sum + lng, 0)
       }
 
@@ -29,14 +31,6 @@ const SearchMap = ({ searchRooms }) => {
       setMidLng(lngSum() / searchRooms.length)
     }
   }, [destination])
-
-  const dispatch = useDispatch()
-  const APIKey = useSelector(state => state.map.APIKey)
-  const [room, setRoom] = useState()
-  const [midLat, setMidLat] = useState(0)
-  const [midLng, setMidLng] = useState(0)
-
-  console.log(midLat, midLng)
 
 
   const { isLoaded } = useJsApiLoader({
@@ -61,7 +55,7 @@ const SearchMap = ({ searchRooms }) => {
         (<GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={5}
+          zoom={6}
           options={{ styles: mapOptions }}
         >
           {searchRooms.map((room) => {

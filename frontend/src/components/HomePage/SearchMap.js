@@ -46,8 +46,8 @@ const SearchMap = ({ searchRooms }) => {
   const center = {
     // lat: Number(midLat),
     // lng: Number(midLng)
-    lat: midLat,
-    lng: midLng
+    lat: 0,
+    lng: 0
   };
 
 

@@ -1,5 +1,4 @@
-// frontend/src/components/LoginFormModal/index.js
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 import "./LoginForm.css"

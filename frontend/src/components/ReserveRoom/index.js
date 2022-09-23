@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findRoomById, removeRoom } from "../../store/rooms";
 import "./ReserveRoom.css"
-import { getAllReservations, listRoomReservations, bookNewReservation, listAllReservations } from "../../store/reservations";
+import { getAllReservations, listRoomReservations, bookNewReservation } from "../../store/reservations";
 
 const ReserveRoom = ({ roomId, avgStarRating }) => {
   const room = useSelector((state) => state.rooms[roomId])
@@ -58,8 +57,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
     }
 
     dispatch(bookNewReservation(reservationData))
-    // .then(dispatch(listAllReservations(roomId)))
-    .then(() => { history.push("/reservations") })
+      .then(() => { history.push("/reservations") })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) { setReservationErrors(Object.values(data.errors)); }
@@ -72,7 +70,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
   }
 
   return (
-    < form onSubmit={handleSubmit} >
+    <form onSubmit={handleSubmit}>
       <div className="reservation-main">
         <div className="reserve-details">
           <div className="reserve-price">{`$${room?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>

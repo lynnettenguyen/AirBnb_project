@@ -22,19 +22,18 @@ function SearchBar() {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    // history.index = -1;
     history.push(`/search/${destination}`)
-
+    setDestination("")
   }
 
   return (
     <div className='searchBar-outer'>
       <form onSubmit={handleSearch} className="searchBar-form">
         <div className="searchBar-where">
-          <label className="searchBar-label">Where</label>
+          {/* <div className="searchBar-label">Where</div> */}
           <input
             type='text'
-            placeholder='Search destinations! Indonesia, Thailand ...'
+            placeholder='Search destinations! Indonesia, Thailand, Mexico ...'
             className='searchBar-input'
             value={destination}
             onChange={e => setDestination(e.target.value)}
@@ -62,7 +61,7 @@ function SearchBar() {
           </div>
         </div> */}
         <div>
-          <button type='submit' className='searchBar-button'><img src={searchIcon} className='searchBar-glass' alt='search'></img>Search</button>
+          <button type='submit' className='searchBar-button'><img src={searchIcon} className='searchBar-glass' alt='search'></img></button>
         </div>
       </form>
     </div>

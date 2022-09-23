@@ -1,6 +1,12 @@
-.whole-page {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+.room-details-outer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.room-nav-main {
+  width: 1190px;
 }
 
 .main-top {
@@ -102,7 +108,6 @@
 
 .room-reviews,
 .room-location {
-  /* text-decoration: underline; */
   font-weight: 500;
 }
 
@@ -167,4 +172,3 @@
     margin: 0 5%;
   }
 }
-

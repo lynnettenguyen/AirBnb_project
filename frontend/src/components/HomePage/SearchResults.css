@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 40% 60%;
   height: 100vh;
+  border-top: 0.3px solid rgba(128, 128, 128, 0.113);
 }
 
 .search-rooms-left {
@@ -93,4 +94,29 @@
 .number-rating {
   font-weight: 250;
   font-size: 0.9rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .search-rooms-main {
+    grid-template-columns: 50% 50%;
+  }
+
+  .search-room-img-outer {
+    height: 150px;
+  }
+
+  .search-rooms-left {
+    padding: 10px 10px 70px 10px;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .search-rooms-main {
+    grid-template-columns: 50% 50%;
+  }
+
+  .search-room-img-outer {
+    height: 200px;
+  }
 }

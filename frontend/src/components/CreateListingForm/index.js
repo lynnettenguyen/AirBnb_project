@@ -4,8 +4,9 @@ import { useHistory } from "react-router-dom";
 import { hostNewRoom, findRoomById } from "../../store/rooms";
 import "./CreateListingForm.css"
 import { uploadNewImage } from "../../store/images";
+import Navigation from "../Navigation";
 
-const CreateListingForm = () => {
+const CreateListingForm = ({ isLoaded }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
@@ -175,6 +176,10 @@ const CreateListingForm = () => {
 
   return (
     <div className="create-page">
+      <div className="create-listing-nav-main">
+        <Navigation isLoaded={isLoaded} />
+      </div>
+      <div className="navigation-border"></div>
       {page === 1 &&
         <div className="create-content">
           <div className="header-div">
@@ -182,9 +187,9 @@ const CreateListingForm = () => {
           </div>
           <div className="create-content-right">
             <div className="create-new-label">Start a new listing</div>
-              {sessionUser ? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
-                <button className="no-session-button" disabled="true">Login to begin hosting</button>}
-              <span className="white-space"></span>
+            {sessionUser ? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
+              <button className="no-session-button" disabled="true">Login to begin hosting</button>}
+            <span className="white-space"></span>
           </div>
         </div>
       }
@@ -326,7 +331,7 @@ const CreateListingForm = () => {
                       className="create-input-textarea"
                       value={description}
                       onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
-                      // required // remove require to set error handler
+                    // required // remove require to set error handler
                     >
                     </textarea>
                   </div>

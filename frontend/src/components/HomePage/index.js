@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllRooms, listAllRooms } from "../../store/rooms";
 import "./HomePage.css"
+import Navigation from "../Navigation";
 
-const HomePage = () => {
+const HomePage = ({ isLoaded }) => {
   const dispatch = useDispatch()
   const allRooms = useSelector(getAllRooms)
 
@@ -18,6 +19,10 @@ const HomePage = () => {
 
   return (
     <div className="outer-rooms-div">
+      <div className="home-nav-main">
+      <Navigation isLoaded={isLoaded} />
+      </div>
+      <div className="navigation-border"></div>
       <div className="all-rooms-div">
         {allRooms?.map((room, i) => {
 

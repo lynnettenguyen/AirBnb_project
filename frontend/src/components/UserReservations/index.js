@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listAllReservations, getAllReservations, removeReservation, updateReservation } from "../../store/reservations";
 import "./UserReservations.css"
+import Navigation from "../Navigation";
 
-const UserReservations = () => {
+const UserReservations = ({ isLoaded }) => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const allReservations = useSelector(getAllReservations)
   const [reservationId, setReservationId] = useState()
@@ -100,7 +100,11 @@ const UserReservations = () => {
   }
 
   return (
-    <>
+    <div className="trips-outer">
+      <div className="trips-nav-main">
+        <Navigation isLoaded={isLoaded} />
+      </div>
+      <div className="navigation-border"></div>
       {sessionUser ?
         <div className="trips-page">
           <div className="trips-main-div">
@@ -233,7 +237,7 @@ const UserReservations = () => {
           </div>
         </>
       }
-    </>
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
@@ -10,8 +10,9 @@ import Maps from '../Maps'
 import Reviews from "../Reviews";
 import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
+import Navigation from "../Navigation";
 
-const RoomDetails = () => {
+const RoomDetails = ({isLoaded}) => {
   let { roomId } = useParams()
   roomId = Number(roomId)
 
@@ -19,9 +20,6 @@ const RoomDetails = () => {
   const history = useHistory()
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
-  const reservations = useSelector(getAllReservations)
-  const users = useSelector(state => state.users)
-  const [checkDuplicate, setCheckDuplicate] = useState(false)
 
   const [page, setPage] = useState(1)
 
@@ -59,7 +57,11 @@ const RoomDetails = () => {
 
 
   return (
-    <>
+    <div className="room-details-outer">
+      <div className="room-nav-main">
+        <Navigation isLoaded={isLoaded} />
+      </div>
+      <div className="navigation-border"></div>
       {page === 1 &&
         <div className="room-content">
           <div className="main-top">
@@ -117,7 +119,7 @@ const RoomDetails = () => {
         </div>
       }
       {page === 2 && <EditListingForm listingId={roomId} returnToListing={returnToListing} />}
-    </>
+    </div>
   )
 }
 

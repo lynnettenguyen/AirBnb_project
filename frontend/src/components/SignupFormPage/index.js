@@ -1,12 +1,11 @@
 // frontend/src/components/SignupFormPage/index.js
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({ setShowSignUp }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -86,9 +85,9 @@ function SignupFormPage() {
         />
       </label>
       <div className="signUp-outer-errors">
-      {errors.length > 0 && (<ul>
+        {errors.length > 0 && (<ul>
           {errors.map((error, idx) => <li className="errors-signUp" key={idx}>{error}</li>)}
-      </ul>)}
+        </ul>)}
       </div>
       <button className="signUp-button" type="submit">Sign Up</button>
     </form>

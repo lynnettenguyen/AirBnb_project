@@ -1,17 +1,14 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory, Link } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import './ProfileButton.css'
-import LoginFormModal from '../LoginFormModal';
-import SignupFormPage from "../SignupFormPage";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory()
   const [showMenu, setShowMenu] = useState(false);
-  const sessionUser = useSelector(state => state.session.user);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -36,19 +33,6 @@ function ProfileButton({ user }) {
     history.push("/")
   };
 
-  // useEffect(() => {
-  //   const listener = () => {
-  //     setShowMenu(true)
-  //     return (
-  //       <LoginFormModal />
-  //     )
-  //   }
-  //   if (showMenu) {
-  //     const ele = document.getElementById('test')
-  //     ele.addEventListener('click', listener)
-  //   }
-  // }, [showMenu])
-
   return (
     <>
       <div>
@@ -64,7 +48,6 @@ function ProfileButton({ user }) {
           {showMenu && user && (
             <div className="show-menu-div">
               <div className="profile-dropdown">
-
                 <div className="account-div">
                   {user.email}
                 </div>
@@ -72,31 +55,10 @@ function ProfileButton({ user }) {
                 <Link to="/manage-listings" className="link manage-listings">Manage Listings</Link>
                 <Link to="/host-your-home" className="link host-home">Host your Home</Link>
                 <div className="logout-div" onClick={logout}>Log Out</div>
-
-                {/* <div className='profile-dropdown'>
-                  {sessionUser ? <div>{user.email}</div> : null}
-                  <div >
-                    <LoginFormModal onClick={() => setShowMenu(true)} showMenu={showMenu} />
-                  </div>
-                  <div> */}
-                    {/* <SignUpFormModal /> */}
-                    {/* <NavLink to="/signup" className="nav-link" activeStyle={{ color: "black" }}>Sign Up</NavLink>
-                  </div>
-                  <div>
-                    {sessionUser ? <button onClick={logout}>Log Out</button> : null}
-                  </div>
-                </div> */}
-
               </div>
             </div>
           )}
         </div>
-        {/* {showMenu && !user && (
-          <div>
-            <LoginFormModal />
-            <NavLink to="/signup">Sign Up</NavLink>
-          </div>
-        )} */}
       </div>
     </>
   );

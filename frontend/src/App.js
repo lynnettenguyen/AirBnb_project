@@ -11,36 +11,41 @@ import ManageListings from "./components/ManageListings";
 import CreateListingForm from "./components/CreateListingForm";
 import UserReservations from "./components/UserReservations";
 import Footer from "./components/Navigation/Footer";
+import SearchResults from "./components/HomePage/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
           <Route path="/signup">
-            <SignupFormPage />
+            <SignupFormPage isLoaded={isLoaded} />
           </Route>
           <Route path="/reservations">
-            <UserReservations />
+            <UserReservations isLoaded={isLoaded} />
           </Route>
           <Route path="/host-your-home">
-            <CreateListingForm />
+            <CreateListingForm isLoaded={isLoaded} />
           </Route>
           <Route path="/manage-listings">
-            <ManageListings />
+            <ManageListings isLoaded={isLoaded} />
           </Route>
           <Route path="/rooms/:roomId">
-            <RoomDetails />
+            <RoomDetails isLoaded={isLoaded} />
+          </Route>
+          <Route path="/search/:destination">
+            <SearchResults isLoaded={isLoaded} />
           </Route>
           <Route exact path="/">
-            <HomePage />
+            <HomePage isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}

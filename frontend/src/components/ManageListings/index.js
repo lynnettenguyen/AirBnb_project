@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllRooms, listAllRooms } from "../../store/rooms";
 import "./ManageListings.css"
+import Navigation from "../Navigation";
 
-const ManageListings = () => {
+const ManageListings = ({isLoaded}) => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const allRooms = useSelector(getAllRooms)
@@ -17,7 +18,11 @@ const ManageListings = () => {
   const manageReservations = () => { }
 
   return (
-    <>
+    <div className="manage-listing-outer">
+      <div className="manage-nav-main">
+        <Navigation isLoaded={isLoaded}/>
+      </div>
+      <div className="navigation-border"></div>
       {sessionUser ?
         <div className="manage-listing-page">
           <div className="all-listings-div">
@@ -56,7 +61,7 @@ const ManageListings = () => {
           </div>
         </>
       }
-    </>
+    </div>
   )
 }
 

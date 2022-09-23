@@ -1,3 +1,14 @@
+.manage-listing-outer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.manage-nav-main {
+  width: 1200px;
+}
+
 .all-listings-div {
   margin: 0 4%;
 }

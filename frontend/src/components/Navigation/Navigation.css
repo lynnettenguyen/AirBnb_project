@@ -1,7 +1,5 @@
 .main-nav {
-  border-bottom: 1px #71717150 solid;
-  /* position: relative; */
-
+  height: 90px;
 }
 
 .navigation-outer {
@@ -10,12 +8,10 @@
 }
 
 .navigation-bar {
-  /* position: absolute; */
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0 1.3rem 0;
-  width: 93.5rem;
-  /* left: 100px; */
+  padding: 1rem 1rem 1.3rem;
+  width: 100%;
 }
 
 .login {
@@ -26,8 +22,8 @@
   font-size: 18px;
 }
 
-.nav-link {
-  text-decoration: none;
+.sign-up-link {
+  cursor: pointer
 }
 
 .home-link {
@@ -44,27 +40,32 @@
   padding-top: 14px;
 }
 
+@media screen and (max-width: 700px) {
+  .navigation-bar {
+    width: 34%;
+  }
+}
 
 @media screen and (min-width: 1300px) and (max-width: 1699px) {
   .navigation-bar {
-    width: 72rem;
+    /* width: 72rem; */
   }
 }
 
 @media screen and (min-width: 1150px) and (max-width: 1300px) {
   .navigation-bar {
-    width: 64rem;
+    /* width: 64rem; */
   }
 }
 
 @media screen and (min-width: 850px) and (max-width: 1150px) {
   .navigation-bar {
-    width: 62rem;
+    /* width: 62rem; */
   }
 }
 
 @media screen and (max-width: 850px) {
   .navigation-bar {
-    width: 45rem;
+    /* width: 45rem; */
   }
 }

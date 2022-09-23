@@ -1,17 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/api'
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import './SearchMap.css'
 import { getAPIKey } from '../../store/maps'
 import mapOptions from '../Maps/MapStyle'
 
 const SearchMap = ({ searchRooms }) => {
-  const dispatch = useDispatch()
-  const APIKey = useSelector(state => state.map.APIKey)
+
+  let latSum;
+  let lngSum;
 
   useEffect(() => {
     dispatch(getAPIKey())
-  }, [])
+  }, [latSum, lngSum])
+
+    if (searchRooms.length > 0) {
+
+      latSum = () => {
+        return searchRooms.reduce((sum, { lat }) => sum + lat, 0)
+      }
+
+      lngSum = () => {
+        return searchRooms.reduce((sum, { lng }) => sum + lng, 0)
+      }
+    }
+
+  const dispatch = useDispatch()
+  const APIKey = useSelector(state => state.map.APIKey)
+  const [room, setRoom] = useState()
+  const [midLat, setMidLat] = useState(searchRooms.length > 0 ? latSum() / searchRooms.length : 0)
+  const [midLng, setMidLng] = useState(searchRooms.length > 0 ? lngSum() / searchRooms.length : 0)
+
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: APIKey,
@@ -24,39 +43,42 @@ const SearchMap = ({ searchRooms }) => {
   };
 
   const center = {
-    lat: Number(11),
-    lng: Number(11)
+    lat: Number(midLat),
+    lng: Number(midLng)
   };
 
-  const circleOptions = {
-    strokeColor: '#f3b2d0',
-    strokeOpacity: 0.45,
-    strokeWeight: 0,
-    fillColor: '#f3b2d0',
-    fillOpacity: 0.45,
-    clickable: false,
-    draggable: false,
-    editable: false,
-    visible: true,
-    radius: 1000
-  }
 
   return (
     <div className='search-google-map-outer'>
       {isLoaded &&
-        (
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={13}
-            options={{ styles: mapOptions }}
-          >
-            <Circle
-              center={center}
-              options={circleOptions}
-            />
-            <Marker position={center} />
-          </GoogleMap>
+        (<GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={5}
+          options={{ styles: mapOptions }}
+        >
+          {searchRooms.map((room) => {
+            return (
+              <Marker
+                position={{
+                  lat: Number(room.lat),
+                  lng: Number(room.lng)
+                }}
+                onClick={() => setRoom(room)}
+              />
+            )
+          })}
+          {/* {room &&
+            (<InfoWindow
+              position={{
+                lat: Number(room.lat),
+                lng: Number(room.lng)
+              }}
+              onCloseClick={() => setRoom(false)}
+            >
+            </InfoWindow>
+            )} */}
+        </GoogleMap>
         )}
     </div>
   )

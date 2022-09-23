@@ -17,10 +17,12 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
   const [reviewId, setReviewId] = useState()
 
   useEffect(() => {
-    setCheckDuplicate(false)
-    Object.values(reviews).forEach(review => {
-      if (review.userId === sessionUser.id) setCheckDuplicate(true)
-    })
+    if (sessionUser) {
+      setCheckDuplicate(false)
+      Object.values(reviews).forEach(review => {
+        if (review.userId === sessionUser.id) setCheckDuplicate(true)
+      })
+    }
   })
 
   const handleEditReview = (editReviewId) => {
@@ -63,7 +65,7 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
                     <div className="review-first-name">{users[review?.userId]?.firstName}</div>
                     <div className="review-date">{month} {year}</div>
                   </div>
-                  {review.userId === sessionUser.id && <div className="review-update-buttons-outer">
+                  {sessionUser && review.userId === sessionUser.id && <div className="review-update-buttons-outer">
                     <button onClick={() => handleEditReview(review.id)} className='review-edit-button'>Edit</button>
                     <button onClick={() => handleDeleteReview(review.id)} className='review-delete-button'>Delete</button>
                   </div>}

@@ -27,8 +27,9 @@ const SearchMap = ({ searchRooms }) => {
         return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
       }
 
-      setMidLat(latSum() / searchRooms?.length)
-      setMidLng(lngSum() / searchRooms?.length)
+
+      setMidLat((latSum() / searchRooms?.length.toFixed(6)))
+      setMidLng((lngSum() / searchRooms?.length.toFixed(6)))
     }
   }, [destination])
 

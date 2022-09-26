@@ -10,8 +10,8 @@ const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
-  const [midLat, setMidLat] = useState(searchRooms[0]?.lat)
-  const [midLng, setMidLng] = useState(searchRooms[0]?.lng)
+  const [midLat, setMidLat] = useState(searchRooms[0] ? searchRooms[0]?.lat : 0)
+  const [midLng, setMidLng] = useState(searchRooms[0] ? searchRooms[0]?.lng : 0)
   const [selected, setSelected] = useState({})
 
   useEffect(() => {

@@ -52,7 +52,13 @@ const Maps = ({ room }) => {
               mapContainerStyle={containerStyle}
               center={center}
               zoom={13}
-              options={{ styles: mapOptions }}>
+              options={{
+                styles: mapOptions,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+                scrollwheel: true
+              }}>
               <Circle
                 center={center}
                 options={circleOptions}

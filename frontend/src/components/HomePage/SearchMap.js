@@ -55,7 +55,13 @@ const SearchMap = ({ searchRooms }) => {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={7}
-          options={{ styles: mapOptions }}
+          options={{
+            styles: mapOptions,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+            scrollwheel: true
+          }}
         >
           {searchRooms.map((room) => {
             return (

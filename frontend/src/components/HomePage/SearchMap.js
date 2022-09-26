@@ -28,8 +28,8 @@ const SearchMap = ({ searchRooms }) => {
       }
 
 
-      setMidLat((latSum() / searchRooms?.length.toFixed(6)))
-      setMidLng((lngSum() / searchRooms?.length.toFixed(6)))
+      setMidLat((latSum() / searchRooms?.length).toFixed(6))
+      setMidLng((lngSum() / searchRooms?.length).toFixed(6))
     }
   }, [destination])
 

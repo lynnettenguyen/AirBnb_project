@@ -10,8 +10,8 @@ const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
-  const [midLat, setMidLat] = useState(searchRooms[0] ? searchRooms[0]?.lat : 0)
-  const [midLng, setMidLng] = useState(searchRooms[0] ? searchRooms[0]?.lng : 0)
+  const [midLat, setMidLat] = useState(Number(searchRooms[0]?.lat))
+  const [midLng, setMidLng] = useState(Number(searchRooms[0]?.lng))
   const [selected, setSelected] = useState({})
 
   useEffect(() => {
@@ -27,9 +27,8 @@ const SearchMap = ({ searchRooms }) => {
         return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
       }
 
-
-      setMidLat((latSum() / searchRooms?.length).toFixed(6))
-      setMidLng((lngSum() / searchRooms?.length).toFixed(6))
+      setMidLat(Number((latSum() / searchRooms?.length).toFixed(6)))
+      setMidLng(Number((lngSum() / searchRooms?.length).toFixed(6)))
     }
   }, [destination])
 

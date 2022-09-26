@@ -10,8 +10,9 @@ const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
-  const [midLat, setMidLat] = useState(Number(searchRooms[0]?.lat))
-  const [midLng, setMidLng] = useState(Number(searchRooms[0]?.lng))
+  const [midLat, setMidLat] = useState(searchRooms[0]?.lat)
+  const [midLng, setMidLng] = useState(searchRooms[0]?.lng)
+  const [zoom, setZoom] = useState(2)
   const [selected, setSelected] = useState({})
 
   useEffect(() => {
@@ -29,6 +30,10 @@ const SearchMap = ({ searchRooms }) => {
 
       setMidLat(Number((latSum() / searchRooms?.length).toFixed(6)))
       setMidLng(Number((lngSum() / searchRooms?.length).toFixed(6)))
+      setZoom(7)
+    } else {
+      setMidLat(0)
+      setMidLng(0)
     }
   }, [destination])
 
@@ -54,7 +59,7 @@ const SearchMap = ({ searchRooms }) => {
         (<GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={7}
+          zoom={zoom}
           options={{
             styles: mapOptions,
             streetViewControl: false,

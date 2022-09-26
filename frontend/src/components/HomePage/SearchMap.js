@@ -17,7 +17,7 @@ const SearchMap = ({ searchRooms }) => {
 
   // console.log(searchRooms?.length > 0)
 
-  console.log(zoom)
+  console.log(typeof searchRooms[0]?.lng)
 
   useEffect(() => {
     dispatch(getAPIKey())
@@ -25,12 +25,12 @@ const SearchMap = ({ searchRooms }) => {
     if (searchRooms?.length > 0) {
 
       const latSum = () => {
-        return searchRooms.reduce((sum, { lat }) => sum + lat, 0)
+        return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
       }
 
 
       const lngSum = () => {
-        return searchRooms.reduce((sum, { lng }) => sum + lng, 0)
+        return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
       }
 
       setMidLat(Number((latSum() / searchRooms?.length).toFixed(6)))
@@ -38,11 +38,11 @@ const SearchMap = ({ searchRooms }) => {
       setZoom(7)
 
     } else {
-      setMidLat(searchRooms[0].lat)
-      setMidLng(searchRooms[0].lng)
+      setMidLat(0)
+      setMidLng(0)
       setZoom(3)
     }
-  }, [destination, dispatch])
+  }, [destination, dispatch, searchRooms[0]])
 
 
   const { isLoaded } = useJsApiLoader({

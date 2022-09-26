@@ -15,14 +15,11 @@ const SearchMap = ({ searchRooms }) => {
   const [zoom, setZoom] = useState(2)
   const [selected, setSelected] = useState({})
 
-  // console.log(searchRooms?.length > 0)
-
-  console.log(typeof searchRooms[0]?.lng)
 
   useEffect(() => {
     dispatch(getAPIKey())
 
-    if (searchRooms?.length > 0) {
+    if (searchRooms[0]) {
 
       const latSum = () => {
         return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
@@ -35,12 +32,11 @@ const SearchMap = ({ searchRooms }) => {
 
       setMidLat(Number((latSum() / searchRooms?.length).toFixed(6)))
       setMidLng(Number((lngSum() / searchRooms?.length).toFixed(6)))
-      setZoom(7)
-
+      setZoom(6)
     } else {
       setMidLat(0)
       setMidLng(0)
-      setZoom(3)
+      setZoom(2)
     }
   }, [destination, dispatch, searchRooms[0]])
 

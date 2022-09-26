@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import './SearchMap.css'
 import { getAPIKey } from '../../store/maps'
@@ -10,25 +10,25 @@ const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
-  const [room, setRoom] = useState()
-  const [midLat, setMidLat] = useState(100)
-  const [midLng, setMidLng] = useState(100)
+  const [midLat, setMidLat] = useState(searchRooms[0]?.lat)
+  const [midLng, setMidLng] = useState(searchRooms[0]?.lng)
+  const [selected, setSelected] = useState({})
 
   useEffect(() => {
     dispatch(getAPIKey())
 
-    if (searchRooms.length > 0) {
+    if (searchRooms?.length > 0) {
 
       const latSum = () => {
-        return searchRooms.reduce((sum, { lat }) => sum + lat, 0)
+        return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
       }
 
       const lngSum = () => {
-        return searchRooms.reduce((sum, { lng }) => sum + lng, 0)
+        return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
       }
 
-      setMidLat(latSum() / searchRooms.length)
-      setMidLng(lngSum() / searchRooms.length)
+      setMidLat(latSum() / searchRooms?.length)
+      setMidLng(lngSum() / searchRooms?.length)
     }
   }, [destination])
 
@@ -44,12 +44,9 @@ const SearchMap = ({ searchRooms }) => {
   };
 
   const center = {
-    // lat: Number(midLat),
-    // lng: Number(midLng)
-    lat: 0,
-    lng: 0
+    lat: Number(midLat),
+    lng: Number(midLng)
   };
-
 
   return (
     <div className='search-google-map-outer'>
@@ -57,30 +54,43 @@ const SearchMap = ({ searchRooms }) => {
         (<GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={5}
+          zoom={7}
           options={{ styles: mapOptions }}
         >
           {searchRooms.map((room) => {
             return (
-              <Marker
-                position={{
-                  lat: Number(room.lat),
-                  lng: Number(room.lng)
-                }}
-                onClick={() => setRoom(room)}
-              />
+              <>
+                <Marker
+                  position={{
+                    key: room.id,
+                    lat: Number(room.lat),
+                    lng: Number(room.lng)
+                  }}
+                  onClick={() => setSelected(room)}
+                />
+              </>
             )
           })}
-          {/* {room &&
+
+          {selected.id &&
             (<InfoWindow
               position={{
-                lat: Number(room.lat),
-                lng: Number(room.lng)
+                lat: Number(selected.lat),
+                lng: Number(selected.lng)
               }}
-              onCloseClick={() => setRoom(false)}
+              onCloseClick={() => setSelected({})}
             >
+              <div className='selected-room-info'>
+                <Link to={`/rooms/${selected?.id}`}>
+                  <img src={selected?.images[0]?.url} className='selected-room-img'></img>
+                </Link>
+                <div>
+                  <div className='selected-room-name'>{selected?.name}</div>
+                  <div><span className='selected-room-price'>{`$${selected?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span> <span>night</span></div>
+                </div>
+              </div>
             </InfoWindow>
-            )} */}
+            )}
         </GoogleMap>
         )}
     </div>

@@ -37,8 +37,12 @@ const SearchMap = ({ searchRooms }) => {
       // setMidLng(Number((lngSum() / numRooms).toFixed(6)))
 
       setMidLat(searchRooms[0]?.lat)
-      setMidLng(searchRooms[0].lng)
+      setMidLng(searchRooms[0]?.lng)
       setZoom(5)
+
+      if (searchRooms.length < 5) {
+        setZoom(10)
+      }
 
     } else {
 

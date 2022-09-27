@@ -753,6 +753,66 @@ module.exports = {
         type: 'room',
         url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-45868372/original/088253f9-073b-4838-85fb-148207546cb7.jpeg?im_w=720'
       },
+      {
+        userId: 4,
+        roomId: 26,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/ee15a730-a249-4b6d-a57f-667e76a72ef6.jpg?im_w=1200'
+      },
+      {
+        userId: 4,
+        roomId: 26,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/132a6785-4da5-4b83-bc75-0c86d515235e.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 26,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/4a290563-2742-404e-ab7a-0746bce23c85.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 26,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/5a5dbbec-84cc-4c4a-8744-588edd55832e.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 26,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/ff012ce1-2cbd-4a5d-85e8-7f27646db92a.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 27,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-40824952/original/c819b8e2-6e91-4cf5-a249-d139c36d5c6e.jpeg?im_w=1200'
+      },
+      {
+        userId: 4,
+        roomId: 27,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-40824952/original/b48fdacf-20bf-41d0-a98e-2e9e0c4ab88a.jpeg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 27,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-40824952/original/f9b15e21-34da-4563-b21a-638cd0016fb1.jpeg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 27,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-40824952/original/8d3995e2-3124-400f-8414-39ea3d6b97ab.jpeg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 27,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-40824952/original/b2b59ad9-e982-4f46-aa45-6d7076773629.jpeg?im_w=720'
+      },
     ], {});
 
   },

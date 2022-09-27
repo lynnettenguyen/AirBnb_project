@@ -297,6 +297,30 @@ module.exports = {
         stars: 4,
         review: 'The location is great, especially if you have a car. Street parking is easily available, and it’s about 20 minutes to the beach/hotel zone. The actual apartment is really big and new. Air conditioning worked super well! My only quibble is that we lost water for a few hours one morning.Sounds like the whole building had an issue.However, it was resolved relatively quickly. Sometimes stuff happens!'
       },
+      {
+        userId: 2,
+        roomId: 26,
+        stars: 4,
+        review: 'We are enjoyed our stay very much! Super quick response when ever we needed anything. The host was lovely and the place was absolutely perfect!'
+      },
+      {
+        userId: 3,
+        roomId: 26,
+        stars: 4,
+        review: 'We had the best stay here! The apartment is beautifully decorated and has an ocean view from the balcony. Couldn’t ask for a better location right across from the beach! And the host went above and beyond to make sure we had everything we needed. Would highly recommend!'
+      },
+      {
+        userId: 5,
+        roomId: 27,
+        stars: 5,
+        review: 'Our stay was absolutely phenomenal. Exceeded expectation in all aspects. Arturo and team were very accommodating and service was world class. Will be returning again without a doubt.'
+      },
+      {
+        userId: 6,
+        roomId: 27,
+        stars: 5,
+        review: 'Best and by far most beautiful place I have ever stayed in. Great place to stay for those who love art and appreciate interior design/ beauty of all the moving pieces that brought this place together. Best hosts I have ever had!'
+      },
     ], {});
   },
 

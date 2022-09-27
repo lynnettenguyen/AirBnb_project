@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getAllRooms, listAllRooms } from "../../store/rooms";
@@ -19,6 +19,7 @@ function SearchResults({ isLoaded }) {
     destination = destination.toLowerCase()
     return room.city.toLowerCase().includes(destination) || room.state.toLowerCase().includes(destination) || room.country.toLowerCase().includes(destination)
   })
+
 
   return (
     <>

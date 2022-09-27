@@ -453,6 +453,42 @@ module.exports = {
         beds: 4,
         baths: 3
       },
+      {
+        ownerId: 4,
+        address: 'C. Manuel M. Plascencia 91, 63734',
+        city: 'Sayulita',
+        state: 'Nayarit',
+        country: 'Mexico',
+        lat: 20.865980,
+        lng: -105.435433,
+        name: 'Indoor-Outdoor Living at a Cozy Flat Surrounded by Greenery',
+        description: 'Doze off in a macrame hammock in the mottled shade of rustling palm trees. Prepare meals in an open-air kitchen and dine alfresco among potted cactuses. Wander down to the pool to sunbathe and swim, then rinse off under a glorious rain shower.',
+        price: 180,
+        category: 'Beach',
+        type: 'Entire rental unit',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 3
+      },
+      {
+        ownerId: 4,
+        address: 'KM 5 Carretera Tulum-Boca Paila Lt10 Zona Hotelera, 77780',
+        city: 'Tulum',
+        state: 'Quintana Roo',
+        country: 'Mexico',
+        lat: 20.172451,
+        lng: -87.449677,
+        name: 'Design Loft with Private Pool and SPA',
+        description: 'Imagine a place between world class design and nature: Casa Madera is one of the most beautiful AirbnBs in Tulum. The famous Terreo Studio has build it with not cutting one tree, using local materials and created a Design Apartment with 2 full bathrooms include rain fall showers and bathtubs plus a beautiful terrace surround by trees and a amazing garden - featured in Magazines around the world.Everywhere you will find antique decor and tasteful interiors.',
+        price: 220,
+        category: 'Design',
+        type: 'Entire condo',
+        guests: 5,
+        bedrooms: 2,
+        beds: 2,
+        baths: 2.5
+      }
     ], {});
   },
 

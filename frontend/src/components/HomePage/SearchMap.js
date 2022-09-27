@@ -20,21 +20,24 @@ const SearchMap = ({ searchRooms }) => {
   useEffect(() => {
     dispatch(getAPIKey())
 
-    const allLats = searchRooms.map((room) => room.lat)
-    const allLngs = searchRooms.map((room) => room.lng)
+    if (searchRooms.length > 0) {
 
-    const maxLat = Math.max(...allLats)
-    const minLat = Math.min(...allLats)
-    const maxLng = Math.max(...allLngs)
-    const minLng = Math.min(...allLngs)
+      const allLats = searchRooms?.map((room) => room.lat)
+      const allLngs = searchRooms?.map((room) => room.lng)
 
-    const avgLat = (maxLat + minLat) / 2
-    const avgLng = (maxLng + minLng) / 2
+      const maxLat = Math.max(...allLats)
+      const minLat = Math.min(...allLats)
+      const maxLng = Math.max(...allLngs)
+      const minLng = Math.min(...allLngs)
 
-    setMidLat(avgLat)
-    setMidLng(avgLng)
+      const avgLat = (maxLat + minLat) / 2
+      const avgLng = (maxLng + minLng) / 2
 
-    if (searchRooms.length > 10) {
+      setMidLat(avgLat)
+      setMidLng(avgLng)
+    }
+
+    if (searchRooms?.length > 10) {
       setZoom(2)
     } else {
       setZoom(5)

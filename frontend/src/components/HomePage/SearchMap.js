@@ -20,29 +20,33 @@ const SearchMap = ({ searchRooms }) => {
   useEffect(() => {
     dispatch(getAPIKey())
 
-    // if (searchRooms.length > 0) {
+    if (searchRooms.length < 10) {
 
-    //   let numRooms = searchRooms?.length
+      // let numRooms = searchRooms?.length
 
-    //   const latSum = () => {
-    //     return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
-    //   }
+      // const latSum = () => {
+      //   return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
+      // }
 
 
-    //   const lngSum = () => {
-    //     return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
-    //   }
+      // const lngSum = () => {
+      //   return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
+      // }
 
-    //   setMidLat(Number((latSum() / numRooms).toFixed(6)))
-    //   setMidLng(Number((lngSum() / numRooms).toFixed(6)))
-    //   // setZoom(6)
+      // setMidLat(Number((latSum() / numRooms).toFixed(6)))
+      // setMidLng(Number((lngSum() / numRooms).toFixed(6)))
 
-    // } else {
+      setMidLat(searchRooms[0]?.lat)
+      setMidLng(searchRooms[0].lng)
+      setZoom(5)
 
-    //   setMidLat(0)
-    //   setMidLng(0)
-    //   // setZoom(2)
-    // }
+    } else {
+
+      setMidLat(0)
+      setMidLng(0)
+      setZoom(2)
+
+    }
 
   }, [destination])
 

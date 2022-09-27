@@ -10,36 +10,41 @@ const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
-  const [midLat, setMidLat] = useState(searchRooms[0]?.lat)
-  const [midLng, setMidLng] = useState(searchRooms[0]?.lng)
+  const [midLat, setMidLat] = useState(0)
+  const [midLng, setMidLng] = useState(0)
   const [zoom, setZoom] = useState(2)
   const [selected, setSelected] = useState({})
 
+  console.log(searchRooms[0]?.lat)
 
   useEffect(() => {
     dispatch(getAPIKey())
 
-    if (searchRooms) {
+    // if (searchRooms.length > 0) {
 
-      const latSum = () => {
-        return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
-      }
+    //   let numRooms = searchRooms?.length
+
+    //   const latSum = () => {
+    //     return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
+    //   }
 
 
-      const lngSum = () => {
-        return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
-      }
+    //   const lngSum = () => {
+    //     return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
+    //   }
 
-      setMidLat(Number((latSum() / searchRooms?.length).toFixed(6)))
-      setMidLng(Number((lngSum() / searchRooms?.length).toFixed(6)))
-      setZoom(6)
-    } else {
+    //   setMidLat(Number((latSum() / numRooms).toFixed(6)))
+    //   setMidLng(Number((lngSum() / numRooms).toFixed(6)))
+    //   // setZoom(6)
 
-      setMidLat(0)
-      setMidLng(0)
-      setZoom(2)
-    }
-  }, [destination, dispatch, midLat])
+    // } else {
+
+    //   setMidLat(0)
+    //   setMidLng(0)
+    //   // setZoom(2)
+    // }
+
+  }, [destination])
 
 
   const { isLoaded } = useJsApiLoader({
@@ -56,6 +61,8 @@ const SearchMap = ({ searchRooms }) => {
     lat: Number(midLat),
     lng: Number(midLng)
   };
+
+  console.log('center', center)
 
   return (
     <div className='search-google-map-outer'>

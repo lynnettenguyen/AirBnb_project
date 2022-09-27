@@ -38,10 +38,10 @@ const HomePage = ({ isLoaded }) => {
   return (
     <div className="outer-rooms-div">
       <div className="home-nav-main">
-        <Navigation isLoaded={isLoaded} setFilterRooms={setFilterRooms} />
+        <Navigation isLoaded={isLoaded} setFilterRooms={setFilterRooms} setCategory={setCategory} />
       </div>
       <div className="navigation-border"></div>
-      <RoomCategory handleFilter={handleFilter} />
+      <RoomCategory handleFilter={handleFilter} category={category} />
       {filteredRooms.length > 0 ? <div className="all-rooms-div">
         {filteredRooms?.map((room, i) => {
 

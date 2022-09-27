@@ -14,7 +14,8 @@
   width: 100%;
 }
 
-.room-category-outer {
+.room-category-outer,
+.room-category-selected {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +23,10 @@
   margin: 0 30px;
   cursor: pointer;
   border-bottom: 2px solid white;
+}
+
+.room-category-selected {
+  border-bottom: 2px solid black;
 }
 
 .room-category-outer:hover {

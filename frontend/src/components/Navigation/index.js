@@ -9,7 +9,7 @@ import SearchBar from './SearchBar';
 import { Modal } from '../../context/Modal';
 import SignUpFormPage from '../SignupFormPage'
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, setFilterRooms }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showSignUp, setShowSignUp] = useState(false)
 
@@ -44,7 +44,7 @@ function Navigation({ isLoaded }) {
           <div className='navigation-bar'>
             <NavLink exact to="/" className="nav-link home-link">
               <span className="iconify" data-icon="fa-brands:airbnb" data-width="40"></span>
-              <span className='airbnb-name'>wherebnb</span>
+              <span className='airbnb-name' onClick={() => setFilterRooms([])}>wherebnb</span>
             </NavLink>
             <SearchBar />
             {isLoaded && sessionLinks}

@@ -757,7 +757,7 @@ module.exports = {
         userId: 4,
         roomId: 26,
         type: 'room',
-        url: 'https://a0.muscache.com/im/pictures/ee15a730-a249-4b6d-a57f-667e76a72ef6.jpg?im_w=1200'
+        url: 'https://a0.muscache.com/im/pictures/226e0806-d270-411a-a2af-fdd399eb4219.jpg?im_w=1200'
       },
       {
         userId: 4,

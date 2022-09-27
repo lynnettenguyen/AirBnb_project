@@ -42,6 +42,9 @@ function App() {
           <Route path="/search/:destination">
             <SearchResults isLoaded={isLoaded} />
           </Route>
+          <Route path='filter/:category'>
+            <HomePage isLoaded={isLoaded} />
+          </Route>
           <Route exact path="/">
             <HomePage isLoaded={isLoaded} />
           </Route>

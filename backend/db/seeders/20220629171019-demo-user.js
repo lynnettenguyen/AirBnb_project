@@ -9,7 +9,7 @@ module.exports = {
         firstName: 'Demo',
         lastName: 'User',
         hashedPassword: bcrypt.hashSync('password'),
-        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user7.png"
+        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user4.png"
       },
       {
         email: 'Lynnette@user.io',
@@ -71,9 +71,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users', {
-      email: { [Op.in]: ['demo@user.io', 'user1@user.io', 'user2@user.io'] }
-    }, {});
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };

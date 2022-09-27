@@ -693,6 +693,66 @@ module.exports = {
         type: 'room',
         url: 'https://a0.muscache.com/im/pictures/miso/Hosting-606739979986167531/original/73830834-4676-4db0-b4c9-36ff738947dc.png?im_w=720'
       },
+      {
+        userId: 4,
+        roomId: 24,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/84c0dcbe-b755-4eb6-b619-2b4ceca0f1a1.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 24,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/11d33147-81fd-4628-b308-217d1df4a6de.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 24,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/60ba5eea-3ce0-40c4-bb17-aa78016cc94c.jpg?im_w=1200'
+      },
+      {
+        userId: 4,
+        roomId: 24,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/ae0f71fb-479c-4c3e-8824-cb05d961424e.jpg?im_w=1200'
+      },
+      {
+        userId: 4,
+        roomId: 24,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/90c6dc91-5643-4325-b811-db50aa5ef248.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 25,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-45868372/original/7651d536-10ad-4fa1-a621-57a08fd0f8a7.jpeg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 25,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-45868372/original/d9a336aa-4ea0-41db-8cb7-ca99f5f697e0.jpeg?im_w=1200'
+      },
+      {
+        userId: 4,
+        roomId: 25,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-45868372/original/18805d8d-ceba-40ff-9d50-e2f497907e9b.jpeg?im_w=1200'
+      },
+      {
+        userId: 4,
+        roomId: 25,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-45868372/original/0f0af454-6428-4e1a-a7a9-1853e65d3e14.jpeg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 25,
+        type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-45868372/original/088253f9-073b-4838-85fb-148207546cb7.jpeg?im_w=720'
+      },
     ], {});
 
   },

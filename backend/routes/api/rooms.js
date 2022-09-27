@@ -322,7 +322,7 @@ router.get('/:roomId', checkRoomExists, async (req, res) => {
 })
 
 router.post('/', [requireAuth, validateRoom], async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, category, type, bedrooms, beds, baths, guests } = req.body;
 
     const newRoom = await Room.create({
         ownerId: req.user.id,
@@ -334,13 +334,19 @@ router.post('/', [requireAuth, validateRoom], async (req, res) => {
         lng: lng,
         name: name,
         description: description,
-        price: price
+        price: price,
+        category: category,
+        type: type,
+        guests: guests,
+        bedrooms: bedrooms,
+        beds: beds,
+        baths: baths
     })
     return res.json(newRoom);
 })
 
 router.put('/:roomId', [requireAuth, checkOwnerRoom, validateRoom], async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, category, type, bedrooms, beds, baths, guests } = req.body;
     const room = await Room.findByPk(req.params.roomId);
 
     room.address = address;
@@ -352,6 +358,12 @@ router.put('/:roomId', [requireAuth, checkOwnerRoom, validateRoom], async (req, 
     room.name = name;
     room.description = description;
     room.price = price;
+    room.category = category;
+    room.type = type;
+    room.guests = guests;
+    room.bedrooms = bedrooms;
+    room.beds = beds;
+    room.baths = baths;
 
     await room.save();
     return res.json(room);

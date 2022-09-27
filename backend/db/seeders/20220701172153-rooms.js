@@ -14,6 +14,12 @@ module.exports = {
         name: 'Black Rock by Destination Big Bear',
         description: 'Completed in 2021, this modern, rustic, luxury masterpiece balances nature, architecture, design and functionality to create an unmatched mountain experience. The concept for Black Rock was inspired by taking a world-class luxury hotel experience and distilling it down into an epic vacation home. The owners have spared no expense in bringing that concept to life. Working with top designers, they brought a luxurious lifestyle to the mountains of Big Bear and created the ultimate Big Bear cabin rental.',
         price: 2337,
+        category: 'Cabins',
+        type: 'Entire home',
+        guests: 15,
+        bedrooms: 5,
+        beds: 9,
+        baths: 5.5
       },
       {
         ownerId: 2,
@@ -26,6 +32,12 @@ module.exports = {
         name: 'Big Pine House by the Forest',
         description: 'The Big Pine House is located right on the hillside with the surrounding old pine forest bringing a cool vibe all year round. The house also owns an extremely spacious front view with a transparent toughened glass wall.',
         price: 135,
+        category: 'Treehouses',
+        type: 'Entire bungalow',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
       },
       {
         ownerId: 3,
@@ -38,6 +50,12 @@ module.exports = {
         name: 'Lovely New 3BR Villa with Stunning Jungle View',
         description: 'Set amongst the tropical greenery of Ubud and in the middle are perfect rice fields. This brand new modern villa will offer you serenity and peace with its infinity pool looking onto the lush greenery valley view.',
         price: 339,
+        category: 'Tropical',
+        type: 'Entire villa',
+        guests: 8,
+        bedrooms: 3,
+        beds: 4,
+        baths: 3
       },
       {
         ownerId: 7,
@@ -50,6 +68,12 @@ module.exports = {
         name: 'The Kellogg Doolittle House',
         description: 'Created over 25 meticulous years, Kellogg Doolittle in Joshua Tree National Park is a marvel of the organic architecture movement. It is one of the most exclusive homes in the world, and available for the first time as an WhereBnb Luxe exclusive.',
         price: 12500,
+        category: 'Luxe',
+        type: 'Luxury stay',
+        guests: 6,
+        bedrooms: 3,
+        beds: 3,
+        baths: 3
       },
       {
         ownerId: 1,
@@ -62,6 +86,12 @@ module.exports = {
         name: 'Cozy A Frame in Bass Lake',
         description: 'Welcome to Acorn Falls! Ideally located, this cozy A frame is across the street from the Falls Beach at Bass Lake, walking distance to the Angel Falls trail head, and only 17 miles to Yosemite National Park. Acorn Falls is sure to delight all who enter. The cabin is a perfect choice for families, girlfriend/guys getaways, couples, or solo travelers looking for a bit of quiet solitude. Acorn Falls is comfortable, fully stocked with thoughtful amenities and luxurious finishes.',
         price: 536,
+        category: 'A-Frames',
+        type: 'Entire cabin',
+        guests: 8,
+        bedrooms: 4,
+        beds: 5,
+        baths: 2
       },
       {
         ownerId: 7,
@@ -74,6 +104,12 @@ module.exports = {
         name: 'The WonderINN Mirrored Glass Cabin',
         description: 'Immerse yourself in the wilderness, still within reach of civilization! WonderINN is literally a hidden gem; the unique design of the mirrored glass blends into the landscape so you can retreat to comfort and luxury as you watch the world pass by.',
         price: 466,
+        category: 'Tiny Homes',
+        type: 'Tiny home',
+        guests: 4,
+        bedrooms: 2,
+        beds: 2,
+        baths: 1
       },
       {
         ownerId: 5,
@@ -86,6 +122,12 @@ module.exports = {
         name: 'Villa Samira',
         description: 'A contemporary variation on classic Thai themes, this villa maxes out its panoramic views of the Bay of Bengal. A wide open great room is entirely alfresco, with a reflection pond in the center flanked by stepping stones and staircases above. Rest a cool drink on the ledge of your oversized jacuzzi or dip in the 19-meter infinity pool and take it all in. Quiet Kamala Beach is just a 4-mile drive.',
         price: 1490,
+        category: 'Luxe',
+        type: 'Entire villa',
+        guests: 12,
+        bedrooms: 6,
+        beds: 6,
+        baths: 6
       },
       {
         ownerId: 1,
@@ -98,6 +140,12 @@ module.exports = {
         name: 'West Enclave 7 - Luxury Stay',
         description: 'Loungers wait on the white-sand beach beyond the warm sandstone walls of this contemporary home on the Sea of Cortez. Floor-to-ceiling windows open the living areas to water on two sides: the sea on one, and a courtyard reflecting pool on the other. Surrounded by Ritz Carlton resort grounds, it is close to golf and dining, plus art gallery walks in downtown San José del Cabo.',
         price: 5300,
+        category: 'Luxe',
+        type: 'Luxury stay',
+        guests: 16,
+        bedrooms: 5,
+        beds: 11,
+        baths: 6.5
       },
       {
         ownerId: 4,
@@ -108,8 +156,14 @@ module.exports = {
         lat: 45.983995,
         lng: 9.262183,
         name: 'Small Wood Furnished Home on the Lake',
-        description: 'A small house,furnished entirely in natural wood, with a double bed and a bunk bed, fireplace and wood-burning oven. There is also a garden equipped with barbecues, sun loungers and sofas, with private access to the lake.',
+        description: 'A small house, furnished entirely in natural wood, with a double bed and a bunk bed, fireplace and wood-burning oven. There is also a garden equipped with barbecues, sun loungers and sofas, with private access to the lake.',
         price: 255,
+        category: 'Tiny Homes',
+        type: 'Entire home',
+        guests: 3,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
       },
       {
         ownerId: 5,
@@ -122,6 +176,12 @@ module.exports = {
         name: 'Turtle Bay HuaHin Eco LuxeTurt Villa in Lotus Bay',
         description: 'A unique Turtle Shape villa located in natural lotus pond surrounding by nature Khao Tao Valley and Sai Noi beach. Private one bed room studio villa comprising spacious bathroom and outdoor waterside living deck.',
         price: 97,
+        category: 'Domes',
+        type: 'Houseboat',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
       },
       {
         ownerId: 1,
@@ -134,6 +194,12 @@ module.exports = {
         name: 'Wanderlust Treehouse Experience',
         description: 'Our very unique treehouse is nestled into the treetops on 40 acres of completely secluded property. Great for a couples retreat, honeymoon, or spiritual reconnecting. Get away from it all and enjoy the nature trails and 2 acre lake(seasonal at times) to pass the time and be able to really unwind. Sit and enjoy your morning coffee outside on the deck as you may be able to catch a peak at the deer and other small animals making their way.',
         price: 350,
+        category: 'Treehouses',
+        type: 'Treehouse',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1.5
       },
       {
         ownerId: 4,
@@ -146,6 +212,12 @@ module.exports = {
         name: 'I TRULLI DI CAROLE',
         description: 'Complex of authentic trulli entirely renovated preserving all the characteristics. Trulli Carole are located halfway between Ostuni and Martina Franca, surrounded by centuries-old olive and fruit trees. On the front of the house a stone paved area welcomes the swimming pool (mt 5x8) equipped with sun beds and special straw umbrellas and the outdoor kitchen with hob, barbecue and large table for outdoor dining.',
         price: 510,
+        category: 'Domes',
+        type: 'Trullo',
+        guests: 10,
+        bedrooms: 3,
+        beds: 5,
+        baths: 4
       },
       {
         ownerId: 4,
@@ -158,6 +230,12 @@ module.exports = {
         name: 'Minoas Sea Villa Heated Pool',
         description: 'Nuzzled in a gorgeous setting, above the sun kissed beach of Georgioupolis in Crete, Minoas Villas captures the essence of chic and luxurious living only few minutes away from the shimmering sea. Built amphitheatrically with direct sea views, this exceptional built Villas, member of the HotelPraxis Group evokes the island’s Cretan spirit and cosmopolitan charm in its elegant environs while ensuring a holiday beyond comparison.',
         price: 419,
+        category: 'Amazing Pools',
+        type: 'Entire villa',
+        guests: 10,
+        bedrooms: 4,
+        beds: 6,
+        baths: 3
       },
       {
         ownerId: 5,
@@ -170,6 +248,12 @@ module.exports = {
         name: 'Casa Muito: Beach, City, Surf!',
         description: 'In the center of Costa da Caparica and 7 minutes walk to the beach, we have a lovely cozy house to make you feel at home, just 20 minutes from the vibrant Lisbon.',
         price: 222,
+        category: 'Beach',
+        type: 'Entire home',
+        guests: 6,
+        bedrooms: 3,
+        beds: 4,
+        baths: 1
       },
       {
         ownerId: 5,
@@ -182,6 +266,12 @@ module.exports = {
         name: 'New Modernist Wine Country Estate Home w/ Jacuzzi',
         description: 'This modernist wine country estate home is nestled just outside of the city, amongst soaring redwoods and rolling vineyard views. Set on a quiet and private 3 acres, yet close to many towns and wineries. Fully renovated 3600 sq. ft. two-story home, with lux materials throughout. Relax in the massive family room with vaulted ceilings and a 20inch marble fireplace.Find your self glowing from the vintage chandeliers and lighting throughout the entire home.',
         price: 1480,
+        category: 'Luxe',
+        type: 'Entire villa',
+        guests: 8,
+        bedrooms: 4,
+        beds: 6,
+        baths: 3.5
       },
       {
         ownerId: 2,
@@ -194,6 +284,12 @@ module.exports = {
         name: 'Award-Winning Forest Getaway: The Sea Ranch House',
         description: 'Named `The Ranch House` by its architect Don Jacobs, this updated 70s cabin is a forest getaway with modern sensibility.The house is surrounded by redwoods & has 2 large decks, 1 with propane firepit with ample seating, the other with hot tub.Living room has picture windows with forest views & Morso wood - burning stove.Guests are encouraged to enjoy the hiking trails, pools, and outdoor amenities.House comfortably sleeps 4, plus fast internet.',
         price: 900,
+        category: 'Design',
+        type: 'Entire home',
+        guests: 4,
+        bedrooms: 1,
+        beds: 2,
+        baths: 1
       },
       {
         ownerId: 6,
@@ -206,6 +302,12 @@ module.exports = {
         name: 'Villa Harrah',
         description: 'With walls of windows that soar above the lake, this light-filled villa looks like it is floating on water. Wander from the full cinema, wet bar, and pool table to a deluxe spa with a sauna, hot tub, salt room, and even a nail and hair salon.A large terrace lead to a pool, sandy beach and private pier, and the balconies seem endless.You are just minutes from Zephyr Cove Beach and Edgewood Tahoe Golf Course. Copyright © Luxury Retreats.All rights reserved.',
         price: 20000,
+        category: 'Lakefront',
+        type: 'Lakefront resort',
+        guests: 10,
+        bedrooms: 6,
+        beds: 11,
+        baths: 7.5
       },
       {
         ownerId: 2,
@@ -218,6 +320,12 @@ module.exports = {
         name: 'Ubud Tropical Paradise - Villa Bambu Blue',
         description: 'A dreamy, tropical private villa located on the edge of Bali`s popular tourist town, Ubud.',
         price: 140,
+        category: 'Amazing Pools',
+        type: 'Entire villa',
+        guests: 6,
+        bedrooms: 3,
+        beds: 3,
+        baths: 3
       },
       {
         ownerId: 3,
@@ -230,6 +338,12 @@ module.exports = {
         name: 'Little Black Cabin by the Lake',
         description: 'We have restored and transformed this original, hand built, 1940s Tahoe cabin into a beautiful and modern four season escape. Our cozy one bedroom + loft, one bathroom cabin is centrally located in one of the most sought after neighborhoods in the region. We spent the past year thoughtfully curating all spaces throughout the home with modern furniture, new bedding and linens, as well as top- end housewares, appliances and beautiful things we love.',
         price: 681,
+        category: 'Cabins',
+        type: 'Entire home',
+        guests: 3,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
       },
       {
         ownerId: 5,
@@ -242,6 +356,12 @@ module.exports = {
         name: 'Floating Geodesic Dome on Historic Wine Route',
         description: 'Experience a one of a kind stay in our floating, star gazer geodesic dome on beautiful Fox Creek! This 4 season, glamping stay is only steps away from wineries, breweries, beaches, shopping and much more. Our unique reservation provides you with a calm floating experience, leaving you rested, reconnected and ready to explore incredible Essex County, Ontario. We look forward to meeting you and sharing this creative space!',
         price: 203,
+        category: 'Dome',
+        type: 'Dome',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
       },
       {
         ownerId: 3,
@@ -254,6 +374,12 @@ module.exports = {
         name: 'Bali Bamboo House | Rescape Ubud - Resound Villa',
         description: 'Rescape (retreat/ escape) Ubud is an uniquely designed villa built by bamboo, allowing guests to unwind and escape from all the daily hassle. This stay is perfect for couples, young families, artists, musicians and everyone who loves to fully embrace the nature. The place feels secluded and yet only 5 minutes away by bike from central Ubud!',
         price: 87,
+        category: 'A-Frames',
+        type: 'Hut',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
       },
       {
         ownerId: 3,
@@ -266,6 +392,12 @@ module.exports = {
         name: 'Amazing 6BR w/ Gym, Massage Room & Yoga Shala',
         description: 'This villa encapsulates all that is great about Ubud within one place, its superbly large and spacious design dominates the verticality of its overall structure. With 6 bedrooms located in different portions of the house, this villa thrives in being wide open and perfect for your family gatherings. In each portion of the house you will find naturally cold breezes that drift and flow through the entirety of the villa with no effort.',
         price: 499,
+        category: 'Amazing Pools',
+        type: 'Entire villa',
+        guests: 14,
+        bedrooms: 6,
+        beds: 6,
+        baths: 6
       },
       {
         ownerId: 3,
@@ -278,14 +410,54 @@ module.exports = {
         name: 'Seaview Bamboo Villa - "Nanti Lombok" - Villa Atas',
         description: 'Nestled in the hills of Kuta Lombok overlooking the bay. Nanti is a boutique luxury bamboo resort welcoming you to an unforgettable AirBnB experience.',
         price: 166,
+        category: 'Tiny Homes',
+        type: 'Hut',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
+      },
+      {
+        ownerId: 4,
+        address: 'Jl. Jangu, Duda, Kec. Selat, Kabupaten Karangasem',
+        city: 'Selat',
+        state: 'Bali',
+        country: 'Indonesia',
+        lat: -8.447908,
+        lng: 115.484601,
+        name: 'Hideout Coccon - Barefoot Luxury Bamboo House',
+        description: 'Hideout Cocoon is truly one of Hideout gems. The entrance to your private bamboo villa weaves through a bamboo tunnel path and over a small bamboo bridge that crosses over one of the cleanest rivers in Bali. Your garden is fully enclosed by lush jungle vegetation. The house is at the centre of it all, together with a heated jacuzzi and a bonfire. Hideout Cocoon is very modern, luxurious and the perfect choice for a honeymoon, quick staycation or longer escape from the world.',
+        price: 244,
+        category: 'Treehouses',
+        type: 'Treehouse',
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        baths: 1
+      },
+      {
+        ownerId: 4,
+        address: 'Av. Boca Paila entre Zacil-ha y Nicte-ha, 77760',
+        city: 'Tulum',
+        state: 'Quintana Roo',
+        country: 'Mexico',
+        lat: 20.212720,
+        lng: -87.470502,
+        name: 'Relaxing Space with Common Pools & Lounge Area',
+        description: 'Discover this beautiful 3bed apartment in the best of Aldea Zama, located on 1st floor by stairs only, surrounded by all the necessary amenities to make your stay, the most pleasant. This property is perfect for a group of friends, family or bach parties looking to escape and forget about the daily routine and live a relaxing experience.',
+        price: 206,
+        category: 'Tropical',
+        type: 'Entire rental unit',
+        guests: 8,
+        bedrooms: 3,
+        beds: 4,
+        baths: 3
       },
     ], {});
   },
 
   async down(queryInterface, Sequelize) {
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Rooms', {
-      address: { [Op.in]: ['3376 Lake Tahoe Blvd', '1 Boulevard de la Menara', '37 Lower Simcoe Street'] }
-    }, {});
+    await queryInterface.bulkDelete('Rooms', null, {});
   }
 };

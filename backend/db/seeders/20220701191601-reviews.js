@@ -273,6 +273,30 @@ module.exports = {
         stars: 5,
         review: 'Incredible view! The photos don’t do it justice. What a fantastic stay, down to every last detail.'
       },
+      {
+        userId: 1,
+        roomId: 24,
+        stars: 5,
+        review: 'The hideout is a fancy accommodation for everybody who is looking for some relaxation in the balinese jungle. Please mind that it‘s far away from the city and civilization - but you can order a driver that brings you wherever you want. The food is also delicious. Great place to stay if you want to get to know the residents and balinese hinterlands.'
+      },
+      {
+        userId: 6,
+        roomId: 24,
+        stars: 5,
+        review: 'The most beautiful Airbnb I’ve ever seen! I didn’t want to leave. Everything was amazing. The food was delicious, the host responded quickly, the entire villa was beautiful.'
+      },
+      {
+        userId: 7,
+        roomId: 25,
+        stars: 5,
+        review: 'This property is just as beautiful as the pictures! The host was so helpful and a gracious host. He was able to rent scooters and make reservations for us which was super convenient. Also, we were very close to everything! 10/10 recommend staying here!'
+      },
+      {
+        userId: 8,
+        roomId: 25,
+        stars: 4,
+        review: 'The location is great, especially if you have a car. Street parking is easily available, and it’s about 20 minutes to the beach/hotel zone. The actual apartment is really big and new. Air conditioning worked super well! My only quibble is that we lost water for a few hours one morning.Sounds like the whole building had an issue.However, it was resolved relatively quickly. Sometimes stuff happens!'
+      },
     ], {});
   },
 

@@ -22,19 +22,27 @@ const SearchMap = ({ searchRooms }) => {
 
     if (searchRooms.length > 0) {
 
-      const allLats = searchRooms?.map((room) => room.lat)
-      const allLngs = searchRooms?.map((room) => room.lng)
+      // const allLats = searchRooms?.map((room) => room.lat)
+      // const allLngs = searchRooms?.map((room) => room.lng)
 
-      const maxLat = Math.max(...allLats)
-      const minLat = Math.min(...allLats)
-      const maxLng = Math.max(...allLngs)
-      const minLng = Math.min(...allLngs)
+      // const maxLat = Math.max(...allLats)
+      // const minLat = Math.min(...allLats)
+      // const maxLng = Math.max(...allLngs)
+      // const minLng = Math.min(...allLngs)
 
-      const avgLat = (maxLat + minLat) / 2
-      const avgLng = (maxLng + minLng) / 2
+      // const avgLat = (maxLat + minLat) / 2
+      // const avgLng = (maxLng + minLng) / 2
 
-      setMidLat(avgLat)
-      setMidLng(avgLng)
+      // setMidLat(avgLat)
+      // setMidLng(avgLng)
+
+      setMidLat(searchRooms[0].lat)
+      setMidLng(searchRooms[0].lng)
+    }
+
+    if (searchRooms.length > 1) {
+      setMidLat(searchRooms[1].lat)
+      setMidLng(searchRooms[1].lng)
     }
 
     if (searchRooms?.length > 10) {

@@ -10,6 +10,16 @@
   border-top: 0.3px solid rgba(128, 128, 128, 0.113);
 }
 
+.home-upper-nav {
+  position: fixed;
+  background-color: white;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .home-nav-main {
   width: 1515px;
 }
@@ -19,7 +29,7 @@
   grid-template-columns: repeat(5, 300px);
   place-items: center;
   box-sizing: border-box;
-  margin-top: 15px;
+  margin-top: 160px;
   justify-content: center;
 }
 

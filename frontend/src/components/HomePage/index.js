@@ -23,11 +23,8 @@ const HomePage = ({ isLoaded }) => {
       const filteredRooms = allRooms.filter(room => {
         return room.category === category
       })
-
       setFilterRooms(filteredRooms)
     }
-
-    console.log(allRooms)
   }, [category])
 
 
@@ -37,11 +34,13 @@ const HomePage = ({ isLoaded }) => {
 
   return (
     <div className="outer-rooms-div">
+      <div className="home-upper-nav">
       <div className="home-nav-main">
         <Navigation isLoaded={isLoaded} setFilterRooms={setFilterRooms} setCategory={setCategory} />
       </div>
       <div className="navigation-border"></div>
       <RoomCategory handleFilter={handleFilter} category={category} />
+      </div>
       {filteredRooms.length > 0 ? <div className="all-rooms-div">
         {filteredRooms?.map((room, i) => {
 

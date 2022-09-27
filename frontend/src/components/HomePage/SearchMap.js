@@ -10,57 +10,58 @@ const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
+  const [map, setMap] = useState(null)
+  const [zoom, setZoom] = useState(5)
   const [midLat, setMidLat] = useState(0)
   const [midLng, setMidLng] = useState(0)
-  const [zoom, setZoom] = useState(2)
   const [selected, setSelected] = useState({})
 
-  console.log(searchRooms[0]?.lat)
 
   useEffect(() => {
     dispatch(getAPIKey())
 
-    if (searchRooms.length < 10) {
+    const allLats = searchRooms.map((room) => room.lat)
+    const allLngs = searchRooms.map((room) => room.lng)
 
-      // let numRooms = searchRooms?.length
+    const maxLat = Math.max(...allLats)
+    const minLat = Math.min(...allLats)
+    const maxLng = Math.max(...allLngs)
+    const minLng = Math.min(...allLngs)
 
-      // const latSum = () => {
-      //   return searchRooms?.reduce((sum, { lat }) => sum + lat, 0)
-      // }
+    const avgLat = (maxLat + minLat) / 2
+    const avgLng = (maxLng + minLng) / 2
 
+    setMidLat(avgLat)
+    setMidLng(avgLng)
 
-      // const lngSum = () => {
-      //   return searchRooms?.reduce((sum, { lng }) => sum + lng, 0)
-      // }
-
-      // setMidLat(Number((latSum() / numRooms).toFixed(6)))
-      // setMidLng(Number((lngSum() / numRooms).toFixed(6)))
-
-      setMidLat(searchRooms[0]?.lat)
-      setMidLng(searchRooms[0]?.lng)
-      setZoom(5)
-
-      if (searchRooms.length < 5) {
-        setZoom(10)
-      } else if (searchRooms.length < 6) {
-        setZoom(8)
-      }
-
-    } else {
-
-      setMidLat(0)
-      setMidLng(0)
+    if (searchRooms.length > 10) {
       setZoom(2)
-
+    } else {
+      setZoom(5)
     }
 
   }, [destination])
 
 
+  useEffect(() => {
+    if (map) {
+      const bounds = new window.google.maps.LatLngBounds();
+      searchRooms.map(marker => {
+        bounds.extend({
+          lat: marker.lat,
+          lng: marker.lng,
+        });
+      });
+      map.fitBounds(bounds);
+    }
+  }, [map]);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: APIKey,
     id: 'google-maps-script'
   })
+
+  const onLoad = React.useCallback((map) => setMap(map), []);
 
   const containerStyle = {
     width: '100%',
@@ -72,12 +73,18 @@ const SearchMap = ({ searchRooms }) => {
     lng: Number(midLng)
   };
 
-  console.log('center', center)
+  // const bounds = {
+  //   north: maxLng,
+  //   south: minLng,
+  //   east: maxLat,
+  //   west: minLat
+  // }
 
   return (
     <div className='search-google-map-outer'>
       {isLoaded &&
         (<GoogleMap
+          onLoad={onLoad}
           mapContainerStyle={containerStyle}
           center={center}
           zoom={zoom}
@@ -86,8 +93,13 @@ const SearchMap = ({ searchRooms }) => {
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
-            scrollwheel: true
+            scrollwheel: true,
+            // restriction: {
+            //   latLngBounds: bounds,
+            //   strictBounds: false
+            // }
           }}
+
         >
           {searchRooms.map((room) => {
             return (

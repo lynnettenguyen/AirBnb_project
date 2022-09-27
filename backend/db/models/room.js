@@ -45,6 +45,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(9, 6),
       allowNull: false,
     },
+    category: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    type: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -59,6 +67,22 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         min: 0.00
       }
+    },
+    guests: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    bedrooms: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    beds: {
+      type: Sequelize.DECIMAL(3,1),
+      allowNull: false,
+    },
+    baths: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
     },
     numReviews: {
       type: DataTypes.INTEGER,

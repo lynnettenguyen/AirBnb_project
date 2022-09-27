@@ -322,7 +322,7 @@ router.get('/:roomId', checkRoomExists, async (req, res) => {
 })
 
 router.post('/', [requireAuth, validateRoom], async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, category, type, bedrooms, beds, baths, guests } = req.body;
 
     const newRoom = await Room.create({
         ownerId: req.user.id,
@@ -334,13 +334,19 @@ router.post('/', [requireAuth, validateRoom], async (req, res) => {
         lng: lng,
         name: name,
         description: description,
-        price: price
+        price: price,
+        category: category,
+        type: type,
+        guests: guests,
+        bedrooms: bedrooms,
+        beds: beds,
+        baths: baths
     })
     return res.json(newRoom);
 })
 
 router.put('/:roomId', [requireAuth, checkOwnerRoom, validateRoom], async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, category, type, bedrooms, beds, baths, guests } = req.body;
     const room = await Room.findByPk(req.params.roomId);
 
     room.address = address;
@@ -352,6 +358,12 @@ router.put('/:roomId', [requireAuth, checkOwnerRoom, validateRoom], async (req, 
     room.name = name;
     room.description = description;
     room.price = price;
+    room.category = category;
+    room.type = type;
+    room.guests = guests;
+    room.bedrooms = bedrooms;
+    room.beds = beds;
+    room.baths = baths;
 
     await room.save();
     return res.json(room);
@@ -383,19 +395,19 @@ router.get('/', async (req, res, next) => {
     const errorResult = { errors: {} }
 
     page = req.query.page === undefined ? 0 : parseInt(req.query.page)
-    size = req.query.size === undefined ? 25 : parseInt(req.query.size)
+    size = req.query.size === undefined ? 30 : parseInt(req.query.size)
 
     if (!Number.isNaN(page) && !Number.isNaN(size)) {
         if (page < 0) {
             errorResult.errors.page = 'Page must be greater than or equal to 0'
         } else if (size < 0) {
             errorResult.errors.size = 'Size must be greater than or equal to 0'
-        } else if (page <= 10 && size <= 25) {
+        } else if (page <= 10 && size <= 30) {
             pagination.limit = size;
             pagination.offset = size * (page - 1)
-        } else if (size > 25) {
-            pagination.limit = 25;
-            pagination.offset = 25 * (page - 1)
+        } else if (size > 30) {
+            pagination.limit = 30;
+            pagination.offset = 30 * (page - 1)
         } else if (page > 10) {
             pagination.limit = size;
             pagination.offset = size * (9)
@@ -463,7 +475,7 @@ router.get('/', async (req, res, next) => {
     })
 
     results.page = page || 0;
-    results.size = size || 25
+    results.size = size || 30
 
     if (Object.keys(errorResult.errors).length) {
         const err = new Error('Validation Error');

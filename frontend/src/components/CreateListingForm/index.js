@@ -37,8 +37,6 @@ const CreateListingForm = ({ isLoaded }) => {
   const [validationErrors, setValidationErrors] = useState([])
   const [errors, setErrors] = useState([])
 
-  console.log(page)
-
   const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabin', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
 
   const toggleNext = (e) => {
@@ -307,7 +305,7 @@ const CreateListingForm = ({ isLoaded }) => {
                     Guests
                   </label>
                   <div className="create-guests-buttons">
-                    <button onClick={() => { if (guests > 1) setGuests(guests - 1) }}>-</button>
+                    <button onClick={() => { if (guests > 1) setGuests(guests - 1) }} disabled={guests === 1}>-</button>
                     {guests}
                     <button onClick={() => setGuests(guests + 1)}>+</button>
                   </div>
@@ -315,7 +313,7 @@ const CreateListingForm = ({ isLoaded }) => {
                     Beds
                   </label>
                   <div className="create-guests-buttons">
-                    <button onClick={() => { if (beds > 1) setBeds(beds - 1) }}>-</button>
+                    <button onClick={() => { if (beds > 1) setBeds(beds - 1) }} disabled={beds === 1}>-</button>
                     {beds}
                     <button onClick={() => setBeds(beds + 1)}>+</button>
                   </div>
@@ -323,7 +321,7 @@ const CreateListingForm = ({ isLoaded }) => {
                     Bedrooms
                   </label>
                   <div className="create-guests-buttons">
-                    <button onClick={() => { if (bedrooms > 1) setBedrooms(bedrooms - 1) }}>-</button>
+                    <button onClick={() => { if (bedrooms > 1) setBedrooms(bedrooms - 1) }} disabled={bedrooms === 1}>-</button>
                     {bedrooms}
                     <button onClick={() => setBedrooms(bedrooms + 1)}>+</button>
                   </div>
@@ -331,7 +329,7 @@ const CreateListingForm = ({ isLoaded }) => {
                     Bathrooms
                   </label>
                   <div className="create-guests-buttons">
-                    <button onClick={() => { if (baths > 1) setBaths(baths - 1) }}>-</button>
+                    <button onClick={() => { if (baths > 1) setBaths(baths - 1) }} disabled={baths === 1}>-</button>
                     {baths}
                     <button onClick={() => setBaths(baths + 1)}>+</button>
                   </div>

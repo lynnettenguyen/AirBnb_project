@@ -49,7 +49,8 @@
   margin-bottom: 0.6rem;
 }
 
-.create-guests-label, .create-bathroom-label {
+.create-guests-label,
+.create-bathroom-label {
   font-size: 1.3rem;
   margin-bottom: 3rem;
 }
@@ -64,6 +65,10 @@
   border: 1px solid grey;
   padding: 5px 10px;
   margin: 0 10px;
+}
+
+.create-guests-buttons button:disabled {
+  border: 1px solid rgba(128, 128, 128, 0.325);
 }
 
 .create-new-label-property {

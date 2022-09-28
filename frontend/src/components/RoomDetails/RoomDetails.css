@@ -128,7 +128,7 @@
 }
 
 .edit-listing-button,
-.delete-listing-button {
+.delete-listing-button, .delete-confirm-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
   border: none;
   border-radius: 10px;
@@ -186,6 +186,22 @@
   font-size: 1rem;
   font-weight: 250;
   padding: 1.6rem 1.2rem 0 0rem;
+}
+
+.delete-confirmation-modal {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-confirmation-button-outer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.delete-confirm-button {
+  margin-right: 0;
 }
 
 @media screen and (max-width: 1700px) {

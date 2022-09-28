@@ -31,7 +31,7 @@ const ManageListings = ({ isLoaded }) => {
       <div className="navigation-border"></div>
       {sessionUser ?
         <div className="manage-listing-page">
-          <div className="manage-listings-header">Manage your Listings</div>
+          <div className="manage-listings-header">{userRooms?.length} listings</div>
           <table className="manage-table-main">
             <tr>
               <th>LISTING</th>

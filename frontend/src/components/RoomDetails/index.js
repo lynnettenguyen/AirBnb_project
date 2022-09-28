@@ -5,12 +5,13 @@ import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
 import EditListingForm from "../EditListingForm";
 import ReserveRoom from "../ReserveRoom";
-import { getAllReservations, listRoomReservations } from "../../store/reservations";
+import { listRoomReservations } from "../../store/reservations";
 import Maps from '../Maps'
 import Reviews from "../Reviews";
 import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
 import Navigation from "../Navigation";
+import { Modal } from "../../context/Modal";
 
 const RoomDetails = ({ isLoaded }) => {
   let { roomId } = useParams()
@@ -21,6 +22,7 @@ const RoomDetails = ({ isLoaded }) => {
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
   const users = useSelector(state => state.users)
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const [page, setPage] = useState(1)
 
@@ -37,6 +39,10 @@ const RoomDetails = ({ isLoaded }) => {
   const handleEdit = (e) => {
     e.preventDefault()
     setPage(2)
+  }
+
+  const handleConfirmDelete = () => {
+    setConfirmDelete(true)
   }
 
   const handleDelete = async (e) => {
@@ -84,7 +90,16 @@ const RoomDetails = ({ isLoaded }) => {
                       {sessionUser?.id === room?.ownerId &&
                         <div>
                           <button onClick={handleEdit} className="edit-listing-button">Edit</button>
-                          <button onClick={handleDelete} className="delete-listing-button">Delete</button>
+                          <button onClick={handleConfirmDelete} className="delete-listing-button">Delete</button>
+                          {confirmDelete &&
+                            <Modal onClose={() => setConfirmDelete(false)}>
+                              <div className="delete-confirmation-modal">
+                                Permanently remove listing?
+                                <div className="delete-confirmation-button-outer">
+                                <button onClick={handleDelete} className='delete-confirm-button'>Delete</button>
+                                </div>
+                              </div>
+                            </Modal>}
                         </div>}
                     </> : <></>}
                 </div>

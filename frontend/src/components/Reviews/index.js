@@ -15,6 +15,7 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
   const [checkDuplicate, setCheckDuplicate] = useState(false)
   const [editReview, setEditReview] = useState(false)
   const [reviewId, setReviewId] = useState()
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   useEffect(() => {
     if (sessionUser) {
@@ -31,11 +32,17 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
     setShowReview(true)
   }
 
-  const handleDeleteReview = async (deleteReviewId) => {
-    const deleteReview = await dispatch(removeReview(deleteReviewId))
+  const handleConfirmDelete = (deleteReviewId) => {
+    setReviewId(deleteReviewId)
+    setConfirmDelete(true)
+  }
+
+  const handleDeleteReview = async () => {
+    const deleteReview = await dispatch(removeReview(reviewId))
     if (deleteReview) {
       dispatch(findRoomById(roomId))
       setEditReview(false)
+      setConfirmDelete(false)
     }
   }
 
@@ -67,10 +74,23 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
                     <div className="review-first-name">{users[review?.userId]?.firstName}</div>
                     <div className="review-date">{month} {year}</div>
                   </div>
-                  {sessionUser && review.userId === sessionUser.id && <div className="review-update-buttons-outer">
-                    <button onClick={() => handleEditReview(review.id)} className='review-edit-button'>Edit</button>
-                    <button onClick={() => handleDeleteReview(review.id)} className='review-delete-button'>Delete</button>
-                  </div>}
+                  {sessionUser && review.userId === sessionUser.id &&
+                    <>
+                      <div className="review-update-buttons-outer">
+                        <button onClick={() => handleEditReview(review.id)} className='review-edit-button'>Edit</button>
+                      <button onClick={() => handleConfirmDelete(review.id)} className='review-delete-button'>Delete</button>
+                      </div>
+                      {confirmDelete &&
+                        <Modal onClose={() => setConfirmDelete(false)}>
+                          <div className="delete-confirmation-modal">
+                            Permanently remove review?
+                            <div className="delete-confirmation-button-outer">
+                            <button onClick={handleDeleteReview} className='delete-confirm-button'>Delete</button>
+                            </div>
+                          </div>
+                        </Modal>}
+                    </>
+                  }
                 </div>
                 <div className="review-content">{review?.review}</div>
               </div>

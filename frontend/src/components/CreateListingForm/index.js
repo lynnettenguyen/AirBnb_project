@@ -19,6 +19,12 @@ const CreateListingForm = ({ isLoaded }) => {
   const [lat, setLat] = useState("")
   const [lng, setLng] = useState("")
   const [name, setName] = useState("")
+  const [type, setType] = useState("")
+  const [category, setCategory] = useState("")
+  const [guests, setGuests] = useState(0)
+  const [bedrooms, setBedrooms] = useState(0)
+  const [beds, setBeds] = useState(0)
+  const [baths, setBaths] = useState(0)
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [page, setPage] = useState(1)
@@ -30,6 +36,8 @@ const CreateListingForm = ({ isLoaded }) => {
   const [image5, setImage5] = useState("")
   const [validationErrors, setValidationErrors] = useState([])
   const [errors, setErrors] = useState([])
+
+  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabin', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
 
   const toggleNext = (e) => {
     if (e.length > 1) setCheckInput(false)
@@ -66,6 +74,15 @@ const CreateListingForm = ({ isLoaded }) => {
     } else setCheckInput(false)
 
   }, [page, address, city, state, country, lat, lng])
+
+  const addGuests = () => { }
+  const removeGuests = () => { }
+  const addBeds = () => { }
+  const removeBeds = () => { }
+  const addBedrooms = () => { }
+  const removeBedrooms = () => { }
+  const addBaths = () => { }
+  const removeBaths = () => { }
 
   const setDemoAddress = () => {
     setAddress("19508 Boggy Ford Rd")
@@ -110,6 +127,12 @@ const CreateListingForm = ({ isLoaded }) => {
       name,
       description,
       price,
+      type,
+      category,
+      guests,
+      beds,
+      bedrooms,
+      baths
     }
 
     const roomResponse = await dispatch(hostNewRoom(roomData))
@@ -193,7 +216,7 @@ const CreateListingForm = ({ isLoaded }) => {
           </div>
         </div>
       }
-      <form onSubmit={handleSubmit} className={page < 6 ? "block" : "hidden"}>
+      <form onSubmit={handleSubmit} className={page < 8 ? "block" : "hidden"}>
         {page >= 2 &&
           <section className={page === 2 ? "block" : "hidden"}>
             <div className="create-content">
@@ -226,6 +249,108 @@ const CreateListingForm = ({ isLoaded }) => {
         }
         {page >= 3 &&
           <section className={page === 3 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">What kind of place will you host?</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Describe your place (entire hut, shared room)
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setType("Campsite"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <div className="right-content-input">
+                  <input
+                    type="text"
+                    placeholder="Entire bungalow"
+                    className="create-input"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Select a category
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setCategory("Domes"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                {categories.map((room_category) => {
+                  return (
+                    <div className="">
+                      <label>{room_category}</label>
+                      <input
+                        name={category}
+                        type="radio"
+                        className=""
+                        checked={category === room_category}
+                        value={category}
+                        onChange={() => setCategory(room_category)}
+                        required
+                      />
+                    </div>
+                  )
+                })}
+                <div className="right-content-buttons">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+        {page >= 4 &&
+          <section className={page === 4 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">How many guests would you like to welcome?</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Guests
+                  </label>
+                  <div>
+                    <button onClick={() => addGuests()}>+</button>
+                    {guests}
+                    <button onClick={() => removeGuests()}>-</button>
+                  </div>
+                  <label className="create-new-label">
+                    Beds
+                  </label>
+                  <div>
+                    <button onClick={() => addBeds()}>+</button>
+                    {beds}
+                    <button onClick={() => removeBeds()}>-</button>
+                  </div>
+                  <label className="create-new-label">
+                    Bedrooms
+                  </label>
+                  <div>
+                    <button onClick={() => addBedrooms()}>+</button>
+                    {bedrooms}
+                    <button onClick={() => removeBedrooms()}>-</button>
+                  </div>
+                  <label className="create-new-label">
+                    Bathrooms
+                  </label>
+                  <div>
+                    <button onClick={() => addBaths()}>+</button>
+                    {baths}
+                    <button onClick={() => removeBaths()}>-</button>
+                  </div>
+                </div>
+                <div className="create-content-buttons">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+        {page >= 5 &&
+          <section className={page === 5 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Where's your place located?</div>
               <div className="create-content-right">
@@ -308,8 +433,8 @@ const CreateListingForm = ({ isLoaded }) => {
             </div>
           </section>
         }
-        {page >= 4 &&
-          (<section className={page === 4 ? "block" : "hidden"}>
+        {page >= 6 &&
+          (<section className={page === 6 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Now, let's describe your place</div>
               <div className="create-content-right">
@@ -343,8 +468,8 @@ const CreateListingForm = ({ isLoaded }) => {
             </div>
           </section>)
         }
-        {page >= 5 &&
-          (<section className={page === 5 ? "block" : "hidden"}>
+        {page >= 7 &&
+          (<section className={page === 7 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Now for the fun part - set your price</div>
               <div className="create-content-right">
@@ -387,8 +512,8 @@ const CreateListingForm = ({ isLoaded }) => {
         }
       </form >
       <form onSubmit={handleImagesSubmit}>
-        {page >= 6 &&
-          (<section className={page === 6 ? "block" : "hidden"}>
+        {page >= 8 &&
+          (<section className={page === 8 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Let's add some photos of your place</div>
               <div className="create-content-right">
@@ -463,7 +588,7 @@ const CreateListingForm = ({ isLoaded }) => {
           </section>)
         }
       </form>
-    </div>
+    </div >
 
   )
 }

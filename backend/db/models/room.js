@@ -77,11 +77,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     beds: {
-      type: Sequelize.DECIMAL(3,1),
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     baths: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(3,1),
       allowNull: false,
     },
     numReviews: {

@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.edit-listing-form {
+  overflow-x: auto;
+  height: 1000px;
 }
 
 .return-div,
@@ -15,10 +21,33 @@
   font-weight: 500;
 }
 
+.edit-listing-title {
+  font-size: 1.2rem;
+}
+
 .edit-listing-label {
   display: flex;
   flex-direction: column;
   font-size: 1.2rem;
+}
+
+.edit-categories-main {
+  display: grid;
+  grid-template-columns: repeat(5, 22%);
+  width: 54rem;
+  margin: 0.7rem;
+}
+
+.edit-categories-outer {
+  display: flex;
+  align-items: center;
+}
+
+.edit-category-radio {
+  height: 1rem;
+  margin: 0;
+  width: 0.8rem;
+  margin-right: 0.5rem;
 }
 
 .edit-listing-lat,
@@ -33,12 +62,11 @@
   width: 54rem;
 }
 
-.title-input,
-.address-input,
-.city-state-country,
-.lat,
-.lng,
-.price-input {
+.place-input {
+  width: 13rem;
+}
+
+.edit-listing-input {
   height: 2rem;
   font-size: 1rem;
   font-weight: 250;
@@ -71,7 +99,7 @@
   color: rgb(94, 94, 94);
   font-size: 1rem;
   font-weight: 250;
-  height: 10rem;
+  height: 8rem;
   margin: 0.7rem 0;
   padding: 0.7rem;
   resize: none;
@@ -89,7 +117,7 @@
 
 .update-listing-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-  border:none;
+  border: none;
   border-radius: 10px;
   color: white;
   font-size: 16px;
@@ -99,7 +127,19 @@
   width: 55rem;
 }
 
-.update-button {
-  display: flex;
-  justify-content: center;
+.edit-guests-buttons button {
+  border-radius: 50%;
+  background: none;
+  border: 1px solid grey;
+  padding: 1px 4px;
+  margin: 0 8px;
+  font-size: 0.6rem;
+}
+
+.edit-guests-label {
+  margin-left: 12px;
+}
+
+.edit-guests-buttons button:disabled {
+  border: 1px solid rgba(128, 128, 128, 0.325);
 }

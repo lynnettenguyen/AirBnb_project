@@ -6,7 +6,7 @@
 }
 
 .create-listing-nav-main {
-  width: 70%;
+  width: 1130px;
 }
 
 .create-content {
@@ -18,6 +18,12 @@
   display: flex;
   flex-direction: column;
   padding: 8rem 2rem 0;
+}
+
+.create-guests-outer {
+  width: 26rem;
+  display: grid;
+  grid-template-columns: repeat(2, 13rem);
 }
 
 .right-content-input {
@@ -37,9 +43,54 @@
   border-radius: 20px;
 }
 
-.create-new-label {
+.create-new-label,
+.create-new-label-property {
   font-size: 1.3rem;
   margin-bottom: 0.6rem;
+}
+
+.create-guests-label,
+.create-bathroom-label {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+}
+
+.create-bathroom-label {
+  margin-bottom: 10rem;
+}
+
+.create-guests-buttons button {
+  border-radius: 50%;
+  background: none;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  margin: 0 10px;
+}
+
+.create-guests-buttons button:disabled {
+  border: 1px solid rgba(128, 128, 128, 0.325);
+}
+
+.create-new-label-property {
+  margin-top: 30px;
+}
+
+.create-categories-main {
+  display: grid;
+  grid-template-columns: repeat(2, 13rem);
+  padding-bottom: 54px;
+}
+
+.create-categories-outer {
+  display: grid;
+  grid-template-columns: 15% 75%;
+  padding: 10px 0;
+}
+
+.create-category-radio {
+  height: 1rem;
+  margin: 0;
+  width: 1rem;
 }
 
 .create-new-button {
@@ -93,11 +144,13 @@
 }
 
 .create-input,
-.multi-input {
+.multi-input,
+.create-type-input {
   width: 26rem;
   font-size: 0.9rem;
   height: 2.2rem;
   font-weight: 250;
+  margin: 5px 0;
 }
 
 .back-button {
@@ -148,7 +201,7 @@
   color: rgb(92, 92, 92);
   border: none;
   font-size: 0.8rem;
-  padding: 0.6rem;
+  padding: 0.4rem 0.5rem;
 }
 
 .right-content-label {

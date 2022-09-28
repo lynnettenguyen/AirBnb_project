@@ -6,7 +6,7 @@
 }
 
 .trips-nav-main {
-  width: 1100px;
+  width: 1130px;
 }
 
 .trips-page {
@@ -16,7 +16,8 @@
 }
 
 .trips-main-div {
-  width: 900px;
+  width: 1090px;
+  box-sizing: border-box;
 }
 
 .trips-header {
@@ -74,7 +75,7 @@
 .main-reservation-content {
   display: grid;
   grid-template-columns: repeat(2, 450px);
-  height: 300px;
+  height: 200px;
 }
 
 .left-res-content {
@@ -119,6 +120,7 @@
 
 .right-res-content {
   width: 100%;
+  height: 200px;
 }
 
 .cancel-button {
@@ -186,6 +188,7 @@
 .res-city-state {
   font-size: 0.9rem;
   font-weight: 250;
+  padding-right: 0.5rem;
 }
 
 .res-country {

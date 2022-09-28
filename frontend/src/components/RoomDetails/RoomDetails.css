@@ -128,7 +128,7 @@
 }
 
 .edit-listing-button,
-.delete-listing-button {
+.delete-listing-button, .delete-confirm-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
   border: none;
   border-radius: 10px;
@@ -147,12 +147,61 @@
 
 .default-description {
   width: 45rem;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.room-info-general {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.299);
+  display: grid;
+  grid-template-columns: 85% 15%;
+  padding: 10px 0;
+}
+
+.room-info-header {
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-bottom: 0.5rem;
+}
+
+.room-info-beds {
+  font-size: 1rem;
+  font-weight: 250;
+  padding-bottom: 1.2rem;
+}
+
+.room-info-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.room-owner-img {
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
 }
 
 .room-description {
   font-size: 1rem;
   font-weight: 250;
-  padding: 0.7rem 1.2rem 0 0rem;
+  padding: 1.6rem 1.2rem 0 0rem;
+}
+
+.delete-confirmation-modal {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-confirmation-button-outer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.delete-confirm-button {
+  margin-right: 0;
 }
 
 @media screen and (max-width: 1700px) {

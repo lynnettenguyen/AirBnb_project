@@ -19,6 +19,12 @@ const CreateListingForm = ({ isLoaded }) => {
   const [lat, setLat] = useState("")
   const [lng, setLng] = useState("")
   const [name, setName] = useState("")
+  const [type, setType] = useState("")
+  const [category, setCategory] = useState("A-Frames")
+  const [guests, setGuests] = useState(2)
+  const [bedrooms, setBedrooms] = useState(1)
+  const [beds, setBeds] = useState(1)
+  const [baths, setBaths] = useState(1)
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [page, setPage] = useState(1)
@@ -31,6 +37,8 @@ const CreateListingForm = ({ isLoaded }) => {
   const [validationErrors, setValidationErrors] = useState([])
   const [errors, setErrors] = useState([])
 
+  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabin', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
+
   const toggleNext = (e) => {
     if (e.length > 1) setCheckInput(false)
     else setCheckInput(true)
@@ -38,6 +46,11 @@ const CreateListingForm = ({ isLoaded }) => {
 
   const updateName = (e) => {
     setName(e.target.value)
+    toggleNext(e.target.value)
+  }
+
+  const updateType = (e) => {
+    setType(e.target.value)
     toggleNext(e.target.value)
   }
 
@@ -110,6 +123,12 @@ const CreateListingForm = ({ isLoaded }) => {
       name,
       description,
       price,
+      type,
+      category,
+      guests,
+      beds,
+      bedrooms,
+      baths
     }
 
     const roomResponse = await dispatch(hostNewRoom(roomData))
@@ -124,7 +143,7 @@ const CreateListingForm = ({ isLoaded }) => {
 
     if (roomResponse) {
       setRoomId(roomResponse.id)
-      setPage(6)
+      setPage(8)
     }
   }
 
@@ -193,7 +212,7 @@ const CreateListingForm = ({ isLoaded }) => {
           </div>
         </div>
       }
-      <form onSubmit={handleSubmit} className={page < 6 ? "block" : "hidden"}>
+      <form onSubmit={handleSubmit} className={page < 8 ? "block" : "hidden"}>
         {page >= 2 &&
           <section className={page === 2 ? "block" : "hidden"}>
             <div className="create-content">
@@ -201,7 +220,7 @@ const CreateListingForm = ({ isLoaded }) => {
               <div className="create-content-right">
                 <div className="right-content-label">
                   <label className="create-new-label">
-                    Create your title
+                    Create your title:
                   </label>
                   <div className="right-content-demo">
                     <button type="button" onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }} className="demo-buttons">demo</button>
@@ -226,6 +245,109 @@ const CreateListingForm = ({ isLoaded }) => {
         }
         {page >= 3 &&
           <section className={page === 3 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">What kind of place will you host?</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Summarize your place:
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setType("Campsite"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Entire bungalow"
+                  className="create-type-input"
+                  value={type}
+                  onChange={updateType}
+                  required
+                  maxLength={20}
+                />
+                <div className="right-content-label">
+                  <label className="create-new-label-property">
+                    Select property type:
+                  </label>
+                </div>
+                <div className="create-categories-main">
+                  {categories.map((room_category) => {
+                    return (
+                      <div className="create-categories-outer">
+                        <input
+                          name={category}
+                          type="radio"
+                          className="create-category-radio"
+                          checked={category === room_category}
+                          value={category}
+                          onChange={(e) => { setCategory(room_category); toggleNext(e.target.value) }}
+                          required
+                        />
+                        <label className="create-category-label">{room_category}</label>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="right-content-buttons">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+        {page >= 4 &&
+          <section className={page === 4 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">How many guests would you like to welcome?</div>
+              <div className="create-content-right">
+                <div className="create-guests-outer">
+                  <label className="create-guests-label">
+                    Guests
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (guests > 1) setGuests(guests - 1) }} disabled={guests === 1}>-</button>
+                    {guests}
+                    <button onClick={() => setGuests(guests + 1)}>+</button>
+                  </div>
+                  <label className="create-guests-label">
+                    Beds
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (beds > 1) setBeds(beds - 1) }} disabled={beds === 1}>-</button>
+                    {beds}
+                    <button onClick={() => setBeds(beds + 1)}>+</button>
+                  </div>
+                  <label className="create-guests-label">
+                    Bedrooms
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (bedrooms > 1) setBedrooms(bedrooms - 1) }} disabled={bedrooms === 1}>-</button>
+                    {bedrooms}
+                    <button onClick={() => setBedrooms(bedrooms + 1)}>+</button>
+                  </div>
+                  <label className="create-bathroom-label">
+                    Bathrooms
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (baths > 1) setBaths(baths - 1) }} disabled={baths === 1}>-</button>
+                    {baths}
+                    <button onClick={() => setBaths(baths + 1)}>+</button>
+                  </div>
+                </div>
+                <div className="create-content-buttons">
+                  <div className="back-next-buttons">
+                    <button type="button" onClick={() => { setPage(page - 1); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="button" onClick={() => { setPage(page + 1); setCheckInput(true) }} className="next-button">Next</button>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+        {page >= 5 &&
+          <section className={page === 5 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Where's your place located?</div>
               <div className="create-content-right">
@@ -308,8 +430,8 @@ const CreateListingForm = ({ isLoaded }) => {
             </div>
           </section>
         }
-        {page >= 4 &&
-          (<section className={page === 4 ? "block" : "hidden"}>
+        {page >= 6 &&
+          (<section className={page === 6 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Now, let's describe your place</div>
               <div className="create-content-right">
@@ -331,7 +453,6 @@ const CreateListingForm = ({ isLoaded }) => {
                       className="create-input-textarea"
                       value={description}
                       onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
-                    // required // remove require to set error handler
                     >
                     </textarea>
                   </div>
@@ -343,8 +464,8 @@ const CreateListingForm = ({ isLoaded }) => {
             </div>
           </section>)
         }
-        {page >= 5 &&
-          (<section className={page === 5 ? "block" : "hidden"}>
+        {page >= 7 &&
+          (<section className={page === 7 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Now for the fun part - set your price</div>
               <div className="create-content-right">
@@ -377,7 +498,7 @@ const CreateListingForm = ({ isLoaded }) => {
                 </div>
                 <div className="right-content-button">
                   <div className="back-next-buttons">
-                    <button type="button" onClick={() => { setPage(4); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="button" onClick={() => { setPage(6); setCheckInput(false) }} className="back-button">Back</button>
                     <button type="submit" className="next-button" disabled={checkInput}>Next</button>
                   </div>
                 </div>
@@ -387,8 +508,8 @@ const CreateListingForm = ({ isLoaded }) => {
         }
       </form >
       <form onSubmit={handleImagesSubmit}>
-        {page >= 6 &&
-          (<section className={page === 6 ? "block" : "hidden"}>
+        {page >= 8 &&
+          (<section className={page === 8 ? "block" : "hidden"}>
             <div className="create-content">
               <div className="create-header">Let's add some photos of your place</div>
               <div className="create-content-right">
@@ -463,7 +584,7 @@ const CreateListingForm = ({ isLoaded }) => {
           </section>)
         }
       </form>
-    </div>
+    </div >
 
   )
 }

@@ -56,11 +56,11 @@ export const findRoomById = (roomId) => async (dispatch) => {
 }
 
 export const hostNewRoom = (roomData) => async (dispatch) => {
-  const {ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
+  const { ownerId, address, city, state, country, lat, lng, name, description, price, type, category, guests, beds, bedrooms, baths } = roomData;
   const response = await csrfFetch(`/api/rooms`, {
     method: "POST",
     body: JSON.stringify({
-      ownerId, address, city, state, country, lat, lng, name, description, price
+      ownerId, address, city, state, country, lat, lng, name, description, price, type, category, guests, beds, bedrooms, baths
     })
   })
   if (response.ok) {
@@ -71,12 +71,12 @@ export const hostNewRoom = (roomData) => async (dispatch) => {
 }
 
 export const updateRoom = (roomData) => async (dispatch) => {
-  const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price } = roomData;
+  const { roomId, ownerId, address, city, state, country, lat, lng, name, description, price, type, category, guests, beds, bedrooms, baths } = roomData;
   const response = await csrfFetch(`/api/rooms/${roomId}`, {
     method: "PUT",
     // headers: { "Content-Type": "Application/json" },
     body: JSON.stringify({
-      roomId, ownerId, address, city, state, country, lat, lng, name, description, price
+      roomId, ownerId, address, city, state, country, lat, lng, name, description, price, type, category, guests, beds, bedrooms, baths
     })
   })
   if (response.ok) {

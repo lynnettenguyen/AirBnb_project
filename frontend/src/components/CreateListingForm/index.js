@@ -37,6 +37,8 @@ const CreateListingForm = ({ isLoaded }) => {
   const [validationErrors, setValidationErrors] = useState([])
   const [errors, setErrors] = useState([])
 
+  console.log(page)
+
   const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabin', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
 
   const toggleNext = (e) => {
@@ -143,7 +145,7 @@ const CreateListingForm = ({ isLoaded }) => {
 
     if (roomResponse) {
       setRoomId(roomResponse.id)
-      setPage(6)
+      setPage(8)
     }
   }
 
@@ -453,7 +455,6 @@ const CreateListingForm = ({ isLoaded }) => {
                       className="create-input-textarea"
                       value={description}
                       onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
-                    // required // remove require to set error handler
                     >
                     </textarea>
                   </div>
@@ -499,7 +500,7 @@ const CreateListingForm = ({ isLoaded }) => {
                 </div>
                 <div className="right-content-button">
                   <div className="back-next-buttons">
-                    <button type="button" onClick={() => { setPage(4); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="button" onClick={() => { setPage(6); setCheckInput(false) }} className="back-button">Back</button>
                     <button type="submit" className="next-button" disabled={checkInput}>Next</button>
                   </div>
                 </div>

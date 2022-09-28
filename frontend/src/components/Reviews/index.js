@@ -46,7 +46,9 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
           <i className="fa-solid fa-star reviews"></i><span>{avgStarRating === 0 ? <>New</> : <>{avgStarRating}</>}</span>
           <span className="span-separator-review">·</span>
           <span>
-            {room?.Reviews.length === 1 ? <>{room?.Reviews.length} review </> : <>{room?.Reviews.length} reviews </>}
+            {room?.Reviews && <>
+              {room?.Reviews.length === 1 ? <> {room?.Reviews.length} review </> : <>{room?.Reviews.length} reviews </>}
+            </>}
           </span>
           {sessionUser && sessionUser?.id !== room?.ownerId && !checkDuplicate && <div className="add-review-header" onClick={() => setShowReview(true)}>Write a review</div>}
         </div>

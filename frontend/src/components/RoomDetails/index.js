@@ -12,7 +12,7 @@ import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
 import Navigation from "../Navigation";
 
-const RoomDetails = ({isLoaded}) => {
+const RoomDetails = ({ isLoaded }) => {
   let { roomId } = useParams()
   roomId = Number(roomId)
 
@@ -20,6 +20,7 @@ const RoomDetails = ({isLoaded}) => {
   const history = useHistory()
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
+  const users = useSelector(state => state.users)
 
   const [page, setPage] = useState(1)
 
@@ -72,7 +73,7 @@ const RoomDetails = ({isLoaded}) => {
                   <div className="room-information-top">
                     <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
                     <span className="span-separator">·</span>
-                    <span className="room-reviews">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
+                    <span className="room-reviews">{`${room?.Reviews ? room?.Reviews.length : 0} reviews`}</span>
                     <span className="span-separator">·</span>
                     <span className="room-location">{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
                   </div>
@@ -110,6 +111,15 @@ const RoomDetails = ({isLoaded}) => {
           </div>
           <div className="room-information-bottom">
             <div className="default-description">
+              <div className="room-info-general">
+                <div className="room-info-left">
+                  <div className="room-info-header">{room?.type} hosted by {users[room?.ownerId]?.firstName}</div>
+                  <div className="room-info-beds">{room?.guests} guests · {room?.bedrooms} bedrooms · {room?.beds} beds · {room?.baths} baths </div>
+                </div>
+                <div className="room-info-right">
+                  <img src={users[room?.ownerId]?.profile_url} className='room-owner-img'></img>
+                </div>
+              </div>
               <div className="room-description">{room?.description}</div>
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />

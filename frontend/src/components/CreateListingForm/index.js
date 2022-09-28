@@ -20,11 +20,11 @@ const CreateListingForm = ({ isLoaded }) => {
   const [lng, setLng] = useState("")
   const [name, setName] = useState("")
   const [type, setType] = useState("")
-  const [category, setCategory] = useState("")
-  const [guests, setGuests] = useState(0)
-  const [bedrooms, setBedrooms] = useState(0)
-  const [beds, setBeds] = useState(0)
-  const [baths, setBaths] = useState(0)
+  const [category, setCategory] = useState("A-Frames")
+  const [guests, setGuests] = useState(2)
+  const [bedrooms, setBedrooms] = useState(1)
+  const [beds, setBeds] = useState(1)
+  const [baths, setBaths] = useState(1)
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [page, setPage] = useState(1)
@@ -46,6 +46,11 @@ const CreateListingForm = ({ isLoaded }) => {
 
   const updateName = (e) => {
     setName(e.target.value)
+    toggleNext(e.target.value)
+  }
+
+  const updateType = (e) => {
+    setType(e.target.value)
     toggleNext(e.target.value)
   }
 
@@ -74,15 +79,6 @@ const CreateListingForm = ({ isLoaded }) => {
     } else setCheckInput(false)
 
   }, [page, address, city, state, country, lat, lng])
-
-  const addGuests = () => { }
-  const removeGuests = () => { }
-  const addBeds = () => { }
-  const removeBeds = () => { }
-  const addBedrooms = () => { }
-  const removeBedrooms = () => { }
-  const addBaths = () => { }
-  const removeBaths = () => { }
 
   const setDemoAddress = () => {
     setAddress("19508 Boggy Ford Rd")
@@ -224,7 +220,7 @@ const CreateListingForm = ({ isLoaded }) => {
               <div className="create-content-right">
                 <div className="right-content-label">
                   <label className="create-new-label">
-                    Create your title
+                    Create your title:
                   </label>
                   <div className="right-content-demo">
                     <button type="button" onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }} className="demo-buttons">demo</button>
@@ -254,46 +250,44 @@ const CreateListingForm = ({ isLoaded }) => {
               <div className="create-content-right">
                 <div className="right-content-label">
                   <label className="create-new-label">
-                    Describe your place (entire hut, shared room)
+                    Summarize your place:
                   </label>
                   <div className="right-content-demo">
                     <button type="button" onClick={() => { setType("Campsite"); setCheckInput(false) }} className="demo-buttons">demo</button>
                   </div>
                 </div>
-                <div className="right-content-input">
-                  <input
-                    type="text"
-                    placeholder="Entire bungalow"
-                    className="create-input"
-                    value={type}
-                    onChange={(e) => setType(e.target.value)}
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="Entire bungalow"
+                  className="create-type-input"
+                  value={type}
+                  onChange={updateType}
+                  required
+                  maxLength={20}
+                />
                 <div className="right-content-label">
-                  <label className="create-new-label">
-                    Select a category
+                  <label className="create-new-label-property">
+                    Select property type:
                   </label>
-                  <div className="right-content-demo">
-                    <button type="button" onClick={() => { setCategory("Domes"); setCheckInput(false) }} className="demo-buttons">demo</button>
-                  </div>
                 </div>
-                {categories.map((room_category) => {
-                  return (
-                    <div className="">
-                      <label>{room_category}</label>
-                      <input
-                        name={category}
-                        type="radio"
-                        className=""
-                        checked={category === room_category}
-                        value={category}
-                        onChange={() => setCategory(room_category)}
-                        required
-                      />
-                    </div>
-                  )
-                })}
+                <div className="create-categories-main">
+                  {categories.map((room_category) => {
+                    return (
+                      <div className="create-categories-outer">
+                        <input
+                          name={category}
+                          type="radio"
+                          className="create-category-radio"
+                          checked={category === room_category}
+                          value={category}
+                          onChange={(e) => { setCategory(room_category); toggleNext(e.target.value) }}
+                          required
+                        />
+                        <label className="create-category-label">{room_category}</label>
+                      </div>
+                    )
+                  })}
+                </div>
                 <div className="right-content-buttons">
                   <div className="back-next-buttons">{formButtons}</div>
                 </div>
@@ -306,42 +300,45 @@ const CreateListingForm = ({ isLoaded }) => {
             <div className="create-content">
               <div className="create-header">How many guests would you like to welcome?</div>
               <div className="create-content-right">
-                <div className="right-content-label">
-                  <label className="create-new-label">
+                <div className="create-guests-outer">
+                  <label className="create-guests-label">
                     Guests
                   </label>
-                  <div>
-                    <button onClick={() => addGuests()}>+</button>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (guests > 1) setGuests(guests - 1) }}>-</button>
                     {guests}
-                    <button onClick={() => removeGuests()}>-</button>
+                    <button onClick={() => setGuests(guests + 1)}>+</button>
                   </div>
-                  <label className="create-new-label">
+                  <label className="create-guests-label">
                     Beds
                   </label>
-                  <div>
-                    <button onClick={() => addBeds()}>+</button>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (beds > 1) setBeds(beds - 1) }}>-</button>
                     {beds}
-                    <button onClick={() => removeBeds()}>-</button>
+                    <button onClick={() => setBeds(beds + 1)}>+</button>
                   </div>
-                  <label className="create-new-label">
+                  <label className="create-guests-label">
                     Bedrooms
                   </label>
-                  <div>
-                    <button onClick={() => addBedrooms()}>+</button>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (bedrooms > 1) setBedrooms(bedrooms - 1) }}>-</button>
                     {bedrooms}
-                    <button onClick={() => removeBedrooms()}>-</button>
+                    <button onClick={() => setBedrooms(bedrooms + 1)}>+</button>
                   </div>
-                  <label className="create-new-label">
+                  <label className="create-bathroom-label">
                     Bathrooms
                   </label>
-                  <div>
-                    <button onClick={() => addBaths()}>+</button>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (baths > 1) setBaths(baths - 1) }}>-</button>
                     {baths}
-                    <button onClick={() => removeBaths()}>-</button>
+                    <button onClick={() => setBaths(baths + 1)}>+</button>
                   </div>
                 </div>
                 <div className="create-content-buttons">
-                  <div className="back-next-buttons">{formButtons}</div>
+                  <div className="back-next-buttons">
+                    <button type="button" onClick={() => { setPage(page - 1); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="button" onClick={() => { setPage(page + 1); setCheckInput(true) }} className="next-button">Next</button>
+                  </div>
                 </div>
                 <div>
                 </div>

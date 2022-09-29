@@ -39,7 +39,7 @@ function App() {
           <Route path="/rooms/:roomId">
             <RoomDetails isLoaded={isLoaded} />
           </Route>
-          <Route path="/search/:destination">
+          <Route path="/search/:destination/:guests">
             <SearchResults isLoaded={isLoaded} />
           </Route>
           <Route path='filter/:category'>

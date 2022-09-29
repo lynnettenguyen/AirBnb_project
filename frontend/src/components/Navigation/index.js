@@ -21,9 +21,7 @@ function Navigation({ isLoaded, setFilterRooms, setCategory }) {
               <span className='airbnb-name' onClick={() => { setFilterRooms([]); setCategory(null) }}>wherebnb</span>
             </NavLink>
             <SearchBar />
-            {isLoaded && (<div>
-              <ProfileButton/>
-            </div>)}
+            {isLoaded && <ProfileButton />}
           </div>
         </div>
       </nav>

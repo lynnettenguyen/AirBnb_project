@@ -50,6 +50,8 @@ const ManageListings = ({ isLoaded }) => {
                   <td className="listing-column">
                     <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
                       <img className="listing-img" src={`${room?.images[0]?.url}`} alt="preview of room"></img>
+                    </Link>
+                    <Link to={`/rooms/${room?.id}`} className="room-link" key={room?.id}>
                       <span className="listing-name">{room?.name}</span>
                     </Link>
                   </td>

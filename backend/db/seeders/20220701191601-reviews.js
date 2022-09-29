@@ -321,6 +321,120 @@ module.exports = {
         stars: 5,
         review: 'Best and by far most beautiful place I have ever stayed in. Great place to stay for those who love art and appreciate interior design/ beauty of all the moving pieces that brought this place together. Best hosts I have ever had!'
       },
+      {
+        userId: 1,
+        roomId: 28,
+        stars: 5,
+        review: 'This house is simply gorgeous. Kitchen is very well stocked, immaculately clean, fantastic layout for families wanting space to play and space to retreat. Highly recommend!!'
+      },
+      {
+        userId: 2,
+        roomId: 28,
+        stars: 5,
+        review: 'Absolutely gorgeous, modern A-frame with everything you need! In a great spot south of Breckinridge near beautiful walks & hikes. Loved the spacious interior, great basement, and enjoyed watching wildlife from the deck. Perfect for coming together with family. Thanks for the stay!'
+      },
+      {
+        userId: 1,
+        roomId: 29,
+        stars: 5,
+        review: 'Most impressive Airbnb I’ve stayed at by far. A hidden fairy land that allows you to relax from all your day to day chaos. I cannot wait to return.'
+      },
+      {
+        userId: 2,
+        roomId: 29,
+        stars: 4,
+        review: 'We liked our stay at The Crow’s nest and would love to be there again!'
+      },
+      {
+        userId: 3,
+        roomId: 30,
+        stars: 5,
+        review: 'As a frequent visitor of Saigon, I have stayed in several of the apartment blocks as well as Vinpearl Luxury hotel in the Landmark 81 vicinity. I am very pleased with this apartment at Landmark 81.'
+      },
+      {
+        userId: 4,
+        roomId: 30,
+        stars: 3,
+        review: 'While the stay has been quite been rocky with many issues and miscommunications, I enjoyed the place and appreciated the efforts in accommodating me.'
+      },
+      {
+        userId: 3,
+        roomId: 31,
+        stars: 5,
+        review: 'As a frequent visitor of Saigon, I have stayed in several of the apartment blocks as well as Vinpearl Luxury hotel in the Landmark 81 vicinity. I am very pleased with this apartment at Landmark 81.'
+      },
+      {
+        userId: 4,
+        roomId: 31,
+        stars: 3,
+        review: 'Great place. Great view. Great location. Great hosts.'
+      },
+      {
+        userId: 7,
+        roomId: 32,
+        stars: 5,
+        review: 'Hosts are very easy to get along with plus they give extra hand to help you. 😊 The place is awesome, clean, very picturesque and unique!'
+      },
+      {
+        userId: 8,
+        roomId: 32,
+        stars: 3,
+        review: 'The place is a haven in El Nido. Even though it\'s rainy, the walk to the beach and back to Colibris was refreshing and revitalizing (except when I saw frogs, haha!). The beach surrounding the area was soo clear and friendly for not-so-good swimmers like me. I especially loved the Vanilla Beach area.'
+      },
+      {
+        userId: 4,
+        roomId: 33,
+        stars: 3,
+        review: 'The room is clean, but some small bugs can get in from nowhere. It\'s understandable since the house is in a very nature environment.'
+      },
+      {
+        userId: 5,
+        roomId: 33,
+        stars: 5,
+        review: 'This was a perfect seclusion from the world. Isolated but yet close to everything we needed. The place was worth the amazing experience. Super unique. Wished we could stay another day but it was a quick stay for our drive thru the area only. So glad we booked.'
+      },
+      {
+        userId: 4,
+        roomId: 34,
+        stars: 5,
+        review: 'We loved every minute of our stay. The remote location was perfect, far from any city noise, and the use of the scooter to explore the area was great and lots of fun. The open air design of the house was lovely - we really felt like we were immersed in nature.The staff were incredible - friendly and helpful and so respectful of our privacy.'
+      },
+      {
+        userId: 5,
+        roomId: 34,
+        stars: 5,
+        review: 'Great remote bamboo house. Really a cool spot for two days. We went to the floating palace and hiked through nearby patty fields besides relaxing in the villa.'
+      },
+      {
+        userId: 7,
+        roomId: 34,
+        stars: 5,
+        review: 'We stayed here for part of our Bali trip and honeymoon holiday! It was incredible - so different to anything we have stayed in before. Everyone is so friendly and kind. The resident dog is also very cute and friendly. Would definitely stay again!'
+      },
+      {
+        userId: 8,
+        roomId: 34,
+        stars: 4,
+        review: 'We stayed for 2 nights and although it rained pretty much the duration of our stay and everything felt abit damp we still enjoyed.'
+      },
+      {
+        userId: 5,
+        roomId: 35,
+        stars: 4,
+        review: 'Lovely stay and wonderful place. Right where you want to be for the beach. Jacuzzi was nice. Deck is lovely. House worked great especially the guest house. The only suggestion I would make is to get rocks set up as stairs for entrance to Broad Beach. It’s slippery and treacherous walking down the current jagged rock path (not really a path).'
+      },
+      {
+        userId: 7,
+        roomId: 35,
+        stars: 3,
+        review: 'The location was beautiful and the staff was very responsive replying to our requests. It’s unfortunate that the back yard area had not been cleaned properly and that we had to deal with a dog poo bag while dining outside. Also the issues with our toilet and the fact that there wasn’t a shower in the main bedroom (meaning we had to share a bathroom with another guest) were major disappointments.'
+      },
+      {
+        userId: 8,
+        roomId: 35,
+        stars: 5,
+        review: 'Gorgeous and spacious home. Owners are very nice and have great communication. Perfect location and breathtaking views. The ideal Malibu getaway, definitely coming back!'
+      },
     ], {});
   },
 

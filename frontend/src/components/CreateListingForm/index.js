@@ -137,7 +137,7 @@ const CreateListingForm = ({ isLoaded }) => {
         if (data && data.errors)
           if (data) {
             const errors = Object.values(data.errors)
-            setErrors(errors)
+            setErrors(errors.slice(0,2))
           }
       })
 
@@ -329,9 +329,9 @@ const CreateListingForm = ({ isLoaded }) => {
                     Bathrooms
                   </label>
                   <div className="create-guests-buttons">
-                    <button onClick={() => { if (baths > 1) setBaths(baths - 1) }} disabled={baths === 1}>-</button>
+                    <button onClick={() => { if (baths > 0.5) setBaths(baths - 0.5) }} disabled={baths === 0.5}>-</button>
                     {baths}
-                    <button onClick={() => setBaths(baths + 1)}>+</button>
+                    <button onClick={() => setBaths(baths + 0.5)}>+</button>
                   </div>
                 </div>
                 <div className="create-content-buttons">

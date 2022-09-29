@@ -1,14 +1,20 @@
-// frontend/src/components/LoginForm/index.js
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import './LoginForm.css';
 
-function LoginForm() {
+function LoginForm({ setShowLogIn }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
+  const sessionUser = useSelector(state => state.session.user);
+
+  if (sessionUser) {
+    setShowLogIn(false)
+    return <Redirect to="/" />
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

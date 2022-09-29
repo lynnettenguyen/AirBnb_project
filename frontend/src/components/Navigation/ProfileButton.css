@@ -32,7 +32,6 @@
   margin-right: 5px;
   position: absolute;
   top: 1rem;
-  /* right: -0.1rem; */
   left: -8.4rem;
   width: 220px;
   box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
@@ -41,28 +40,40 @@
   z-index: 1;
 }
 
+.login-dropdown {
+  font-weight: 600;
+}
+
 .logout-div,
 .account-div,
-.link {
+.link,
+.login-dropdown,
+.signup-dropdown {
   font-size: 0.9rem;
   padding: 15px 60px 15px 20px;
 }
 
-.logout-div {
+.logout-div, .signup-dropdown {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
-.account-div {
+.account-div, .login-dropdown {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+}
+
+.account-div {
   border-bottom: 1px rgba(128, 128, 128, 0.274) solid;
 }
 
 .logout-div:hover,
 .account-div:hover,
-.link:hover {
+.link:hover,
+.login-dropdown:hover,
+.signup-dropdown:hover {
   background-color: #7171710e;
+  cursor: pointer;
 }
 
 .link {
@@ -75,7 +86,9 @@
   border-bottom: 1px rgba(128, 128, 128, 0.274) solid;
 }
 
-.manage-listings, .host-home, .logout-div {
+.manage-listings,
+.host-home,
+.logout-div {
   font-weight: 220;
 }
 

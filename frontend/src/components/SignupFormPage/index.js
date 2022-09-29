@@ -15,7 +15,10 @@ function SignupFormPage({ setShowSignUp }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) {
+    setShowSignUp(false)
+    return <Redirect to="/" />
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

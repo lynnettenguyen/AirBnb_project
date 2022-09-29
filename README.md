@@ -1,4 +1,4 @@
-# Welcome to [WhereBnb](https://lynnette-airbnb.herokuapp.com/), full-stack application inspired by Airbnb
+# [WhereBnb](https://lynnette-airbnb.herokuapp.com/), full-stack application inspired by Airbnb
 
 WhereBnb provides lodging and vacation rentals around the world, wherever you want to go!
 
@@ -38,6 +38,10 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 
 ## Host your Home
 ![Host](https://user-images.githubusercontent.com/98368183/182081916-edf00c58-defe-4653-a02e-deceb21b5faa.png)
+
+## Create a review
+![](https://user-images.githubusercontent.com/98368183/192949996-328e74ea-e82a-4817-82f9-ae425a012179.png)
+
 
 ### Steps to Run Locally
 - Clone the repository: ```git clone https://github.com/lynnettenguyen/whereBnb.git```

@@ -416,7 +416,6 @@ router.get('/', async (req, res, next) => {
 
     if (pagination.offset < 0) pagination.offset = 0;
 
-    // console.log(minLat - Math.floor(minLat))
     if (minLat) {
         if ((minLat - Math.floor(minLat)) !== 0) roomQuery.lat = { [Op.gte]: minLat }
         else errorResult.errors.minLat = 'Minimum latitude is invalid'

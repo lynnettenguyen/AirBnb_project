@@ -68,7 +68,6 @@ const EditListingForm = ({ listingId, returnToListing }) => {
     const response = await dispatch(updateRoom(roomData))
       .catch(async (res) => {
         const data = await res.json();
-        console.log(data)
         if (data && data.errors)
           if (data) {
             const errors = Object.values(data.errors)

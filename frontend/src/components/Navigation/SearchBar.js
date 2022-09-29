@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import searchIcon from './MagnifyingGlass.svg'
 import './SearchBar.css'
 import clock from './clock.svg'
 
 function SearchBar() {
-  const [showCalendar, setShowCalendar] = useState(false)
-  const [selectDates, setSelectDates] = useState(false)
   const [guests, setGuests] = useState(1)
   const [showDestinations, setShowDestinations] = useState(false)
+
+  const openMenu = () => {
+    if (showDestinations) return;
+    setShowDestinations(true);
+  };
+
+  useEffect(() => {
+    if (!showDestinations) return;
+
+    const closeMenu = () => {
+      setShowDestinations(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showDestinations]);
+
 
   const tomorrow = new Date()
   const nextDay = new Date()
@@ -30,13 +46,10 @@ function SearchBar() {
     setDestination("")
   }
 
-  console.log(showDestinations)
-
-
   return (
     <div className='searchBar-outer'>
       <form onSubmit={handleSearch} className="searchBar-form">
-        <div className="searchBar-outer" onClick={() => setShowDestinations(!showDestinations)}>
+        <div className="searchBar-outer" onClick={openMenu}>
           <label className="searchBar-label">Where</label>
           <input
             type='text'

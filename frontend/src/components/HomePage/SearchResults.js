@@ -67,7 +67,7 @@ function SearchResults({ isLoaded }) {
                   </Link>
                 )
               }
-            })} </> : <>0 search results matching "{destination}".</>
+            })} </> : <div className="no-search-results">0 search results matching "{destination}".</div>
           }
         </div>
         <div className="search-rooms-right">

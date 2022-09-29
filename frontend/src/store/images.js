@@ -35,7 +35,6 @@ export const uploadNewImage = (imageData) => async (dispatch) => {
   if (response.ok) {
     const newImage = await response.json()
     dispatch(createImages(newImage));
-    console.log(newImage)
     return newImage;
   }
 }

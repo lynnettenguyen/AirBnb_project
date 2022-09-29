@@ -1,15 +1,11 @@
-// frontend/src/components/Navigation/index.js
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import "./Navigation.css"
 import SearchBar from './SearchBar';
-import { Modal } from '../../context/Modal';
-import SignUpFormPage from '../SignupFormPage'
+
 
 function Navigation({ isLoaded, setFilterRooms, setCategory }) {
-  const [showSignUp, setShowSignUp] = useState(false)
 
   return (
     <>

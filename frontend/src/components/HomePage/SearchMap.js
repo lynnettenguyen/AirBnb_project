@@ -45,7 +45,7 @@ const SearchMap = ({ searchRooms }) => {
     //   setMidLng(searchRooms[1]?.lng)
     // }
 
-    if (searchRooms?.length > 10) {
+    if (searchRooms?.length > 15) {
       setZoom(2)
     } else {
       setZoom(5)

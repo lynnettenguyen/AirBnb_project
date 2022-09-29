@@ -1,13 +1,13 @@
 .search-rooms-main {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 710px auto;
   height: 100vh;
   border-top: 0.3px solid rgba(128, 128, 128, 0.113);
 }
 
 .search-rooms-left {
   display: grid;
-  grid-template-columns: repeat(2, 47%);
+  grid-template-columns: repeat(2, 330px);
   height: fit-content;
   max-height: 100vh;
   overflow-y: auto;
@@ -24,7 +24,7 @@
 }
 
 .search-room-img-outer {
-  width: 100%;
+  width: 329px;
   height: 250px;
   display: flex;
   justify-content: center;
@@ -102,21 +102,28 @@
   }
 
   .search-room-img-outer {
+    width: 230px;
     height: 150px;
   }
 
   .search-rooms-left {
+    grid-template-columns: repeat(2, 230px);
     padding: 10px 10px 70px 10px;
     gap: 10px;
   }
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (min-width: 1001px) and (max-width: 1300px) {
   .search-rooms-main {
     grid-template-columns: 50% 50%;
   }
 
-  .search-room-img-outer {
-    height: 200px;
-  }
+    .search-room-img-outer {
+      width: 300px;
+      height: 200px;
+    }
+
+    .search-rooms-left {
+      grid-template-columns: repeat(2, 296px);
+    }
 }

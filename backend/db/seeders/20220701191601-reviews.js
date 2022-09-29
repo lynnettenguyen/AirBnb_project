@@ -435,6 +435,42 @@ module.exports = {
         stars: 5,
         review: 'Gorgeous and spacious home. Owners are very nice and have great communication. Perfect location and breathtaking views. The ideal Malibu getaway, definitely coming back!'
       },
+      {
+        userId: 8,
+        roomId: 37,
+        stars: 5,
+        review: 'We stayed in this beautiful home and had unforgettable moments. The colors and atmosphere will remain in our hearts forever. Very convenient direct access to the sea. Everything was perfect.'
+      },
+      {
+        userId: 7,
+        roomId: 37,
+        stars: 5,
+        review: 'Every part of this house is amazing. The views alone are breathtaking. You have the master bedroom with a bathroom on the main floor that opens up to the main area of the house. There are 3 bedrooms and 3 bathrooms downstairs. All rooms and bathrooms are upscale. There is an amazing pool with breathtaking ocean views. You can also walk onto the beach directly from the back, MAJOR PLUS!!!!'
+      },
+      {
+        userId: 6,
+        roomId: 37,
+        stars: 4,
+        review: 'Absolutely amazing property and stay!! Very clean, modern, amazing views and direct water access. Location is perfect. Close to shops, supermarket, restaurants, yet the privacy of the house location makes you feel like there is no one around for miles. Can’t say enough about this place. We will be returning without a doubt!!'
+      },
+      {
+        userId: 4,
+        roomId: 37,
+        stars: 4,
+        review: 'This place is GORGEOUS and worth every penny. We came as a girl group for a week to celebrate a birthday. '
+      },
+      {
+        userId: 6,
+        roomId: 38,
+        stars: 4,
+        review: 'We loved our stay at Maison Marazul. We travelled there with our 15 month old and our parents and found it to be the perfect setting for our family holiday. '
+      },
+      {
+        userId: 4,
+        roomId: 38,
+        stars: 4,
+        review: 'We are so grateful for the wonderful memories we will have at this beautiful home and cannot recommend it highly enough.'
+      },
     ], {});
   },
 

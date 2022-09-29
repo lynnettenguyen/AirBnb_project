@@ -137,7 +137,7 @@ const CreateListingForm = ({ isLoaded }) => {
         if (data && data.errors)
           if (data) {
             const errors = Object.values(data.errors)
-            setErrors(errors.slice[0, 2])
+            setErrors(errors.slice(0,2))
           }
       })
 

@@ -8,6 +8,8 @@ import './SearchResults.css'
 
 function SearchResults({ isLoaded }) {
   let { destination } = useParams()
+  let { guests } = useParams()
+
   const dispatch = useDispatch()
   const rooms = useSelector(getAllRooms)
 
@@ -17,9 +19,8 @@ function SearchResults({ isLoaded }) {
 
   const searchRooms = rooms.filter(room => {
     destination = destination.toLowerCase()
-    return room.city.toLowerCase().includes(destination) || room.state.toLowerCase().includes(destination) || room.country.toLowerCase().includes(destination)
+    return room.city.toLowerCase().includes(destination) || room.state.toLowerCase().includes(destination) || room.country.toLowerCase().includes(destination) && room.guests >= guests
   })
-
 
   return (
     <>

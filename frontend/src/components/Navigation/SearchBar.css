@@ -14,6 +14,7 @@
   align-items: flex-start;
   justify-content: center;
   margin: 0 20px;
+  position: relative;
 }
 
 .searchBar-label {
@@ -36,8 +37,65 @@
   border-radius: 0%;
 }
 
+.where-dropdown {
+  position: absolute;
+  top: 60px;
+  left: -20px;
+  background-color: white;
+  padding: 20px 0;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: rgba(129, 129, 129, 0.492) 0px 4px 3px -2.5px;
+  transform: none;
+  border: 1px #71717112 solid;
+}
+
+.where-dropdown-header {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 5px 25px;
+}
+
+.where-selection {
+  display: flex;
+  align-items: center;
+  padding: 10px 25px;
+  width: 180px;
+  cursor: pointer;
+}
+
+.where-selection:hover {
+  background-color: rgba(197, 197, 197, 0.13);
+}
+
+.where-destination-outer {
+  padding-left: 10px
+}
+
+.where-destination-header {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.where-destination-date {
+  font-size: 0.75rem;
+  font-weight: 250;
+  color: rgb(89, 89, 89);
+}
+
+.dropdown-clock {
+  background-color: rgba(230, 230, 230, 0.633);
+  padding: 8px 10px;
+  border-radius: 20%;
+}
+
+
 .searchBar-input-date {
   font-size: 0.8rem;
+}
+
+.searchBar-guests-outer {
+  display: flex;
 }
 
 .searchBar-guests-minus,
@@ -61,7 +119,7 @@
   margin-left: 6px;
 }
 
-.searchBar-guests-button:disabled {
+.searchBar-guests-outer button:disabled {
   border: 1px solid rgba(128, 128, 128, 0.303);
 }
 
@@ -95,7 +153,15 @@
     white-space: nowrap;
   }
 }
-#who-buttons {
-  display: flex;
-  align-items: center;
+
+
+@media screen and (max-width: 990px) {
+  .searchBar-form {
+    grid-template-columns: 87% 5%;
+    width: 350px
+  }
+
+  .searchBar-hidden {
+    display: none;
+  }
 }

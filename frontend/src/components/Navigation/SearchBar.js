@@ -2,38 +2,41 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import searchIcon from './MagnifyingGlass.svg'
 import './SearchBar.css'
-import { DateRangePicker } from 'react-date-range'
-import { addDays } from 'date-fns'
-import format from 'date-fns/format'
+import clock from './clock.svg'
 
 function SearchBar() {
   const [showCalendar, setShowCalendar] = useState(false)
   const [selectDates, setSelectDates] = useState(false)
-  const [guests, setGuests] = useState(0)
+  const [guests, setGuests] = useState(1)
+  const [showDestinations, setShowDestinations] = useState(false)
 
   const tomorrow = new Date()
   const nextDay = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 4)
+  tomorrow.setDate(tomorrow.getDate() + 2)
   nextDay.setDate(nextDay.getDate() + 5)
 
   const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
 
-
   const history = useHistory()
   const [destination, setDestination] = useState()
 
   const handleSearch = (e) => {
+
+    if (!destination) return
+
     e.preventDefault()
-    history.push(`/search/${destination}`)
+    history.push(`/search/${destination}/${guests}`)
     setDestination("")
   }
+
+  console.log(showDestinations)
 
 
   return (
     <div className='searchBar-outer'>
       <form onSubmit={handleSearch} className="searchBar-form">
-        <div className="searchBar-outer">
+        <div className="searchBar-outer" onClick={() => setShowDestinations(!showDestinations)}>
           <label className="searchBar-label">Where</label>
           <input
             type='text'
@@ -43,8 +46,34 @@ function SearchBar() {
             onChange={e => setDestination(e.target.value)}
             maxLength="140"
           />
+          {showDestinations && (
+            <div className="where-dropdown">
+              <div className="where-dropdown-header">Recent Searches</div>
+              <div className="where-selection">
+                <img className='dropdown-clock' src={clock}></img>
+                <div className="where-destination-outer" onClick={() => { setDestination("Indonesia"); history.push(`/search/indonesia/${guests}`) }}>
+                  <div className="where-destination-header">Indonesia · Stays</div>
+                  <div className="where-destination-date">Any week</div>
+                </div>
+              </div>
+              <div className="where-selection">
+                <img className='dropdown-clock' src={clock}></img>
+                <div className="where-destination-outer" onClick={() => { setDestination("Thailand"); history.push(`/search/thailand/${guests}`) }}>
+                  <div className="where-destination-header">Thailand · Stays</div>
+                  <div className="where-destination-date">Any week</div>
+                </div>
+              </div>
+              <div className="where-selection">
+                <img className='dropdown-clock' src={clock}></img>
+                <div className="where-destination-outer" onClick={() => { setDestination("Mexico"); history.push(`/search/mexico/${guests}`) }}>
+                  <div className="where-destination-header">Mexico · Stays</div>
+                  <div className="where-destination-date">Any week</div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-        <div className="searchBar-outer">
+        <div className="searchBar-outer searchBar-hidden">
           <label className="searchBar-label">Check In</label>
           <input
             type='date'
@@ -54,7 +83,7 @@ function SearchBar() {
             onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
           />
         </div>
-        <div className="searchBar-outer">
+        <div className="searchBar-outer searchBar-hidden">
           <label className="searchBar-label">Check Out</label>
           <input
             type='date'
@@ -64,9 +93,9 @@ function SearchBar() {
             onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
           />
         </div>
-        <div className="searchBar-outer">
+        <div className="searchBar-outer searchBar-hidden">
           <label className="searchBar-label">Who</label>
-          <div className="searchBar-guests-outer" id="who-buttons">
+          <div className="searchBar-guests-outer">
             <button type='button' onClick={() => { if (guests > 0) setGuests(guests - 1) }} disabled={guests === 0} className='searchBar-guests-minus'>-</button>
             {guests}
             <button type='button' onClick={() => setGuests(guests + 1)} disabled={guests === 16} className='searchBar-guests-plus'>+</button>

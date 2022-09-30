@@ -1,4 +1,4 @@
-# [WhereBnb](https://lynnette-airbnb.herokuapp.com/), full-stack application inspired by Airbnb
+# [WhereBnb](https://where-bnb-app.herokuapp.com/), full-stack application inspired by Airbnb
 
 WhereBnb provides lodging and vacation rentals around the world, wherever you want to go!
 

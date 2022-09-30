@@ -697,6 +697,12 @@ module.exports = {
         userId: 4,
         roomId: 24,
         type: 'room',
+        url: 'https://a0.muscache.com/im/pictures/90c6dc91-5643-4325-b811-db50aa5ef248.jpg?im_w=720'
+      },
+      {
+        userId: 4,
+        roomId: 24,
+        type: 'room',
         url: 'https://a0.muscache.com/im/pictures/11d33147-81fd-4628-b308-217d1df4a6de.jpg?im_w=720'
       },
       {
@@ -716,12 +722,6 @@ module.exports = {
         roomId: 24,
         type: 'room',
         url: 'https://a0.muscache.com/im/pictures/ae0f71fb-479c-4c3e-8824-cb05d961424e.jpg?im_w=1200'
-      },
-      {
-        userId: 4,
-        roomId: 24,
-        type: 'room',
-        url: 'https://a0.muscache.com/im/pictures/90c6dc91-5643-4325-b811-db50aa5ef248.jpg?im_w=720'
       },
       {
         userId: 4,

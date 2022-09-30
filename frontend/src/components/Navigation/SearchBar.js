@@ -61,7 +61,7 @@ function SearchBar() {
           />
           {showDestinations && (
             <div className="where-dropdown">
-              <div className="where-dropdown-header">Recent Searches</div>
+              <div className="where-dropdown-header">Popular Searches</div>
               <div className="where-selection">
                 <img className='dropdown-clock' src={clock}></img>
                 <div className="where-destination-outer" onClick={() => { setDestination("Indonesia"); history.push(`/search/indonesia/${guests}`) }}>

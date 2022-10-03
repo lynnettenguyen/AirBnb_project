@@ -9,8 +9,6 @@ import mapOptions from './MapStyle'
 const Maps = ({ room }) => {
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
-  const [googleLat, setGoogleLat] = useState(Number(room?.lat) + 0.023)
-  const [googleLatIcon, setGoogleLatIcon] = useState(Number(room?.lat) + 0.02)
 
   useEffect(() => {
     dispatch(getAPIKey())
@@ -27,12 +25,12 @@ const Maps = ({ room }) => {
   };
 
   const center = {
-    lat: Number(googleLat),
+    lat: Number(room?.lat),
     lng: Number(room?.lng)
   };
 
   const centerIcon = {
-    lat: Number(googleLatIcon),
+    lat: Number(room?.lat),
     lng: Number(room?.lng)
   };
 
@@ -47,7 +45,7 @@ const Maps = ({ room }) => {
     draggable: false,
     editable: false,
     visible: true,
-    radius: 1100
+    radius: 1200
   }
 
   return (
@@ -64,13 +62,18 @@ const Maps = ({ room }) => {
                 styles: mapOptions,
                 streetViewControl: false,
                 mapTypeControl: false,
-                fullscreenControl: false
+                fullscreenControl: false,
+                clickableIcons: false,
               }}>
               <Circle
                 center={center}
                 options={circleOptions}
               />
-            <Marker position={centerIcon} icon={house} />
+              <Marker position={centerIcon} icon={{
+                url: house,
+                scaledSize: { width: 40, height: 40 },
+                anchor: { x: 20, y: 20 },
+              }} />
             </GoogleMap>
           )}
       </div>

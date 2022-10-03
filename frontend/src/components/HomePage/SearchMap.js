@@ -5,6 +5,7 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import './SearchMap.css'
 import { getAPIKey } from '../../store/maps'
 import mapOptions from '../Maps/MapStyle'
+import priceMarker from './price-marker.png'
 
 const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
@@ -50,6 +51,8 @@ const SearchMap = ({ searchRooms }) => {
     } else {
       setZoom(5)
     }
+
+    if (destination === 'indonesia') setZoom(9)
 
   }, [destination])
 
@@ -105,12 +108,12 @@ const SearchMap = ({ searchRooms }) => {
             mapTypeControl: false,
             fullscreenControl: false,
             scrollwheel: true,
+            clickableIcons: false
             // restriction: {
             //   latLngBounds: bounds,
             //   strictBounds: false
             // }
           }}
-
         >
           {searchRooms.map((room) => {
             return (
@@ -122,11 +125,16 @@ const SearchMap = ({ searchRooms }) => {
                     lng: Number(room.lng)
                   }}
                   onClick={() => setSelected(room)}
+                  label={`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  icon={{
+                    url: priceMarker,
+                    scaledSize: { width: 60, height: 26 },
+                    anchor: { x: 20, y: 0 },
+                  }}
                 />
               </>
             )
           })}
-
           {selected.id &&
             (<InfoWindow
               position={{

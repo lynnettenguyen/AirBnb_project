@@ -103,6 +103,13 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
                 onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
               />
             </div>
+            {/* <div className="guests">
+              <label>Guests</label>
+              <input
+                type="number"
+                className="select-guests"
+                min="1" />
+            </div> */}
           </div>
           {/* {currRoomReservations.length > 0 ? (<button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button>) : (<div className="view-reservations-other">No Reservations! Book Now!</div>)} */}
           {showReservations ?
@@ -119,13 +126,6 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
                 )
               }) : <></>}
             </div>) : <></>}
-          {/* <div className="guests">
-            <label>Guests</label>
-            <input
-            type="number"
-            className="select-guests"
-            min="1" />
-          </div> */}
           <div className="reserve-button-div">
             {sessionUser ?
               <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" disabled>Log in to Reserve</button>

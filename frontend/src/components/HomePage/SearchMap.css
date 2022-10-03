@@ -29,3 +29,7 @@
 .selected-room-price {
   font-weight: 600;
 }
+
+.gm-style .gm-style-iw-tc::after {
+  visibility: hidden;
+}

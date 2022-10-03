@@ -105,15 +105,6 @@ const mapOptions = [
     ]
   },
   {
-    "featureType": "road.local",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
     "featureType": "water",
     "elementType": "geometry",
     "stylers": [
@@ -141,23 +132,14 @@ const mapOptions = [
     ]
   },
   {
-    "featureType": "water",
-    "elementType": "labels",
+    "featureType": "poi",
+    "elementType": "labels.text",
     "stylers": [
       {
         "visibility": "off"
       }
     ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
+  }
 ]
 
 export default mapOptions

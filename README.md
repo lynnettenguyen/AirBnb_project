@@ -21,8 +21,7 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 ![Landing](https://user-images.githubusercontent.com/98368183/192944793-01b2e42f-5a7d-4915-a7e0-790246997c03.png)
 
 ## Search by Destination, Dates, and Guests
-![](https://user-images.githubusercontent.com/98368183/193130932-0eacf09d-142d-4b75-94b4-731cc7e724e9.png)
-![](https://user-images.githubusercontent.com/98368183/192944830-6996557d-d9e3-4571-a434-f515d6dfd040.png)
+![](https://user-images.githubusercontent.com/98368183/193668614-7afa1334-e643-4543-8f88-b8489dfc5bcf.png)
 
 ## Filter by Category
 ![](https://user-images.githubusercontent.com/98368183/192944868-83deea3d-e140-402f-8fcd-c004f3216161.png)

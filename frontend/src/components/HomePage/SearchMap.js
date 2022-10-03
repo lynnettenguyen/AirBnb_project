@@ -135,7 +135,7 @@ const SearchMap = ({ searchRooms }) => {
                 lat: Number(selected.lat),
                 lng: Number(selected.lng)
               }}
-              onCloseClick={() => setSelected({})}
+              onCloseClick={() => { setSelected({}); setSelectedId(0) }}
             >
               <div className='selected-room-info'>
                 <Link to={`/rooms/${selected?.id}`}>

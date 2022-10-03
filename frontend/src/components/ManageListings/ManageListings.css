@@ -46,6 +46,11 @@
   font-weight: 400;
 }
 
+.manage-listings-scroll {
+  overflow: auto;
+  height: 60vh;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -60,7 +65,11 @@ td {
 }
 
 th {
-  padding-bottom: 1.5rem
+  padding-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
 }
 
 th {

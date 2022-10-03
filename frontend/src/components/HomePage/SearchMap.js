@@ -6,6 +6,7 @@ import './SearchMap.css'
 import { getAPIKey } from '../../store/maps'
 import mapOptions from '../Maps/MapStyle'
 import priceMarker from './price-marker.png'
+import selectedPriceMarker from './selected-price-marker.png'
 
 const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
@@ -16,6 +17,7 @@ const SearchMap = ({ searchRooms }) => {
   const [midLat, setMidLat] = useState(0)
   const [midLng, setMidLng] = useState(0)
   const [selected, setSelected] = useState({})
+  const [selectedId, setSelectedId] = useState()
 
 
   useEffect(() => {
@@ -36,15 +38,7 @@ const SearchMap = ({ searchRooms }) => {
 
       setMidLat(avgLat)
       setMidLng(avgLng)
-
-      // setMidLat(searchRooms[0]?.lat)
-      // setMidLng(searchRooms[0]?.lng)
     }
-
-    // if (searchRooms.length > 1) {
-    //   setMidLat(searchRooms[1]?.lat)
-    //   setMidLng(searchRooms[1]?.lng)
-    // }
 
     if (searchRooms?.length > 15) {
       setZoom(2)
@@ -124,10 +118,10 @@ const SearchMap = ({ searchRooms }) => {
                     lat: Number(room.lat),
                     lng: Number(room.lng)
                   }}
-                  onClick={() => setSelected(room)}
-                  label={`$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  onClick={() => { setSelected(room); setSelectedId(room.id) }}
+                  label={{ text: `$${room.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, color: room.id === selectedId ? 'white' : 'black' }}
                   icon={{
-                    url: priceMarker,
+                    url: room.id === selectedId ? selectedPriceMarker : priceMarker,
                     scaledSize: { width: 60, height: 26 },
                     anchor: { x: 20, y: 0 },
                   }}

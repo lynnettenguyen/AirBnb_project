@@ -21,6 +21,12 @@
   color: #6e6e6e;
 }
 
+.user-profile-icon {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
 .profile-button:hover {
   box-shadow: rgba(129, 129, 129, 0.492) 0px 4px 3px -2.5px;
   transform: none;
@@ -68,7 +74,6 @@
 }
 
 .logout-div:hover,
-.account-div:hover,
 .link:hover,
 .login-dropdown:hover,
 .signup-dropdown:hover {

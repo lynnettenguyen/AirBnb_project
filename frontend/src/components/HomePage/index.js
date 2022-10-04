@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllRooms, listAllRooms } from "../../store/rooms";
 import "./HomePage.css"
 import Navigation from "../Navigation";
 import RoomCategory from "../Navigation/RoomCategory";
+import { listAllUsers } from "../../store/users";
 
 const HomePage = ({ isLoaded }) => {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const HomePage = ({ isLoaded }) => {
 
   useEffect(() => {
     dispatch(listAllRooms())
+    dispatch(listAllUsers())
 
     if (category) {
       const filteredRooms = allRooms.filter(room => {
@@ -35,11 +37,11 @@ const HomePage = ({ isLoaded }) => {
   return (
     <div className="outer-rooms-div">
       <div className="home-upper-nav">
-      <div className="home-nav-main">
-        <Navigation isLoaded={isLoaded} setFilterRooms={setFilterRooms} setCategory={setCategory} />
-      </div>
-      <div className="navigation-border"></div>
-      <RoomCategory handleFilter={handleFilter} category={category} />
+        <div className="home-nav-main">
+          <Navigation isLoaded={isLoaded} setFilterRooms={setFilterRooms} setCategory={setCategory} />
+        </div>
+        <div className="navigation-border"></div>
+        <RoomCategory handleFilter={handleFilter} category={category} />
       </div>
       {filteredRooms.length > 0 ? <div className="all-rooms-div">
         {filteredRooms?.map((room, i) => {

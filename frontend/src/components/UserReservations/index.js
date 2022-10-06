@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { listAllReservations, getAllReservations, removeReservation, updateReservation } from "../../store/reservations";
 import "./UserReservations.css"
 import Navigation from "../Navigation";
+import { listAllUsers } from "../../store/users";
 
 const UserReservations = ({ isLoaded }) => {
   const sessionUser = useSelector(state => state.session.user);
+  const users = useSelector(state => state.users)
   const dispatch = useDispatch()
 
   const allReservations = useSelector(getAllReservations)
@@ -19,8 +21,12 @@ const UserReservations = ({ isLoaded }) => {
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkDates, setCheckDates] = useState(true)
 
+
   const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId && sessionUser.id !== reservation.userId)
+
   const trips = allReservations.filter(reservation => sessionUser.id === reservation.userId)
+  const futureTrips = trips.filter(trip => new Date() <= new Date(trip.endDate))
+  const pastTrips = trips.filter(trip => new Date() >= new Date(trip.endDate))
 
   const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
   const allEndDates = reservationsPerRoom.map(reservation => reservation.endDate)
@@ -30,6 +36,7 @@ const UserReservations = ({ isLoaded }) => {
   useEffect(() => {
 
     dispatch(listAllReservations())
+    dispatch(listAllUsers())
 
     const errors = []
 
@@ -124,8 +131,9 @@ const UserReservations = ({ isLoaded }) => {
                 </div>
               </div>
             </div>}
+            {trips.length > 0 ? <div>Upcoming Reservations</div> : <></>}
             <form onSubmit={handleSubmit}>
-              {trips?.map((reservation, i) => {
+              {futureTrips?.map((reservation, i) => {
 
                 let startDate = new Date(reservation?.startDate)
                 startDate = new Date(startDate.getTime() + startDate.getTimezoneOffset() * 60000)
@@ -145,7 +153,8 @@ const UserReservations = ({ isLoaded }) => {
                         <div className="left-res-inner">
                           <div className="top-left-res-content">
                             <div className="top-left-name">
-                              <div>{reservation?.Room?.name}</div>
+                              <div className="reservation-listing-name">{reservation?.Room?.name}</div>
+                              <div className="reservations-hosted-by">{reservation?.Room?.type} hosted by {users[reservation?.Room?.ownerId]?.firstName}</div>
                             </div>
                           </div>
                           <div className="bottom-left-res-content">
@@ -227,6 +236,44 @@ const UserReservations = ({ isLoaded }) => {
                 )
               })}
             </form>
+            <div>Where you've been</div>
+            <div className="past-outer-grid">
+              {pastTrips?.map((reservation, i) => {
+
+                let startDate = new Date(reservation?.startDate)
+                startDate = new Date(startDate.getTime() + startDate.getTimezoneOffset() * 60000)
+                const startMonth = startDate.toLocaleString('default', { month: 'short' })
+                const startDay = startDate.getDate()
+
+                let endDate = new Date(reservation?.endDate)
+                endDate = new Date(endDate.getTime() + endDate.getTimezoneOffset() * 60000)
+                const endMonth = endDate.toLocaleString('default', { month: 'short' })
+                const endDay = endDate.getDate()
+                const endYear = endDate.getFullYear()
+
+                return (
+                  <div className="past-outer-main">
+                    <div className="past-left-content">
+                      <Link to={`/rooms/${reservation.roomId}`}>
+                        <img className="past-res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
+                      </Link>
+                    </div>
+                    <div className="past-right-content">
+                      <div className="past-res-city-state">{`${reservation?.Room?.city}, ${reservation?.Room?.state}`}</div>
+                      <div className="past-res-hosted-by">Hosted by {users[reservation?.Room?.ownerId]?.firstName}</div>
+                      <div className="past-bottom-dates">
+                        {startMonth === endMonth ? <div className="past-res-month-day">
+                          <span className="past-month-res">{startMonth} {startDay} - {endDay}, {endYear} </span>
+                        </div> :
+                          <div className="past-res-month-day">
+                            <span className="past-date-res-other">{startMonth} {startDay} - {endMonth} {endDay}, {endYear}</span>
+                          </div>}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div >
         </div > : <>
           <div className="no-session-user">

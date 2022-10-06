@@ -46,7 +46,7 @@
   padding: 2rem;
   border: 1px rgba(128, 128, 128, 0.143) solid;
   height: 13rem;
-  margin-top: 1rem;
+  margin: 1rem 0 3rem;
 }
 
 .start-search-button {
@@ -74,7 +74,7 @@
 
 .main-reservation-content {
   display: grid;
-  grid-template-columns: repeat(2, 450px);
+  grid-template-columns: repeat(2, 500px);
   height: 200px;
 }
 
@@ -88,7 +88,21 @@
 
 .top-left-name {
   font-size: 1.1rem;
-  padding: 0.5rem 0 0.3rem 0;
+  padding: 0.2rem 0;
+}
+
+.reservation-listing-name, .res-address {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.reservations-hosted-by {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgb(75, 75, 75);
 }
 
 .top-left-res-content {
@@ -159,7 +173,7 @@
 }
 
 .month-res {
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding-bottom: 0.2rem;
   font-weight: 250;
 }

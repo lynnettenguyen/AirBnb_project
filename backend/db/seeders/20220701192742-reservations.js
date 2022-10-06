@@ -17,19 +17,13 @@ module.exports = {
       },
       {
         roomId: 2,
-        userId: 1,
-        startDate: '2022-08-02',
-        endDate: '2022-08-05'
-      },
-      {
-        roomId: 2,
         userId: 3,
         startDate: '2022-08-06',
         endDate: '2022-08-12'
       },
       {
         roomId: 3,
-        userId: 1,
+        userId: 4,
         startDate: '2022-08-18',
         endDate: '2022-08-22'
       },
@@ -68,6 +62,24 @@ module.exports = {
         userId: 1,
         startDate: '2022-12-04',
         endDate: '2022-12-07'
+      },
+      {
+        roomId: 15,
+        userId: 1,
+        startDate: '2022-07-04',
+        endDate: '2022-07-07'
+      },
+      {
+        roomId: 31,
+        userId: 1,
+        startDate: '2022-08-31',
+        endDate: '2022-09-01'
+      },
+      {
+        roomId: 30,
+        userId: 1,
+        startDate: '2022-09-03',
+        endDate: '2022-09-06'
       },
     ], {});
   },

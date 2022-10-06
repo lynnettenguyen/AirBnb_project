@@ -46,7 +46,7 @@
   padding: 2rem;
   border: 1px rgba(128, 128, 128, 0.143) solid;
   height: 13rem;
-  margin: 1rem 0 3rem;
+  margin: 1rem 0 1.5rem;
 }
 
 .start-search-button {
@@ -91,7 +91,8 @@
   padding: 0.2rem 0;
 }
 
-.reservation-listing-name, .res-address {
+.reservation-listing-name,
+.res-address {
   width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -282,4 +283,57 @@
 
 .ul-res-error {
   margin: 0;
+}
+
+.res-header {
+  font-weight: 400;
+  font-size: 1.1rem;
+  padding: 10px 0;
+}
+
+.past-outer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+}
+
+.past-outer-main {
+  display: flex;
+  padding: 15px 0 20px;
+}
+
+.past-left-content {
+  width: 90px;
+  padding: 0 15px 0 5px;
+}
+
+.past-res-img {
+  width: 100%;
+  height: 86px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.past-res-city-state {
+  font-size: 0.9rem;
+  font-weight: 450;
+  width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.past-res-hosted-by {
+  font-weight: 400;
+  padding: 5px 0;
+}
+
+.past-res-hosted-by,
+.past-res-month-day {
+  font-size: 0.85rem;
+  color: rgb(75, 75, 75);
+}
+
+.past-res-month-day {
+  font-weight: 300;
 }

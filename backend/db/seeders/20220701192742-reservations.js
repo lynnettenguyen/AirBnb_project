@@ -4,10 +4,10 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Reservations', [
       {
-        roomId: 1,
-        userId: 2,
-        startDate: '2022-08-28',
-        endDate: '2022-08-31'
+        roomId: 15,
+        userId: 1,
+        startDate: '2022-07-04',
+        endDate: '2022-07-07'
       },
       {
         roomId: 1,
@@ -26,6 +26,30 @@ module.exports = {
         userId: 4,
         startDate: '2022-08-18',
         endDate: '2022-08-22'
+      },
+      {
+        roomId: 1,
+        userId: 2,
+        startDate: '2022-08-28',
+        endDate: '2022-08-31'
+      },
+      {
+        roomId: 31,
+        userId: 1,
+        startDate: '2022-08-31',
+        endDate: '2022-09-01'
+      },
+      {
+        roomId: 27,
+        userId: 1,
+        startDate: '2022-09-04',
+        endDate: '2022-09-07'
+      },
+      {
+        roomId: 30,
+        userId: 1,
+        startDate: '2022-09-12',
+        endDate: '2022-09-17'
       },
       {
         roomId: 3,
@@ -62,24 +86,6 @@ module.exports = {
         userId: 1,
         startDate: '2022-12-04',
         endDate: '2022-12-07'
-      },
-      {
-        roomId: 15,
-        userId: 1,
-        startDate: '2022-07-04',
-        endDate: '2022-07-07'
-      },
-      {
-        roomId: 31,
-        userId: 1,
-        startDate: '2022-08-31',
-        endDate: '2022-09-01'
-      },
-      {
-        roomId: 30,
-        userId: 1,
-        startDate: '2022-09-03',
-        endDate: '2022-09-06'
       },
     ], {});
   },

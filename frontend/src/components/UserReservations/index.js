@@ -25,8 +25,8 @@ const UserReservations = ({ isLoaded }) => {
   const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId && sessionUser.id !== reservation.userId)
 
   const trips = allReservations.filter(reservation => sessionUser.id === reservation.userId)
-  const futureTrips = trips.filter(trip => new Date() <= new Date(trip.endDate))
-  const pastTrips = trips.filter(trip => new Date() >= new Date(trip.endDate))
+  const futureTrips = trips.filter(trip => new Date() <= new Date(trip.endDate)).sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+  const pastTrips = trips.filter(trip => new Date() >= new Date(trip.endDate)).sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
 
   const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
   const allEndDates = reservationsPerRoom.map(reservation => reservation.endDate)

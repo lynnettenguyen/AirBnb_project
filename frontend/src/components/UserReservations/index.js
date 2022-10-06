@@ -21,6 +21,10 @@ const UserReservations = ({ isLoaded }) => {
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkDates, setCheckDates] = useState(true)
 
+  const tomorrow = new Date()
+  const nextDay = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  nextDay.setDate(nextDay.getDate() + 2)
 
   const reservationsPerRoom = allReservations.filter(reservation => reservation.roomId === roomId && sessionUser.id !== reservation.userId)
 
@@ -131,7 +135,7 @@ const UserReservations = ({ isLoaded }) => {
                 </div>
               </div>
             </div>}
-            {futureTrips.length > 0 ? <div className="res-header">Upcoming Reservations</div> : <></>}
+            {futureTrips.length > 0 ? <div className="res-header">Upcoming reservations</div> : <></>}
             <form onSubmit={handleSubmit}>
               {futureTrips?.map((reservation, i) => {
 
@@ -199,17 +203,17 @@ const UserReservations = ({ isLoaded }) => {
                                 <label className="check-label">CHECK-IN</label>
                                 <input
                                   type="date"
-                                  min={new Date().toISOString().split('T')[0]}
+                                  min={tomorrow.toISOString().split('T')[0]}
                                   className="select-date-res"
                                   value={new Date(checkIn).toISOString().slice(0, 10)}
-                                  onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
+                                  onChange={(e) => { setCheckIn(new Date(e.target.value).toISOString().slice(0, 10)); setCheckOut(new Date(e.target.value).toISOString().slice(0, 10)) }}
                                 />
                               </div>
                               <div className="check-res">
                                 <label className="check-label">CHECKOUT</label>
                                 <input
                                   type="date"
-                                  min={new Date().toISOString().split('T')[0]}
+                                  min={new Date(checkIn).toISOString().split('T')[0]}
                                   className="select-date-res"
                                   value={new Date(checkOut).toISOString().slice(0, 10)}
                                   onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}

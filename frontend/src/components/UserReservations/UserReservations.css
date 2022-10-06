@@ -22,7 +22,7 @@
 
 .trips-header {
   font-size: 1.4rem;
-  padding: 1.2rem 0 0.6rem;
+  padding: 1.2rem 0 1rem;
   font-weight: 400;
 }
 
@@ -98,6 +98,10 @@
   text-overflow: ellipsis;
   display: inline-block;
   overflow: hidden;
+}
+
+.res-address {
+  width: 89%
 }
 
 .reservations-hosted-by {
@@ -184,6 +188,11 @@
   font-weight: 250;
 }
 
+.res-month-day {
+  width: 60px;
+  box-sizing: border-box;
+}
+
 .date-res-other {
   font-size: 1rem;
   font-weight: 250;
@@ -207,7 +216,7 @@
 }
 
 .res-country {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 250;
 }
 

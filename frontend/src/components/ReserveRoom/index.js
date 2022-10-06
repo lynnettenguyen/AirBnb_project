@@ -90,14 +90,14 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
                 min={new Date().toISOString().split('T')[0]}
                 className="select-date"
                 value={new Date(checkIn).toISOString().slice(0, 10)}
-                onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
+                onChange={(e) => { setCheckIn(new Date(e.target.value).toISOString().slice(0, 10)); setCheckOut(new Date(e.target.value).toISOString().slice(0, 10)) }}
               />
             </div>
             <div className="check-out">
               <label className="check-label">CHECKOUT</label>
               <input
                 type="date"
-                min={new Date().toISOString().split('T')[0]}
+                min={new Date(checkIn).toISOString().split('T')[0]}
                 className="select-date"
                 value={new Date(checkOut).toISOString().slice(0, 10)}
                 onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}

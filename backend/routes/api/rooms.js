@@ -185,8 +185,9 @@ router.get('/:roomId/reservations', [requireAuth, checkRoomExists], async (req, 
 router.post('/:roomId/reservations', [requireAuth, checkRoomExists, checkNotOwner, validateDate, checkReservationValidation], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
-    if (new Date(startDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) > new Date(endDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })) {
-        const err = new Error(`Invalid date selection`);
+    // if (new Date(startDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) > new Date(endDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })) {
+    if (startDate > endDate) {
+        const err = new Error(`Check-in date must be prior to check-out date`);
         err.status = 400;
         return next(err);
     } else if (startDate === endDate) {

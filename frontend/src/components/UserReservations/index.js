@@ -102,12 +102,10 @@ const UserReservations = ({ isLoaded }) => {
     }
 
     const updatedReservation = await dispatch(updateReservation(reservationData))
+    setShowEdit(false)
+    dispatch(listAllReservations())
+    dispatch(listAllReservations(roomId))
 
-    if (updateReservation) {
-      setShowEdit(false)
-      dispatch(listAllReservations())
-      dispatch(listAllReservations(roomId))
-    }
   }
 
   return (

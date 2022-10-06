@@ -10,6 +10,7 @@ import selectedPriceMarker from './selected-price-marker.png'
 
 const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
+  let { guests } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
   const [map, setMap] = useState(null)
@@ -48,8 +49,7 @@ const SearchMap = ({ searchRooms }) => {
 
     if (destination === 'indonesia') setZoom(9)
 
-  }, [destination])
-
+  }, [destination, guests])
 
   // useEffect(() => {
   //   if (map) {

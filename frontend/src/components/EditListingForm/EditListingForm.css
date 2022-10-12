@@ -127,6 +127,12 @@
   width: 55rem;
 }
 
+.update-listing-button:disabled {
+  background-image: none;
+  background-color: rgba(128, 128, 128, 0.203);
+  cursor: default;
+}
+
 .edit-guests-buttons button {
   border-radius: 50%;
   background: none;
@@ -142,4 +148,8 @@
 
 .edit-guests-buttons button:disabled {
   border: 1px solid rgba(128, 128, 128, 0.325);
+}
+
+.update-error {
+  color: red
 }

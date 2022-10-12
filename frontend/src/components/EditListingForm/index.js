@@ -32,14 +32,18 @@ const EditListingForm = ({ listingId, returnToListing }) => {
   useEffect(() => {
     const errors = [];
     if (lat > 90 || lat < -90) errors.push("Latitude must be between - 90 to 90")
-    if (lng > 180 || lng < -180) errors.push("Longitude must be between - 90 to 90")
+    if (lng > 180 || lng < -180) errors.push("Longitude must be between - 180 to 180")
+    if (price > 1000000 || price < 1) errors.push("Price must be between $1 and $1,000,000")
 
     if (errors.length > 0) {
       setErrors(errors)
       setDisableButton(true)
+    } else {
+      setErrors([])
+      setDisableButton(false)
     }
 
-  }, [lat, lng])
+  }, [lat, lng, price])
 
 
   const handleSubmit = async (e) => {
@@ -102,25 +106,25 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             <span className="edit-guests-buttons">
               <button type='button' onClick={() => { if (guests > 1) setGuests(guests - 1) }} disabled={guests === 1}>-</button>
               {guests}
-              <button type='button' onClick={() => setGuests(guests + 1)}>+</button>
+              <button type='button' onClick={() => setGuests(guests + 1)} disabled={guests === 16}>+</button>
             </span>
             <label className="edit-guests-label"> Beds: </label>
             <span className="edit-guests-buttons">
               <button type='button' onClick={() => { if (beds > 1) setBeds(beds - 1) }} disabled={beds === 1}>-</button>
               {beds}
-              <button type='button' onClick={() => setBeds(beds + 1)}>+</button>
+              <button type='button' onClick={() => setBeds(beds + 1)} disabled={beds === 16}>+</button>
             </span>
             <label className="edit-guests-label"> Bedrooms: </label>
             <span className="edit-guests-buttons">
               <button type='button' onClick={() => { if (bedrooms > 1) setBedrooms(bedrooms - 1) }} disabled={bedrooms === 1}>-</button>
               {bedrooms}
-              <button type='button' onClick={() => setBedrooms(bedrooms + 1)}>+</button>
+              <button type='button' onClick={() => setBedrooms(bedrooms + 1)} disabled={bedrooms === 20}>+</button>
             </span>
             <label className="edit-guests-label"> Bathrooms: </label>
             <span className="edit-guests-buttons">
-              <button type='button' onClick={() => { if (baths > 0.5) setBaths(baths - 0.5) }} disabled={baths === 0.5}>-</button>
+              <button type='button' onClick={() => { if (baths > 0.5) setBaths(Number(baths) - 0.5) }} disabled={baths === 0.5}>-</button>
               {baths}
-              <button type='button' onClick={() => setBaths(baths + 0.5)}>+</button>
+              <button type='button' onClick={() => setBaths(baths + 0.5)} disabled={baths === 20}>+</button>
             </span>
           </span>
         </div>
@@ -207,6 +211,8 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               className="edit-listing-input lat"
               value={lat}
               onChange={e => setLat(e.target.value)}
+              min="-90"
+              max="90"
               required
             />
           </div>
@@ -219,6 +225,8 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               className="edit-listing-input lng"
               value={lng}
               onChange={e => setLng(e.target.value)}
+              min="-180"
+              max="180"
               required
             />
           </div>
@@ -245,11 +253,13 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             className="edit-listing-input price-input"
             onChange={e => setPrice(e.target.value)}
             required
+            min={1}
+            max={100000}
           />
         </div>
-        {/* {errors.length > 0 && (<ul>
-          {errors.map((error, i) => <li key={i}>{error}</li>)}
-        </ul>)} */}
+        {errors.length > 0 && (<ul>
+          {errors.map((error, i) => <li key={i} className='update-error'>{error}</li>)}
+        </ul>)}
         <button type="submit" disabled={disableButton} className="update-listing-button">Confirm</button>
       </form>
     </div >

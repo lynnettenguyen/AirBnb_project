@@ -43,7 +43,6 @@ function SearchBar() {
 
     e.preventDefault()
     history.push(`/search/${destination}/${guests}`)
-    setDestination("")
   }
 
   return (

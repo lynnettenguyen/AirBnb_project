@@ -19,7 +19,7 @@ function SignupFormPage({ setShowSignUp }) {
 
   if (sessionUser) {
     setShowSignUp(false)
-    return <Redirect to="/" />
+    // return <Redirect to="/" />
   };
 
   const handleSubmit = (e) => {

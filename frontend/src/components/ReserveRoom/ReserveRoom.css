@@ -105,6 +105,12 @@
   width: 21rem;
 }
 
+.reserve-button:disabled {
+  background-image: none;
+  background-color: rgba(128, 128, 128, 0.344);
+  cursor: default
+}
+
 .total-fees {
   display: grid;
   grid-template-rows: 8rem 4rem;

@@ -59,6 +59,7 @@ const RoomDetails = ({ isLoaded }) => {
     dispatch(listRoomReservations(roomId))
     dispatch(listAllUsers())
     dispatch(getAllRoomReviews(roomId))
+    document.documentElement.scrollTop = 0;
 
   }, [dispatch])
 

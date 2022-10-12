@@ -57,28 +57,47 @@ const CreateListingForm = ({ isLoaded }) => {
   useEffect(() => {
     const errors = []
 
-    let latNum = parseInt(lat, 10)
-    let lngNum = parseInt(lng, 10)
+    if (page === 5) {
+      let latNum = parseInt(lat, 10)
+      let lngNum = parseInt(lng, 10)
 
-    if (address === "") errors.push("valid address required")
-    if (city === "") errors.push("valid city required")
-    if (state === "") errors.push("valid state required")
-    if (country === "") errors.push("valid country required")
-    if (lat === "" || !isNaN(latNum) && (lat > 90 || lat < -90)) {
-      errors.push("valid latitude between -90 to +90 required")
-      setCheckInput(true)
+      if (address === "") errors.push("valid address required")
+      if (city === "") errors.push("valid city required")
+      if (state === "") errors.push("valid state required")
+      if (country === "") errors.push("valid country required")
+      if (lat === "" || (!isNaN(latNum) && (lat > 90 || lat < -90))) {
+        errors.push("valid latitude between -90 to +90 required")
+        setCheckInput(true)
+      }
+      if (lng === "" || !isNaN(lngNum) && (lng > 180 || lng < -180)) {
+        errors.push("valid longitude -180 to +180 required")
+        setCheckInput(true)
+      }
+
+      if (errors.length > 0) {
+        setCheckInput(true)
+        setValidationErrors(errors)
+      } else {
+        setValidationErrors([])
+        setCheckInput(false)
+      }
     }
-    if (lng === "" || !isNaN(lngNum) && (lng > 180 || lng < -180)) {
-      errors.push("valid longitude -180 to +180 required")
-      setCheckInput(true)
+
+    if (page === 6) {
+      if (description === "") {
+        setCheckInput(true)
+      }
     }
 
-    if (errors.length > 0) {
-      setCheckInput(true)
-      setValidationErrors(errors)
-    } else setCheckInput(false)
+    if (page === 7) {
+      if (price < 1 || price > 1000000) {
+        setCheckInput(true)
+      }
+    }
 
-  }, [page, address, city, state, country, lat, lng])
+  }, [page, address, city, state, country, lat, lng, description, price])
+
+  console.log(validationErrors)
 
   const setDemoAddress = () => {
     setAddress("19508 Boggy Ford Rd")
@@ -234,6 +253,7 @@ const CreateListingForm = ({ isLoaded }) => {
                     value={name}
                     onChange={updateName}
                     required
+                    maxLength={50}
                   />
                 </div>
                 <div className="right-content-buttons">
@@ -280,7 +300,7 @@ const CreateListingForm = ({ isLoaded }) => {
                           className="create-category-radio"
                           checked={category === room_category}
                           value={category}
-                          onChange={(e) => { setCategory(room_category); toggleNext(e.target.value) }}
+                          onChange={() => { setCategory(room_category) }}
                           required
                         />
                         <label className="create-category-label">{room_category}</label>
@@ -407,7 +427,6 @@ const CreateListingForm = ({ isLoaded }) => {
                       className="multi-input"
                       value={lat}
                       onChange={e => { setLat(e.target.value); }}
-                      required
                     />
                   </div>
                   <div>
@@ -417,7 +436,6 @@ const CreateListingForm = ({ isLoaded }) => {
                       className="multi-input"
                       value={lng}
                       onChange={e => { setLng(e.target.value); }}
-                      required
                     />
                   </div>
                 </div>
@@ -484,7 +502,8 @@ const CreateListingForm = ({ isLoaded }) => {
                       placeholder="$"
                       className="create-input"
                       value={price}
-                      min="1"
+                      min={1}
+                      max={100000}
                       onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
                       required
                     />
@@ -525,7 +544,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_main.url"
+                      placeholder="https://www.link_image_main.jpeg"
                       className="multi-input"
                       value={image1}
                       onChange={e => { setImage1(e.target.value); }}
@@ -535,7 +554,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_2.url"
+                      placeholder="https://www.link_image_2.jpeg"
                       className="multi-input"
                       value={image2}
                       onChange={e => { setImage2(e.target.value); }}
@@ -545,7 +564,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_3.url"
+                      placeholder="https://www.link_image_3.jpeg"
                       className="multi-input"
                       value={image3}
                       onChange={e => { setImage3(e.target.value); }}
@@ -555,7 +574,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_4.url"
+                      placeholder="https://www.link_image_4.jpeg"
                       className="multi-input"
                       value={image4}
                       onChange={e => { setImage4(e.target.value); }}
@@ -565,7 +584,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_5.url"
+                      placeholder="https://www.link_image_5.jpeg"
                       className="multi-input"
                       value={image5}
                       onChange={e => { setImage5(e.target.value); setCheckInput(false) }}

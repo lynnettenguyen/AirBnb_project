@@ -19,7 +19,13 @@ module.exports = {
         userId: 2,
         roomId: 6,
         stars: 5,
-        review: 'Where do I begin… this cabin in the woods is magical. It is easy to feel one with the surrounding gorgeous nature because of the unique mirrored walls. The hosts were super easy to communicate with and left us a bottle of Prosecco, as well as binoculars for watching wildlife (we saw some birds). Shampoo and conditioner were top notch, and the view from the jacuzzi is pretty unbeatable. It is a unique romantic place well worth the money.'
+        review: 'Where do I begin… this cabin in the woods is magical. It is easy to feel one with the surrounding gorgeous nature because of the unique mirrored walls. The hosts were super easy to communicate with and left us a bottle of Prosecco.'
+      },
+      {
+        userId: 9,
+        roomId: 6,
+        stars: 5,
+        review: 'It is a unique romantic place well worth the money. The hosts left us binoculars for watching wildlife (we saw some birds). Shampoo and conditioner were top notch, and the view from the jacuzzi is pretty unbeatable. '
       },
       {
         userId: 3,
@@ -31,7 +37,13 @@ module.exports = {
         userId: 7,
         roomId: 1,
         stars: 4,
-        review: 'We had a great time! It was crazy snowing while we stayed and the house was really amazing, warm and cozy! Big enough for 12 people ( 6 adults and 6 kids). Everything was super clean and towels were folded like in a hotel room.Everything is well organized in the house and the communication with the host was quick and helpful! '
+        review: 'We had a great time! It was crazy snowing while we stayed and the house was really amazing, warm and cozy! Big enough for 12 people ( 6 adults and 6 kids).'
+      },
+      {
+        userId: 8,
+        roomId: 1,
+        stars: 4,
+        review: 'Everything was super clean and towels were folded like in a hotel room. Everything is well organized in the house and the communication with the host was quick and helpful! '
       },
       {
         userId: 3,
@@ -67,16 +79,28 @@ module.exports = {
         userId: 3,
         roomId: 5,
         stars: 5,
-        review: 'Beautifully renovated cabin with a great deck and wonderful location! We could walk right down to a nearby beach and the marina was less than a 5 minute drive. All super accessible. The cabin is well appointed and tastefully decorated - nice modern/woodsy vibe.'
+        review: 'Beautifully renovated cabin with a great deck and wonderful location! We could walk right down to a nearby beach and the marina was less than a 5 minute drive. All super accessible.'
+      },
+      {
+        userId: 9,
+        roomId: 5,
+        stars: 5,
+        review: 'The cabin is well appointed and tastefully decorated - nice modern/woodsy vibe.'
       },
       {
         userId: 2,
         roomId: 9,
         stars: 5,
-        review: 'Hands down one of the most magical places I have ever stayed in. The lake and mountain view are beautiful and the house adds to all the charm with its fireplace, sauna, and beautiful rustic wood interior. The host was very attentive of us and provided us with a fridge full of water, yogurt, and juice. We felt very well looked after. You will not regret staying here!'
+        review: 'Hands down one of the most magical places I have ever stayed in. The lake and mountain view are beautiful and the house adds to all the charm with its fireplace, sauna, and beautiful rustic wood interior'
       },
       {
-        userId: 3,
+        userId: 8,
+        roomId: 9,
+        stars: 5,
+        review: 'The host was very attentive of us and provided us with a fridge full of water, yogurt, and juice. We felt very well looked after. You will not regret staying here!'
+      },
+      {
+        userId: 7,
         roomId: 9,
         stars: 5,
         review: 'If you are looking for everything you could want from a relaxing stay in the lake como area, this is it. At the same time you will have a comfortable residence as well as direct lakeside access without having to go to public beaches. Amazing stay with plenty of amenities!'
@@ -127,7 +151,13 @@ module.exports = {
         userId: 5,
         roomId: 9,
         stars: 5,
-        review: 'This is the most incredible, spectacular place on the lake. You will not find a better place for a better price — trust me! The home has everything you need — including air conditioning! We arrived, set our bags down, and were swimming in the lake in front of the property within the first five minutes. A very clear & clean spot on the lake, too! From the back yard we watched the sunset over the top of Bellagio. Beautiful!'
+        review: 'This is the most incredible, spectacular place on the lake. You will not find a better place for a better price — trust me! The home has everything you need — including air conditioning!'
+      },
+      {
+        userId: 9,
+        roomId: 9,
+        stars: 5,
+        review: 'We arrived, set our bags down, and were swimming in the lake in front of the property within the first five minutes. A very clear & clean spot on the lake, too! From the back yard we watched the sunset over the top of Bellagio. Beautiful!'
       },
       {
         userId: 2,
@@ -145,7 +175,13 @@ module.exports = {
         userId: 7,
         roomId: 10,
         stars: 5,
-        review: 'This would be the best place we have stayed and we have traveled the world and stayed at some amazing places. The hosts created a very special place that is so unique and peaceful. The food at the restaurant was amazing which we would rate close a Michelin Star. We would very much highly recommend booking and stay here. Final words WOW what a amazing place!'
+        review: 'This would be the best place we have stayed and we have traveled the world and stayed at some amazing places. The hosts created a very special place that is so unique and peaceful.'
+      },
+      {
+        userId: 4,
+        roomId: 10,
+        stars: 5,
+        review: 'The food at the restaurant was amazing which we would rate close a Michelin Star. We would very much highly recommend booking and stay here. Final words WOW what a amazing place!'
       },
       {
         userId: 7,
@@ -157,7 +193,13 @@ module.exports = {
         userId: 6,
         roomId: 11,
         stars: 5,
-        review: 'The reviews speak for themselves. It is such a nice escape to unwind and relax. It is remote, but you do have cell service and are close enough that you can explore surrounding areas like Cullman and Birmingham. We loved the privacy, listening to all the animals while drinking coffee outside, and exploring the property. They have thought of almost everything (extra batteries, toiletries, etc., bikes for riding around the property, etc.) We can’t wait to go back in winter to enjoy the pond more!'
+        review: 'The reviews speak for themselves. It is such a nice escape to unwind and relax. It is remote, but you do have cell service and are close enough that you can explore surrounding areas like Cullman and Birmingham. We loved the privacy!'
+      },
+      {
+        userId: 8,
+        roomId: 11,
+        stars: 5,
+        review: 'We loved listening to all the animals while drinking coffee outside, and exploring the property. They have thought of almost everything (extra batteries, toiletries, etc., bikes for riding around the property, etc.) We can’t wait to go back in winter to enjoy the pond more!'
       },
       {
         userId: 1,
@@ -169,7 +211,13 @@ module.exports = {
         userId: 2,
         roomId: 12,
         stars: 5,
-        review: 'My family and I had a wonderful stay in this home. The house is beautiful and the pool is sparkling and quite refreshing on the hot June days. We loved having the outdoor kitchen, and the house was equipped with everything we needed to take advantage of the lovely food available in the local markets. The house is very well located for exploring all of the wonderful nearby towns and for taking longer day trips. We are already looking forward to our return!'
+        review: 'My family and I had a wonderful stay in this home. The house is beautiful and the pool is sparkling and quite refreshing on the hot June days. We loved having the outdoor kitchen, and the house was equipped with everything we needed.'
+      },
+      {
+        userId: 6,
+        roomId: 12,
+        stars: 4,
+        review: 'The house is very well located for exploring all of the wonderful nearby towns and for taking longer day trips. We are already looking forward to our return!'
       },
       {
         userId: 2,
@@ -181,7 +229,13 @@ module.exports = {
         userId: 5,
         roomId: 13,
         stars: 5,
-        review: 'We have stayed in many Airbnb’s over the past few years and we can say, without a doubt, this is the best experience we have ever had. The villa is absolutely stunning, spotlessly clean and every little detail has been thought of. The location is amazing, so close to the beautiful lake and beach; we had so much fun.'
+        review: 'We have stayed in many Airbnb’s over the past few years and we can say, without a doubt, this is the best experience we have ever had.'
+      },
+      {
+        userId: 7,
+        roomId: 13,
+        stars: 4,
+        review: 'The villa is absolutely stunning, spotlessly clean and every little detail has been thought of. The location is amazing, so close to the beautiful lake and beach; we had so much fun.'
       },
       {
         userId: 6,
@@ -223,13 +277,25 @@ module.exports = {
         userId: 2,
         roomId: 21,
         stars: 5,
-        review: 'My entire stay was perfect. Everyone goes above and beyond to help, make you feel safe and comfortable. I had issues with ordering food one night and Oka helped me get it straightened out. He was always ready and willing to help. And his dogs are super sweet ☺️ They remember your name and are there to greet you every time you leave/return.'
+        review: 'My entire stay was perfect. Everyone goes above and beyond to help, make you feel safe and comfortable.'
+      },
+      {
+        userId: 5,
+        roomId: 21,
+        stars: 3,
+        review: 'I had issues with ordering food one night and Oka helped me get it straightened out. He was always ready and willing to help. And his dogs are super sweet ☺️ They remember your name and are there to greet you every time you leave/return.'
       },
       {
         userId: 4,
         roomId: 21,
         stars: 5,
-        review: 'Such an amazing, unique stay in Bali. The treehouse is exactly as described and looks like all the photos - all of our friends were jealous lol the location in Ubud is amazing. Close to lots of activities and great, lively restaurants. The hosts were so friendly and attentive. We loved getting a floating breakfast in the morning and seeing the sunrise from bed. Definitely recommend!'
+        review: 'Such an amazing, unique stay in Bali. The treehouse is exactly as described and looks like all the photos - all of our friends were jealous lol the location in Ubud is amazing.'
+      },
+      {
+        userId: 6,
+        roomId: 21,
+        stars: 5,
+        review: 'Close to lots of activities and great, lively restaurants. The hosts were so friendly and attentive. We loved getting a floating breakfast in the morning and seeing the sunrise from bed. Definitely recommend!'
       },
       {
         userId: 7,
@@ -258,14 +324,26 @@ module.exports = {
       {
         userId: 7,
         roomId: 23,
+        stars: 4,
+        review: 'The villa is amazing. The private pool and the bathtub are so nice. Also the view from the bed is incredible. You always have a contact and everybody is very helpful.'
+      },
+      {
+        userId: 5,
+        roomId: 23,
         stars: 3,
-        review: 'The villa is amazing. The private pool and the bathtub are so nice. Also the view from the bed is incredible. You always have a contact and everybody is very helpful. Unfortunately we had a problem with the water so sometimes there was none. But i think this is not a common problem. You have to be sure, that it may cost a lot more than common for the driver with a car. But the stay was nice and we would always come back.'
+        review: 'Unfortunately we had a problem with the water so sometimes there was none. But i think this is not a common problem. You have to be sure, that it may cost a lot more than common for the driver with a car. But the stay was nice and we would always come back.'
       },
       {
         userId: 8,
         roomId: 23,
         stars: 4,
-        review: 'It has been an incredible stay. Very easy to reach through (Hidden by Airbnb) maps. communication with the host was very fluid and very attentive. The house is magnificent, everything thought out to the last detail, the pivoting doors, the pool, the bathtub, the space to take a break on the terrace, the amount of flowers, see the monkeys in the neigbour’s trees and waking up every day with Kuta bay it\'s quite an experience. It has been very inspirational and we only wish to return to Lombok to stay again.'
+        review: 'It has been an incredible stay. Very easy to reach through (Hidden by Airbnb) maps. communication with the host was very fluid and very attentive. The house is magnificent.'
+      },
+      {
+        userId: 2,
+        roomId: 23,
+        stars: 4,
+        review: 'The house has everything thought out to the last detail, the pivoting doors, the pool, the bathtub, the space to take a break on the terrace, the amount of flowers, and waking up every day with Kuta bay. It has been very inspirational and we only wish to return to Lombok to stay again.'
       },
       {
         userId: 6,
@@ -276,8 +354,14 @@ module.exports = {
       {
         userId: 1,
         roomId: 24,
-        stars: 5,
-        review: 'The hideout is a fancy accommodation for everybody who is looking for some relaxation in the balinese jungle. Please mind that it‘s far away from the city and civilization - but you can order a driver that brings you wherever you want. The food is also delicious. Great place to stay if you want to get to know the residents and balinese hinterlands.'
+        stars: 4,
+        review: 'The hideout is a fancy accommodation for everybody who is looking for some relaxation in the balinese jungle. Please mind that it‘s far away from the city and civilization.'
+      },
+      {
+        userId: 9,
+        roomId: 24,
+        stars: 4,
+        review: 'The hideout is amazing but secluded. You can order a driver that brings you wherever you want. The food is also delicious. Great place to stay if you want to get to know the residents and balinese hinterlands.'
       },
       {
         userId: 6,
@@ -295,7 +379,13 @@ module.exports = {
         userId: 8,
         roomId: 25,
         stars: 4,
-        review: 'The location is great, especially if you have a car. Street parking is easily available, and it’s about 20 minutes to the beach/hotel zone. The actual apartment is really big and new. Air conditioning worked super well! My only quibble is that we lost water for a few hours one morning.Sounds like the whole building had an issue.However, it was resolved relatively quickly. Sometimes stuff happens!'
+        review: 'The location is great, especially if you have a car. Street parking is easily available, and it’s about 20 minutes to the beach/hotel zone. The actual apartment is really big and new.'
+      },
+      {
+        userId: 9,
+        roomId: 25,
+        stars: 3,
+        review: 'Air conditioning worked super well! My only quibble is that we lost water for a few hours one morning.Sounds like the whole building had an issue.However, it was resolved relatively quickly. Sometimes stuff happens!'
       },
       {
         userId: 2,
@@ -397,7 +487,13 @@ module.exports = {
         userId: 4,
         roomId: 34,
         stars: 5,
-        review: 'We loved every minute of our stay. The remote location was perfect, far from any city noise, and the use of the scooter to explore the area was great and lots of fun. The open air design of the house was lovely - we really felt like we were immersed in nature.The staff were incredible - friendly and helpful and so respectful of our privacy.'
+        review: 'We loved every minute of our stay. The remote location was perfect, far from any city noise, and the use of the scooter to explore the area was great and lots of fun.'
+      },
+      {
+        userId: 9,
+        roomId: 34,
+        stars: 5,
+        review: 'The open air design of the house was lovely - we really felt like we were immersed in nature.The staff were incredible - friendly and helpful and so respectful of our privacy.'
       },
       {
         userId: 5,
@@ -421,13 +517,25 @@ module.exports = {
         userId: 5,
         roomId: 35,
         stars: 4,
-        review: 'Lovely stay and wonderful place. Right where you want to be for the beach. Jacuzzi was nice. Deck is lovely. House worked great especially the guest house. The only suggestion I would make is to get rocks set up as stairs for entrance to Broad Beach. It’s slippery and treacherous walking down the current jagged rock path (not really a path).'
+        review: 'Lovely stay and wonderful place. Right where you want to be for the beach. Jacuzzi was nice. Deck is lovely. House worked great especially the guest house.'
+      },
+      {
+        userId: 1,
+        roomId: 35,
+        stars: 3,
+        review: 'The only suggestion I would make is to get rocks set up as stairs for entrance to Broad Beach. It’s slippery and treacherous walking down the current jagged rock path (not really a path).'
       },
       {
         userId: 7,
         roomId: 35,
         stars: 3,
-        review: 'The location was beautiful and the staff was very responsive replying to our requests. It’s unfortunate that the back yard area had not been cleaned properly and that we had to deal with a dog poo bag while dining outside. Also the issues with our toilet and the fact that there wasn’t a shower in the main bedroom (meaning we had to share a bathroom with another guest) were major disappointments.'
+        review: 'The location was beautiful and the staff was very responsive replying to our requests. It’s unfortunate that the back yard area had not been cleaned properly and that we had to deal with a dog poo bag while dining outside.'
+      },
+      {
+        userId: 4,
+        roomId: 35,
+        stars: 2,
+        review: 'The issues with our toilet and the fact that there wasn’t a shower in the main bedroom (meaning we had to share a bathroom with another guest) were major disappointments.'
       },
       {
         userId: 8,
@@ -445,13 +553,25 @@ module.exports = {
         userId: 7,
         roomId: 37,
         stars: 5,
-        review: 'Every part of this house is amazing. The views alone are breathtaking. You have the master bedroom with a bathroom on the main floor that opens up to the main area of the house. There are 3 bedrooms and 3 bathrooms downstairs. All rooms and bathrooms are upscale. There is an amazing pool with breathtaking ocean views. You can also walk onto the beach directly from the back, MAJOR PLUS!!!!'
+        review: 'Every part of this house is amazing. The views alone are breathtaking. You have the master bedroom with a bathroom on the main floor that opens up to the main area of the house. '
+      },
+      {
+        userId: 9,
+        roomId: 37,
+        stars: 5,
+        review: 'There are 3 bedrooms and 3 bathrooms downstairs. All rooms and bathrooms are upscale. There is an amazing pool with breathtaking ocean views. You can also walk onto the beach directly from the back, MAJOR PLUS!!!!'
       },
       {
         userId: 6,
         roomId: 37,
         stars: 4,
-        review: 'Absolutely amazing property and stay!! Very clean, modern, amazing views and direct water access. Location is perfect. Close to shops, supermarket, restaurants, yet the privacy of the house location makes you feel like there is no one around for miles. Can’t say enough about this place. We will be returning without a doubt!!'
+        review: 'Absolutely amazing property and stay!! Very clean, modern, amazing views and direct water access. Location is perfect. Close to shops, supermarket, restaurants, yet the privacy of the house location makes you feel like there is no one around for miles.'
+      },
+      {
+        userId: 2,
+        roomId: 37,
+        stars: 5,
+        review: 'Can’t say enough about this place. We will be returning without a doubt!!'
       },
       {
         userId: 4,

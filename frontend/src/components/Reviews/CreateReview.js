@@ -24,8 +24,7 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
     const errors = []
 
     if (stars === 0) errors.push('Please rate your stay from 1 to 5 stars')
-    if (review?.length < 10) errors.push('Review must be between 10 and 1000 characters')
-    if (review?.length > 1000) errors.push('Review must be between 10 and 1000 characters')
+    if (review?.length < 10 || review?.length > 290) errors.push('Review must be between 10 and 290 characters')
 
     if (errors.length > 0) setErrors(errors)
     else setErrors([])
@@ -142,7 +141,7 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
             className="review-text"
             value={review}
             onChange={e => setReview(e.target.value)}
-            maxLength={1001}
+            maxLength={291}
           />
         </div>
         {errors.length > 0 && (<>

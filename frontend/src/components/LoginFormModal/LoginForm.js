@@ -31,6 +31,10 @@ function LoginForm({ setShowLogIn }) {
       });
   }
 
+  const handleRegister = () => {
+
+  }
+
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <h1 className="login-header">Welcome to WhereBnb</h1>
@@ -66,6 +70,12 @@ function LoginForm({ setShowLogIn }) {
         className="demo-login-form-button"
         onClick={() => { setEmail("demo@user.io"); setPassword("password") }}
       >Demo User</button>
+      <div className='or-outer'>
+        <span className='or-border'></span>
+        <span>&nbsp; or &nbsp;</span>
+        <span className='or-border'></span>
+      </div>
+      <button type='button' onClick={handleRegister} className='login-register-button'>Register</button>
     </form>
   );
 }

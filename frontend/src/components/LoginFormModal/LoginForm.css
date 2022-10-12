@@ -18,8 +18,29 @@
   font-size: 16px;
   font-weight: 600;
   height: 50px;
-  margin-top: 8px;
+  margin: 8px 0 20px;
   width: 410px;
+}
+
+.login-register-button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  margin: 20px 0;
+  width: 410px;
+}
+
+.or-outer {
+  display: flex;
+  align-items: center;
+}
+
+.or-border {
+  border-top: 1px solid rgba(55, 55, 55, 0.269);
+  min-width: 186px;
 }
 
 .login-form {

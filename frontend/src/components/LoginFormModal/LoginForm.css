@@ -49,6 +49,7 @@
   flex-direction: column;
   min-height: 365px;
   width: 470px;
+  padding: 10px 0;
 }
 
 .login-input {

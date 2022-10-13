@@ -111,6 +111,14 @@
   font-weight: 500;
 }
 
+.room-location {
+  width: 700px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+}
+
 .span-separator {
   font-size: 22px;
   margin: 0 15px;
@@ -128,7 +136,8 @@
 }
 
 .edit-listing-button,
-.delete-listing-button, .delete-confirm-button {
+.delete-listing-button,
+.delete-confirm-button {
   background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
   border: none;
   border-radius: 10px;

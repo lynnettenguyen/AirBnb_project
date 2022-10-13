@@ -78,6 +78,13 @@ th {
 
 td {
   border-top: 1px solid rgba(153, 153, 153, 0.494);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.listing-city-state {
+  max-width: 170px;
 }
 
 .green-icon {

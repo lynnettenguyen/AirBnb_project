@@ -31,15 +31,15 @@ const EditListingForm = ({ listingId, returnToListing }) => {
 
   useEffect(() => {
     const errors = [];
-    if (type === "") errors.push("Type of place required")
-    if (name === "") errors.push("Title required")
-    if (address === "") errors.push("Address required")
-    if (city === "") errors.push("City required")
-    if (state === "") errors.push("State required")
-    if (country === "") errors.push("Country required")
+    if (type.trim().length < 2) errors.push("Type of place between 3 and 20 characters required")
+    if (name.trim().length < 10) errors.push("Title must be between 10 and 50 characters")
+    if (address.trim().length < 10) errors.push("Valid address required")
+    if (city.trim().length < 5) errors.push("Valid city required")
+    if (state.trim().length < 5) errors.push("Valid state required")
+    if (country.trim().length < 5) errors.push("Valid country required")
     if (lat === "" || lat > 90 || lat < -90) errors.push("Latitude must be between - 90 to 90")
     if (lng === "" || lng > 180 || lng < -180) errors.push("Longitude must be between - 180 to 180")
-    if (description === "") errors.push("Description required")
+    if (description.trim().length < 10) errors.push("Description required between 10 and 1000 characters")
     if (price > 1000000 || price < 1) errors.push("Price must be between $1 and $1,000,000")
 
     if (errors.length > 0) {
@@ -107,6 +107,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             value={type}
             onChange={e => setType(e.target.value)}
             required
+            maxLength={20}
           />
           <span>
             <label className="edit-guests-label"> Guests: </label>
@@ -164,6 +165,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
           className="edit-listing-input title-input"
           value={name}
           onChange={e => setName(e.target.value)}
+          maxLength={50}
           required
         />
         <div className="edit-listing-label">
@@ -176,6 +178,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             value={address}
             onChange={e => setAddress(e.target.value)}
             required
+            maxLength={100}
           />
         </div>
         <div className="edit-listing-location">
@@ -186,6 +189,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               value={city}
               onChange={e => setCity(e.target.value)}
               required
+              maxLength={50}
             />
           </div>
           <div>
@@ -195,6 +199,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               value={state}
               onChange={e => setState(e.target.value)}
               required
+              maxLength={50}
             />
           </div>
           <div>
@@ -204,6 +209,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               value={country}
               onChange={e => setCountry(e.target.value)}
               required
+              maxLength={50}
             />
           </div>
         </div>
@@ -218,9 +224,6 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               className="edit-listing-input lat"
               value={lat}
               onChange={e => setLat(e.target.value)}
-            // min="-90"
-            // max="90"
-            // required
             />
           </div>
           <div>
@@ -232,9 +235,6 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               className="edit-listing-input lng"
               value={lng}
               onChange={e => setLng(e.target.value)}
-            // min="-180"
-            // max="180"
-            // required
             />
           </div>
         </div>

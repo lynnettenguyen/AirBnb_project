@@ -11,7 +11,7 @@ const ManageListings = ({ isLoaded }) => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const allRooms = useSelector(getAllRooms)
-  const userRooms = allRooms.filter(room => room.ownerId === sessionUser.id)
+  const userRooms = allRooms.filter(room => room.ownerId === sessionUser.id).sort((a,b) => b.id - a.id)
 
   useEffect(() => {
     dispatch(listAllRooms())

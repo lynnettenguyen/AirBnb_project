@@ -40,7 +40,7 @@ const CreateListingForm = ({ isLoaded }) => {
   const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabins', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
 
   const toggleNext = (e) => {
-    if (e.length > 1) setCheckInput(false)
+    if (e.trim().length > 2) setCheckInput(false)
     else setCheckInput(true)
   }
 
@@ -61,10 +61,10 @@ const CreateListingForm = ({ isLoaded }) => {
       let latNum = parseInt(lat, 10)
       let lngNum = parseInt(lng, 10)
 
-      if (address === "") errors.push("valid address required")
-      if (city === "") errors.push("valid city required")
-      if (state === "") errors.push("valid state required")
-      if (country === "") errors.push("valid country required")
+      if (address.trim().length < 10) errors.push("Valid address required")
+      if (city.trim().length < 5) errors.push("Valid city required")
+      if (state.trim().length < 5) errors.push("Valid state required")
+      if (country.trim().length < 5) errors.push("Valid country required")
       if (lat === "" || (!isNaN(latNum) && (lat > 90 || lat < -90))) {
         errors.push("valid latitude between -90 to +90 required")
         setCheckInput(true)
@@ -84,7 +84,7 @@ const CreateListingForm = ({ isLoaded }) => {
     }
 
     if (page === 6) {
-      if (description === "") {
+      if (description.trim().length < 10) {
         setCheckInput(true)
       }
     }
@@ -388,6 +388,7 @@ const CreateListingForm = ({ isLoaded }) => {
                       value={address}
                       onChange={e => { setAddress(e.target.value); }}
                       required
+                      maxLength={100}
                     />
                   </div>
                   <div>
@@ -398,6 +399,7 @@ const CreateListingForm = ({ isLoaded }) => {
                       value={city}
                       onChange={e => { setCity(e.target.value); }}
                       required
+                      maxLength={50}
                     />
                   </div>
                   <div>
@@ -408,6 +410,7 @@ const CreateListingForm = ({ isLoaded }) => {
                       value={state}
                       onChange={e => { setState(e.target.value); }}
                       required
+                      maxLength={50}
                     />
                   </div>
                   <div>
@@ -418,6 +421,7 @@ const CreateListingForm = ({ isLoaded }) => {
                       value={country}
                       onChange={e => { setCountry(e.target.value); }}
                       required
+                      maxLength={50}
                     />
                   </div>
                   <div>
@@ -470,7 +474,8 @@ const CreateListingForm = ({ isLoaded }) => {
                       placeholder="This is a beautiful beachfront, 3 bedroom cozy family cabin/home with breathtaking views of the lake! Enjoy two outside decks for relaxation and entertainment and the panoramic views of the West shore."
                       className="create-input-textarea"
                       value={description}
-                      onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
+                    onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
+                    maxLength={1000}
                     >
                     </textarea>
                   </div>

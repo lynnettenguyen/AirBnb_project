@@ -27,12 +27,19 @@ const EditListingForm = ({ listingId, returnToListing }) => {
   const [errors, setErrors] = useState([]);
   const [disableButton, setDisableButton] = useState(false)
 
-  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabin', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
+  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabins', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
 
   useEffect(() => {
     const errors = [];
-    if (lat > 90 || lat < -90) errors.push("Latitude must be between - 90 to 90")
-    if (lng > 180 || lng < -180) errors.push("Longitude must be between - 180 to 180")
+    if (type === "") errors.push("Type of place required")
+    if (name === "") errors.push("Title required")
+    if (address === "") errors.push("Address required")
+    if (city === "") errors.push("City required")
+    if (state === "") errors.push("State required")
+    if (country === "") errors.push("Country required")
+    if (lat === "" || lat > 90 || lat < -90) errors.push("Latitude must be between - 90 to 90")
+    if (lng === "" || lng > 180 || lng < -180) errors.push("Longitude must be between - 180 to 180")
+    if (description === "") errors.push("Description required")
     if (price > 1000000 || price < 1) errors.push("Price must be between $1 and $1,000,000")
 
     if (errors.length > 0) {
@@ -43,7 +50,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
       setDisableButton(false)
     }
 
-  }, [lat, lng, price])
+  }, [type, name, address, city, state, country, lat, lng, description, price])
 
 
   const handleSubmit = async (e) => {
@@ -122,9 +129,9 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             </span>
             <label className="edit-guests-label"> Bathrooms: </label>
             <span className="edit-guests-buttons">
-              <button type='button' onClick={() => { if (baths > 0.5) setBaths(Number(baths) - 0.5) }} disabled={baths === 0.5}>-</button>
+              <button type='button' onClick={() => { if (baths > 0.5) setBaths(Number(baths) - Number(0.50)) }} disabled={baths === 0.5}>-</button>
               {baths}
-              <button type='button' onClick={() => setBaths(baths + 0.5)} disabled={baths === 20}>+</button>
+              <button type='button' onClick={() => setBaths(Number(baths) + Number(0.50))} disabled={baths === 20}>+</button>
             </span>
           </span>
         </div>
@@ -140,7 +147,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
                     className="edit-category-radio"
                     checked={category === room_category}
                     value={category}
-                    onChange={(e) => setCategory(room_category)}
+                    onChange={() => setCategory(room_category)}
                     required
                   />
                   <label className="edit-category-label">{room_category}</label>
@@ -211,9 +218,9 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               className="edit-listing-input lat"
               value={lat}
               onChange={e => setLat(e.target.value)}
-              min="-90"
-              max="90"
-              required
+            // min="-90"
+            // max="90"
+            // required
             />
           </div>
           <div>
@@ -225,9 +232,9 @@ const EditListingForm = ({ listingId, returnToListing }) => {
               className="edit-listing-input lng"
               value={lng}
               onChange={e => setLng(e.target.value)}
-              min="-180"
-              max="180"
-              required
+            // min="-180"
+            // max="180"
+            // required
             />
           </div>
         </div>

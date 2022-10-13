@@ -37,7 +37,7 @@ const CreateListingForm = ({ isLoaded }) => {
   const [validationErrors, setValidationErrors] = useState([])
   const [errors, setErrors] = useState([])
 
-  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabin', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
+  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabins', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
 
   const toggleNext = (e) => {
     if (e.length > 1) setCheckInput(false)

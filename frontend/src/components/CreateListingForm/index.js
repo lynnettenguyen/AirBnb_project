@@ -283,7 +283,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   value={type}
                   onChange={updateType}
                   required
-                  maxLength={20}
+                  maxLength={30}
                 />
                 <div className="right-content-label">
                   <label className="create-new-label-property">

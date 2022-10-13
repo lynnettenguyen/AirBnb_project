@@ -31,7 +31,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
 
   useEffect(() => {
     const errors = [];
-    if (type.trim().length < 2) errors.push("Type of place between 3 and 20 characters required")
+    if (type.trim().length < 2) errors.push("Type of place between 3 and 30 characters required")
     if (name.trim().length < 10) errors.push("Title must be between 10 and 50 characters")
     if (address.trim().length < 10) errors.push("Valid address required")
     if (city.trim().length < 5) errors.push("Valid city required")
@@ -107,7 +107,7 @@ const EditListingForm = ({ listingId, returnToListing }) => {
             value={type}
             onChange={e => setType(e.target.value)}
             required
-            maxLength={20}
+            maxLength={30}
           />
           <span>
             <label className="edit-guests-label"> Guests: </label>

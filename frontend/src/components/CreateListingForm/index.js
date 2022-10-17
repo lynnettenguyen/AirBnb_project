@@ -20,7 +20,7 @@ const CreateListingForm = ({ isLoaded }) => {
   const [lng, setLng] = useState("")
   const [name, setName] = useState("")
   const [type, setType] = useState("")
-  const [category, setCategory] = useState("A-Frames")
+  const [category, setCategory] = useState("A-Frame")
   const [guests, setGuests] = useState(2)
   const [bedrooms, setBedrooms] = useState(1)
   const [beds, setBeds] = useState(1)
@@ -37,7 +37,7 @@ const CreateListingForm = ({ isLoaded }) => {
   const [validationErrors, setValidationErrors] = useState([])
   const [errors, setErrors] = useState([])
 
-  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabins', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
+  const categories = ['A-Frame', 'Amazing Pool', 'Beach', 'Cabin', 'Design', 'Dome', 'Luxe', 'Treehouse', 'Tiny Home', 'Tropical']
 
   const toggleNext = (e) => {
     if (e.trim().length > 2) setCheckInput(false)
@@ -61,10 +61,10 @@ const CreateListingForm = ({ isLoaded }) => {
       let latNum = parseInt(lat, 10)
       let lngNum = parseInt(lng, 10)
 
-      if (address.trim().length < 10) errors.push("Valid address required")
-      if (city.trim().length < 5) errors.push("Valid city required")
-      if (state.trim().length < 5) errors.push("Valid state required")
-      if (country.trim().length < 5) errors.push("Valid country required")
+      if (address.trim().length < 6) errors.push("Valid address required")
+      if (city.trim().length < 4) errors.push("Valid city required")
+      if (state.trim().length < 4) errors.push("Valid state required")
+      if (country.trim().length < 4) errors.push("Valid country required")
       if (lat === "" || (!isNaN(latNum) && (lat > 90 || lat < -90))) {
         errors.push("valid latitude between -90 to +90 required")
         setCheckInput(true)
@@ -95,9 +95,15 @@ const CreateListingForm = ({ isLoaded }) => {
       }
     }
 
-  }, [page, address, city, state, country, lat, lng, description, price])
+    if (page === 8) {
+      if (image1 === "" || image2 === "" || image3 === "" || image4 === "" || image5 === "") {
+        setCheckInput(true)
+      }
+    }
 
-  console.log(validationErrors)
+  }, [page, address, city, state, country, lat, lng, description, price, image1, image2, image3, image4, image5])
+
+  // console.log(validationErrors)
 
   const setDemoAddress = () => {
     setAddress("19508 Boggy Ford Rd")
@@ -474,8 +480,8 @@ const CreateListingForm = ({ isLoaded }) => {
                       placeholder="This is a beautiful beachfront, 3 bedroom cozy family cabin/home with breathtaking views of the lake! Enjoy two outside decks for relaxation and entertainment and the panoramic views of the West shore."
                       className="create-input-textarea"
                       value={description}
-                    onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
-                    maxLength={1000}
+                      onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
+                      maxLength={1000}
                     >
                     </textarea>
                   </div>
@@ -549,7 +555,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_main.jpeg"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
                       className="multi-input"
                       value={image1}
                       onChange={e => { setImage1(e.target.value); }}
@@ -559,7 +565,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_2.jpeg"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
                       className="multi-input"
                       value={image2}
                       onChange={e => { setImage2(e.target.value); }}
@@ -569,7 +575,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_3.jpeg"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
                       className="multi-input"
                       value={image3}
                       onChange={e => { setImage3(e.target.value); }}
@@ -579,7 +585,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_4.jpeg"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
                       className="multi-input"
                       value={image4}
                       onChange={e => { setImage4(e.target.value); }}
@@ -589,7 +595,7 @@ const CreateListingForm = ({ isLoaded }) => {
                   <div>
                     <input
                       type="url"
-                      placeholder="https://www.link_image_5.jpeg"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
                       className="multi-input"
                       value={image5}
                       onChange={e => { setImage5(e.target.value); setCheckInput(false) }}

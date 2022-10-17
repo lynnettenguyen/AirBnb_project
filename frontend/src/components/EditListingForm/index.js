@@ -27,16 +27,16 @@ const EditListingForm = ({ listingId, returnToListing }) => {
   const [errors, setErrors] = useState([]);
   const [disableButton, setDisableButton] = useState(false)
 
-  const categories = ['A-Frames', 'Amazing Pools', 'Beach', 'Cabins', 'Design', 'Domes', 'Luxe', 'Treehouses', 'Tiny Homes', 'Tropical']
+  const categories = ['A-Frame', 'Amazing Pool', 'Beach', 'Cabin', 'Design', 'Dome', 'Luxe', 'Treehouse', 'Tiny Home', 'Tropical']
 
   useEffect(() => {
     const errors = [];
     if (type.trim().length < 2) errors.push("Type of place between 3 and 30 characters required")
     if (name.trim().length < 10) errors.push("Title must be between 10 and 50 characters")
-    if (address.trim().length < 10) errors.push("Valid address required")
-    if (city.trim().length < 5) errors.push("Valid city required")
-    if (state.trim().length < 5) errors.push("Valid state required")
-    if (country.trim().length < 5) errors.push("Valid country required")
+    if (address.trim().length < 6) errors.push("Valid address required")
+    if (city.trim().length < 4) errors.push("Valid city required")
+    if (state.trim().length < 4) errors.push("Valid state required")
+    if (country.trim().length < 4) errors.push("Valid country required")
     if (lat === "" || lat > 90 || lat < -90) errors.push("Latitude must be between - 90 to 90")
     if (lng === "" || lng > 180 || lng < -180) errors.push("Longitude must be between - 180 to 180")
     if (description.trim().length < 10) errors.push("Description required between 10 and 1000 characters")

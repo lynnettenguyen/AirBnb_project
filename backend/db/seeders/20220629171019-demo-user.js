@@ -8,7 +8,7 @@ module.exports = {
         email: 'demo@user.io',
         firstName: 'Demo',
         lastName: 'User',
-        hashedPassword: bcrypt.hashSync('password'),
+        hashedPassword: bcrypt.hashSync('SecurePassword0411'),
         profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user4.png"
       },
       {

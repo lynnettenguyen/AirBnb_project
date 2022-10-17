@@ -20,7 +20,7 @@ button:hover {
 }
 
 button:active {
-  transform: translateY(3px);
+  transform: translateY(1.5px);
 }
 
 button:disabled {

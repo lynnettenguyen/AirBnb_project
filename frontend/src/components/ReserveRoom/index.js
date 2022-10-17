@@ -148,14 +148,14 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
         <div className="total-fees">
           <div className="top-fees">
             <div className="fee-label">
-              <div className="each-fee">{`${room?.price} x ${numDays} nights`}</div>
+                <div className="each-fee">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} x ${numDays} nights`}</div>
               <div className="each-fee">Cleaning Fee</div>
               <div className="each-fee">Service Fee</div>
             </div>
             <div className="fee-price">
               <div className="fee-number">{`$${(numDays * room?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
-              <div className="fee-number">{`$${cleaningFee}`}</div>
-              <div className="fee-number">{`$${serviceFee}`}</div>
+                <div className="fee-number">{`$${cleaningFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }`}</div>
+                <div className="fee-number">{`$${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }`}</div>
             </div>
           </div>
           <div className="total-fees-bottom">

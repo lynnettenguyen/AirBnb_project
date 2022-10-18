@@ -28,16 +28,14 @@ const RoomDetails = ({ isLoaded }) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const currRoomReservations = useSelector(getAllReservations)
 
-  const tomorrowOne = new Date()
   const tomorrow = new Date()
   const nextDay = new Date()
 
-  tomorrowOne.setDate(nextDay.getDate() + 1)
-  tomorrow.setDate(tomorrow.getDate() + 2)
-  nextDay.setDate(nextDay.getDate() + 3)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  nextDay.setDate(nextDay.getDate() + 2)
 
-  const [startDate, setStartDate] = useState(tomorrowOne)
-  const [endDate, setEndDate] = useState(nextDay)
+  const [startDate, setStartDate] = useState(tomorrow )
+  const [endDate, setEndDate] = useState(nextDay )
 
   const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))

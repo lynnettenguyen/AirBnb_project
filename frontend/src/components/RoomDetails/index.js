@@ -12,6 +12,9 @@ import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
 import Navigation from "../Navigation";
 import { Modal } from "../../context/Modal";
+import { Calendar, DateRangePicker } from 'react-date-range'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const RoomDetails = ({ isLoaded }) => {
   let { roomId } = useParams()
@@ -31,6 +34,12 @@ const RoomDetails = ({ isLoaded }) => {
 
   const wholeNumbers = [1, 2, 3, 4, 5]
   if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
+
+  const selectionRange = {
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  }
 
   const returnToListing = () => {
     setPage(1)
@@ -80,7 +89,7 @@ const RoomDetails = ({ isLoaded }) => {
                   <div className="room-information-top">
                     <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
                     <span className="span-separator">·</span>
-                    <span className="room-reviews" onClick={() => { document.getElementById('reviews').scrollIntoView()}}>{`${room?.Reviews ? room?.Reviews.length : 0} reviews`}</span>
+                    <span className="room-reviews" onClick={() => { document.getElementById('reviews').scrollIntoView() }}>{`${room?.Reviews ? room?.Reviews.length : 0} reviews`}</span>
                     <span className="span-separator">·</span>
                     <span className="room-location" onClick={() => { document.getElementById('maps').scrollIntoView() }}>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
                   </div>
@@ -97,7 +106,7 @@ const RoomDetails = ({ isLoaded }) => {
                               <div className="delete-confirmation-modal">
                                 Permanently remove listing?
                                 <div className="delete-confirmation-button-outer">
-                                <button onClick={handleDelete} className='delete-confirm-button'>Delete</button>
+                                  <button onClick={handleDelete} className='delete-confirm-button'>Delete</button>
                                 </div>
                               </div>
                             </Modal>}
@@ -140,6 +149,14 @@ const RoomDetails = ({ isLoaded }) => {
             </div>
             <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
           </div>
+          {/* <div>
+            <Calendar
+              date={new Date()}
+            />
+            <DateRangePicker
+              ranges={[selectionRange]}
+            />
+          </div> */}
           <Reviews room={room} avgStarRating={avgStarRating} roomId={roomId} />
           <Maps room={room} />
         </div>

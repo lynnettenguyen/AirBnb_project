@@ -6,7 +6,7 @@ import { getAllReservations, listRoomReservations, bookNewReservation } from "..
 import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
 
-const ReserveRoom = ({ roomId, avgStarRating }) => {
+const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, setCheckOut }) => {
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
@@ -14,20 +14,10 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
 
   const currRoomReservations = useSelector(getAllReservations)
 
-  const tomorrow = new Date()
-  const nextDay = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 4)
-  nextDay.setDate(nextDay.getDate() + 5)
-
-  const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
-  const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
   const [reservationErrors, setReservationErrors] = useState([])
   const [checkOwner, setCheckOwner] = useState(false)
   const [showReservations, setShowReservations] = useState(false)
   const [showLogIn, setShowLogIn] = useState(false)
-
-  const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
-  const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
 
   useEffect(() => {
     dispatch(listRoomReservations(roomId))

@@ -5,14 +5,14 @@ import { findRoomById, removeRoom } from "../../store/rooms";
 import "./RoomDetails.css"
 import EditListingForm from "../EditListingForm";
 import ReserveRoom from "../ReserveRoom";
-import { listRoomReservations } from "../../store/reservations";
+import { getAllReservations, listRoomReservations } from "../../store/reservations";
 import Maps from '../Maps'
 import Reviews from "../Reviews";
 import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
 import Navigation from "../Navigation";
 import { Modal } from "../../context/Modal";
-import { Calendar, DateRangePicker } from 'react-date-range'
+import { DateRange } from 'react-date-range'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
@@ -26,6 +26,59 @@ const RoomDetails = ({ isLoaded }) => {
   const sessionUser = useSelector(state => state.session.user);
   const users = useSelector(state => state.users)
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const currRoomReservations = useSelector(getAllReservations)
+
+  const tomorrowOne = new Date()
+  const tomorrow = new Date()
+  const nextDay = new Date()
+
+  tomorrowOne.setDate(nextDay.getDate() + 1)
+  tomorrow.setDate(tomorrow.getDate() + 2)
+  nextDay.setDate(nextDay.getDate() + 3)
+
+  const [startDate, setStartDate] = useState(tomorrowOne)
+  const [endDate, setEndDate] = useState(nextDay)
+
+  const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
+  const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
+
+  const [dates, setDates] = useState([
+    {
+      startDate: startDate,
+      endDate: endDate,
+      key: 'selection'
+    }
+  ])
+
+  useEffect(() => {
+    dispatch(listRoomReservations(roomId))
+  }, [])
+
+  const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
+  const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
+
+  const getDaysArray = function (start, end) {
+    for (var arr = [], dt = new Date(start); dt <= new Date(end); dt.setDate(dt.getDate() + 1)) {
+      arr.push(new Date(dt));
+    }
+    return arr;
+  };
+
+  const getBookedDates = () => {
+    let i = 0
+    let bookedDates;
+    while (i < allStartDates.length) {
+      bookedDates = getDaysArray(new Date(allStartDates[i]), new Date(allEndDates[i]));
+      bookedDates.map((date) => date.toISOString().slice(0, 10)).join("")
+      i++
+    }
+    return bookedDates
+  }
+
+  useEffect(() => {
+    setCheckIn(dates[0].startDate.toISOString().slice(0, 10))
+    setCheckOut(dates[0].endDate.toISOString().slice(0, 10))
+  }, [dates])
 
   const [page, setPage] = useState(1)
 
@@ -34,12 +87,6 @@ const RoomDetails = ({ isLoaded }) => {
 
   const wholeNumbers = [1, 2, 3, 4, 5]
   if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
-
-  const selectionRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  }
 
   const returnToListing = () => {
     setPage(1)
@@ -146,17 +193,24 @@ const RoomDetails = ({ isLoaded }) => {
                 </div>
               </div>
               <div className="room-description">{room?.description}</div>
+              <div className="room-calendar">
+                <div className="calendar-header">Select Travel Dates</div>
+                <DateRange
+                  ranges={dates}
+                  editableDateInputs={false}
+                  moveRangeOnFirstSelection={false}
+                  rangeColors={['black']}
+                  onChange={(e) => setDates([e.selection])}
+                  showDateDisplay={false}
+                  months={2}
+                  minDate={new Date()}
+                  direction={"horizontal"}
+                  disabledDates={getBookedDates()}
+                />
+              </div>
             </div>
-            <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} />
+            <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} />
           </div>
-          {/* <div>
-            <Calendar
-              date={new Date()}
-            />
-            <DateRangePicker
-              ranges={[selectionRange]}
-            />
-          </div> */}
           <Reviews room={room} avgStarRating={avgStarRating} roomId={roomId} />
           <Maps room={room} />
         </div>

@@ -49,7 +49,7 @@ const Maps = ({ room }) => {
   }
 
   return (
-    <div className='maps-outer'>
+    <div className='maps-outer' id='maps'>
       <div className='maps-header'>Where you'll be</div>
       <div className='maps-main'>
         {isLoaded &&

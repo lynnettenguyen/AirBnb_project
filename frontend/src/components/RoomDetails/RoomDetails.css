@@ -110,6 +110,8 @@
 .room-reviews,
 .room-location {
   font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .room-location {

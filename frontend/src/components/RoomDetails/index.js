@@ -80,9 +80,9 @@ const RoomDetails = ({ isLoaded }) => {
                   <div className="room-information-top">
                     <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
                     <span className="span-separator">·</span>
-                    <span className="room-reviews">{`${room?.Reviews ? room?.Reviews.length : 0} reviews`}</span>
+                    <span className="room-reviews" onClick={() => { document.getElementById('reviews').scrollIntoView()}}>{`${room?.Reviews ? room?.Reviews.length : 0} reviews`}</span>
                     <span className="span-separator">·</span>
-                    <span className="room-location">{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
+                    <span className="room-location" onClick={() => { document.getElementById('maps').scrollIntoView() }}>{`${room?.city}, ${room?.state}, ${room?.country}`}</span>
                   </div>
                 </div>
                 <div className="session-user-buttons">

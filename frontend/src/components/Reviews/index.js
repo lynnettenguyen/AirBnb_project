@@ -48,7 +48,7 @@ const Reviews = ({ room, roomId, avgStarRating }) => {
 
   return (
     <>
-      {<div className="reviews-main">
+      {<div className="reviews-main" id='reviews'>
         <div className="reviews-header">
           <i className="fa-solid fa-star reviews"></i><span>{avgStarRating === 0 ? <>New</> : <>{avgStarRating}</>}</span>
           <span className="span-separator-review">·</span>

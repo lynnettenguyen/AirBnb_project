@@ -83,7 +83,7 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               <i className="fa-solid fa-star smaller"></i>
               {avgStarRating}</span>
             <span className="span-separator-smaller">·</span>
-            <span className="reserve-review">{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
+            <span className="reserve-review" onClick={() => { document.getElementById('reviews').scrollIntoView()}}>{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
           </div>
           <div>
             <div className="reservation-dates">
@@ -132,46 +132,46 @@ const ReserveRoom = ({ roomId, avgStarRating }) => {
               </div>) : <></>}
             <div className="reserve-button-div">
               {sessionUser ?
-                <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" onClick={() => {setShowLogIn(true)}}>Log In to Reserve</button>
+                <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" onClick={() => { setShowLogIn(true) }}>Log In to Reserve</button>
               }
-            {reservationErrors.length > 0 && (
-              // <div className="reserve-errors">{reservationErrors[0]}</div>
-              <ul className="res-error-ul-host">
-                {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
-              </ul>
-            )}
+              {reservationErrors.length > 0 && (
+                // <div className="reserve-errors">{reservationErrors[0]}</div>
+                <ul className="res-error-ul-host">
+                  {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="fee-warning">
-          <div>You won't be charged yet</div>
-        </div>
-        <div className="total-fees">
-          <div className="top-fees">
-            <div className="fee-label">
+          <div className="fee-warning">
+            <div>You won't be charged yet</div>
+          </div>
+          <div className="total-fees">
+            <div className="top-fees">
+              <div className="fee-label">
                 <div className="each-fee">{`$${room?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} x ${numDays}`} {numDays > 1 ? "nights" : "night"}</div>
-              <div className="each-fee">Cleaning Fee</div>
-              <div className="each-fee">Service Fee</div>
+                <div className="each-fee">Cleaning Fee</div>
+                <div className="each-fee">Service Fee</div>
+              </div>
+              <div className="fee-price">
+                <div className="fee-number">{`$${(numDays * room?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
+                <div className="fee-number">{`$${cleaningFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
+                <div className="fee-number">{`$${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
+              </div>
             </div>
-            <div className="fee-price">
-              <div className="fee-number">{`$${(numDays * room?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
-                <div className="fee-number">{`$${cleaningFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }`}</div>
-                <div className="fee-number">{`$${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }`}</div>
+            <div className="total-fees-bottom">
+              <div className="total-each-fee">Total before taxes</div>
+              <div className="total-fee-number">{`$${((numDays * room?.price) + cleaningFee + serviceFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
             </div>
-          </div>
-          <div className="total-fees-bottom">
-            <div className="total-each-fee">Total before taxes</div>
-            <div className="total-fee-number">{`$${((numDays * room?.price) + cleaningFee + serviceFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
           </div>
         </div>
-      </div>
-    </form >
+      </form >
       {
-    showLogIn && (
-      <Modal onClose={() => setShowLogIn(false)}>
-        <LoginForm setShowLogIn={setShowLogIn} />
-      </Modal>
-    )
-  }
+        showLogIn && (
+          <Modal onClose={() => setShowLogIn(false)}>
+            <LoginForm setShowLogIn={setShowLogIn} />
+          </Modal>
+        )
+      }
     </>
   )
 }

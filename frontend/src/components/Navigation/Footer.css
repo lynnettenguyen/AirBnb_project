@@ -11,6 +11,7 @@
   font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
   border-top: 1px solid rgba(215, 215, 215, 0.643);
   color: rgb(34, 34, 34);
+  z-index: 100;
 }
 
 

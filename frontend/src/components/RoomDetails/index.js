@@ -27,30 +27,54 @@ const RoomDetails = ({ isLoaded }) => {
   const users = useSelector(state => state.users)
   const [confirmDelete, setConfirmDelete] = useState(false);
   const currRoomReservations = useSelector(getAllReservations)
+  const [selectDate, setSelectDate] = useState(false)
 
+  const today = new Date()
   const tomorrow = new Date()
   const nextDay = new Date()
 
   tomorrow.setDate(tomorrow.getDate() + 1)
   nextDay.setDate(nextDay.getDate() + 2)
 
-  const [startDate, setStartDate] = useState(tomorrow )
-  const [endDate, setEndDate] = useState(nextDay )
+  const [checkIn, setCheckIn] = useState(today)
+  const [checkOut, setCheckOut] = useState(tomorrow)
 
-  const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
-  const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
 
   const [dates, setDates] = useState([
     {
-      startDate: startDate,
-      endDate: endDate,
+      startDate: tomorrow,
+      endDate: nextDay,
       key: 'selection'
     }
   ])
 
   useEffect(() => {
+    if (dates[0].startDate !== tomorrow) {
+      setCheckIn(dates[0].startDate.toISOString().slice(0, 10))
+      setCheckOut(dates[0].endDate.toISOString().slice(0, 10))
+    }
+  }, [dates])
+
+  // useEffect(() => {
+  //   const start = new Date(checkIn)
+  //   const end = new Date(checkOut)
+
+  //   start.setDate(start.getDate() + 1)
+  //   end.setDate(end.getDate() + 2)
+  //   setDates([
+  //     {
+  //       startDate: start,
+  //       endDate: end,
+  //       key: 'selection'
+  //     }
+  //   ])
+
+  // }, [selectDate])
+
+  useEffect(() => {
     dispatch(listRoomReservations(roomId))
   }, [])
+
 
   const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
   const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
@@ -72,11 +96,6 @@ const RoomDetails = ({ isLoaded }) => {
     }
     return bookedDates
   }
-
-  useEffect(() => {
-    setCheckIn(dates[0].startDate.toISOString().slice(0, 10))
-    setCheckOut(dates[0].endDate.toISOString().slice(0, 10))
-  }, [dates])
 
   const [page, setPage] = useState(1)
 
@@ -207,7 +226,7 @@ const RoomDetails = ({ isLoaded }) => {
                 />
               </div>
             </div>
-            <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} />
+            <ReserveRoom roomId={roomId} avgStarRating={avgStarRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} selectDate={selectDate} setSelectDate={setSelectDate} />
           </div>
           <Reviews room={room} avgStarRating={avgStarRating} roomId={roomId} />
           <Maps room={room} />

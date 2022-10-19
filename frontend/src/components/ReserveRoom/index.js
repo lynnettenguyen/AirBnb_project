@@ -6,7 +6,7 @@ import { getAllReservations, listRoomReservations, bookNewReservation } from "..
 import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
 
-const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, setCheckOut }) => {
+const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, setCheckOut, selectDate, setSelectDate }) => {
   const room = useSelector((state) => state.rooms[roomId])
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
@@ -73,7 +73,7 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
               <i className="fa-solid fa-star smaller"></i>
               {avgStarRating}</span>
             <span className="span-separator-smaller">·</span>
-            <span className="reserve-review" onClick={() => { document.getElementById('reviews').scrollIntoView()}}>{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
+            <span className="reserve-review" onClick={() => { document.getElementById('reviews').scrollIntoView() }}>{`${room?.Reviews ? room.Reviews.length : 0} reviews`}</span>
           </div>
           <div>
             <div className="reservation-dates">
@@ -84,7 +84,9 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
                   min={new Date().toISOString().split('T')[0]}
                   className="select-date"
                   value={new Date(checkIn).toISOString().slice(0, 10)}
-                  onChange={(e) => { setCheckIn(new Date(e.target.value).toISOString().slice(0, 10)); setCheckOut(new Date(e.target.value).toISOString().slice(0, 10)) }}
+                  onChange={(e) => {
+                    setCheckIn(new Date(e.target.value).toISOString().slice(0, 10)); setCheckOut(new Date(e.target.value).toISOString().slice(0, 10)); setSelectDate(!selectDate)
+                  }}
                 />
               </div>
               <div className="check-out">
@@ -94,7 +96,7 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
                   min={new Date(checkIn).toISOString().split('T')[0]}
                   className="select-date"
                   value={new Date(checkOut).toISOString().slice(0, 10)}
-                  onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
+                  onChange={(e) => { setCheckOut(new Date(e.target.value).toISOString().slice(0, 10)); setSelectDate(!selectDate) }}
                 />
               </div>
               {/* <div className="guests">
@@ -105,7 +107,6 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
                 min="1" />
             </div> */}
             </div>
-            {/* {currRoomReservations.length > 0 ? (<button type="button" onClick={() => setShowReservations(!showReservations)} className="view-reservations">{showReservations ? "Hide reservations" : "View reservations"}</button>) : (<div className="view-reservations-other">No Reservations! Book Now!</div>)} */}
             {showReservations ?
               (<div className="outer-list-reservation">
                 {currRoomReservations.length > 0 ? currRoomReservations.map(reservation => {
@@ -125,7 +126,6 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
                 <button type="submit" className="reserve-button" disabled={checkOwner}>{checkOwner ? "Unable to Reserve" : "Reserve"}</button> : <button className="reserve-button" onClick={() => { setShowLogIn(true) }}>Log In to Reserve</button>
               }
               {reservationErrors.length > 0 && (
-                // <div className="reserve-errors">{reservationErrors[0]}</div>
                 <ul className="res-error-ul-host">
                   {reservationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>

@@ -68,7 +68,8 @@ const RoomDetails = ({ isLoaded }) => {
 
   useEffect(() => {
     dispatch(listRoomReservations(roomId))
-  }, [])
+    getBookedDates()
+  }, [roomId])
 
   const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
   const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
@@ -77,6 +78,7 @@ const RoomDetails = ({ isLoaded }) => {
     for (var arr = [], dt = new Date(start); dt <= new Date(end); dt.setDate(dt.getDate() + 1)) {
       arr.push(new Date(dt));
     }
+    // console.log('arr', arr)
     return arr;
   };
 
@@ -88,8 +90,11 @@ const RoomDetails = ({ isLoaded }) => {
       bookedDates.map((date) => date.toISOString().slice(0, 10)).join("")
       i++
     }
+    // console.log(bookedDates)
     return bookedDates
   }
+
+  // console.log(allStartDates)
 
   const [page, setPage] = useState(1)
 

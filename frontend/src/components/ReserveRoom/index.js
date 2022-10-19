@@ -47,8 +47,8 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
     const reservationData = {
       userId: sessionUser.id,
       roomId,
-      startDate: checkIn,
-      endDate: checkOut
+      startDate: checkIn.toISOString().slice(0, 10),
+      endDate: checkOut.toISOString().slice(0, 10)
     }
 
     dispatch(bookNewReservation(reservationData))

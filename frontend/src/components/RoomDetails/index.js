@@ -74,27 +74,24 @@ const RoomDetails = ({ isLoaded }) => {
   const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
   const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
 
-  const getDaysArray = function (start, end) {
-    for (var arr = [], dt = new Date(start); dt <= new Date(end); dt.setDate(dt.getDate() + 1)) {
-      arr.push(new Date(dt));
+  const getDays = (start, end) => {
+    for (var betweenDates = [], date = new Date(start); date <= new Date(end); date.setDate(date.getDate() + 1)) {
+      betweenDates.push(new Date(date));
     }
-    // console.log('arr', arr)
-    return arr;
+    return betweenDates;
   };
 
   const getBookedDates = () => {
     let i = 0
-    let bookedDates;
+    let bookedDates = []
     while (i < allStartDates.length) {
-      bookedDates = getDaysArray(new Date(allStartDates[i]), new Date(allEndDates[i]));
-      bookedDates.map((date) => date.toISOString().slice(0, 10)).join("")
+      let allDates = getDays(new Date(allStartDates[i]), new Date(allEndDates[i]));
+      allDates.map((date) => date.toISOString().slice(0, 10)).join("")
+      bookedDates.push(...allDates)
       i++
     }
-    // console.log(bookedDates)
     return bookedDates
   }
-
-  // console.log(allStartDates)
 
   const [page, setPage] = useState(1)
 

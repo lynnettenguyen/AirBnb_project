@@ -198,7 +198,7 @@ const UserReservations = ({ isLoaded }) => {
                           <div className={today > new Date(checkIn) ? "hidden" : "middle-change-res"}>
                             <div className={today > new Date(checkIn) ? "hidden" : "reservation-dates-res"}>
                               <div className="check-res" disabled>
-                                <label className="check-label">CHECK-IN</label>
+                                <label className="check-label-edit">CHECK-IN</label>
                                 <input
                                   type="date"
                                   min={tomorrow.toISOString().split('T')[0]}
@@ -208,7 +208,7 @@ const UserReservations = ({ isLoaded }) => {
                                 />
                               </div>
                               <div className="check-res">
-                                <label className="check-label">CHECKOUT</label>
+                                <label className="check-label-edit">CHECKOUT</label>
                                 <input
                                   type="date"
                                   min={new Date(checkIn).toISOString().split('T')[0]}

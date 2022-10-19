@@ -38,8 +38,6 @@ const RoomDetails = ({ isLoaded }) => {
 
   const [checkIn, setCheckIn] = useState(today)
   const [checkOut, setCheckOut] = useState(tomorrow)
-
-
   const [dates, setDates] = useState([
     {
       startDate: tomorrow,
@@ -55,21 +53,24 @@ const RoomDetails = ({ isLoaded }) => {
     }
   }, [dates])
 
-  // useEffect(() => {
-  //   const start = new Date(checkIn)
-  //   const end = new Date(checkOut)
+  console.log('checkin', checkIn)
+  console.log('start', dates[0].startDate)
 
-  //   start.setDate(start.getDate() + 1)
-  //   end.setDate(end.getDate() + 2)
-  //   setDates([
-  //     {
-  //       startDate: start,
-  //       endDate: end,
-  //       key: 'selection'
-  //     }
-  //   ])
+  useEffect(() => {
+    if (checkIn !== today) {
+      const start = new Date(checkIn)
+      const end = new Date(checkOut)
+      
+      setDates([
+        {
+          startDate: start,
+          endDate: end,
+          key: 'selection'
+        }
+      ])
+    }
 
-  // }, [selectDate])
+  }, [selectDate])
 
   useEffect(() => {
     dispatch(listRoomReservations(roomId))

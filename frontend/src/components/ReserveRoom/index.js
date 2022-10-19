@@ -85,7 +85,7 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
                   className="select-date"
                   value={new Date(checkIn).toISOString().slice(0, 10)}
                   onChange={(e) => {
-                    setCheckIn(new Date(e.target.value).toISOString().slice(0, 10)); setCheckOut(new Date(e.target.value).toISOString().slice(0, 10)); setSelectDate(!selectDate)
+                    setCheckIn(new Date(e.target.value)); setCheckOut(new Date(e.target.value)); setSelectDate(!selectDate)
                   }}
                 />
               </div>
@@ -96,7 +96,7 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
                   min={new Date(checkIn).toISOString().split('T')[0]}
                   className="select-date"
                   value={new Date(checkOut).toISOString().slice(0, 10)}
-                  onChange={(e) => { setCheckOut(new Date(e.target.value).toISOString().slice(0, 10)); setSelectDate(!selectDate) }}
+                  onChange={(e) => { setCheckOut(new Date(e.target.value)); setSelectDate(!selectDate) }}
                 />
               </div>
               {/* <div className="guests">

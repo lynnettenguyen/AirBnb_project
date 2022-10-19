@@ -93,15 +93,18 @@
 
 .reservation-listing-name,
 .res-address {
-  width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
   overflow: hidden;
 }
 
+.reservation-listing-name {
+  width: 450px
+}
+
 .res-address {
-  width: 89%
+  width: 350px
 }
 
 .reservations-hosted-by {

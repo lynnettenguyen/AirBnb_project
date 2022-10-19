@@ -31,7 +31,7 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 ![](https://user-images.githubusercontent.com/98368183/196592354-463287a3-f945-4505-bc4e-4188e04ba55c.png)
 ![](https://user-images.githubusercontent.com/98368183/196594076-20b369c9-cd49-4043-94ab-18adbd4ab19e.png)
 
-## Dynammic calendar selection
+## Dynamic calendar selection
 ```js
   const [selectDate, setSelectDate] = useState(false)
   const today = new Date()

@@ -31,6 +31,47 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 ![](https://user-images.githubusercontent.com/98368183/196592354-463287a3-f945-4505-bc4e-4188e04ba55c.png)
 ![](https://user-images.githubusercontent.com/98368183/196594076-20b369c9-cd49-4043-94ab-18adbd4ab19e.png)
 
+## Dynammic calendar selection
+```js
+  const [selectDate, setSelectDate] = useState(false)
+  const today = new Date()
+  const tomorrow = new Date()
+  const nextDay = new Date()
+
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  nextDay.setDate(nextDay.getDate() + 2)
+
+  const [checkIn, setCheckIn] = useState(today)
+  const [checkOut, setCheckOut] = useState(tomorrow)
+  const [dates, setDates] = useState([
+    {
+      startDate: tomorrow,
+      endDate: nextDay,
+      key: 'selection'
+    }
+  ])
+
+  useEffect(() => {
+    if (dates[0].startDate !== tomorrow) {
+      setCheckIn(dates[0].startDate.toISOString().slice(0, 10))
+      setCheckOut(dates[0].endDate.toISOString().slice(0, 10))
+    }
+  }, [dates])
+
+  useEffect(() => {
+    if (checkIn !== today) {
+      setDates([
+        {
+          startDate: new Date(checkIn),
+          endDate: new Date(checkOut),
+          key: 'selection'
+        }
+      ])
+    }
+
+  }, [selectDate])
+```
+
 ## Trips
 ![Trips](https://user-images.githubusercontent.com/98368183/194404318-536f2859-a3ac-4499-bbf3-4ac01ef0a743.png)
 

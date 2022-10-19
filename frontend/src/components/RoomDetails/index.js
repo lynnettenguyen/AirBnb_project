@@ -53,18 +53,12 @@ const RoomDetails = ({ isLoaded }) => {
     }
   }, [dates])
 
-  console.log('checkin', checkIn)
-  console.log('start', dates[0].startDate)
-
   useEffect(() => {
     if (checkIn !== today) {
-      const start = new Date(checkIn)
-      const end = new Date(checkOut)
-      
       setDates([
         {
-          startDate: start,
-          endDate: end,
+          startDate: new Date(checkIn),
+          endDate: new Date(checkOut),
           key: 'selection'
         }
       ])
@@ -75,7 +69,6 @@ const RoomDetails = ({ isLoaded }) => {
   useEffect(() => {
     dispatch(listRoomReservations(roomId))
   }, [])
-
 
   const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
   const allEndDates = currRoomReservations.map(reservation => reservation.endDate)

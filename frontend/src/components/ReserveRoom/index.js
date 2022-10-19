@@ -19,8 +19,6 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
   const [showReservations, setShowReservations] = useState(false)
   const [showLogIn, setShowLogIn] = useState(false)
 
-  const [start, setStart] = useState((new Date(checkIn)).getTimezoneOffset() * 60000)
-
   useEffect(() => {
     dispatch(listRoomReservations(roomId))
 
@@ -37,19 +35,32 @@ const ReserveRoom = ({ roomId, avgStarRating, checkIn, setCheckIn, checkOut, set
 
   }, [dispatch, checkIn, checkOut])
 
+
   const numDays = Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24))
   const cleaningFee = Math.floor(room?.price / 5)
   const serviceFee = Math.floor(room?.price / 8)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    let reservationData
 
-    const reservationData = {
-      userId: sessionUser.id,
-      roomId,
-      startDate: checkIn.toISOString().slice(0, 10),
-      endDate: checkOut.toISOString().slice(0, 10)
+    if (typeof checkIn === 'string') {
+      reservationData = {
+        userId: sessionUser.id,
+        roomId,
+        startDate: checkIn,
+        endDate: checkOut
+      }
+    } else {
+      reservationData = {
+        userId: sessionUser.id,
+        roomId,
+        startDate: new Date(checkIn).toISOString().slice(0, 10),
+        endDate: new Date(checkOut).toISOString().slice(0, 10)
+      }
     }
+
+    console.log(reservationData)
 
     dispatch(bookNewReservation(reservationData))
       .then(() => { history.push("/reservations") })

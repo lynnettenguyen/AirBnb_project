@@ -31,7 +31,7 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
 ![](https://user-images.githubusercontent.com/98368183/196592354-463287a3-f945-4505-bc4e-4188e04ba55c.png)
 ![](https://user-images.githubusercontent.com/98368183/196594076-20b369c9-cd49-4043-94ab-18adbd4ab19e.png)
 
-## Dynamic calendar selection
+## Dynamic calendar selection with already reserved dates displayed 
 ```js
   const [selectDate, setSelectDate] = useState(false)
   const today = new Date()
@@ -70,6 +70,28 @@ WhereBnb provides lodging and vacation rentals around the world, wherever you wa
     }
 
   }, [selectDate])
+  
+  const allStartDates = currRoomReservations.map(reservation => reservation.startDate)
+  const allEndDates = currRoomReservations.map(reservation => reservation.endDate)
+
+  const getDays = (start, end) => {
+    for (var betweenDates = [], date = new Date(start); date <= new Date(end); date.setDate(date.getDate() + 1)) {
+      betweenDates.push(new Date(date));
+    }
+    return betweenDates;
+  };
+
+  const getBookedDates = () => {
+    let i = 0
+    let bookedDates = []
+    while (i < allStartDates.length) {
+      let allDates = getDays(new Date(allStartDates[i]), new Date(allEndDates[i]));
+      allDates.map((date) => date.toISOString().slice(0, 10)).join("")
+      bookedDates.push(...allDates)
+      i++
+    }
+    return bookedDates
+  }
 ```
 
 ## Trips

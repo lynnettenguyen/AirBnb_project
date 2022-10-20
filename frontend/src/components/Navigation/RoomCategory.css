@@ -25,8 +25,17 @@
   border-bottom: 2px solid white;
 }
 
+.room-category-outer {
+  opacity: 0.6;
+}
+
+.room-category-outer:hover {
+  opacity: 1;
+}
+
 .room-category-selected {
   border-bottom: 2px solid black;
+  opacity: 1;
 }
 
 .room-category-outer:hover {
@@ -41,7 +50,6 @@
   font-size: 0.7rem;
   padding-top: 6px;
 }
-
 
 @media screen and (max-width: 700px) {
   .categories-nav-outer {

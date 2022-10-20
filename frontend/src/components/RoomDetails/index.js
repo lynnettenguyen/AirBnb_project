@@ -36,8 +36,8 @@ const RoomDetails = ({ isLoaded }) => {
   tomorrow.setDate(tomorrow.getDate() + 1)
   nextDay.setDate(nextDay.getDate() + 2)
 
-  const [checkIn, setCheckIn] = useState(today)
-  const [checkOut, setCheckOut] = useState(tomorrow)
+  const [checkIn, setCheckIn] = useState(tomorrow)
+  const [checkOut, setCheckOut] = useState(nextDay)
   const [dates, setDates] = useState([
     {
       startDate: tomorrow,

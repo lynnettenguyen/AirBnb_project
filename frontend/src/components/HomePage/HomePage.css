@@ -67,6 +67,7 @@
 .room-info {
   display: flex;
   flex-direction: column;
+  font-family: CircularBook;
 }
 
 .room-rating {
